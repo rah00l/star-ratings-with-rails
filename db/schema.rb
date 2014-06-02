@@ -47,15 +47,14 @@ ActiveRecord::Schema.define(:version => 20140530143431) do
   end
 
   create_table "ratings", :force => true do |t|
-    t.integer  "comment_id"
+    t.integer  "article_id"
     t.integer  "user_id"
-    t.integer  "score"
-    t.string   "default"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.integer  "score",      :default => 0
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
   end
 
-  add_index "ratings", ["comment_id"], :name => "index_ratings_on_comment_id"
+  add_index "ratings", ["article_id"], :name => "index_ratings_on_article_id"
   add_index "ratings", ["user_id"], :name => "index_ratings_on_user_id"
 
   create_table "users", :force => true do |t|

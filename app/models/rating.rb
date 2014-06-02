@@ -1,5 +1,5 @@
 class Rating < ActiveRecord::Base
-  belongs_to :comment
+  belongs_to :article
   belongs_to :user
-  attr_accessible :score,:comment_id, :user_id
+  attr_accessible :score,:article_id, :user_id
 end

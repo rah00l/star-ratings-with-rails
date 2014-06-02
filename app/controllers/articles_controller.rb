@@ -8,9 +8,11 @@ class ArticlesController < ApplicationController
     @commentable = @article
     @comments = @commentable.comments
     @comment = Comment.new
-    
-
-  end
+    @rating = Rating.find_by_article_id_and_user_id(@article.id ,current_user.id)
+    if @rating.blank?
+      @rating = Rating.create(article_id: @article.id, user_id: current_user.id, score: 0)
+    end
+end
 
   def new
     @article = Article.new
