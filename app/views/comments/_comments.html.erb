@@ -1,0 +1,45 @@
+<%# raise @comment.inspect %>
+<% @comments.each do |comment| %>
+
+<%
+    #debugger
+    #puts "a"
+    @rating = Rating.where(comment_id: comment.id, user_id: current_user.id)
+    unless @rating
+      @rating = Rating.create(comment_id: comment.id, user_id: current_user.id, score: 0)
+    end %>
+
+<script>
+  $('#star').raty({
+    readOnly: true,
+    score: <%= comment.average_rating %>,
+    path: '/assets'
+  });
+
+  $('#user_star').raty({
+    score: <%= @rating.collect(&:score).join("").to_i %>,
+    path: '/assets',
+    click: function(score, evt) {
+      $.ajax({
+        url: '/ratings/' + <%= @rating.collect(&:id).join("").to_i %>,
+        type: 'PUT',
+        data: { score: score }
+      });
+    }
+  });
+</script>
+
+
+<p>Average rating</p>
+<div id="star"></div>
+
+<p>Your rating</p>
+<div id="user_star"></div>
+
+<div id="comments">
+
+  <div class="comment">
+    <%= simple_format comment.content %>
+  </div>
+<% end %>
+</div>

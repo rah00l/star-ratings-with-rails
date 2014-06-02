@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  comment: 
+  user: 
+  score: 1
+  default: MyString
+  0: MyString
+
+two:
+  comment: 
+  user: 
+  score: 1
+  default: MyString
+  0: MyString
