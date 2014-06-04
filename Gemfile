@@ -1,4 +1,4 @@
-source 'https://rubygems.org'
+source 'http://rubygems.org'
 
 gem 'rails', '3.2.3'
 
@@ -15,16 +15,16 @@ group :assets do
   gem 'coffee-rails', '~> 3.2.1'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-   gem 'therubyracer', :platform => :ruby
+   gem "therubyracer", "~> 0.10.2"
 
   gem 'uglifier', '>= 1.0.3'
 end
 
-gem 'jquery-rails'
+gem 'jquery-rails', '~> 2.3.0'
 
 gem 'devise'
 
-#gem 'ruby-debug'
+gem 'activeadmin'
 
 
 gem 'debugger', group: [:development, :test]
