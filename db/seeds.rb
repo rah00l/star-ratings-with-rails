@@ -1,3 +1,13 @@
+
+Role.create! name: "Admin"
+Role.create! name: "Author"
+Role.create! name: "Organiger"
+Role.create! name: "Photographer"
+Role.create! name: "Other"
+
+#User.create! email: "soopriya@gmail.com", password: "soopriya123", password_confirmation: "soopriya123"
+
+
 batman = Article.create! name: "Batman", content: <<-ARTICLE
 Batman is a fictional character created by the artist Bob Kane and writer Bill Finger. A comic book superhero, Batman first appeared in Detective Comics #27 (May 1939), and since then has appeared primarily in publications by DC Comics. Originally referred to as "The Bat-Man" and still referred to at times as "The Batman", he is additionally known as "The Caped Crusader", "The Dark Knight", and the "World's Greatest Detective," among other titles. (from Wikipedia)
 ARTICLE
@@ -24,3 +34,4 @@ Event.create! name: "Save the World", starts_at: 2.weeks.from_now, ends_at: 3.we
 
 Photo.create! name: "The Dark Knight Rises", filename: "dark_knight_rises.jpg"
 Photo.create! name: "Superman", filename: "superman.jpg"
+

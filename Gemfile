@@ -26,6 +26,7 @@ gem 'devise'
 
 gem 'activeadmin'
 
+gem 'cancan'
 
 gem 'debugger', group: [:development, :test]
 

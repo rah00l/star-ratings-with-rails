@@ -21,10 +21,12 @@ end
 
   def edit
     @article = Article.find(params[:id])
+    unauthorized! if cannot? :edit, @article
   end
 
   def create
     @article = Article.new(params[:article])
+    @article.user_id = current_user.id
     if @article.save
       redirect_to @article, notice: "Article was successfully created."
     else

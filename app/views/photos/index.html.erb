@@ -2,8 +2,9 @@
 
 <% @photos.each do |photo| %>
   <div class="photo">
-    <%= image_tag photo.filename %>
-    <p><%= photo.name %></p>
+    <%=   %>
+     <%= image_tag photo.filename %>
+    <p><%= link_to photo.name, photo %></p>
   </div>
 <% end %>
 
