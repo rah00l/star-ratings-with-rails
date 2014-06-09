@@ -21,7 +21,7 @@ end
 
   def edit
     @article = Article.find(params[:id])
-    unauthorized! if cannot? :edit, @article
+    authorize! :read, @article
   end
 
   def create

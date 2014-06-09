@@ -5,21 +5,26 @@ class Ability
     # Define abilities for the passed in user here. For example:
     #
        user ||= User.new # guest user (not logged in)
-        if user.role? :admin
+       if user.role? :admin
          can :manage, :all
-        elsif user.role? :author
-          can :create, Article
-          can :update, Article do |article|
-              article.try(:user) == user
-          end
-        elsif user.role? :photographer
-          can :create, Photo
-          can :update, Photo do |photo|
-              photo.try(:user) == user
-          end
-        else
-          can :read, :all
+       elsif user.role? :author
+        can :create, Article
+        can :update, Article do |article|
+          article.try(:user) == user
         end
+      elsif user.role? :photographer
+        can :create, Photo
+        can :update, Photo do |photo|
+          photo.try(:user) == user
+        end
+      elsif user.role? :organizer
+        can :create, Event
+        can :update, Event do |event|
+          event.try(:user) == user
+        end
+      else
+        can :read, :all
+      end
 
       
     #

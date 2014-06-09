@@ -13,6 +13,7 @@ class EventsController < ApplicationController
 
   def edit
     @event = Event.find(params[:id])
+    authorize! :read,  @event
   end
 
   def create

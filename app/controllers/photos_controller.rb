@@ -13,6 +13,7 @@ class PhotosController < ApplicationController
 
   def edit
     @photo = Photo.find(params[:id])
+    authorize! :read, @photo
   end
 
   def create
