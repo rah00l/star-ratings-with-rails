@@ -12,14 +12,23 @@ class Ability
         can :update, Article do |article|
           article.try(:user) == user
         end
+        can :destroy, Article do |article|
+           article.try(:user) == user 
+        end
       elsif user.role? :photographer
         can :create, Photo
         can :update, Photo do |photo|
           photo.try(:user) == user
         end
+        can :destroy, Photo do |photo|
+          photo.try(:user) == user
+        end
       elsif user.role? :organizer
         can :create, Event
         can :update, Event do |event|
+          event.try(:user) == user
+        end
+        can :destroy, Event do |event|
           event.try(:user) == user
         end
       else

@@ -1,4 +1,6 @@
 class EventsController < ApplicationController
+  before_filter :authenticate_user! ,:except => [:index]
+  load_and_authorize_resource :except=>[:index,:show]
   def index
     @events = Event.all
   end
@@ -13,7 +15,6 @@ class EventsController < ApplicationController
 
   def edit
     @event = Event.find(params[:id])
-    authorize! :read,  @event
   end
 
   def create

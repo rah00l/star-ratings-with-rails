@@ -1,10 +1,15 @@
 class PhotosController < ApplicationController
+  before_filter :authenticate_user! ,:except => [:index]
+  load_and_authorize_resource :except=>[:index,:show]
   def index
     @photos = Photo.all
   end
 
   def show
     @photo = Photo.find(params[:id])
+    @commentable = @photo
+    @comments = @commentable.comments
+    @comment = Comment.new
   end
 
   def new
@@ -13,7 +18,6 @@ class PhotosController < ApplicationController
 
   def edit
     @photo = Photo.find(params[:id])
-    authorize! :read, @photo
   end
 
   def create
