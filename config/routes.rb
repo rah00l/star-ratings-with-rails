@@ -11,7 +11,10 @@ end
   resources :ratings, only: :update
 
   resources :articles do
-    resources :comments
+    resources :comments do 
+      member { post :vote }
+    end
+    
   end
   
   resources :photos do
@@ -21,6 +24,8 @@ end
   resources :events do
     resources :comments
   end
+
+
   
   root to: 'articles#index'
 end

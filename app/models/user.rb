@@ -21,6 +21,8 @@ class User < ActiveRecord::Base
   has_many :assignments ,:dependent => :destroy
   has_many :roles, :through => :assignments
 
+
+  has_many :evaluations, class_name: "RSEvaluation", as: :source
   #def role?(role)
   #  roles.include? role.to_s
   #end

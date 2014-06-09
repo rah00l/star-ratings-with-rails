@@ -3,6 +3,9 @@
     <div class="comment">
       <strong><%= h(comment.user.email) %></strong><em> on<%= comment.created_at.strftime('%b %d, %Y at %H:%M') %></em>
       <%= simple_format comment.content %>
+       <%= pluralize comment.reputation_for(:votes).to_i, "vote" %>
+    |  <%= link_to "up", vote_article_comment_path(comment.commentable,comment, type: "up"), method: "post" %>
+    | <%= link_to "down", vote_article_comment_path(comment.commentable,comment,type: "down"), method: "post" %>
     </div>
   <% end %>
 </div>

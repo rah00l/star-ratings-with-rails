@@ -28,6 +28,8 @@ gem 'activeadmin'
 
 gem 'cancan'
 
+gem 'activerecord-reputation-system', require: 'reputation_system'
+
 gem 'debugger', group: [:development, :test]
 
 # To use ActiveModel has_secure_password

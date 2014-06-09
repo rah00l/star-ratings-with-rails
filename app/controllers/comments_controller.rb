@@ -1,8 +1,8 @@
 class CommentsController < ApplicationController
-  before_filter :load_commentable
+  before_filter :load_commentable, expect: [:vote]
   
   def index
-    @comments = @commentable.comments
+    @comments = @commentable.comments.find_with_reputation(:votes, :all, order: 'votes desc')
   end
 
   def new
@@ -19,7 +19,14 @@ class CommentsController < ApplicationController
     end
   end
 
-private
+  def vote
+    value = params[:type] == "up" ? 1 : -1
+    @comment = Comment.find(params[:id])
+    @comment.add_or_update_evaluation(:votes, value, current_user)
+    redirect_to :back, notice: "Thank you for voting!"
+  end
+
+  private
 
   def load_commentable
     resource, id = request.path.split('/')[1, 2]
