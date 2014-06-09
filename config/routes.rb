@@ -12,13 +12,16 @@ end
 
   resources :articles do
     resources :comments do 
-      member { post :vote }
+      member { post :vote_for_article }
     end
     
   end
   
   resources :photos do
-    resources :comments
+    resources :comments do
+      member { post :vote_for_photo }
+    end
+
   end
   
   resources :events do
