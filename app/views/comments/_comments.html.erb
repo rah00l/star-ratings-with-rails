@@ -5,11 +5,11 @@
 		<%= simple_format comment.content %>
 		<%= pluralize comment.reputation_for(:votes).to_i, "vote" %>
 		<% if comment.commentable.present? && comment.commentable.class.name.eql?("Photo") %>
-			|  <%= link_to "up", vote_for_photo_photo_comment_path(comment.commentable,comment, type: "up"), method: "post" %>
-		| <%= link_to "down", vote_for_photo_photo_comment_path(comment.commentable,comment,type: "down"), method: "post" %>
+			|  <%= link_to image_tag("up.jpeg"), vote_for_photo_photo_comment_path(comment.commentable,comment, type: "up"), method: "post" %>
+		| <%= link_to image_tag("down.jpg"), vote_for_photo_photo_comment_path(comment.commentable,comment,type: "down"), method: "post" %>
 		<% else %>
-		|  <%= link_to "up", vote_for_article_article_comment_path(comment.commentable,comment, type: "up"), method: "post" %>
-		| <%= link_to "down", vote_for_article_article_comment_path(comment.commentable,comment,type: "down"), method: "post" %>
+		|  <%= link_to image_tag("up.jpeg"), vote_for_article_article_comment_path(comment.commentable,comment, type: "up"), method: "post" %>
+		| <%= link_to image_tag("down.jpg"), vote_for_article_article_comment_path(comment.commentable,comment,type: "down"), method: "post" %>
 		<% end %>
 	</div>
 	<% end %>
