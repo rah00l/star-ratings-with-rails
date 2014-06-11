@@ -10,14 +10,19 @@ class PhotosController < ApplicationController
     @commentable = @photo
     @comments = @commentable.comments
     @comment = Comment.new
+    @attachments = @photo.attachments.all
   end
 
   def new
     @photo = Photo.new
+    @attachments = @photo.attachments.build
   end
 
   def edit
     @photo = Photo.find(params[:id])
+    if @photo.attachments.count < 5
+      4.times { @attachments = @photo.attachments.build }
+     end 
   end
 
   def create

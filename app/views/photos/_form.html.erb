@@ -1,25 +1,31 @@
 <%= form_for(@photo) do |f| %>
-  <% if @photo.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@photo.errors.count, "error") %> prohibited this photo from being saved:</h2>
+<% if @photo.errors.any? %>
+<div id="error_explanation">
+  <h2><%= pluralize(@photo.errors.count, "error") %> prohibited this photo from being saved:</h2>
 
-      <ul>
-      <% @photo.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <ul>
+    <% @photo.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
 
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
+<div class="field">
+  <%= f.label :name %><br />
+  <%= f.text_field :name %>
+</div>
+  <!--<div class="field">
     <%= f.label :filename %><br />
     <%= f.text_field :filename %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+  </div>-->
+  <div class="field">
+    <%= f.fields_for :attachments do |attach| %>
+    <%= attach.label :file ,"Upload File"%><br />
+    <%= attach.file_field :file %><br />
+    <% end %>
+    <br/>
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+    <% end %>

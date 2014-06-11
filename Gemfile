@@ -22,14 +22,25 @@ end
 
 gem 'jquery-rails', '~> 2.3.0'
 
+# For building authontication system
 gem 'devise'
 
+# For adding admin functionality
 gem 'activeadmin'
 
+# for Authorization 
 gem 'cancan'
 
+# For image file upload 
+gem 'carrierwave'
+
+# For image processing
+gem 'rmagick'
+
+# For adding reputation system (voting system)
 gem 'activerecord-reputation-system', require: 'reputation_system'
 
+# For debugging application step by step
 gem 'debugger', group: [:development, :test]
 
 # To use ActiveModel has_secure_password

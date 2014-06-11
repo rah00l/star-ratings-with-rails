@@ -1,11 +1,14 @@
-<h1>Photos</h1>
+<h1>Photo Galleries</h1>
 
 <% @photos.each do |photo| %>
   <div class="photo">
-    <%=   %>
-     <%= image_tag photo.filename %>
+   
+   <%= image_tag photo.attachments.first.file_url(:medium)  %>
+   <%# photo.attachments.each do |attachment|%>
+    	<%#= image_tag attachment.file_url(:thumb) %>
+    <%# end %>
     <p><%= link_to photo.name, photo %></p>
   </div>
 <% end %>
 
-<p><%= link_to "New Photo", new_photo_path %></p>
+<p><%= link_to "Create New Photo Gallery", new_photo_path %></p>
