@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me,:role_ids
+  attr_accessible :email, :password, :password_confirmation, :remember_me,:role_ids, :attachment_attributes
   # attr_accessible :title, :body
   has_many :ratings
   
@@ -21,6 +21,12 @@ class User < ActiveRecord::Base
   has_many :assignments ,:dependent => :destroy
   has_many :roles, :through => :assignments
 
+  has_one :attachment, as: :attachable, :dependent => :destroy
+  accepts_nested_attributes_for :attachment
+
+  after_initialize do
+    self.attachment ||= self.build_attachment()
+  end
 
   has_many :evaluations, class_name: "RSEvaluation", as: :source
   #def role?(role)
