@@ -1,0 +1,78 @@
+Add Gemfile :
+gem 'carrierwave'
+
+Bundle install
+bundle install
+
+Generator:
+rails g uploader file
+
+Inter-mediate model/common model
+rails g model attachment
+
+Modified migration file
+    create_table :attachments do |t|
+      t.string :file	
+      t.integer :attachable_id
+      t.string :attachable_type	
+      t.timestamps
+    end
+
+Add in Attachment Model
+attr_accessible :file, :attachable_type, :attachable_id
+
+mount_uploader :file, FileUploader
+belongs_to :attachable, :polymorphic => true
+
+One of resource add (e.g. Photo Model)
+  attr_accessible :filename, :name, :attachments_attributes
+  has_many :attachments, as: :attachable
+  accepts_nested_attributes_for :assets
+
+At FileUploader define versions as per the requirement.
+
+Uncomment lib.
+include CarrierWave::RMagick
+
+Define gem in Gemfile for image processing.
+gem 'rmagick'
+
+# Create different versions of your uploaded files:
+   version :medium do
+     process :resize_to_fit => [300, 300]
+   end
+
+   version :thumb do
+     process :resize_to_fit => [150, 150]
+   end
+
+
+At _form template: for new/edit (For uploading multiple images) 
+<div class="field">
+    <%= f.fields_for :attachments do |attach| %>
+      <%= attach.label :file ,"Upload File"%><br />
+      <%= attach.file_field :file %><br />
+    <% end %>
+    <br/>
+</div>
+
+On index page if want to show one image with name 
+<%= image_tag photo.attachments.first.file_url(:medium)  %>
+
+
+On show page displaing all image related to Photo Gallery with thumbnail images is:
+<div class="photo">
+  <%=  @photo.name %><br/>
+  <% @attachments.each do |photo| %>
+  	<%= image_tag photo.file_url(:thumb) %><br/>
+<% end %>
+</div>
+
+
+
+
+
+
+
+
+

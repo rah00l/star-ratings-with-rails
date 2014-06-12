@@ -1,0 +1,73 @@
+Add at Gemfile
+gem 'activerecord-reputation-system', require: 'reputation_system'
+
+Generator 
+rails g reputation-system
+
+Run the migrations:
+rake db:migrate
+
+Add following code where you want the reputation
+class Article < ActiveRecord::Base
+
+has_reputation :votes, source: :use, aggregated_by: :sum
+
+end
+
+
+Add routes options in order to use up/down links work well
+resources :articles do 
+member {post :vote}
+
+end
+
+
+At Articles controller add method
+def vote
+value = params[:type] == "up" ? 1 : -1
+@article = Article.find(params[:id])
+@article.add_evaluation(:votes,value,current_user)
+redirect_to :back, notice: "Thank you for voting"
+end
+
+
+At show page of article where we want to add this up/down links 
+<%= link_to "up", vote_article_path(article, type: "up"), method: "post"  %> |
+<%= link_to "down", vote_article_path(article, type: "down"), method: "post" %>
+
+
+If a person want to make votes more than two then change the method 
+add_evaluation to add_or_update_evaluation
+
+Want to check how many has voted 
+<%= pluralize article.reputation_value_for(:votes).to_i "vote"%>
+
+
+For order based on reputation,
+@articles = Article.find_with_reputation(:votes, :all, order: "votes desc")
+
+For display number of votes does user receive then add following to users model
+
+has_reputation :votes, source: {reputiation: :votes, of: :article }, agreegated_by: :sum  
+
+Then add at application layout where user name was displayed add following
+
+<%= pluralize current_user.reputation_value_for(:vates).to_i "vote"%>
+
+
+In order to prevent repeated votes by single user,in side user model
+has_many :evaluations, class_name: "RSEvaluation", as: :source
+
+def voted_for?(article)
+	evaluations.where(target_type: article.class, target_id: article.id).present?
+end 
+
+Then go at the voting links and add conditions like,
+
+<% if current_user && !current_user.voted_for?(article) %>
+
+### Added those two links over here
+<% end %>
+
+
+

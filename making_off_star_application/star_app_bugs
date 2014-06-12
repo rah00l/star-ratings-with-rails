@@ -1,0 +1,11 @@
+1. After rating article there is no flash message that user can understand that he has rated .
+
+2. Avg. Rating and User rating need to be alligned in line. (Design Related)
+
+3. vote_for-article and voote_for_photo methods need to be refactore.
+
+4. user_id is added at attachment but not using ... 
+
+5. On comments show page added thumbnail image css need to be add and also if image not present need css solution or apply some other image 
+
+

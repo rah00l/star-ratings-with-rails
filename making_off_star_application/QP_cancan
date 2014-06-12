@@ -1,0 +1,45 @@
+QP_cancan
+
+Add gen in Gemfile,
+gem 'cancan'
+
+Generator
+rails generate cancan:ability
+
+Create Rules for users based on there role
+  Add following kind of code at ability model for role based restriction.
+  user ||= User.new # guest user (not logged in)
+       if user.role? :admin
+         can :manage, :all
+       elsif user.role? :author
+        can :create, Article
+        can :update, Article do |article|
+          article.try(:user) == user
+        end
+      elsif user.role? :photographer
+        can :create, Photo
+        can :update, Photo do |photo|
+          photo.try(:user) == user
+        end
+      elsif user.role? :organizer
+        can :create, Event
+        can :update, Event do |event|
+          event.try(:user) == user
+        end
+      else
+        can :read, :all
+      end	
+
+Whichever part want to restrict can add following block
+<% if can? :update, @article %>
+
+<% end %>
+
+ At Controllers edit action add following 	
+load_and_authorize_resource :except=>[:index,:show]	
+
+* For Better Flash Message:
+  rescue_from CanCan::AccessDenied do |exception|
+      flash[:error] = "Access denied."
+      redirect_to root_url
+   end

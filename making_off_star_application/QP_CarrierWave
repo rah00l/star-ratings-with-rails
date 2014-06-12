@@ -1,0 +1,68 @@
+File Uploader , 
+
+Add at Gemfile
+gem 'carrierwave'
+
+bundle install
+
+Generators
+1. rails g uploader image
+
+2. rails g migration add_image_to_photos image:string
+
+rake db:migrate
+
+Add inside class like
+Photo Model
+
+mount_uploader :image, ImageUploader
+
+Add image column to attr_accesiable 
+
+* Add View Section inside Photo
+
+<% f.file_field :image %>
+
+Also create form as a multipart like
+:html  => {:multipart => true }
+
+
+At display portion make following changes,
+<%= image_tag photo.image_url.to_s %>
+
+For image processesing like resizing at all ..use rmagick
+Uncomment rmagick module 
+
+Also uncomment and modify following code 
+version :thumb do
+	process :resize_to_limit => [200,200]
+end
+
+
+Need to add gem 'rmagick' inside Gemfile
+
+Also need to install imagemagick also.
+Now then 
+<%= image_tag photo.image_url(:thumb).to_s %>
+
+If you want to provide image remote like providing url then
+<p>
+<%= f.label :remote_image_url "or image Url" %><br/>
+<%= f.text_field :remote_image_url  %>
+</p>
+
+Add at model for attr_accessible like,
+remote_image_url
+
+
+
+
+
+
+
+
+
+
+
+
+

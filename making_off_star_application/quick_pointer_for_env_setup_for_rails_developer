@@ -1,0 +1,32 @@
+Native Extensions:
+sudo apt-get update
+
+For GIT :
+sudo apt-get install git
+
+sudo apt-get install gitg
+
+For RVM installation:
+sudo apt-get install curl
+
+curl -L get.rvm.io | bash -s stable
+
+source ~/.rvm/scripts/rvm
+
+For Sublime:
+
+If you installed Sublime Text 3 from a .deb package which was downloaded directly from Sublime Text page: http://www.sublimetext.com/3
+
+And you have used this command for installation
+
+sudo dpkg -i sublime-text_build-3047_amd64.deb
+
+Or you just double clicked on it and Ubuntu Software Center installed it...
+
+So, in this case:
+
+sudo dpkg -r sublime-text
+
+
+Browser:
+  firebug 

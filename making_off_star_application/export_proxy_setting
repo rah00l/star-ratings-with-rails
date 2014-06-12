@@ -1,0 +1,13 @@
+For Browser :
+10.43.3.110                    8080
+
+
+export http_proxy=http://visible_curlproxy:'Pspl&123'@ptbc1.persistent.co.in:8080
+export https_proxy=https://visible_curlproxy:'Pspl&123'@ptbc1.persistent.co.in:8080
+
+
+export http_proxy="http://ganesh_chauhan:RamLeela*12345@hjbc1.persistent.co.in:8080"
+export https_proxy="https://ganesh_chauhan:RamLeela*12345@hjbc1.persistent.co.in:8080" 
+wget google.com
+
+

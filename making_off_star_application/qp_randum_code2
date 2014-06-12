@@ -1,0 +1,53 @@
+User was already there comes by adding devise gem for authontication.
+
+Add association at Users
+class User < ActiveRecord::Base  
+  has_many :assignments ,:dependent => :destroy
+  has_many :roles, :through => :assignments
+end
+
+Create role model
+rails g model role name:string
+
+Add association at roles
+class Role < ActiveRecord::Base
+
+  has_many :assignments,:dependent => :destroy
+  has_many :users, :through => :assignments
+end
+
+Create assignment model
+rails g model assignment
+
+Add following code in migration 
+class Assignment < ActiveRecord::belongs
+  belongs_to :user
+  belongs_to :role
+  validates_uniqueness_of :user_id, :scope => :role_id
+end
+
+Edit migration file 
+
+class CreateAssignments < ActiveRecord::Migration
+def change
+    create_table :user_roles do |t|
+      t.references :user
+      t.references :role	
+      t.timestamps
+    end
+    add_index :assignments, [:user_id, :role_id]
+    add_index :assignments, [:role_id, :user_id]
+  end
+end
+
+
+At SignUp Form add following checkboxes for role selection.
+
+<p>
+    <%= f.label :roles %><br />
+    <% for role in Role.all.collect(&:name) %>
+      <%= check_box_tag "user[roles][]", role, @user.roles.include?(role) %>
+      <%=h role.humanize %><br />
+    <% end %>
+    <%= hidden_field_tag "user[roles][]", "" %>
+  </p>

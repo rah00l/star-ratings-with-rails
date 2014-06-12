@@ -1,0 +1,36 @@
+1. simple blog application ..
+  	Article ...
+	  Comments ...
+
+2. Added devise gem athontication sys...
+
+3. Added 5-star-rating functionality ...
+
+4. Added Authorization (Role Based)
+   Generate Role Model where filed contains name 
+   Generate Assignment model which is join of two tables(user and role)
+   Then customize view signup
+   rails generate devise:views user 
+
+.... seed file need to be set 
+.... Deploy on Heroku ....
+
+5. Add cancan --Done
+ 
+6. Carrierwave for file upload (images)  ++ added provision to add multiple images to upload and made polymorphic ---Done 
+
+7. For Users creation also added image upload functionality.
+
+* ActiveRecord-Reputation 
+
+* Added activeadmin gem ...
+
+* Photo section need to add carrierwave. (Polymorphic ?)
+
+* Create Category for Articles and then further arrange them like in Cloud type like (Tagging)
+
+* thinking-sphinx gem need to be integrate
+
+* rolify (check what exactly  it is?)
+ 
+

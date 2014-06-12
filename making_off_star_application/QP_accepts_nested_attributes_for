@@ -1,0 +1,79 @@
+Photo --> attachments
+
+
+Photo Model 
+class Photo < ActiveRecord::Base
+  attr_accessible :filename, :name, :attachments_attributes
+
+  has_many :attachments, as: :attachable, :dependent => :destroy
+  accepts_nested_attributes_for :attachments
+end
+
+
+Attachment Model looks like:
+class Attachment < ActiveRecord::Base
+   attr_accessible :file, :attachable_type, :attachable_id
+
+  mount_uploader :file, FileUploader
+  belongs_to :attachable, :polymorphic => true
+end
+
+
+Photo Controllers New action will be:
+def new
+    @photo = Photo.new
+    @attachments = @photo.attachments.build
+end
+
+Photo's View would be :
+<%= form_for(@photo, :html => { :multipart => true }) do |f| %>
+
+<div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+ 
+<div class="field">
+    <%= f.fields_for :attachments do |attach| %>
+    <%= attach.label :file %><br />
+    <%= attach.file_field :file %>
+  </div>
+<% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+
+---------------------------------------------------------------------------------------------------
+For has_one relationed model you can just have to write 
+
+** parent.build_child
+
+and above thing you can write in either Controller or in Model 
+
+In user(Parent) where One child model named attachment 
+
+So can write ,
+attr_accessible :attachment_attributes
+
+has_one :attachment, as: :attachable, :dependent => :destroy
+  accepts_nested_attributes_for :attachment
+
+  after_initialize do
+    self.attachment ||= self.build_attachment()
+  end
+
+
+<div class="field">
+        <%= f.fields_for :attachment do |attach| %>
+        <%= attach.label :file, "Upload Photo" %><br />
+        <%= attach.file_field :file %> <br/>     
+        <% end %>
+      </div>
+      <br/>
+
+
+
+
