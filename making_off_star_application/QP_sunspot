@@ -1,0 +1,61 @@
+Add gem in Gemfile 
+gem 'sunspot_rails'
+
+Install Gem 
+bundle install
+
+Generator: (will generate yml file)
+rails g sunspot_rails:install
+
+Start solr sunspot:
+rake sunspot:solr:start
+
+Then go to any model file and add following ..
+searchable do 
+   text	:name, :content
+end
+
+Inside your view add following search box to user enter keywords to search
+<%= form_tag articles_path, :method => :get do %>
+  <p>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search", :name => nil %>
+  </p>
+<% end %>
+
+
+After this modify your index action
+
+def index
+  @search = Article.search do
+    fulltext params[:search]
+    with(:published_at).less_than(Time.zone.now)
+    facet(:publish_month)
+    with(:publish_month, params[:month]) if params[:month].present?
+  end
+  @articles = @search.results
+end
+
+More option for search criteria would be:
+searchable do 
+   text	:name, :boost => 5
+   text :content, :publish_month 
+# this following would be for nested resource search can write like this
+   text :comments do
+	comments.map(&:content)
+   end 	
+
+
+end
+
+
+def publish_month
+	publish_at.strftime("%B %Y")
+end
+
+
+
+
+
+
+ 

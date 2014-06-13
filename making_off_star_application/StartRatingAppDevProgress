@@ -19,7 +19,7 @@
  
 6. Carrierwave for file upload (images)  ++ added provision to add multiple images to upload and made polymorphic ---Done 
 
-7. For Users creation also added image upload functionality.
+7. For Users creation added image upload functionality.
 
 * ActiveRecord-Reputation 
 
@@ -29,7 +29,7 @@
 
 * Create Category for Articles and then further arrange them like in Cloud type like (Tagging)
 
-* thinking-sphinx gem need to be integrate
+* thinking-sphinx gem need to be integrate --instead of this can integrate Sunspot gem which is more effective ..
 
 * rolify (check what exactly  it is?)
  

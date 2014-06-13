@@ -1,5 +1,5 @@
 <style type="text/css">
-	h2, h5 {
+	h2, h5, span {
 		display: inline;
 	}
 
@@ -10,7 +10,7 @@
 <div id="articles">
 <% @articles.each do |article| %>
 	<div>
-    <h2 ><%= link_to article.name, article %></h2>&nbsp;&nbsp;&nbsp;&nbsp;
+    <h2 ><%= link_to article.name, article %></h2>&nbsp;&nbsp;&nbsp;&nbsp;<span class="comments">(<%= pluralize(article.comments.size, 'comment') %>)</span>
     <h5 ><%= link_to "Rate this:", article %></h5>
     </div>
   <div class="content"><%= simple_format(article.content) %></div>
