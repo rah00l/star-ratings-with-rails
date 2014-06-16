@@ -1,4 +1,4 @@
-source 'http://rubygems.org'
+source 'https://rubygems.org'
 
 gem 'rails', '3.2.3'
 
@@ -39,6 +39,14 @@ gem 'rmagick'
 
 # For adding reputation system (voting system)
 gem 'activerecord-reputation-system', require: 'reputation_system'
+
+# For implementation of full text search added following gem
+gem 'sunspot_rails'
+
+# For staring solr server need following gem
+gem 'sunspot_solr'
+
+gem 'progress_bar'
 
 # For debugging application step by step
 gem 'debugger', group: [:development, :test]

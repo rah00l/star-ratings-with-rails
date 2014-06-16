@@ -10,6 +10,8 @@ rails g sunspot_rails:install
 Start solr sunspot:
 rake sunspot:solr:start
 
+
+
 Then go to any model file and add following ..
 searchable do 
    text	:name, :content
@@ -43,7 +45,9 @@ searchable do
 # this following would be for nested resource search can write like this
    text :comments do
 	comments.map(&:content)
-   end 	
+   end 
+
+	
 
 
 end

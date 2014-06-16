@@ -1,8 +1,16 @@
 class ArticlesController < ApplicationController
     before_filter :authenticate_user! ,:except => [:index]
     load_and_authorize_resource :except=>[:index,:show]
-  def index
-    @articles = Article.all
+    def index
+    # @search = Article.search do
+    #  fulltext params[:search]
+    #end
+    #@articles = @search.results
+    #@articles = Article.all
+    @search = Sunspot.search(Article) do
+      fulltext params[:search]
+    end
+    @articles = @search.results
   end
 
   def show
