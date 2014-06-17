@@ -1,15 +1,14 @@
-Add gem in Gemfile 
+# Add gem in Gemfile 
 gem 'sunspot_rails'
 
-Install Gem 
+# Install Gem 
 bundle install
 
-Generator: (will generate yml file)
-rails g sunspot_rails:install
+# Generator: (will generate sunspot.yml file)
+rails g sunspot_rails:install 
 
-Start solr sunspot:
+#Start solr sunspot:
 rake sunspot:solr:start
-
 
 
 Then go to any model file and add following ..
@@ -26,8 +25,7 @@ Inside your view add following search box to user enter keywords to search
 <% end %>
 
 
-After this modify your index action
-
+# After this modify your index action
 def index
   @search = Article.search do
     fulltext params[:search]
@@ -38,7 +36,11 @@ def index
   @articles = @search.results
 end
 
-More option for search criteria would be:
+# Also very time when you are going to add/modify inside index,Need to reindex to view  result by,
+ rake sunspot:reindex
+
+
+# More option for search criteria would be:
 searchable do 
    text	:name, :boost => 5
    text :content, :publish_month 
@@ -46,16 +48,29 @@ searchable do
    text :comments do
 	comments.map(&:content)
    end 
-
-	
-
-
+  string :publish_month
 end
-
 
 def publish_month
 	publish_at.strftime("%B %Y")
 end
+
+
+#At view level need to add following code for Facets
+<div id="facets">
+  <h3>Published</h3>
+  <ul>
+    <% for row in @search.facet(:publish_month).rows %>
+      <li>
+        <% if params[:month].blank? %>
+          <%= link_to row.value, :month => row.value %> (<%= row.count %>)
+        <% else %>
+          <strong><%= row.value %></strong> (<%= link_to "remove", :month => nil %>)
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+</div>
 
 
 

@@ -7,7 +7,13 @@ class Article < ActiveRecord::Base
 
   # This block belongs to sunshot serach engine where indexing got applied.
   searchable do
-    text :name, :content
+    text :name#, :content
+    text :content, :created_month
+    string :created_month
+  end
+
+  def created_month
+    created_at.strftime("%B %Y")
   end
   
   def average_rating

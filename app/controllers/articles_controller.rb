@@ -9,6 +9,8 @@ class ArticlesController < ApplicationController
     #@articles = Article.all
     @search = Sunspot.search(Article) do
       fulltext params[:search]
+      facet(:created_month)
+      with(:created_month, params[:month]) if params[:month].present?
     end
     @articles = @search.results
   end
