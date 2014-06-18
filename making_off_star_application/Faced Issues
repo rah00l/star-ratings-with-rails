@@ -4,18 +4,159 @@ Q - Rails - how to solve this issue of an orphaned migration?
 
 A - rake db:migrate:reset db:seed
 
-
+-------------------------------------------------------------------------------------------
 
 Q - Rails: error while installing rubyracer
 
 A - I figured the easiest thing is to use the last version of the gem. So I updated my Gemfile to point to the last version like so:gem "therubyracer", "~> 0.10.2" and I was able to successfully install the gem. If you want to manually install the gem, you can use: gem install therubyracer --version "~> 0.10.2" 
 
+-------------------------------------------------------------------------------------------
+
+Spree Related:
+
+Q - Bundler could not find compatible versions for gem "rails":
+  In Gemfile:
+    spree (= 2.2.2) ruby depends on
+      spree_core (= 2.2.2) ruby depends on
+        rails (~> 4.0.5) ruby
+
+    rails (4.0.4)
+
+
+ADD: (Instead of)
+
+#gem 'spree', :git => "https://github.com/spree/spree.git" , branch: '2-1-stable' 
+gem 'spree', :git => "https://github.com/spree/spree.git", branch: '2-1-stable'
+gem 'spree_auth_devise', :git => "https://github.com/radar/spree_auth_devise.git", branch: '2-1-stable'
+
+
+#gem 'spree', '2.2.2'
+#gem 'spree_gateway', :git => 'https://github.com/spree/spree_gateway.git', :branch => '2-2-stable'
+#gem 'spree_auth_devise', :git => 'https://github.com/spree/spree_auth_devise.git', :branch => '2-2-stable'
+
+
+gem install nokogiri -- --use-system-libraries
+
+
+-------------------------------------------------------------------------------------------
+SUNSPOT
+Q - Errno::ECONNREFUSED (Connection refused - connect(2)):  
+
+After integration of sunspot solr search engine ,
+Executing "rails s" if you are facing issue
+
+Check weather your machine having JVM or not,
+if not try to install by following options..
+
+Option 1: 
+
+Download "jdk7" from oracle site:
+http://www.oracle.com/technetwork/java/javase/downloads/java-archive-downloads-javase7-521261.html
+
+Then execute following commands 
+----------------------------------------
+tar -xvf jdk-7u51-linux-x64.tar.gz
+mkdir -p /usr/lib/jvm
+mv ./jdk1.7.0_51/ /usr/lib/jvm/jdk1.7.0_51/
+----------------------------------------
+
+sudo update-alternatives --install "/usr/bin/java" "java" "/usr/lib/jvm/jdk1.7.0_51/bin/java" 1
+sudo update-alternatives --install "/usr/bin/javac" "javac" "/usr/lib/jvm/jdk1.7.0_51/bin/javac" 1
+sudo update-alternatives --install "/usr/bin/javaws" "javaws" "/usr/lib/jvm/jdk1.7.0_51/bin/javaws" 1
+
+Ensure right users have the right permission:
+
+sudo chmod a+x /usr/bin/java 
+sudo chmod a+x /usr/bin/javac 
+sudo chmod a+x /usr/bin/javaws
+sudo chown -R root:root /usr/lib/jvm/jdk1.7.0
+
+Then ensure with following commnad that java is properly installed,
+java -version
+
+
+Option 2:
+Then, you have to do only this:
+* sudo add-apt-repository ppa:webupd8team/java
+
+* sudo apt-get update
+sudo apt-get install oracle-java7-installer
+
+And type this to check the version:
+java -version
+
+
+-------------------------------------------------------------------------------------------
+SUNSPOT
+Q - rake aborted! --Solr Response: Service Unavailable
+
+A - Pre-requiste: Need to have Java Vertual Machine Env.(JVM) installed. 
+    While executing following command of 
+    rake sunspot:reindex --trace 
+
+    Error: 503 Service Unavailable. or Solr Response: Service Unavailable.. 
+
+    Solution: 
+      1. Stop processes of solr / sunspot
+       ps aux | grep 'solr' or 
+       ps -ef | grep sunspot 
+
+       kill -9 PROCESS_ID 
+
+       Then 
+       2. gem uninstall sunspot_rails 
+       3. rm -rf solr (from current application directory)
+       4. reboot machine
+       5. gem install sunspot_rails
+       6. rake sunspot:solr:start (it will create solr folder in application and add some configurational files into it)
+       7. rake sunspot:reindex
 
 
 
-Q. Gem::Ext::BuildError: ERROR: Failed to build gem native extension - for rmagick
+-------------------------------------------------------------------------------------------
+SUNSPOT
+Q - Rails app: Solr throwing RSolr::Error::Http - 404 Not Found when executing search
 
-A- sudo apt-get install imagemagick libmagickwand-dev
+A - My fix for this problem is: Comment the path parameter(default configuration) at config/sunspot.yml configuration file. Default was: #path: /solr/development.
+
+    After this, 
+    1. Stop all processes of solr by,
+        ps aux | grep 'solr' 
+
+        kill PROCESS_ID
+
+    2. Remove "solr" folder which was inside at your application directory.
+        rm -rf solr
+        This will remove your previous configurations.
+
+    3.Then, rake sunspot:solr:start
+
+    4. After starting solr server then again try for reindex, rake sunspot:reindex
+      Issue must be resolved.
+
+
+-------------------------------------------------------------------------------------------
+SECRET_TOKEN 
+Q - You must set config.secret_key_base in your app's config.       
+
+A - Create file in config/initializers/
+    secret_token.rb
+
+    Generate your secret token,
+    rake secret
+    Copy secret token at secret_token.rb file with following format.
+    
+    YourApplication::Application.config.secret_token = 'your secret token'
+
+
+   
+
+
+ 
+   
+
+
+
 
 
 
