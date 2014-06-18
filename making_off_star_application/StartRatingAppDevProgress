@@ -25,12 +25,16 @@ For Users creation added image upload functionality.
 * thinking-sphinx gem need to be integrate --instead of this can integrate Sunspot gem which is more effective ..
 7. Implemented sunspot solr search engine for Article module along with facets based on created_at (Month and Year bases)
 
+
+* vericle pagination for articles --
+
+
 * Need facility to share comments on (social sites)
 
 * Need to login using any social app also
 
 
-* vericle pagination for articles --
+
 
 * For image gallery need to add some fancy way to show it's slide show ..
 
