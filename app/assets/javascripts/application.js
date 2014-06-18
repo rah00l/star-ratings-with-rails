@@ -13,4 +13,5 @@
 //= require jquery
 //= require jquery_ujs
 //= require raty.min.js
+//= require bootstrap
 //= require_tree .

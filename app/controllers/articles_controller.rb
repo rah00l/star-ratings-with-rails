@@ -2,17 +2,19 @@ class ArticlesController < ApplicationController
     before_filter :authenticate_user! ,:except => [:index]
     load_and_authorize_resource :except=>[:index,:show]
     def index
-    # @search = Article.search do
-    #  fulltext params[:search]
-    #end
-    #@articles = @search.results
-    #@articles = Article.all
     @search = Sunspot.search(Article) do
       fulltext params[:search]
       facet(:created_month)
       with(:created_month, params[:month]) if params[:month].present?
+      paginate(page: params[:page], per_page: 10)
+      order_by(:created_month, :desc)
     end
     @articles = @search.results
+    respond_to do |format|
+        format.html
+        format.js
+    end  
+    #@articles.
   end
 
   def show

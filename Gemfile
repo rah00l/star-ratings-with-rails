@@ -48,8 +48,17 @@ gem 'sunspot_solr'
 
 gem 'progress_bar'
 
+# For implementation of endless pagination(InfiniteScrolling) feature
+gem 'will_paginate', '~> 3.0.5'
+gem 'betterlorem', '~> 0.1.2'
+gem 'bootstrap-sass', '~> 3.0.3.0'
+gem 'bootstrap-will_paginate', '~> 0.0.10'
+
 # For debugging application step by step
 gem 'debugger', group: [:development, :test]
+
+
+
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

@@ -1,0 +1,8 @@
+<%# @articles.each do |article| %>
+	<div>
+    <h2 ><%= link_to article.name, article %></h2>&nbsp;&nbsp;&nbsp;&nbsp;<small><em><%= article.timestamp %></em></small> <span class="comments">(<%= pluralize(article.comments.size, 'comment') %>)</span> 
+    <h5 ><%= link_to "Rate this:", article %></h5>
+    </div>
+  <div class="content"><%= simple_format(article.content) %></div>
+  <br/>
+<%# end %>

@@ -20,4 +20,8 @@ class Article < ActiveRecord::Base
     ratings.size.zero? ? 0 : ratings.sum(:score) / ratings.size
   end
 
+  def timestamp
+    created_at.strftime('%d %B %Y %H:%M:%S')
+  end
+
 end
