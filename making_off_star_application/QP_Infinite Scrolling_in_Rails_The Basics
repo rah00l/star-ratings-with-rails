@@ -89,8 +89,12 @@ jQuery ->
 
   return
 
- 8. Download loader image and kept it at 
+ 8. Download loader image,waypoints.coffee, and kept it at 
    /assets/ajax-loader.gif
+   /assets/javascript/waypoints.coffee  
+   /assets/javascript/bind_with_delay.js
+   /assets/javascript/jquery.history.js
+
 
 
  9. Add ajax response format @ Article index action..
