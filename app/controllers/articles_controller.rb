@@ -4,10 +4,10 @@ class ArticlesController < ApplicationController
     def index
     @search = Sunspot.search(Article) do
       fulltext params[:search]
-      facet(:created_month)
-      with(:created_month, params[:month]) if params[:month].present?
+      facet(:published_month)
+      with(:published_month, params[:month]) if params[:month].present?
       paginate(page: params[:page], per_page: 10)
-      order_by(:created_month, :desc)
+      order_by(:published_at, :desc)
     end
     @articles = @search.results
     respond_to do |format|

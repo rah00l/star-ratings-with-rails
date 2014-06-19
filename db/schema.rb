@@ -11,14 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140611092851) do
+ActiveRecord::Schema.define(:version => 20140619053753) do
 
   create_table "articles", :force => true do |t|
     t.string   "name"
     t.text     "content"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
     t.integer  "user_id"
+    t.datetime "published_at"
   end
 
   create_table "assignments", :force => true do |t|

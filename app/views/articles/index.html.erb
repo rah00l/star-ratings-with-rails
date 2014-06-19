@@ -18,7 +18,7 @@
 <div id="facets">
   <h3>Published</h3>
   <ul>
-    <% for row in @search.facet(:created_month).rows %>
+    <% for row in @search.facet(:published_month).rows %>
       <li>
         <% if params[:month].blank? %>
           <%= link_to row.value, :month => row.value %> (<%= row.count %>)
