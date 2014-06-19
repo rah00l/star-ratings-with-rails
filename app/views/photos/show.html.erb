@@ -6,10 +6,12 @@
 </div>-->
 
 <div class="photo">
-  <%=  @photo.name %><br/>
-  <% @attachments.each do |photo| %>
-  	<%= image_tag photo.file_url(:thumb) %><br/>
-<% end %>
+<%=  @photo.name %><br/>
+<%= render_gallery_for @attachments, original: 'file_url(:large)', thumbnail: 'file_url(:thumb)' %>
+<%# @attachments.each do |photo| %>
+  	<%#= image_tag photo.file_url(:thumb) %><br/>
+<%# end %>
+
 </div>
 
 <% if can? :update, @photo %>

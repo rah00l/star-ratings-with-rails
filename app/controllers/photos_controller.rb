@@ -20,8 +20,8 @@ class PhotosController < ApplicationController
 
   def edit
     @photo = Photo.find(params[:id])
-    if @photo.attachments.count < 5
-      4.times { @attachments = @photo.attachments.build }
+    if @photo.attachments.count < 8
+      7.times { @attachments = @photo.attachments.build }
      end 
   end
 

@@ -139,16 +139,20 @@ ARTICLE
 yamaha_corporation.update_attribute :created_at, (rand*123).days.ago
 
 
+git_basics = Article.create! name: "2.1 Git Basics - Getting a Git Repository", content: <<-ARTICLE
+Getting a Git Repository You can get a Git project using two main approaches. The first takes an existing project or directory and imports it into Git. The second clones an existing Git repository from another server.
+ARTICLE
+git_basics.update_attribute :created_at, (rand*173).days.ago
 
 
+sunspot_basics = Article.create! name: "Ordering and pagination", content: <<-ARTICLE
+GettSunspot allows ordering on one or more non-text fields using the order_by method in the search DSL (if no order_by call is made, results are sorted by relevancy). order_by may be called more than once, and the earlier calls will have higher ordering precedence than the later calls. Each call to the method should take the field name and either :asc or :desc:
+ARTICLE
+sunspot_basics.update_attribute :created_at, (rand*173).days.ago
 
+#Event.create! name: "Capture the Joker", starts_at: 2.days.from_now, ends_at: 3.days.from_now, description: "The Joker is at it again. Find his secret lair and capture him to keep him from causing more trouble."
 
-
-
-
-Event.create! name: "Capture the Joker", starts_at: 2.days.from_now, ends_at: 3.days.from_now, description: "The Joker is at it again. Find his secret lair and capture him to keep him from causing more trouble."
-
-Event.create! name: "Save the World", starts_at: 2.weeks.from_now, ends_at: 3.weeks.from_now, description: "An astroid is expected to collide with Earth around this time. It's a bird, it's a plain, it's Superman!"
+#Event.create! name: "Save the World", starts_at: 2.weeks.from_now, ends_at: 3.weeks.from_now, description: "An astroid is expected to collide with Earth around this time. It's a bird, it's a plain, it's Superman!"
 
 #Photo.create! name: "The Dark Knight Rises", filename: "dark_knight_rises.jpg"
 #Photo.create! name: "Superman", filename: "superman.jpg"

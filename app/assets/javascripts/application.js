@@ -11,6 +11,7 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require jquery
+//= require hermitage
 //= require jquery_ujs
 //= require raty.min.js
 //= require bootstrap

@@ -1,0 +1,26 @@
+Ruby gem for generation of image galleries
+
+Dependencies
+Rails >= 3.2
+
+Coffee-Script
+gem coffee-rails
+
+jQuery
+gem jquery-rails
+
+Quick Start
+Gemfile
+
+gem 'hermitage'
+
+Terminal
+$ bundle
+$ rails generate hermitage:install
+
+View
+render_gallery_for @images 
+
+<%= render_gallery_for @posts, original: 'attachment(:full)', thumbnail: 'attachment(:thumbnail)' %>
+
+# or any other array of objects with image attachments
