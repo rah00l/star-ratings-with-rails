@@ -1,0 +1,78 @@
+* Compairesion of Postgreql and Mysql
+-----------------------------------------------------------------------------------------------
+			Postgreql			Mysql	
+-----------------------------------------------------------------------------------------------
+ANSI SQL compliance 	Closer to ANSI SQL standard 	Follows some of the ANSI SQL standards
+Performance 		Slower 				Faster
+Sub-selects 		Yes 				No
+Transactions 		Yes 				Yes, however InnoDB table type must be used
+Database replication 	Yes 				Yes
+Foreign key support 	Yes 				No
+Views 			Yes 				No
+Stored procedures 	Yes 				No
+Triggers 		Yes 				No
+Unions 			Yes 				No
+Full joins 		Yes 				No
+Constraints 		Yes 				No
+Windows support 	Yes 				Yes
+Vacuum (cleanup) 	Yes 				No
+ODBC 			Yes 				Yes
+JDBC 			Yes 				Yes
+Different table types 	No 				Yes
+
+
+When to use MySQL:-
+Why would you use MySQL over PostgreSQL? First, we need to consider the needs of the applications in terms of database requirements. If I want to create a Web application and performance is an issue, MySQL will be my choice because it’s fast and designed to work well with Web-based servers. However, if I want to create another application that demands transactions and foreign key references, PostgreSQL is the choice.
+
+
+Let me suggest some reasons for using MySQL over PostgreSQL:
+
+    MySQL is relatively faster than PostgreSQL.
+    Database design will be simpler.
+    You can create a basic Web-driven Web site.
+    MySQL’s replication has been thoroughly tested.
+    There’s no need for cleanups in MySQL (Vacuum).
+
+
+When to use PostgreSQL:-
+Not many Web developers use PostgreSQL because they feel that the additional features degrade performance.
+
+For example, some of the features I use are foreign key references, triggers, and views. They allow me to hide the complexity of the database from the application, thus avoiding the creation of complicated SQL commands. I know many developers who prefer the rich functionality of PostgreSQL’s SQL commands. One of the most notable differences between MySQL and PostgreSQL is the fact that you can’t do nested subqueries of subselects in MySQL. PostgreSQL follows many of the SQL ANSI standards, thus allowing the creation of complex SQL commands.
+
+
+
+Let me suggest some reasons for using PostgreSQL over MySQL:
+
+    Complex database design
+    Moving away from Oracle, Sybase, or MSSQL
+    Complex rule sets (i.e., business rules)
+    Use of procedural languages on the server
+    Transactions
+    Use of stored procedures
+    Use of geographical data
+    R-Trees (i.e., used on indexes)
+
+
+
+ Difference between HTTP and HTTPS: HTTPS = HTTP + SSL
+
+1. URL begins with “http://" in case of HTTP while the URL begins with “https://” in case of HTTPS.
+2. HTTP is unsecured while HTTPS is secured.
+3. HTTP uses port 80 for communication while HTTPS uses port 443 for communication.
+4. HTTP operates at Application Layer while HTTPS operates at Transport Layer.
+5. No encryption is there in HTTP while HTTPS uses encryption.
+6. No certificates required in HTTP while certificates required in HTTPS.
+
+How HTTPS works?
+For HTTPS connection, public key and signed certificates are required for the server. 
+ When using an https connection, the server responds to the initial connection by offering a list of encryption methods it supports. In response, the client selects a connection method, and the client and server exchange certificates to authenticate their identities. After this is done, both parties exchange the encrypted information after ensuring that both are using the same key, and the connection is closed. In order to host https connections, a server must have a public key certificate, which embeds key information with a verification of the key owner's identity. Most certificates are verified by a third party so that clients are assured that the key is secure.
+In other words, we can say, HTTPS works similar to HTTP but SSL adds some spice in it.
+
+
+
+
+
+
+
+
+

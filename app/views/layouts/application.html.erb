@@ -1,33 +1,31 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Blog</title>
-    <%= stylesheet_link_tag    "application", media: "all" %>
-    <%= javascript_include_tag "application" %>
-    <%= csrf_meta_tag %>
-  </head>
-  <body>
-     
-    <div id="container">
-      <div id="nav">
-	
+<head>
+  <title>Blog</title>
+  <%= stylesheet_link_tag    "application", media: "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tag %>
+</head>
+<body>
 
-<div id="user_nav">
-  <% if user_signed_in? %>
-            <%= link_to_unless_current "Articles", articles_path %> |
+  <div id="container">
+    <div id="nav">
+    <div id="user_nav">
+        <% if user_signed_in? %>
+        <%= link_to_unless_current "Articles", articles_path %> |
         <%= link_to_unless_current "Photo Gallery", photos_path %> |
         <%= link_to_unless_current "Events", events_path %>	     
-    Signed in as <%= current_user.email %>. Not you?
-    <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
-  <% else %>
-    <%= link_to "Sign up", new_user_registration_path %> or <%= link_to "sign in", new_user_session_path %>
-  <% end %>
-</div>
-</div>
-      <% flash.each do |name, msg| %>
-        <%= content_tag :div, msg, id: "flash_#{name}" %>
-      <% end %>
-      <%= yield %>
+        Signed in as <%= current_user.email %>. Not you?
+        <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+        <% else %>
+        <%= link_to "Sign up", new_user_registration_path %> or <%= link_to "sign in", new_user_session_path %>
+        <% end %>
+      </div>
     </div>
-  </body>
+    <% flash.each do |name, msg| %>
+      <%= content_tag :div, msg, id: "flash_#{name}" %>
+    <% end %>
+    <%= yield %>
+  </div>
+</body>
 </html>

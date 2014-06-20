@@ -16,3 +16,11 @@
 //= require raty.min.js
 //= require bootstrap
 //= require_tree .
+
+// Added code to disappear flash notice and error messages.
+$(document).ready(function(){
+  setTimeout(function(){
+    $('#flash_notice').remove();
+    $('#flash_error').remove();
+  }, 3000);
+ })
