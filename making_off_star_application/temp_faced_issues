@@ -133,6 +133,29 @@ You can make disable only if you are using any other web server apart from defau
 # Disable Rails's static asset server (Apache or nginx will already do this)
   --- config.serve_static_assets = false  (config/environment/production.rb)
 
+-------------------------------------------------------------------------------------
+FOR HEROKU APP
+
+group :development do
+  gem 'sqlite3'
+end
+
+group :production do
+  gem 'taps'
+  gem 'pg'
+end
+
+
+git push heroku for_heroku:master
+
+heroku  rake sunspot:solr:start
+
+heroku rake sunspot:reindex 
+
+heroku rake db:migrate db:seed
+
+
+
 
 
 
