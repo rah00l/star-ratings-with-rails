@@ -148,9 +148,11 @@ A - Create file in config/initializers/
     
     YourApplication::Application.config.secret_token = 'your secret token'
 
-
+-------------------------------------------------------------------------------------------
    
+SUNSPOT   
 
+RAILS_ENV=production bundle exec rake sunspot:solr:start
 
  
    
