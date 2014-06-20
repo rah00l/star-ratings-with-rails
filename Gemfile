@@ -10,15 +10,15 @@ group :development do
   gem 'sqlite3'
 end
 
-group :production do
-  gem 'pg'
-end
+# group :production do
+#   gem 'pg'
+# end
 
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem "sass", "~> 3.2.5"
-gem 'sass-rails'
+  #gem "sass", "~> 3.2.5"
+  gem 'sass-rails'
   gem 'coffee-rails', '~> 3.2.1'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
