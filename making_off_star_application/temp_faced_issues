@@ -95,7 +95,43 @@ Troubleshooting
 
 	config.assets.initialize_on_precompile = false
 
+-------------------------------------------------------------------------------------
 
+
+
+
+Rake Tasks for production environment.
+
+
+RAILS_ENV=production railc c
+
+
+RAILS_ENV=production bundle exec rake db:migrate db:seed
+
+* This will drop the database, recreate it and load the current schema into it.
+RAILS_ENV=production bundle exec rake db:reset db:seed 
+
+RAILS_ENV=production bundle exec rake sunspot:solr:start
+
+RAILS_ENV=production bundle exec rake assets:precompile
+
+
+-------------------------------------------------------------------------------------
+
+
+* This option will check assets folder exists? in public directory for compiled assets .. if not then it will compile and compiled files would be at tmp/cache folder.
+
+--- config.assets.initialize_on_precompile = false (config/application.rb file)
+
+
+If following option got false then though you have compiled assests in public it will not refer and gives error like 
+
+ActionController::RoutingError (No route matches [GET] for each assets file
+
+You can make disable only if you are using any other web server apart from default ones.
+
+# Disable Rails's static asset server (Apache or nginx will already do this)
+  --- config.serve_static_assets = false  (config/environment/production.rb)
 
 
 
