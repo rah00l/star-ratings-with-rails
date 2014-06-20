@@ -185,7 +185,7 @@ DEPENDENCIES
   pg
   rails (= 3.2.3)
   rails_12factor
-  sass-rails
+  sass-rails (~> 3.2.3)
   sqlite3
   taps
   therubyracer (~> 0.10.2)
