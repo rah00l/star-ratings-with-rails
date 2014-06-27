@@ -42,6 +42,8 @@ gem install nokogiri -- --use-system-libraries
 SUNSPOT
 Q - Errno::ECONNREFUSED (Connection refused - connect(2)):  
 
+Sunspot::Solr::Server::JavaMissing: You need a Java Runtime Environment to run the Solr server
+
 After integration of sunspot solr search engine ,
 Executing "rails s" if you are facing issue
 
@@ -53,23 +55,27 @@ Option 1:
 Download "jdk7" from oracle site:
 http://www.oracle.com/technetwork/java/javase/downloads/java-archive-downloads-javase7-521261.html
 
+Download by this command:
+https://edelivery.oracle.com/otn-pub/java/jdk/8u5-b13/jdk-8u5-linux-i586.tar.gz
+
 Then execute following commands 
 ----------------------------------------
-tar -xvf jdk-7u51-linux-x64.tar.gz
-mkdir -p /usr/lib/jvm
-mv ./jdk1.7.0_51/ /usr/lib/jvm/jdk1.7.0_51/
+tar -xvf jdk-8u5-linux-i586.tar.gz
+Create jvm folder inside /usr/lib/ and then move it to that folder
+sudo mkdir -p /usr/lib/jvm
+sudo mv ./jdk1.8.0_05/ /usr/lib/jvm/jdk1.8.0_05/
 ----------------------------------------
 
-sudo update-alternatives --install "/usr/bin/java" "java" "/usr/lib/jvm/jdk1.7.0_51/bin/java" 1
-sudo update-alternatives --install "/usr/bin/javac" "javac" "/usr/lib/jvm/jdk1.7.0_51/bin/javac" 1
-sudo update-alternatives --install "/usr/bin/javaws" "javaws" "/usr/lib/jvm/jdk1.7.0_51/bin/javaws" 1
+sudo update-alternatives --install "/usr/bin/java" "java" "/usr/lib/jvm/jdk1.8.0_05/bin/java" 1
+sudo update-alternatives --install "/usr/bin/javac" "javac" "/usr/lib/jvm/jdk1.8.0_05/bin/javac" 1
+sudo update-alternatives --install "/usr/bin/javaws" "javaws" "/usr/lib/jvm/jdk1.8.0_05/bin/javaws" 1
 
 Ensure right users have the right permission:
 
 sudo chmod a+x /usr/bin/java 
 sudo chmod a+x /usr/bin/javac 
 sudo chmod a+x /usr/bin/javaws
-sudo chown -R root:root /usr/lib/jvm/jdk1.7.0
+sudo chown -R root:root /usr/lib/jvm/jdk1.8.0_05
 
 Then ensure with following commnad that java is properly installed,
 java -version
