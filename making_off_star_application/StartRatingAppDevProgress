@@ -34,6 +34,8 @@ Using gem 'hermitage' implemented cool image gallery into application.
 9. For image gallery need to add some fancy way to show it's slide show ..
 
 
+* Need to use populate and facker gems for populating raw data 
+
 * Create Category for Articles and then further arrange them like in Cloud type like (Tagging)
 
 * Need to have functionality to upload videos and also user can view them

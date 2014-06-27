@@ -1,17 +1,40 @@
 
-Role.find_or_create_by_name("Admin")
-Role.find_or_create_by_name("Author")
-Role.find_or_create_by_name("Organiger")
-Role.find_or_create_by_name("Photographer")
-Role.find_or_create_by_name("Other")
+admin_role = Role.find_or_create_by_name("Admin")
+author_role = Role.find_or_create_by_name("Author")
+org_role= Role.find_or_create_by_name("organizer")
+photo_role = Role.find_or_create_by_name("Photographer")
+other_role = Role.find_or_create_by_name("Other")
 
 #User.create! email: "soopriya@gmail.com", password: "soopriya123", password_confirmation: "soopriya123"
+
+admin_user = User.find_or_create_by_email_and_password_and_password_confirmation("admin@example.com" ,"admin@123" , "admin@123") 
+admin_user.role_ids=([admin_role.id])
+
+author_user = User.create! email: "author@example.com" ,password: "user@123" ,password_confirmation: "user@123"
+author_user.role_ids=([author_role.id])
+
+user1 = User.create! email: "user1@example.com" ,password: "user@123" ,password_confirmation: "user@123"
+
+user2 = User.create! email: "user2@example.com" ,password: "user@123" ,password_confirmation: "user@123"
+
+user3 = User.create! email: "user3@example.com" ,password: "user@123" ,password_confirmation: "user@123"
+
+
+org_user = User.create! email: "organizer@example.com" ,password: "user@123" ,password_confirmation: "user@123"
+org_user.role_ids=([org_role.id])
+
+photo_user = User.create! email: "photo@example.com" ,password: "user@123" ,password_confirmation: "user@123"
+photo_user.role_ids=([photo_role.id])
+
+other_user = User.create! email: "other@example.com" ,password: "user@123" ,password_confirmation: "user@123"
+other_user.role_ids=([other_role.id])
 
 
 batman = Article.create! name: "Batman", created_at: (rand*30).days.ago, content: <<-ARTICLE
 Batman is a fictional character created by the artist Bob Kane and writer Bill Finger. A comic book superhero, Batman first appeared in Detective Comics #27 (May 1939), and since then has appeared primarily in publications by DC Comics. Originally referred to as "The Bat-Man" and still referred to at times as "The Batman", he is additionally known as "The Caped Crusader", "The Dark Knight", and the "World's Greatest Detective," among other titles. (from Wikipedia)
 ARTICLE
 # batman.update_attribute :created_at, (rand*30).days.ago
+batman.user_id=(author_user.id)
 
 superman = Article.create! name: "Superman", created_at: (rand*30).days.ago, content: <<-ARTICLE
 Superman is a fictional comic book superhero appearing in publications by DC Comics, widely considered to be an American cultural icon. Created by American writer Jerry Siegel and Canadian-born American artist Joe Shuster in 1932 while both were living in Cleveland, Ohio, and sold to Detective Comics, Inc. (later DC Comics) in 1938, the character first appeared in Action Comics #1 (June 1938) and subsequently appeared in various radio serials, television programs, films, newspaper strips, and video games. (from Wikipedia)
