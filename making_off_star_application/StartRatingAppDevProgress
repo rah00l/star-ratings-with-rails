@@ -23,7 +23,7 @@
 For Users creation added image upload functionality.
 
 * thinking-sphinx gem need to be integrate --instead of this can integrate Sunspot gem which is more effective ..
-7. Implemented sunspot solr search engine for Article module along with facets based on created_at (Month and Year bases)
+7. Implemented sunspot solr search engine for Article module along with facets based on created_at (Month and Year bases) --- (Need to explore more on Fcets sorting ...)
 
 
 Infinite Scrolling in Rails: The Basics
@@ -34,7 +34,14 @@ Using gem 'hermitage' implemented cool image gallery into application.
 9. For image gallery need to add some fancy way to show it's slide show ..
 
 
+*) Need to create address model for users further information storage (?) (has_one with user)
+ 	i)  Multiple drop-down mapping ...Country ---> States ---> Cities ---> pin code (savon) with Ajax).
+ 	ii) User email address already existance   (feature with Ajax)
+
+
 * Need to use populate and facker gems for populating raw data 
+
+* For query Optimization bullet gem
 
 * Create Category for Articles and then further arrange them like in Cloud type like (Tagging)
 
@@ -46,7 +53,7 @@ Using gem 'hermitage' implemented cool image gallery into application.
 
 * Need to login using any social app also
 
-* Added activeadmin gem ...
+* Need to Add activeadmin gem ...
 
 * rolify (check what exactly  it is?)
  

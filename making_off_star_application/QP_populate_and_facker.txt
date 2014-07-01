@@ -1,0 +1,8 @@
+1. Add in Gemfile
+	gem 'populate'
+
+Create new task 
+ require 'populate'
+
+
+ ['Article', 'User', 'Role'].each(&:delete_all)
