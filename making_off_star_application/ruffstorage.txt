@@ -1,0 +1,1 @@
+ <%= f.hidden_field :role_ids, :value => Role.find_by_name("Other").id %>

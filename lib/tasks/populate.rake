@@ -1,6 +1,5 @@
 namespace :db do 
 	desc "Eraseing and populating databse"
-	puts "Eraseing and populating data....!"
 	task :populate => :environment do
 		require 'populator'
 

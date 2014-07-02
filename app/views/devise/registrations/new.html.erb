@@ -11,14 +11,8 @@
 
     <div><%= f.label :password_confirmation %><br />
       <%= f.password_field :password_confirmation %></div>
-
-      <p>
-        <%= f.label :roles %><br />
-        <% Role.all.each do |role| %>
-        <%= check_box_tag :role_ids,role.id,@user.roles.include?(role),:name => 'user[role_ids][]' %>
-        <%= role.name %><br />
-        <% end %>
-      </p>
+      
+      <%= f.hidden_field :role_ids, :value => Role.find_by_name("Other").id %>
       <div class="field">
         <%= f.fields_for :attachment do |attach| %>
         <%= attach.label :file, "Upload Photo" %><br />

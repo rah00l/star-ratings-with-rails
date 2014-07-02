@@ -70,6 +70,130 @@ In other words, we can say, HTTPS works similar to HTTP but SSL adds some spice 
 
 
 
+************************************************************************
+
+Simple Object Access Protocol (SOAP) and REpresentational State Transfer (REST) :-
+    SOAP and REST are protocols: a set of rules for requesting information from a server using a specific technique.
+
+
+
+
+SOAP: -
+    * Originally developed by Microsoft, SOAP really isn’t as simple as the acronym would suggest.
+    * SOAP relies exclusively on XML to provide messaging services. 
+    * Microsoft originally developed SOAP to take the place of older technologies that don’t work well on the Internet such as the Distributed Component          Object Model (DCOM) and Common Object Request Broker Architecture (CORBA). These technologies fail because they rely on binary messaging; the XML           messaging that SOAP employs works better over the Internet.
+    * The XML used to make requests and receive responses in SOAP can become extremely complex. In some programming languages, you need to build those         requests manually, which becomes problematic because SOAP is intolerant of errors.
+    * Part of the magic is the Web Services Description Language (WSDL). This is another file that’s associated with SOAP. It provides a definition of          how the Web service works, so that when you create a reference to it, the IDE can completely automate the process.
+    * One of the most important SOAP features is built-in error handling. If there’s a problem with your request, the response contains error information           that you can use to fix the problem.
+
+
+
+
+REST:-
+    * REST is the newcomer to the block. It seeks to fix the problems with SOAP and provide a truly simple method of accessing Web services.
+    * Many developers found SOAP cumbersome and hard to use. For example, working with SOAP in JavaScript means writing a ton of code to perform            extremely simple tasks because you must create the required XML structure absolutely every time.
+    * REST provides a lighter weight alternative.
+    * Instead of using XML to make a request, REST relies on a simple URL in many cases.
+    * REST can use four different HTTP 1.1 verbs (GET, POST, PUT, and DELETE) to perform tasks.
+    * Unlike SOAP, REST doesn’t have to use XML to provide the response. You can find REST-based Web services that output the data in Command Separated             Value (CSV), JavaScript Object Notation (JSON) and Really Simple Syndication (RSS). The point is that you can obtain the output you need in a           form that’s easy to parse within the language you need for your application.
+
+SOAP is definitely the heavyweight choice for Web service access. It provides the following advantages when compared to REST:
+
+    Language, platform, and transport independent (REST requires use of HTTP)
+    Works well in distributed enterprise environments (REST assumes direct point-to-point communication)
+    Standardized
+    Provides significant pre-build extensibility in the form of the WS* standards
+    Built-in error handling
+    Automation when used with certain language products
+
+REST is easier to use for the most part and is more flexible. It has the following advantages when compared to SOAP:
+
+    No expensive tools require to interact with the Web service
+    Smaller learning curve
+    Efficient (SOAP uses XML for all messages, REST can use smaller message formats)
+    Fast (no extensive processing required)
+    Closer to other Web technologies in design philosophy.
+
+******************************************************************************************************************************************************
+Web Server and Application server:-
+
+Most of the times these terms Web Server and Application server are used interchangeably.
+
+Following are some of the key differences in features of Web Server and Application Server:
+
+    Web Server is designed to serve HTTP Content. App Server can also serve HTTP Content but is not limited to just HTTP. It can be provided other protocol support such as RMI/RPC
+    Web Server is mostly designed to serve static content, though most Web Servers have plugins to support scripting languages like Perl, PHP, ASP, JSP etc. through which these servers can generate dynamic HTTP content.
+    Most of the application servers have Web Server as integral part of them, that means App Server can do whatever Web Server is capable of. Additionally App Server have components and features to support Application level services such as Connection Pooling, Object Pooling, Transaction Support, Messaging services etc.
+    As web servers are well suited for static content and app servers for dynamic content, most of the production environments have web server acting as reverse proxy to app server. That means while servicing a page request, static contents (such as images/Static HTML) are served by web server that interprets the request. Using some kind of filtering technique (mostly extension of requested resource) web server identifies dynamic content request and transparently forwards to app server
+
+Example of such configuration is Apache Tomcat HTTP Server and Oracle (formerly BEA) WebLogic Server. Apache Tomcat HTTP Server is Web Server and Oracle WebLogic is Application Server.
+
+In some cases the servers are tightly integrated such as IIS and .NET Runtime. IIS is web server. When equipped with .NET runtime environment, IIS is capable of providing application services.
+
+******************************************************************************************************************************************************
+
+
+Differences between Procs and Lambdas: 
+    * It is important to mention that they are both Proc objects.
+        proc = Proc.new { puts "Hello world" }
+        lam = lambda { puts "Hello World" }
+        
+        proc.class # returns 'Proc'
+        lam.class
+
+    ** Lambdas check the number of arguments, while procs do not
+
+    1 lam = lambda { |x| puts x }    # creates a lambda that takes 1 argument
+    2 lam.call(2)                    # prints out 2
+    3 lam.call                       # ArgumentError: wrong number of arguments (0 for 1)
+    4. lam.call(1,2,3)                # ArgumentError: wrong number of arguments (3 for 1)
+
+    In contrast, procs don’t care if they are passed the wrong number of arguments.
+
+    1 proc = Proc.new { |x| puts x } # creates a proc that takes 1 argument
+    2 proc.call(2)                   # prints out 2
+    3 proc.call                      # returns nil
+    4 proc.call(1,2,3)               # prints out 1 and forgets about the extra arguments
+    
+    As shown above, procs don’t freak out and raise errors if they are passed the wrong number of arguments. If the proc requires an argument but no    argument is passed then the proc returns nil. If too many arguments are passed than it ignores the extra arguments. 
+
+    ** Lambdas and procs treat the ‘return’ keyword differently 
+       ‘return’ inside of a lambda triggers the code right outside of the lambda code 
+        
+        def lambda_test
+          lam = lambda { return }
+          lam.call
+          puts "Hello world"
+        end
+
+        lambda_test                 # calling lambda_test prints 'Hello World'
+
+       ‘return’ inside of a proc triggers the code outside of the method where the proc is being executed 
+
+        def proc_test
+          proc = Proc.new { return }
+          proc.call
+          puts "Hello world"
+        end
+
+        proc_test                 # calling proc_test prints nothing
+
+
+******************************************************************************************************************************************************
+
+The Asset Pipeline :-
+
+    *** The first feature of the pipeline is to concatenate assets, which can reduce the number of requests that a browser makes to render a web page.          Web browsers are limited in the number of requests that they can make in parallel, so fewer requests can mean faster loading for your application.
+        Sprockets concatenates all JavaScript files into one master .js file and all CSS files into one master .css file. 
+
+    *** The second feature of the asset pipeline is asset minification or compression. For CSS files, this is done by removing whitespace and comments.             For JavaScript, more complex processes can be applied. You can choose from a set of built in options or specify your own.
+
+    *** The third feature of the asset pipeline is it allows coding assets via a higher-level language, with precompilation down to the actual assets.          Supported languages include Sass for CSS, CoffeeScript for JavaScript, and ERB for both by default.
+
+
+
+
+    
 
 
 
