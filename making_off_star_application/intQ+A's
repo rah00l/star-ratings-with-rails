@@ -191,12 +191,41 @@ The Asset Pipeline :-
     *** The third feature of the asset pipeline is it allows coding assets via a higher-level language, with precompilation down to the actual assets.          Supported languages include Sass for CSS, CoffeeScript for JavaScript, and ERB for both by default.
 
 
+******************************************************************************************************************************************************
+
+A common use of inheritance is to have overridden methods in a subclass do something in addition to what the superclass method did, rather than something entirely different (like in previous examples). This allows us to re-use behaviour that exists in a superclass, then modify to suit the needs of the subclass.
+
+Most object oriented languages offer a mechanism by which an overridden method can be called by the overriding method. Ruby uses the super keyword to make this happen. Using super will call the same method, but as defined in the superclass and give you the result.
 
 
-    
+class Animal
+  def move
+    "I can move"
+  end
+  def eat 
+    "Can eat small fishes..!"
+  end
+end
 
+class Bird < Animal
+  def move
+    super + " by flying"
+  end
+  def eat 
+    super + "can eat big fishes..!"
+  end
+end
 
+puts Animal.new.move
+puts Bird.new.move
+puts Bird.new.eat    
 
+O/P =>
 
+ stdout:
 
+I can move
+I can move by flying
+Can eat small fishes..!can eat big fishes..!
 
+******************************************************************************************************************************************************
