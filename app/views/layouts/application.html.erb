@@ -14,7 +14,8 @@
         <% if user_signed_in? %>
         <%= link_to_unless_current "Articles", articles_path %> |
         <%= link_to_unless_current "Photo Gallery", photos_path %> |
-        <%= link_to_unless_current "Events", events_path %>	     
+        <%= link_to_unless_current "Events", events_path %>	     |
+        <%= link_to "Account", edit_user_registration_path %> |
         Signed in as <%= current_user.email %>. Not you?
         <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
         <% else %>

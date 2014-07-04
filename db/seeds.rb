@@ -4,7 +4,10 @@ org_role= Role.find_or_create_by_name("organizer")
 photo_role = Role.find_or_create_by_name("Photographer")
 other_role = Role.find_or_create_by_name("Other")
 
-#User.create! email: "soopriya@gmail.com", password: "soopriya123", password_confirmation: "soopriya123"
+User.delete_all
+
+test_user = User.create! email: "rahul@gmail.com", password: "rahul123", password_confirmation: "rahul123"
+test_user.role_ids=(admin_role.id)
 
 # admin_user = User.find_or_create_by_email_and_password_and_password_confirmation("admin@example.com" ,"admin@123" , "admin@123") 
 # admin_user.role_ids=([admin_role.id])
@@ -27,7 +30,7 @@ other_role = Role.find_or_create_by_name("Other")
 
 # other_user = User.create! email: "other@example.com" ,password: "user@123" ,password_confirmation: "user@123"
 # other_user.role_ids=([other_role.id])
-
+Article.delete_all
 
 batman = Article.create! name: "Batman", created_at: (rand*30).days.ago, content: <<-ARTICLE
 Batman is a fictional character created by the artist Bob Kane and writer Bill Finger. A comic book superhero, Batman first appeared in Detective Comics #27 (May 1939), and since then has appeared primarily in publications by DC Comics. Originally referred to as "The Bat-Man" and still referred to at times as "The Batman", he is additionally known as "The Caped Crusader", "The Dark Knight", and the "World's Greatest Detective," among other titles. (from Wikipedia)
@@ -172,10 +175,12 @@ ARTICLE
 # ARTICLE
 # sunspot_basics.update_attribute :created_at, (rand*173).days.ago
 
-# #Event.create! name: "Capture the Joker", starts_at: 2.days.from_now, ends_at: 3.days.from_now, description: "The Joker is at it again. Find his secret lair and capture him to keep him from causing more trouble."
+[Event, Photo].each(&:delete_all)
 
-# #Event.create! name: "Save the World", starts_at: 2.weeks.from_now, ends_at: 3.weeks.from_now, description: "An astroid is expected to collide with Earth around this time. It's a bird, it's a plain, it's Superman!"
+Event.create! name: "Capture the Joker", starts_at: 2.days.from_now, ends_at: 3.days.from_now, description: "The Joker is at it again. Find his secret lair and capture him to keep him from causing more trouble."
 
-# #Photo.create! name: "The Dark Knight Rises", filename: "dark_knight_rises.jpg"
-# #Photo.create! name: "Superman", filename: "superman.jpg"
+Event.create! name: "Save the World", starts_at: 2.weeks.from_now, ends_at: 3.weeks.from_now, description: "An astroid is expected to collide with Earth around this time. It's a bird, it's a plain, it's Superman!"
+
+Photo.create! name: "The Dark Knight Rises", filename: "dark_knight_rises.jpg"
+Photo.create! name: "Superman", filename: "superman.jpg"
 

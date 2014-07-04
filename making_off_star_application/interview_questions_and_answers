@@ -3,3 +3,17 @@
 3. MYSQL vs Postgress (other db also) 
 4. OOP Concepts
 5. HTTP vs HTTPS ?
+
+Multi-Threading in ruby ?
+
+
+Turbolinks ?
+
+Mysql / Concurrent user login / Transactions ?
+
+Mutex ?
+
+GIL - Global Interpreter Lock ?
+
+
+

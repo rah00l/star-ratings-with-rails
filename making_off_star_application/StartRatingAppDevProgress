@@ -34,9 +34,17 @@ Using gem 'hermitage' implemented cool image gallery into application.
 9. For image gallery need to add some fancy way to show it's slide show ..
 
 
+
+
 *) Need to create address model for users further information storage (?) (has_one with user)
  	i)  Multiple drop-down mapping ...Country ---> States ---> Cities ---> pin code (savon) with Ajax).
  	ii) User email address already existance   (feature with Ajax)
+
+
+** Custom Admin dev+des. (design need to add css blueprint framwork)
+- Design Admin Interface 
+- Design "Login" Page.
+
 
 
 * Need to use populate and facker gems for populating raw data 

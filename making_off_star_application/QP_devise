@@ -1,0 +1,150 @@
+
+<!-- Edit view -->
+<h2>Edit <%= resource_name.to_s.humanize %></h2>
+
+<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
+  <%= devise_error_messages! %>
+
+  <div><%= f.label :email %><br />
+  <%= f.email_field :email, :autofocus => true %></div>
+
+  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+  <% end %>
+
+  <div><%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
+  <%= f.password_field :password, :autocomplete => "off" %></div>
+
+  <div><%= f.label :password_confirmation %><br />
+  <%= f.password_field :password_confirmation %></div>
+
+  <div><%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
+  <%= f.password_field :current_password %></div>
+
+  <p>
+        <%= f.label :roles %><br />
+        <% Role.all.each do |role| %>
+        <%= check_box_tag :role_ids,role.id,@user.roles.include?(role),:name => 'user[role_ids][]' %>
+        <%= role.name %><br />
+        <% end %>
+      </p>
+
+  <div><%= f.submit "Update" %></div>
+<% end %>
+
+<h3>Cancel my account</h3>
+
+<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete %></p>
+
+<%= link_to "Back", :back %>
+
+<!-- New view -->
+
+<h2>Sign up</h2>
+
+<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :multipart => true }) do |f| %>
+<%= devise_error_messages! %>
+
+<div><%= f.label :email %><br />
+  <%= f.email_field :email, :autofocus => true %></div>
+
+  <div><%= f.label :password %><br />
+    <%= f.password_field :password %></div>
+
+    <div><%= f.label :password_confirmation %><br />
+      <%= f.password_field :password_confirmation %></div>
+      
+      <%= f.hidden_field :role_ids, :value => Role.find_by_name("Other").id %>
+      <div class="field">
+        <%= f.fields_for :attachment do |attach| %>
+        <%= attach.label :file, "Upload Photo" %><br />
+        <%= attach.file_field :file %> <br/>     
+        <% end %>
+      </div>
+      <br/>
+
+      <div><%= f.submit "Sign up" %></div>
+      <% end %>
+
+      <%= render "devise/shared/links" %>
+
+User Routes:-
+************************************************************************************************
+                new_user_session GET    /users/sign_in(.:format)                                      devise/sessions#new
+                    user_session POST   /users/sign_in(.:format)                                      devise/sessions#create
+            destroy_user_session DELETE /users/sign_out(.:format)                                     devise/sessions#destroy
+                   user_password POST   /users/password(.:format)                                     devise/passwords#create
+               new_user_password GET    /users/password/new(.:format)                                 devise/passwords#new
+              edit_user_password GET    /users/password/edit(.:format)                                devise/passwords#edit
+                                 PUT    /users/password(.:format)                                     devise/passwords#update
+        cancel_user_registration GET    /users/cancel(.:format)                                       devise/registrations#cancel
+               user_registration POST   /users(.:format)                                              devise/registrations#create
+           new_user_registration GET    /users/sign_up(.:format)                                      devise/registrations#new
+          edit_user_registration GET    /users/edit(.:format)                                         devise/registrations#edit
+                                 PUT    /users(.:format)                                              devise/registrations#update
+                                 DELETE /users(.:format)                                              devise/registrations#destroy
+                         sign_in GET    /sign_in(.:format)                                            devise/sessions#new
+
+************************************************************************************************
+
+Module Users:-
+
+At user end profile info. options would be.
+Basic Oprations:
+* signup (create User) (registration controller [new, create])
+* signin  (login) (session controller)
+* signout (logout) (session controller)
+---------------------------------------------
+* Personal Information (Edit User) (registration controller [edit, update]) (Task: Make user editable without password.[?] Thare is method *update_without_password*. 
+https://github.com/plataformatec/devise/wiki/How-To%3a-Allow-users-to-edit-their-account-without-providing-a-password).
+* Change Password (?) (Need to check https://github.com/plataformatec/devise/wiki/How-To:-Allow-users-to-edit-their-password)
+* Update Email (?) (Need to check)
+* Deactivate Account(? )
+
+
+route info:
+
+ devise_for :private_customers, :class_name => 'Customer::Private', :controllers => {:registrations => "customer/
+private/registrations", :sessions => 'main' } do
+    get   "private_customer/sign_up" => "customer/private/registrations#new", :as => :private_customer_signup
+    get   "private_customer/sign_in" => "main#index", :as => :private_customer_signin
+  end
+
+
+************************************************************************************************
+
+For Admin User:-
+
+Need to show all users for this 
+
+"Creating an index view for a devise user"
+
+#config/routes.rb:
+# NOTE: put this after the 'devise_for :users' line
+resources :users, only: [:index]
+
+app/controllers/users_controller.rb:
+class UsersController < ApplicationController
+
+  def index
+    @users = User.all
+  end
+
+end
+
+app/views/users/index.html.erb:
+<ul>
+  <% @users.each do |user| %>
+    <li><%= user.name %></li>
+  <% end %>
+</ul>
+
+
+
+
+
+
+
+
+
+

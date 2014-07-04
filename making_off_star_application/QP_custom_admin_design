@@ -1,0 +1,63 @@
+For admin :- 
+
+css:- 
+(Login Page)
+
+body.logged_out {
+    background: none repeat scroll 0 0 #E8E9EA;
+}
+body {
+    background: none repeat scroll 0 0 white;
+    color: #323537;
+    font-family: Helvetica,Arial,sans-serif;
+    font-size: 72%;
+    line-height: 150%;
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: "Helvetica Neue",Arial,Helvetica,sans-serif;
+    font-size: 75%;
+}
+body {
+    background: none repeat scroll 0 0 white;
+    color: black;
+    line-height: 1;
+}
+
+#content_wrapper {
+    margin: 70px auto;
+    width: 500px;
+}
+
+
+.flash {
+    background: none repeat scroll 0 0 transparent;
+    box-shadow: none;
+    color: #666666;
+    font-weight: bold;
+    line-height: 1em;
+    margin-bottom: 10px;
+    padding: 0;
+    text-shadow: 0 1px 0 white;
+}
+
+
+#active_admin_content {
+    background: none repeat scroll 0 0 #FFFFFF;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.37);
+    padding: 13px 30px;
+}
+#active_admin_content {
+    margin: 0;
+    padding: 25px 30px;
+}
+
+
+#footer {
+    clear: both;
+    font-size: 0.8em;
+    padding: 30px;
+}
+
+----------------------------------------------------------------------------------------------
