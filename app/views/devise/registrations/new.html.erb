@@ -12,13 +12,8 @@
     <div><%= f.label :password_confirmation %><br />
       <%= f.password_field :password_confirmation %></div>
       
-      <%= f.hidden_field :role_ids, :value => Role.find_by_name("Other").id %>
-      <div class="field">
-        <%= f.fields_for :attachment do |attach| %>
-        <%= attach.label :file, "Upload Photo" %><br />
-        <%= attach.file_field :file %> <br/>     
-        <% end %>
-      </div>
+    <%= f.hidden_field :role_ids, :value => Role.find_by_name("Other").id %>
+    
       <br/>
 
       <div><%= f.submit "Sign up" %></div>

@@ -9,6 +9,18 @@ User.delete_all
 test_user = User.create! email: "rahul@gmail.com", password: "rahul123", password_confirmation: "rahul123"
 test_user.role_ids=(admin_role.id)
 
+
+#open("http://openconcept.ca/sites/openconcept.ca/files/country_code_drupal_0.txt") {|countr| countr.read.each_line {|con| code, name = con.chomp.split("|"); Country.create!(:name => name, :code => code)}}
+
+
+Country.delete_all
+open("http://openconcept.ca/sites/openconcept.ca/files/country_code_drupal_0.txt") do |countries|
+  countries.read.each_line do |country|
+    code, name = country.chomp.split("|")
+    Country.create!(:name => name, :code => code)
+  end
+end
+
 # admin_user = User.find_or_create_by_email_and_password_and_password_confirmation("admin@example.com" ,"admin@123" , "admin@123") 
 # admin_user.role_ids=([admin_role.id])
 

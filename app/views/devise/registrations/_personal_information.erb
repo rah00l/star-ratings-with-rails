@@ -1,0 +1,32 @@
+<div><%= f.label :email %><br />
+  <%= f.email_field :email, :autofocus => true %></div>
+
+  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+  <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+  <% end %>
+
+  <div><%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
+    <%= f.password_field :password, :autocomplete => "off" %></div>
+
+    <div><%= f.label :password_confirmation %><br />
+      <%= f.password_field :password_confirmation %></div>
+
+      <div><%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
+        <%= f.password_field :current_password %></div>
+
+        <p>
+          <%= f.label :roles %><br />
+          <% Role.all.each do |role| %>
+          <%= check_box_tag :role_ids,role.id,@user.roles.include?(role),:name => 'user[role_ids][]' %>
+          <%= role.name %><br />
+          <% end %>
+        </p>
+
+        <div class="field">
+          <%= f.fields_for :attachment do |attach| %>
+          <%= attach.label :file, "Upload Photo" %><br />
+          <%= attach.file_field :file %> <br/>     
+          <% end %>
+        </div>
+        <br/>
+        <br/>

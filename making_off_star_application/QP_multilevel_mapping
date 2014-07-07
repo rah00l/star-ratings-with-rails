@@ -1,0 +1,47 @@
+*c* rails g model address
+
+Model File:
+  attr_accessible :name, :street_address, :landmark, :pincode, :phoneno
+  belongs_to :user
+  belongs_to :country
+
+Modified Migration File:
+def change
+    create_table :addresses do |t|
+      t.string :name 
+      t.text :street_address	
+      t.string :landmark
+      t.integer :user_id
+      t.integer :city_id
+      t.integer :state_id
+      t.integer :country_id
+      t.string :pincode
+      t.string :phoneno
+      t.timestamps
+    end
+  end
+
+
+*c* rails g model country name:string code:string
+  attr_accessible :code, :name
+  has_one :address
+  has_many :states
+
+
+Modified Migration File:
+def change
+    create_table :countries, :id => false do |t|
+      t.string :name
+      t.string :code
+
+      t.timestamps
+      t.primary_key :code
+    end
+  end
+
+*c* rails g model state name:string code:string country_id:integer
+  attr_accessible :code, :country_id, :name
+  belongs_to :country
+
+
+

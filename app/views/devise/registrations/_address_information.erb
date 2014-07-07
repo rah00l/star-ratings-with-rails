@@ -1,0 +1,30 @@
+<div class="field">
+	<%= f.fields_for :address do |address| %>
+	
+	<%= address.label :name, "Name" %><br />
+	<%= address.text_field :name %> <br/>
+
+	<%= address.label :street_address, "Street Address" %><br />
+	<%= address.text_area :street_address %> <br/>
+
+	<%= address.label :landmark, "Landmark" %><br />
+	<%= address.text_field :landmark %> <br/>
+
+	<%= address.label :city, "City" %><br />
+	<%#= address.text_field :name %> <br/>
+
+	<%= address.label :state, "State" %><br />
+	<%#= address.text_field :name %> <br/>     
+
+	<%= address.label :country, "Country" %><br />
+	<%= address.collection_select :country_id, Country.all, :code %> <br/>
+	<!-- collection_select(:post, :author_id, Author.all, :id, :name_with_initial, prompt: true) -->
+
+	<%= address.label :pincode, "Pincode" %><br />
+	<%= address.text_field :pincode %> <br/>
+
+	<%= address.label :phoneno, "Phone Number" %><br />
+	<%= address.text_field :phoneno %> <br/>
+
+	<% end %>
+</div>

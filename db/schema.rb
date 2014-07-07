@@ -11,7 +11,21 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140619053753) do
+ActiveRecord::Schema.define(:version => 20140707094438) do
+
+  create_table "addresses", :force => true do |t|
+    t.string   "name"
+    t.text     "street_address"
+    t.string   "landmark"
+    t.integer  "user_id"
+    t.integer  "city_id"
+    t.integer  "state_id"
+    t.integer  "country_id"
+    t.string   "pincode"
+    t.string   "phoneno"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
 
   create_table "articles", :force => true do |t|
     t.string   "name"
@@ -48,6 +62,13 @@ ActiveRecord::Schema.define(:version => 20140619053753) do
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
     t.integer  "user_id"
+  end
+
+  create_table "countries", :id => false, :force => true do |t|
+    t.string   "name"
+    t.string   "code"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "events", :force => true do |t|
