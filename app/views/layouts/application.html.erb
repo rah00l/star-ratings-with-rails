@@ -16,6 +16,7 @@
         <%= link_to_unless_current "Photo Gallery", photos_path %> |
         <%= link_to_unless_current "Events", events_path %>	     |
         <%= link_to "Account", edit_user_registration_path %> |
+        <%= link_to "Change your password", edit_user_path %> |
         Signed in as <%= current_user.email %>. Not you?
         <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
         <% else %>

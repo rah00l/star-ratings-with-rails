@@ -34,7 +34,7 @@ Using gem 'hermitage' implemented cool image gallery into application.
 9. For image gallery need to add some fancy way to show it's slide show ..
 
 
-
+*) Highlight searched word ..fun. need to add ..(Sunspot)
 
 *) Need to create address model for users further information storage (?) (has_one with user)
  	i)  Multiple drop-down mapping ...Country ---> States ---> Cities ---> pin code (savon) with Ajax).
