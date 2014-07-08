@@ -6,7 +6,14 @@ A - rake db:migrate:reset db:seed
 
 -------------------------------------------------------------------------------------------
 
-Q - Rails: error while installing rubyracer
+Q - Rails: error while installing rubyracer - (while installing libv8 gem also)
+
+Q - Gem::Ext::BuildError: ERROR: Failed to build gem native extension.
+
+    /home/rahul/.rvm/rubies/ruby-1.9.3-p194/bin/ruby extconf.rb
+
+    gem "therubyracer", "~> 0.10.2"
+
 
 A - I figured the easiest thing is to use the last version of the gem. So I updated my Gemfile to point to the last version like so:gem "therubyracer", "~> 0.10.2" and I was able to successfully install the gem. If you want to manually install the gem, you can use: gem install therubyracer --version "~> 0.10.2" 
 
