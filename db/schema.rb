@@ -11,16 +11,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140707104610) do
+ActiveRecord::Schema.define(:version => 20140708035339) do
 
   create_table "addresses", :force => true do |t|
     t.string   "name"
     t.text     "street_address"
     t.string   "landmark"
     t.integer  "user_id"
-    t.integer  "city_id"
-    t.integer  "state_id"
-    t.integer  "country_id"
+    t.string   "city_id"
+    t.string   "state_id"
+    t.string   "country_id"
     t.string   "pincode"
     t.string   "phoneno"
     t.datetime "created_at",     :null => false
@@ -53,6 +53,14 @@ ActiveRecord::Schema.define(:version => 20140707104610) do
     t.integer  "user_id"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
+  end
+
+  create_table "cities", :id => false, :force => true do |t|
+    t.string   "name"
+    t.string   "code"
+    t.string   "state_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "comments", :force => true do |t|
@@ -153,7 +161,7 @@ ActiveRecord::Schema.define(:version => 20140707104610) do
   create_table "states", :id => false, :force => true do |t|
     t.string   "name"
     t.string   "code"
-    t.integer  "country_id"
+    t.string   "country_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

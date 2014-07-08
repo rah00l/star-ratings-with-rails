@@ -10,10 +10,11 @@ end
 
 # devise_for :users, :skip => [:registrations]
 
-resource :user, only: [:edit] do
+resource :user do
   collection do
     put 'update_password'
   end
+  member {get 'get_states'}
 end
 
 resources :ratings, only: :update

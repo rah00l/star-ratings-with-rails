@@ -16,11 +16,16 @@ class UsersController < ApplicationController
       render :edit 
     end
   end
+  
+  def get_states
+    #@country = Country.find(params[:country_id], :joins => :states)
+    @city = City.find(params[:city_id], joins: :state)
 
-  private
+    respond_to do |format|
+      format.js
+    end
+  end
 
-  # def user_params
-  #   # NOTE: Using `strong_parameters` gem
-  #   params.required(:user).permit(:password, :password_confirmation)
-  # end
+
+  
 end

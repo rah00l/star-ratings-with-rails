@@ -192,6 +192,7 @@ The Asset Pipeline :-
 
 
 ******************************************************************************************************************************************************
+Ruby Keyword super :- 
 
 A common use of inheritance is to have overridden methods in a subclass do something in addition to what the superclass method did, rather than something entirely different (like in previous examples). This allows us to re-use behaviour that exists in a superclass, then modify to suit the needs of the subclass.
 
@@ -227,5 +228,34 @@ O/P =>
 I can move
 I can move by flying
 Can eat small fishes..!can eat big fishes..!
+
+******************************************************************************************************************************************************
+
+
+jQuery differences between the bind and live functions:
+
+In short: .bind() will only apply to the items you currently have selected in your jQuery object. .live() will apply to all current matching elements, as well as any you might add in the future.
+
+The underlying difference between them is that live() makes use of event bubbling. That is, when you click on a button, that button might exist in a <p>, in a <div>, in a <body> element; so in effect, you're actually clicking on all of those elements at the same time.
+
+live() works by attaching your event handler to the document, not to the element. When you click on that button, as illustrated before, the document receives the same click event. It then looks back up the line of elements targeted by the event and checks to see if any of them match your query.
+
+The outcome of this is twofold: firstly, it means that you don't have to continue reapplying events to new elements, since they'll be implicitly added when the event happens. However, more importantly (depending on your situation), it means that your code is much much lighter! If you have 50 <img> tags on the page and you run this code:
+
+$('img').click(function() { /* doSomething */ });
+
+...then that function is copied into each of those elements. However, if you had this code:
+
+$('img').live('click', function() { /* doSomething */ });
+
+...then that function is stored only in one place (on the document), and is applied to whatever matches your query at event time.
+
+Because of this bubbling behaviour though, not all events can be handled this way. As Ichiban noted, these supported events are click, dblclick mousedown, mouseup, mousemove, mouseover, mouseout, keydown, keypress, keyup.
+
+******************************************************************************************************************************************************
+
+Q- difference between collection routes and member routes in Rails
+
+A member route will require an ID, because it acts on a member. A collection route doesn't because it acts on a collection of objects. Preview is an example of a member route, because it acts on (and displays) a single object. Search is an example of a collection route, because it acts on (and displays) a collection of objects.
 
 ******************************************************************************************************************************************************

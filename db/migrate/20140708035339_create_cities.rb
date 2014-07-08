@@ -1,9 +1,9 @@
-class CreateStates < ActiveRecord::Migration
+class CreateCities < ActiveRecord::Migration
   def change
-    create_table :states, :id => false do |t|
+    create_table :cities, :id => false do |t|
       t.string :name
       t.string :code
-      t.string :country_id
+      t.string :state_id
 
       t.timestamps
       t.primary_key :code

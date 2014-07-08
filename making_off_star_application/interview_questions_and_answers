@@ -15,5 +15,11 @@ Mutex ?
 
 GIL - Global Interpreter Lock ?
 
+Router for indexing (Mysql) ..
+
+Concurrent 900 users ...login.
+
+
+
 
 

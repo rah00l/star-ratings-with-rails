@@ -5,9 +5,9 @@ class CreateAddresses < ActiveRecord::Migration
       t.text :street_address	
       t.string :landmark
       t.integer :user_id
-      t.integer :city_id
-      t.integer :state_id
-      t.integer :country_id
+      t.string :city_id
+      t.string :state_id
+      t.string :country_id
       t.string :pincode
       t.string :phoneno
       t.timestamps

@@ -6,15 +6,15 @@ Model File:
   belongs_to :country
 
 Modified Migration File:
-def change
+  def change
     create_table :addresses do |t|
       t.string :name 
       t.text :street_address	
       t.string :landmark
       t.integer :user_id
-      t.integer :city_id
-      t.integer :state_id
-      t.integer :country_id
+      t.string :city_id
+      t.string :state_id
+      t.string :country_id
       t.string :pincode
       t.string :phoneno
       t.timestamps
@@ -40,8 +40,37 @@ def change
   end
 
 *c* rails g model state name:string code:string country_id:integer
+  
+  Model File:
   attr_accessible :code, :country_id, :name
   belongs_to :country
 
+   Modified Migration File:
+	def change
+    	create_table :states, :id => false do |t|
+      	t.string :name
+      	t.string :code
+      	t.string :country_id
+
+      	t.timestamps
+      	t.primary_key :code
+    end
+  end
 
 
+*c* rails g model city name:string code:string state_id:string
+
+Model File:
+
+
+Modified Migration File:
+def change
+    create_table :cities, :id => false do |t|
+      t.string :name
+      t.string :code
+      t.string :state_id
+
+      t.timestamps
+      t.primary_key :code
+    end
+  end

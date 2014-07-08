@@ -50,6 +50,10 @@ Using gem 'hermitage' implemented cool image gallery into application.
 * Need to use populate and facker gems for populating raw data 
 
 * For query Optimization bullet gem
+	gem 'rack-mini-profiler' Need to add for query otimization.
+	gem 'bullet'
+	gem 'rails_best_practices'	 For Code Optimization 
+
 
 * Create Category for Articles and then further arrange them like in Cloud type like (Tagging)
 
