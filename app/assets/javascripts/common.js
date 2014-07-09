@@ -1,12 +1,12 @@
 $(document).ready(function() {
-	$("#user_address_attributes_city_id").on("change",function(event){
-		if($("#user_address_attributes_city_id").val()!="")
+	$("#user_address_attributes_country_id").on("change",function(event){
+		if($("#user_address_attributes_country_id").val()!="")
 		{
-			var cityId  = $("#user_address_attributes_city_id").val();
+			var countryId  = $("#user_address_attributes_country_id").val();
 			$.ajax({
 				type: 'GET',
-				url: '/user/get_states',
-				data: 'city_id'+cityId,
+				url: '/get_states',
+				data: 'country_id='+countryId,
 				success: function(msg) {
 
 				}
@@ -14,6 +14,22 @@ $(document).ready(function() {
 			});		
 		}	
 		return false;
+	});
+
+
+	$("#user_address_attributes_state_id").on("change",function(event){
+		if($("#user_address_attributes_state_id").value()!="")
+		{
+			var stateId = $("#user_address_attributes_state_id").value();
+			$.ajax({
+				type: 'GET',
+				url: '/get_cities',
+				data: 'state_id='+stateId,
+				success: function function_name (argument) {
+					// body...
+				}
+			});
+		}
 	});
 
 });

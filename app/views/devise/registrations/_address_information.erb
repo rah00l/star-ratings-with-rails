@@ -1,29 +1,53 @@
 <div class="field">
 	<%= f.fields_for :address do |address| %>
 	
-	<%= address.label :name, "Name" %><br />
+	<div class="field">
+	<%= address.label :name, "Name" %>
 	<%= address.text_field :name %> <br/>
+	</div>
 
-	<%= address.label :street_address, "Street Address" %><br />
+	<div class="field">
+	<%= address.label :street_address, "Street Address" %><br/>
 	<%= address.text_area :street_address %> <br/>
+	</div>
 
-	<%= address.label :landmark, "Landmark" %><br />
+	<div class="field">
+	<%= address.label :landmark, "Landmark" %>
 	<%= address.text_field :landmark %> <br/>
+	</div>
 
-	<%= address.label :city, "City" %><br />
-	<%= address.collection_select :city_id, City.all, :code, :name %> <br/>
+	<div class="field">
+	<%= address.label :country_id, "Country" %>
+	<%= address.collection_select :country_id, Country.all, :code, :name %> <br/>
+	</div>
 
-	<%= address.label :state, "State" %><br />
-	<%#= address.text_field :name %> <br/>     
+	<div class="field">
+	<%= address.label :state %>
+	<div id="state_id_container">
+		<%= render "states", user: user %>
+	</div>
+	</div>
+    
 
-	<%= address.label :country_id, "Country" %><br />
-	<%= address.collection_select :country_id, Country.all, :code, :name, {class: "form-control"} %> <br/>
-	
-	<%= address.label :pincode, "Pincode" %><br />
+	<!-- <div class="field">
+	<%= address.label :city, "City" %>
+	<div id="city_id_container">
+		<%#= render "cities", user: user %>
+	</div> -->
+	<%#= address.collection_select :city_id, City.all, :code, :name %> <br/>
+	</div>
+
+
+
+	<div class="field">
+	<%= address.label :pincode, "Pincode" %>
 	<%= address.text_field :pincode %> <br/>
+	</div>
 
-	<%= address.label :phoneno, "Phone Number" %><br />
+	<div class="field">
+	<%= address.label :phoneno, "Phone Number" %>
 	<%= address.text_field :phoneno %> <br/>
+	</div>
 
 	<% end %>
 </div>

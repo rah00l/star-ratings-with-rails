@@ -16,16 +16,4 @@ class UsersController < ApplicationController
       render :edit 
     end
   end
-  
-  def get_states
-    #@country = Country.find(params[:country_id], :joins => :states)
-    @city = City.find(params[:city_id], joins: :state)
-
-    respond_to do |format|
-      format.js
-    end
-  end
-
-
-  
 end

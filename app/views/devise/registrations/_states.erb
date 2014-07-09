@@ -1,0 +1,10 @@
+<%#= puts @city.state.class.inspect%>
+<%# raise "asd".inspect %>
+<%# state = State.find_all_by_code(city.state.code) %>
+<% debugger %>
+<% if user.address.country.present? &&  !user.address.country.states.blank? %>
+	<% states = user.address.country.states %>
+<% else %>	
+	<% states = country.states %>
+<% end %>
+<%= collection_select "user[address_attributes]",:state_id, states, :code, :name %>

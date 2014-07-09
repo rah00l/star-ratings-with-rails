@@ -4,7 +4,7 @@
 <%= devise_error_messages! %>
 
 <%= render partial: "personal_information" ,locals: {f: f}  %><hr>
-<%= render partial: "address_information" ,locals: {f: f}  %>
+<%= render partial: "address_information" ,locals: {f: f, user: resource}  %>
 
 <div>
   <%= f.submit "Update" %>

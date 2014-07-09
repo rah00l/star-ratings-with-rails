@@ -3,9 +3,12 @@ Blog::Application.routes.draw do
   devise_for :users
 
 #  root :to => "home#index"
+devise_for :users ,:controllers => { :registrations => "registrations" }
 
 devise_scope :user do
   get "sign_in", :to => "devise/sessions#new"
+  get "get_states" , :to => "registrations#get_states"
+  get "get_cities" , :to => "registrations#get_cities"
 end
 
 # devise_for :users, :skip => [:registrations]
@@ -14,7 +17,6 @@ resource :user do
   collection do
     put 'update_password'
   end
-  member {get 'get_states'}
 end
 
 resources :ratings, only: :update
