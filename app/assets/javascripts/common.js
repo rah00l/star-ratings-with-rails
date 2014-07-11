@@ -18,9 +18,9 @@ $(document).ready(function() {
 
 
 	$("#user_address_attributes_state_id").on("change",function(event){
-		if($("#user_address_attributes_state_id").value()!="")
+		if($("#user_address_attributes_state_id").val()!="")
 		{
-			var stateId = $("#user_address_attributes_state_id").value();
+			var stateId = $("#user_address_attributes_state_id").val();
 			$.ajax({
 				type: 'GET',
 				url: '/get_cities',

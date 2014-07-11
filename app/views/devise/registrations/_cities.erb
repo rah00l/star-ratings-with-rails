@@ -1,1 +1,2 @@
-<% debugger %>
+<% cities = state.cities %>
+<%= collection_select "user[address_attributes]", :city_id, cities, :code, :name %>

@@ -24,18 +24,18 @@
 	<div class="field">
 	<%= address.label :state %>
 	<div id="state_id_container">
-		<%= render "states", user: user %>
+		<%= render "states", country: user.address.country if user.address.country.present? %>
 	</div>
 	</div>
     
 
-	<!-- <div class="field">
+	<div class="field">
 	<%= address.label :city, "City" %>
 	<div id="city_id_container">
-		<%#= render "cities", user: user %>
-	</div> -->
-	<%#= address.collection_select :city_id, City.all, :code, :name %> <br/>
+		<%= render "cities", state:  user.address.state if user.address.state.present? %>
 	</div>
+	<!-- <%#= address.collection_select :city_id, City.all, :code, :name %> <br/>
+	</div> -->
 
 
 
