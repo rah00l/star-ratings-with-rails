@@ -9,9 +9,6 @@ User.delete_all
 test_user = User.create! email: "rahul@gmail.com", password: "rahul123", password_confirmation: "rahul123"
 test_user.role_ids=(admin_role.id)
 
-
-
-
 #open("http://openconcept.ca/sites/openconcept.ca/files/country_code_drupal_0.txt") {|countr| countr.read.each_line {|con| code, name = con.chomp.split("|"); Country.create!(:name => name, :code => code)}}
 
 
@@ -23,9 +20,69 @@ open("http://openconcept.ca/sites/openconcept.ca/files/country_code_drupal_0.txt
   end
 end
 
+c1 = Country.find_by_name "India"
+c2 = Country.find_by_name "United States"
+
+State.delete_all
+
+states1 = [{code: "MH", name: "Maharashtra", country_id: c1.id }, {code: "KA", name: "Karnataka", country_id: c1.id },
+		  {code: "AP", name: "Andhra Pradesh", country_id: c1.id }, {code: "PB", name: "Punjab", country_id: c1.id }]
+
+
+
+states2 = [{code: "CA", name: "California", country_id: c2.id }, {code: "GA", name: "Georgia", country_id: c2.id } ,
+		  {code: "NJ", name: "New Jersey", country_id: c2.id }, {code: "NY", name: "New York", country_id: c2.id }]
+
+
+State.create! states1
+State.create! states2
+
+s1 = State.find_by_name "Maharashtra"
+s2 = State.find_by_name "Karnataka"
+s3 = State.find_by_name "Andhra Pradesh"
+s4 = State.find_by_name "Punjab"
+
+s5 = State.find_by_name "California"
+s6 = State.find_by_name "Georgia"
+s7 = State.find_by_name "New Jersey"
+s8 = State.find_by_name "New York" 	
 
 City.delete_all
-City.create!(name: "Pune" , code: "PN")
+
+cities1 = [{code: "PN", name: "Pune", state_id: s1.id }, {code: "MB", name: "Mumbai", state_id: s1.id },
+		  {code: "KOP", name: "Kolhapur", state_id: s1.id }, {code: "SL", name: "Sangli", state_id: s1.id }]
+
+cities2 = [{code: "BNG", name: "Banglore", state_id: s2.id }, {code: "HBL", name: "Hubli", state_id: s2.id } ,
+		  {code: "NP", name: "Nipani", state_id: s2.id }, {code: "CHD", name: "Chikodi", state_id: s2.id }]
+
+cities3 = [{code: "HYD", name: "Hydrabad", state_id: s3.id }, {code: "VJ", name: "Vijayawada", state_id: s3.id },
+		  {code: "TRP", name: "Tirupati", state_id: s3.id }, {code: "GNT", name: "Guntur", state_id: s3.id }]
+
+cities4 = [{code: "LDN", name: "Ludhiana", state_id: s4.id }, {code: "AMT", name: "Amritsar", state_id: s4.id },
+		  {code: "PTL", name: "Patiala", state_id: s4.id }, {code: "BTD", name: "Bathinda", state_id: s4.id }]		  
+
+cities5 = [{code: "LNG", name: "Los Angeles", state_id: s5.id }, {code: "SCM", name: "Sacramento", state_id: s5.id }]
+
+cities6 = [{code: "ATL", name: "Atlanta", state_id: s6.id }]
+
+cities7 = [{code: "TRN", name: "Trenton", state_id: s7.id }, {code: "NK", name: "Newark", state_id: s7.id }]
+
+cities8 = [{code: "ALB", name: "Albany", state_id: s7.id }, {code: "NCY", name: "New York", state_id: s7.id }]
+ 	
+
+City.create! cities1 
+City.create! cities2
+City.create! cities3
+City.create! cities4
+City.create! cities5
+City.create! cities6
+City.create! cities7
+City.create! cities8
+
+# State(name: string, code: string, country_id: integer, created_at: datetime, updated_at: datetime)
+
+# City.delete_all
+# City.create!(name: "Pune" , code: "PN")
 
 # admin_user = User.find_or_create_by_email_and_password_and_password_confirmation("admin@example.com" ,"admin@123" , "admin@123") 
 # admin_user.role_ids=([admin_role.id])

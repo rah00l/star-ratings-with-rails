@@ -27,17 +27,13 @@
 		<%= render "states", country: user.address.country if user.address.country.present? %>
 	</div>
 	</div>
-    
 
 	<div class="field">
 	<%= address.label :city, "City" %>
 	<div id="city_id_container">
-		<%= render "cities", state:  user.address.state if user.address.state.present? %>
+		<%= render "cities", state: user.address.state if user.address.state.present? %>
 	</div>
-	<!-- <%#= address.collection_select :city_id, City.all, :code, :name %> <br/>
-	</div> -->
-
-
+	</div>
 
 	<div class="field">
 	<%= address.label :pincode, "Pincode" %>
