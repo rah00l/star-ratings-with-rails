@@ -1,32 +1,48 @@
-<div><%= f.label :email %><br />
+
+<div>
+<h3>Personal Information</h3>
+  <%= f.label :email %><br />
   <%= f.email_field :email, :autofocus => true %></div>
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-  <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
+  <%# if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+  <!-- <div>Currently waiting confirmation for: <%#= resource.unconfirmed_email %></div> -->
+  <%# end %>
 
-  <div><%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, :autocomplete => "off" %></div>
+  <div class="field">
+    <%= f.label :first_name %><br />
+    <%= f.text_field :first_name %>
+  </div>  
 
-    <div><%= f.label :password_confirmation %><br />
-      <%= f.password_field :password_confirmation %></div>
+  <div class="field">
+    <%= f.label :last_name %><br />
+    <%= f.text_field :last_name %>
+  </div>  
 
-      <div><%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-        <%= f.password_field :current_password %></div>
+  <div class="field">
+    <%= f.label :gender %><br />
+    <%= f.radio_button :gender, 'Male', checked: true %>
+    <%= f.label :gender_male , "Male" %>
+    <%= f.radio_button :gender, 'Female' %>
+    <%= f.label :gender_male , "Female" %>
+  </div>  
 
-        <p>
-          <%= f.label :roles %><br />
-          <% Role.all.each do |role| %>
-          <%= check_box_tag :role_ids,role.id,@user.roles.include?(role),:name => 'user[role_ids][]' %>
-          <%= role.name %><br />
-          <% end %>
-        </p>
+  <div class="field">
+    <%= f.label :mobile_number %><br />
+    <%= f.text_field :mobile_number %>
+  </div>  
 
-        <div class="field">
-          <%= f.fields_for :attachment do |attach| %>
-          <%= attach.label :file, "Upload Photo" %><br />
-          <%= attach.file_field :file %> <br/>     
-          <% end %>
-        </div>
-        <br/>
-        <br/>
+  <div class="field">
+    <%= f.fields_for :attachment do |attach| %>
+    <%= attach.label :file, "Upload Photo" %><br />
+    <%= attach.file_field :file %> <br/>     
+    <% end %>
+  </div>
+
+  <p>
+    <%= f.label :roles %><br />
+    <% Role.all.each do |role| %>
+    <%= check_box_tag :role_ids,role.id,@user.roles.include?(role),:name => 'user[role_ids][]' %>
+    <%= role.name %><br />
+    <% end %>
+  </p>
+<br/>
