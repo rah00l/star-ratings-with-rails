@@ -1,9 +1,14 @@
+Recipy for creating Muti-Level Drop-Downs: (Country --> States ---> Cities .)  
+
+
 *c* rails g model address
 
 Model File:
-  attr_accessible :name, :street_address, :landmark, :pincode, :phoneno
+  attr_accessible :name, :street_address, :landmark, :pincode, :phoneno, :country_id, :city_id, :state_id
   belongs_to :user
   belongs_to :country
+  belongs_to :state
+  belongs_to :city
 
 Modified Migration File:
   def change
@@ -24,6 +29,7 @@ Modified Migration File:
 
 *c* rails g model country name:string code:string
   attr_accessible :code, :name
+  self.primary_key = :code
   has_one :address
   has_many :states
 
@@ -43,7 +49,9 @@ def change
   
   Model File:
   attr_accessible :code, :country_id, :name
+  self.primary_key = :code
   belongs_to :country
+  has_many :cities
 
    Modified Migration File:
 	def change
@@ -61,6 +69,9 @@ def change
 *c* rails g model city name:string code:string state_id:string
 
 Model File:
+attr_accessible :code, :name, :state_id
+  self.primary_key = :code
+  belongs_to :state
 
 
 Modified Migration File:
@@ -74,3 +85,183 @@ def change
       t.primary_key :code
     end
   end
+
+
+@ seed.rb (Add raw data ..)
+
+Country.delete_all
+open("http://openconcept.ca/sites/openconcept.ca/files/country_code_drupal_0.txt") do |countries|
+  countries.read.each_line do |country|
+    code, name = country.chomp.split("|")
+    Country.create!(:name => name, :code => code)
+  end
+end
+
+c1 = Country.find_by_name "India"
+c2 = Country.find_by_name "United States"
+
+State.delete_all
+
+states1 = [{code: "MH", name: "Maharashtra", country_id: c1.id }, {code: "KA", name: "Karnataka", country_id: c1.id },
+      {code: "AP", name: "Andhra Pradesh", country_id: c1.id }, {code: "PB", name: "Punjab", country_id: c1.id }]
+
+
+
+states2 = [{code: "CA", name: "California", country_id: c2.id }, {code: "GA", name: "Georgia", country_id: c2.id } ,
+      {code: "NJ", name: "New Jersey", country_id: c2.id }, {code: "NY", name: "New York", country_id: c2.id }]
+
+
+State.create! states1
+State.create! states2
+
+s1 = State.find_by_name "Maharashtra"
+s2 = State.find_by_name "Karnataka"
+s3 = State.find_by_name "Andhra Pradesh"
+s4 = State.find_by_name "Punjab"
+
+s5 = State.find_by_name "California"
+s6 = State.find_by_name "Georgia"
+s7 = State.find_by_name "New Jersey"
+s8 = State.find_by_name "New York"  
+
+City.delete_all
+
+cities1 = [{code: "PN", name: "Pune", state_id: s1.id }, {code: "MB", name: "Mumbai", state_id: s1.id },
+      {code: "KOP", name: "Kolhapur", state_id: s1.id }, {code: "SL", name: "Sangli", state_id: s1.id }]
+
+cities2 = [{code: "BNG", name: "Banglore", state_id: s2.id }, {code: "HBL", name: "Hubli", state_id: s2.id } ,
+      {code: "NP", name: "Nipani", state_id: s2.id }, {code: "CHD", name: "Chikodi", state_id: s2.id }]
+
+cities3 = [{code: "HYD", name: "Hydrabad", state_id: s3.id }, {code: "VJ", name: "Vijayawada", state_id: s3.id },
+      {code: "TRP", name: "Tirupati", state_id: s3.id }, {code: "GNT", name: "Guntur", state_id: s3.id }]
+
+cities4 = [{code: "LDN", name: "Ludhiana", state_id: s4.id }, {code: "AMT", name: "Amritsar", state_id: s4.id },
+      {code: "PTL", name: "Patiala", state_id: s4.id }, {code: "BTD", name: "Bathinda", state_id: s4.id }]      
+
+cities5 = [{code: "LNG", name: "Los Angeles", state_id: s5.id }, {code: "SCM", name: "Sacramento", state_id: s5.id }]
+
+cities6 = [{code: "ATL", name: "Atlanta", state_id: s6.id }]
+
+cities7 = [{code: "TRN", name: "Trenton", state_id: s7.id }, {code: "NK", name: "Newark", state_id: s7.id }]
+
+cities8 = [{code: "ALB", name: "Albany", state_id: s8.id }, {code: "NCY", name: "New York", state_id: s8.id }]
+  
+
+City.create! cities1 
+City.create! cities2
+City.create! cities3
+City.create! cities4
+City.create! cities5
+City.create! cities6
+City.create! cities7
+City.create! cities8
+
+
+
+ ---------------------------------------------------------------------------------------
+ After adding all this model and migrations lets move @ routes-controllers-js-views
+ ---------------------------------------------------------------------------------------
+
+@ routes.rb:
+ devise_scope :user do
+    get "sign_in", :to => "devise/sessions#new"
+    get "get_states" , :to => "registrations#get_states"
+    get "get_cities" , :to => "registrations#get_cities"
+  end 
+
+
+
+  @ controller :
+  def get_states
+    @country = Country.find(params[:country_id], joins: :states)
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def get_cities
+    @state = State.find(params[:state_id], joins: :cities)
+    respond_to do |format|
+      format.js
+    end
+  end
+
+
+  @ views :
+
+  <div class="field">
+  <%= address.label :country_id, "Country" %>
+  <%= address.collection_select :country_id, Country.all, :code, :name %> <br/>
+  </div>
+
+  <div class="field">
+  <%= address.label :state %>
+  <div id="state_id_container">
+    <%= render "states", country: user.address.country if user.address.country.present? %>
+  </div>
+  </div>
+
+  <div class="field">
+  <%= address.label :city, "City" %>
+  <div id="city_id_container">
+    <%= render "cities", state: user.address.state if user.address.state.present? %>
+  </div>
+  </div>
+
+  @ js files :
+
+  for --get states.js.erb
+  $('#state_id_container').html('<%=escape_javascript render("states", country: @country) %>');
+
+  for -- get_cities.js.erb
+  $('#city_id_container').html('<%=escape_javascript render("cities", state: @state) %>');
+
+  @ partials:
+
+  _states.erb
+  <% states = country.states %>
+  <%= collection_select "user[address_attributes]",:state_id, states, :code, :name %>
+
+  _cities.erb
+  <% cities = state.cities %>
+  <%= collection_select "user[address_attributes]", :city_id, cities, :code, :name %>
+
+  @ common.js file: (.ajax on events of drop-down):
+
+  $(document).ready(function() {
+  $("#user_address_attributes_country_id").on("change",function(event){
+    if($("#user_address_attributes_country_id").val()!="")
+    {
+      var countryId  = $("#user_address_attributes_country_id").val();
+      $.ajax({
+        type: 'GET',
+        url: '/get_states',
+        data: 'country_id='+countryId,
+        success: function(msg) {
+          $("#city_id_container").hide();
+        }
+      });   
+    } 
+    return false;
+  });
+
+  $("#state_id_container").on("change",function(event){
+    if($("#user_address_attributes_state_id").val()!="")
+    {
+      $("#city_id_container").show();
+      var stateId = $("#user_address_attributes_state_id").val();
+      $.ajax({
+        type: 'GET',
+        url: '/get_cities',
+        data: 'state_id='+stateId,
+        success: function(msg) {
+        }
+      });
+    }
+    return false;
+  });
+});
+
+
+
+

@@ -37,8 +37,8 @@ Using gem 'hermitage' implemented cool image gallery into application.
 *) Highlight searched word ..fun. need to add ..(Sunspot)
 
 *) Need to create address model for users further information storage (?) (has_one with user)
- 	i)  Multiple drop-down mapping ...Country ---> States ---> Cities ---> pin code (savon) with Ajax).
- 	ii) User email address already existance   (feature with Ajax)
+ 	i)  Multiple drop-down mapping ...Country ---> States ---> Cities ---> pin code (savon) with Ajax). --- Done
+ 	ii) User email address already existance   (feature with Ajax)  --- Done
 
 
 ** Custom Admin dev+des. (design need to add css blueprint framwork)

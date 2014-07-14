@@ -52,7 +52,7 @@ Let me suggest some reasons for using PostgreSQL over MySQL:
     Use of geographical data
     R-Trees (i.e., used on indexes)
 
-
+************************************************************************
 
  Difference between HTTP and HTTPS: HTTPS = HTTP + SSL
 

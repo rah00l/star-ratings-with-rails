@@ -67,7 +67,7 @@ cities6 = [{code: "ATL", name: "Atlanta", state_id: s6.id }]
 
 cities7 = [{code: "TRN", name: "Trenton", state_id: s7.id }, {code: "NK", name: "Newark", state_id: s7.id }]
 
-cities8 = [{code: "ALB", name: "Albany", state_id: s7.id }, {code: "NCY", name: "New York", state_id: s7.id }]
+cities8 = [{code: "ALB", name: "Albany", state_id: s8.id }, {code: "NCY", name: "New York", state_id: s8.id }]
  	
 
 City.create! cities1 

@@ -9,6 +9,7 @@ devise_scope :user do
   get "sign_in", :to => "devise/sessions#new"
   get "get_states" , :to => "registrations#get_states"
   get "get_cities" , :to => "registrations#get_cities"
+  get "get_user_email_status" , :to => "registrations#get_user_email_status"
 end
 
 # devise_for :users, :skip => [:registrations]

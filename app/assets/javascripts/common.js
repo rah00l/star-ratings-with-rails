@@ -30,5 +30,25 @@ $(document).ready(function() {
 		}
 		return false;
 	});
+
+
+	$("#user_email").on("blur",function(event){
+		if($("#user_email").val()!=""){
+			var userEmail = $("#user_email").val();
+			$.ajax({
+				type: 'GET',
+				url: '/get_user_email_status',
+				data: 'user_email='+userEmail,
+				datatype: 'json',
+				success: function(data){
+					if(data.status == "false")
+						$("#resultStatus").text(data.message).css("color","red" );
+					else
+						$("#resultStatus").text(data.message).css("color","green" );
+				}
+			});
+		}
+
+	});
 });
 
