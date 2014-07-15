@@ -259,3 +259,198 @@ Q- difference between collection routes and member routes in Rails
 A member route will require an ID, because it acts on a member. A collection route doesn't because it acts on a collection of objects. Preview is an example of a member route, because it acts on (and displays) a single object. Search is an example of a collection route, because it acts on (and displays) a collection of objects.
 
 ******************************************************************************************************************************************************
+
+Q - Preload, Eagerload, Includes and Joins. 
+
+Preload loads the association data in a separate query. 
+
+User.preload(:posts).to_a
+
+# =>
+SELECT "users".* FROM "users"
+SELECT "posts".* FROM "posts"  WHERE "posts"."user_id" IN (1)
+
+This is how includes loads data in the default case.
+
+Since preload always generates two sql we can't use posts table in where condition. Following query will result in an error.
+
+
+User.preload(:posts).where("posts.desc='ruby is awesome'")
+
+# =>
+SQLite3::SQLException: no such column: posts.desc: 
+SELECT "users".* FROM "users"  WHERE (posts.desc='ruby is awesome')
+
+
+----------------------------------------------------------------------------------
+Includes :
+
+*Q* User.includes(:posts).where('posts.desc = "ruby is awesome"').to_a
+
+# =>
+SELECT "users"."id" AS t0_r0, "users"."name" AS t0_r1, "posts"."id" AS t1_r0, 
+       "posts"."title" AS t1_r1, 
+       "posts"."user_id" AS t1_r2, "posts"."desc" AS t1_r3 
+FROM "users" LEFT OUTER JOIN "posts" ON "posts"."user_id" = "users"."id" 
+WHERE (posts.desc = "ruby is awesome")
+
+ As you can see includes switches from using two separate queries to creating a single LEFT OUTER JOIN to get the data. And it also applied the supplied condition.
+
+----------------------------------------------------------------------------------
+
+Eager loading loads all association in a single query using LEFT OUTER JOIN.
+
+User.eager_load(:posts).to_a
+
+# =>
+SELECT "users"."id" AS t0_r0, "users"."name" AS t0_r1, "posts"."id" AS t1_r0, 
+       "posts"."title" AS t1_r1, "posts"."user_id" AS t1_r2, "posts"."desc" AS t1_r3 
+FROM "users" LEFT OUTER JOIN "posts" ON "posts"."user_id" = "users"."id"
+
+
+----------------------------------------------------------------------------------
+
+Joins brings association data using inner join. 
+
+User.joins(:posts)
+
+# =>
+SELECT "users".* FROM "users" INNER JOIN "posts" ON "posts"."user_id" = "users"."id"
+
+
+In the above case no posts data is selected. Above query can also produce duplicate result. To see it let's create some sample data.
+
+def self.setup
+  User.delete_all
+  Post.delete_all
+
+  u = User.create name: 'Neeraj'
+  u.posts.create! title: 'ruby', desc: 'ruby is awesome'
+  u.posts.create! title: 'rails', desc: 'rails is awesome'
+  u.posts.create! title: 'JavaScript', desc: 'JavaScript is awesome'
+
+  u = User.create name: 'Neil'
+  u.posts.create! title: 'JavaScript', desc: 'Javascript is awesome'
+
+  u = User.create name: 'Trisha'
+end
+
+With the above sample data if we execute User.joins(:posts) then this is the result we get
+
+#<User id: 9, name: "Neeraj">
+#<User id: 9, name: "Neeraj">
+#<User id: 9, name: "Neeraj">
+#<User id: 10, name: "Neil">
+
+We can avoid the duplication by using distinct .
+
+User.joins(:posts).select('distinct users.*').to_a
+
+Also if we want to make use of attributes from posts table then we need to select them.
+
+records = User.joins(:posts).select('distinct users.*, posts.title as posts_title').to_a
+records.each do |user|
+  puts user.name
+  puts user.posts_title
+end
+
+Note that using joins means if you use user.posts then another query will be performed.
+
+******************************************************************************************************************************************************
+
+Class and Instance Methods in Ruby
+
+One Line Summary
+
+Class methods are methods that are called on a class and instance methods are methods that are called on an instance of a class. Here is a quick example and then we’ll go into a bit more detail.
+
+class Foo
+  def self.bar
+    puts 'class method'
+  end
+  
+  def baz
+    puts 'instance method'
+  end
+end
+
+Foo.bar # => "class method"
+Foo.baz # => NoMethodError: undefined method ‘baz’ for Foo:Class
+
+Foo.new.baz # => instance method
+Foo.new.bar # => NoMethodError: undefined method ‘bar’ for #<Foo:0x1e820>
+
+See the difference? bar is a class method, so calling bar on the Foo class works fine. baz is an instance method, so calling baz on the Foo class raises a NoMethodError. Then, on the next couple lines, we call both methods on an instance of Foo (Foo.new).
+
+
+So when would you use a class method? Class methods are for anything that does not deal with an individual instance of a class. ActiveRecord::Base#find is one example. If you look in ActiveRecord::Base, you’ll see something like this:
+
+module ActiveRecord
+  class Base
+    # some stuff
+    class << self
+      def find(...)
+        # blah
+      end
+    end
+  end
+end
+
+
+The key difference is instance methods only work with an instance and thus you have to create a new instance to use them (Foo.new).
+
+e.g. destroy is an instance method, save and update_attributes
+
+******************************************************************************************************************************************************
+
+Include vs Extend in Ruby
+
+The difference between include and extend in regards to modules. Include is for adding methods to an instance of a class and extend is for adding class methods. Let’s take a look at a small example.
+
+
+module Foo
+  def foo
+    puts 'heyyyyoooo!'
+  end
+end
+
+class Bar
+  include Foo
+end
+
+Bar.new.foo # heyyyyoooo!
+Bar.foo # NoMethodError: undefined method ‘foo’ for Bar:Class
+
+class Baz
+  extend Foo
+end
+
+Baz.foo # heyyyyoooo!
+Baz.new.foo # NoMethodError: undefined method ‘foo’ for #<Baz:0x1e708>
+
+As you can see, include makes the foo method available to an instance of a class and extend makes the foo method available to the class itself.
+
+
+******************************************************************************************************************************************************
+
+Require vs Load :
+
+require searches for the library in all the defined search paths and also appends .rb or .so to the file name you enter.With load you need to add the full name of the library.
+
+If you require the same file twice, it will be loaded and evaluated only once. load, on the other hand, loads and evaluates the file every time.
+
+e.g.
+Here is the code from 'boot.rb'
+require 'rubygems'
+
+# Set up gems listed in the Gemfile.
+ENV['BUNDLE_GEMFILE'] ||= File.expand_path('../../Gemfile', __FILE__)
+
+require 'bundler/setup' if File.exists?(ENV['BUNDLE_GEMFILE'])
+
+
+load(File.dirname(__FILE__) + "/schema.rb")
+
+
+******************************************************************************************************************************************************
+

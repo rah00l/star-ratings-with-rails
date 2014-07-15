@@ -41,6 +41,9 @@ Using gem 'hermitage' implemented cool image gallery into application.
  	ii) User email address already existance   (feature with Ajax)  --- Done
 
 
+*) sunspot search need to be more explore with respect to associated models.
+
+
 ** Custom Admin dev+des. (design need to add css blueprint framwork)
 - Design Admin Interface 
 - Design "Login" Page.
