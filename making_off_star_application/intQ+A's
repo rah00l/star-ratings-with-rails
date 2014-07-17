@@ -487,38 +487,6 @@ Can use update instead of update_attribut/s interchangably.
 
 Introduced strong parameters not need to add attr_atributes ..
 
-
-******************************************************************************************************************************************************
-
-Difference between attr_accessor and attr_accessible:
-
-This is a very good question. I was as well very confused with all of this and I finaly undersood the point.
-
-Many people on this thread and on google explain very well that :
-
-attr_accessible specifies a whitelist of attributes that are allowed to be updated in bulk (all the attributes of an object model together at the same time) This is mainly (and only) to protect your application from "Mass assignement" pirate exploit. This is explained here on the official Rails doc : Mass Assignement
-
-attr_accessor is a ruby code to (quickly) create setter and getter in a Class. That's all.
-
-
-attr_accessor is a ruby method that makes a getter and a setter. attr_accessible is a Rails method that allows you to pass in values to a mass assignment: new(attrs) or update_attributes(attrs). 
-
-
-
-The attr_protected method takes a list of attributes that will not be accessible for mass-assignment.
-
-The attr_accessible method it is the exact opposite of attr_protected, because it takes a list of attributes that will be accessible. 
-
-
-attr_accessor as a ruby method that is the combination of attr_reader and attr_writer.
-
-NOTE! Don’t use attr_accessor for database attributes – Rails creates those accessors for you.
-
-attr_accessor is used when you do not have a column in your database, but still want to show a field in your forms. This field is a “virtual attribute” in a Rails model.
-
-virtual attribute – an attribute not corresponding to a column in the database.
-
-
 Views :
 
 collection_check_boxes  (to atchive many-to-many kind of relation with check boxes)
@@ -538,6 +506,38 @@ Can use constrains with help of that can specify protocol then route will genera
 Test:
 
 where test directory is strucured differently
+
+
+******************************************************************************************************************************************************
+
+Difference between attr_accessor and attr_accessible:
+
+This is a very good question. I was as well very confused with all of this and I finaly undersood the point.
+
+Many people on this thread and on google explain very well that :
+
+attr_accessible specifies a whitelist of attributes that are allowed to be updated in bulk (all the attributes of an object model together at the same time) This is mainly (and only) to protect your application from "Mass assignement" pirate exploit. This is explained here on the official Rails doc : Mass Assignement
+
+attr_accessor is a ruby code to (quickly) create setter and getter in a Class. That's all.
+
+
+attr_accessor is a ruby method that makes a getter and a setter. attr_accessible is a Rails method that allows you to pass in values to a mass assignment: new(attrs) or update_attributes(attrs). 
+
+The attr_protected method takes a list of attributes that will not be accessible for mass-assignment.
+
+The attr_accessible method it is the exact opposite of attr_protected, because it takes a list of attributes that will be accessible. 
+
+
+attr_accessor as a ruby method that is the combination of attr_reader and attr_writer.
+
+NOTE! Don’t use attr_accessor for database attributes – Rails creates those accessors for you.
+
+attr_accessor is used when you do not have a column in your database, but still want to show a field in your forms. This field is a “virtual attribute” in a Rails model.
+
+virtual attribute – an attribute not corresponding to a column in the database.
+
+
+
 
 
 
