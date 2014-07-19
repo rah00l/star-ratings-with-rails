@@ -1,2 +1,2 @@
 <% states = country.states %>
-<%= collection_select "user[address_attributes]",:state_id, states, :code, :name %>
+<%= collection_select "user[address_attributes]",:state_id, states, :code, :name, prompt: true, selected: current_user.address.state.present? ? current_user.address.state.code : {} %>

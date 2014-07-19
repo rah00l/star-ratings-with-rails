@@ -4,7 +4,7 @@
 <%= devise_error_messages! %>
 
 <div><%= f.label :email %><br />
-<%= f.email_field :email, :autofocus => true %><span id="resultStatus"></span></div>
+<%= f.email_field :email, :autofocus => true, class: "check_email"%><span id="resultStatus"></span></div>
 
   <div><%= f.label :password %><br />
     <%= f.password_field :password %></div>
