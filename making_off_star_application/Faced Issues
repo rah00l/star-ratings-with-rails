@@ -183,8 +183,21 @@ Kaminari.configure do |config|
 end
 
 -------------------------------------------------------------------------------------------
+SUNSPOT:-
+Q - 
+rake aborted!
+Errno::EPERM: Operation not permitted
+/home/rahul/.rvm/gems/ruby-1.9.3-p194@star-rating/gems/sunspot_solr-2.1.1/lib/sunspot/solr/server.rb:61:in `kill'
+/home/rahul/.rvm/gems/ruby-1.9.3-p194@star-rating/gems/sunspot_solr-2.1.1/lib/sunspot/solr/server.rb:61:in `start'
+/home/rahul/.rvm/gems/ruby-1.9.3-p194@star-rating/gems/sunspot_solr-2.1.1/lib/sunspot/solr/tasks.rb:5:in `block (3 levels) in <top (required)>'
+/home/rahul/.rvm/gems/ruby-1.9.3-p194@star-rating/bin/ruby_noexec_wrapper:14:in `eval'
+/home/rahul/.rvm/gems/ruby-1.9.3-p194@star-rating/bin/ruby_noexec_wrapper:14:in `<main>'
+Tasks: TOP => sunspot:solr:start
+(See full trace by running task with --trace)
 
 
+A - rm solr/pids/development/sunspot-solr-development.pid
 
 
+-------------------------------------------------------------------------------------------
 
