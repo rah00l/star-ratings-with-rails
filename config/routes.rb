@@ -3,13 +3,14 @@ Blog::Application.routes.draw do
   devise_for :users
 
 #  root :to => "home#index"
-devise_for :users ,:controllers => { :registrations => "registrations" }
+devise_for :users ,:controllers => { :registrations => "devise/registrations" }
 
 devise_scope :user do
   get "sign_in", :to => "devise/sessions#new"
-  get "get_states" , :to => "registrations#get_states"
-  get "get_cities" , :to => "registrations#get_cities"
-  get "get_user_email_status" , :to => "registrations#get_user_email_status"
+  get "sign_up", :to => "devise/registrations#new"
+  get "get_states" , :to => "devise/registrations#get_states"
+  get "get_cities" , :to => "devise/registrations#get_cities"
+  get "get_user_email_status" , :to => "devise/registrations#get_user_email_status"
 end
 
 # devise_for :users, :skip => [:registrations]
