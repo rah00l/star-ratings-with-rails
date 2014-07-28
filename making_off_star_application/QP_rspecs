@@ -1,0 +1,47 @@
+Quick Pointers For Using Rspecs in to your rails App:  (28/07/14)
+*****************************************************
+
+
+ADD GEMS:
+Following gems shold be add into your Gemfile 
+# Gemfile
+group :development, :test do
+  gem 'factory_girl_rails'
+  gem 'rspec-rails'
+#  gem 'thin'  # right now not reqiure 
+end
+
+
+group :test do
+  gem 'capybara'
+#  gem 'cucumber-rails', :require=>false   # This is optional if you want to cover cucumber scenario also then add.
+  gem 'database_cleaner', '1.0.1'
+#  gem 'email_spec'  # For basic testing not require
+  gem 'launchy'
+end
+
+bundle install 
+-----------------------------------------------------------------------------------------
+
+Rails generator commands:
+rails g rspec:install
+rspec:install
+
+-----------------------------------------------------------------------------------------
+PREPARE TEST ENV:
+
+rake db:migrate && rake db:test:prepare
+	
+-----------------------------------------------------------------------------------------
+
+
+
+
+For run specs :
+rake spec / rspec spec
+
+In order to make color enable on console while running specs 
+# Add following line at your /spec/spec_helper.rb file
+config.color = true
+
+

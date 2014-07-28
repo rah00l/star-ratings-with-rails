@@ -61,6 +61,22 @@ gem 'hermitage'
 # This gem is for populating database.
 gem 'populator'
 
+# For testing app 
+group :development, :test do
+  gem 'factory_girl_rails'
+  gem 'rspec-rails'
+#  gem 'thin'  # right now not reqiure 
+end
+
+
+group :test do
+  gem 'capybara'
+#  gem 'cucumber-rails', :require=>false   # This is optional if you want to cover cucumber scenario also then add.
+  gem 'database_cleaner', '1.0.1'
+#  gem 'email_spec'  # For basic testing not require
+  gem 'launchy'
+end
+
 # For debugging application step by step
 gem 'debugger', group: [:development, :test]
 
