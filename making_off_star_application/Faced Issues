@@ -201,3 +201,17 @@ A - rm solr/pids/development/sunspot-solr-development.pid
 
 -------------------------------------------------------------------------------------------
 
+
+Q - While integrating rails app with google authentication api - gem 'omniauth-google-oauth2' 
+Access Not Configured. Please use Google Developers Console to activate the API for your project.
+
+A - Please check config/initializer/devise.rb (proper values were inserted or not 
+# config.omniauth :github, 'APP_ID', 'APP_SECRET' )
+
+-------------------------------------------------------------------------------------------
+
+
+
+Q - Faraday::SSLError (SSL_connect returned=1 errno=0 state=SSLv3 read server certificate B: certificate verify failed):
+
+
