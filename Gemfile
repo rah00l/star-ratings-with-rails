@@ -61,6 +61,11 @@ gem 'hermitage'
 # This gem is for populating database.
 gem 'populator'
 
+#This gem is for adding authontication withthe help of social sites like google,facebook..
+gem 'omniauth'
+gem 'omniauth-oauth2'
+gem 'omniauth-google-oauth2'
+
 # For testing app 
 group :development, :test do
   gem 'factory_girl_rails'

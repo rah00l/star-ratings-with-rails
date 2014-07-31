@@ -183,6 +183,8 @@ ActiveRecord::Schema.define(:version => 20140714100030) do
     t.string   "last_name"
     t.string   "mobile_number"
     t.string   "gender"
+    t.string   "uid"
+    t.string   "provider"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

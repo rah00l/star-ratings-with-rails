@@ -3,7 +3,9 @@ Blog::Application.routes.draw do
   devise_for :users
 
 #  root :to => "home#index"
-devise_for :users ,:controllers => { :registrations => "devise/registrations" }
+devise_for :users , controllers: { 
+        registrations: "devise/registrations", 
+        omniauth_callbacks: "omniauth_callbacks" } 
 
 devise_scope :user do
   get "sign_in", :to => "devise/sessions#new"

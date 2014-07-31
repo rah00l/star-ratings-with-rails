@@ -4,5 +4,7 @@ class AddColumnsToUsers < ActiveRecord::Migration
   	add_column :users, :last_name, :string
   	add_column :users, :mobile_number, :string
   	add_column :users, :gender, :string
+  	add_column :users, :uid, :string
+  	add_column :users, :provider, :string
   end
 end

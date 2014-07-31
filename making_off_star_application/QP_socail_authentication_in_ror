@@ -1,0 +1,55 @@
+** Google-authentication-in-ruby-on-rails ** 
+-----------------------------------------------
+
+Refernce Link :
+http://richonrails.com/articles/google-authentication-in-ruby-on-rails
+http://sreeharikmarar.blogspot.in/2013/01/omniauth-devise-authentication-using.html
+
+
+
+
+Gemfile:
+gem 'omniauth'#, :git => 'git://github.com/intridea/omniauth.git'
+gem 'omniauth-oauth2'#, :git => 'git://github.com/intridea/omniauth-oauth2.git'
+gem 'omniauth-google-oauth2'
+gem 'omniauth-facebook'
+
+
+
+user model:
+
+devise :omniauthable, :omniauth_providers => [:facebook, :google_oauth2]
+
+
+- In routes.rb file:
+devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks" }
+
+
+- Add @ devise.rb in initializer/devise.rb
+config.omniauth :google_oauth2, "973898828989.apps.googleusercontent.com", "5IArtvjQO9Dve6EgsMto4be_"
+
+
+
+
+
+
+
+Gemfile:
+gem "omniauth-google-oauth2", "~> 0.2.1"
+
+
+
+Create and add in: 
+	#config/initializers/omniauth.rb:
+
+OmniAuth.config.logger = Rails.logger
+
+Rails.application.config.middleware.use OmniAuth::Builder do
+  provider :google_oauth2, 'my Google client id', 'my Google client secret', {client_options: {ssl: {ca_file: Rails.root.join("cacert.pem").to_s}}}
+end
+
+
+
+config/initializer/devise.rb (configuration file add following line)
+config.omniauth :google_oauth2, "973898828989.apps.googleusercontent.com", "5IArtvjQO9Dve6EgsMto4be_"
+
