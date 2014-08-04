@@ -7,7 +7,6 @@ gem 'rails', '3.2.3'
 
 gem 'sqlite3'
 
-
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -63,7 +62,7 @@ gem 'populator'
 
 #This gem is for adding authontication withthe help of social sites like google,facebook..
 gem 'omniauth'
-gem 'omniauth-oauth2'
+# gem 'omniauth-oauth2'
 gem 'omniauth-google-oauth2'
 
 # For testing app 
@@ -84,9 +83,6 @@ end
 
 # For debugging application step by step
 gem 'debugger', group: [:development, :test]
-
-
-
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

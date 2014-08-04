@@ -18,8 +18,10 @@
   <%= link_to "Didn't receive unlock instructions?", new_unlock_path(resource_name) %><br />
 <% end -%>
 
+<h4>Sign In With :</h4>
 <%- if devise_mapping.omniauthable? %>
   <%- resource_class.omniauth_providers.each do |provider| %>
-    <%= link_to "Sign in with #{provider.to_s.titleize}", omniauth_authorize_path(resource_name, provider) %><br />
+  		<% image_name,image_alt = get_provider_image_info(provider.to_s) %>
+  		<%= link_to(image_tag(image_name, size: "64x64", alt: image_alt), omniauth_authorize_path(resource_name, provider)) %>
   <% end -%>
 <% end -%>
