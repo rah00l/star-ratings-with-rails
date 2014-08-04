@@ -5,10 +5,63 @@ Refernce Link :
 http://richonrails.com/articles/google-authentication-in-ruby-on-rails
 http://sreeharikmarar.blogspot.in/2013/01/omniauth-devise-authentication-using.html
 
+********************************************************************************************
+API credentials and all:
+------------------------
+
+https://console.developers.google.com/project/154908962849/apiui/credential?authuser=0
+
+Client ID
+    	154908962849-167os8snlpngm2cnfcggmdlfcka3oj0o.apps.googleusercontent.com
+
+ Client secret
+    	POiFex30QwyDeGq-6s3kS46s
+    
+ Javascript Origins
+		http://localhost:3000
+        
+Redirect URIs
+		http://localhost:3000/users/auth/google_oauth2/callback             
 
 
 
-Gemfile:
+IN ORDER TO MENTION PRODUCT NAME(*) MANDETORY FIELD : "APIs & auth" -> "Consent screen"
+------------------------------------------------------------------------------------------
+https://console.developers.google.com/project/154908962849/apiui/consent?authuser=0
+
+	Email address :
+			rahulpatil2387@gmail.com
+
+	 Product name :		
+	 		star-rating-app			
+
+
+********************************************************************************************
+
+Error: redirect_uri_mismatch
+
+/users/auth/google_oauth2/callback
+
+
+
+http://localhost:3000/users/auth/google_oauth2/callback
+
+
+
+-----------------------------------------------------------------------------------------
+
+401. That’s an error.
+
+Error: invalid_client
+
+no application name
+
+
+-----------------------------------------------------------------------------------------
+IMPLEMENTATION :
+-----------------------------------------------------------------------------------------
+
+#Add following gems into Gemfile:
 gem 'omniauth'#, :git => 'git://github.com/intridea/omniauth.git'
 gem 'omniauth-oauth2'#, :git => 'git://github.com/intridea/omniauth-oauth2.git'
 gem 'omniauth-google-oauth2'
@@ -16,17 +69,104 @@ gem 'omniauth-facebook'
 
 
 
-user model:
+- Add @ devise.rb in initializer/devise.rb
 
-devise :omniauthable, :omniauth_providers => [:facebook, :google_oauth2]
+******************************************************************************************************
+NOTE:-
+	If you are using Devise with OmniAuth you need to skip the extra omniauth.rb initializer and simply config.provider "KEY", "SECRET" inside of initializers/devise.rb and then carry on with your implementation.
+******************************************************************************************************
 
+config.omniauth :google_oauth2, "973898828989.apps.googleusercontent.com", "5IArtvjQO9Dve6EgsMto4be_"
+
+
+Add following Migrations @ users table:
+	add_column :users, :uid, :string
+  	add_column :users, :provider, :string
+
+Run migrations:  	
+---------------
+
+Create Route rule for handling callback from social sites redirections:
+---------------------------------------------------------------------------
+For my app it looks like this:
+devise_for :users , controllers: { registrations: "devise/registrations", :omniauth_callbacks => "omniauth_callbacks" } 
 
 - In routes.rb file:
 devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks" }
 
+Create 'omniauth_callbacks' controller and add following actions:
+------------------------------------------------------------------
 
-- Add @ devise.rb in initializer/devise.rb
-config.omniauth :google_oauth2, "973898828989.apps.googleusercontent.com", "5IArtvjQO9Dve6EgsMto4be_"
+		class OmniauthCallbacksController < Devise::OmniauthCallbacksController   
+		  # before_filter :authenticate_user!
+
+		  def google_oauth2
+		    @user = User.find_for_google_oauth2(request.env["omniauth.auth"], current_user)
+		 
+		    if @user.persisted?
+		      flash[:notice] = I18n.t "devise.omniauth_callbacks.success", :kind => "Google"
+		      sign_in_and_redirect @user, :event => :authentication
+		    else
+		      session["devise.google_data"] = request.env["omniauth.auth"]
+		      redirect_to new_user_registration_url
+		    end
+		  end
+
+		  def facebook
+		    # You need to implement the method below in your model (e.g. app/models/user.rb)
+		    @user = User.find_for_facebook_oauth(request.env["omniauth.auth"], current_user)
+
+		    if @user.persisted?
+		      flash[:notice] = I18n.t "devise.omniauth_callbacks.success", :kind => "Facebook"
+		      sign_in_and_redirect @user, :event => :authentication
+		    else
+		      session["devise.facebook_data"] = request.env["omniauth.auth"]
+		      redirect_to new_user_registration_url
+		    end
+		  end
+
+		end
+
+
+
+In user Model:
+---------------
+
+	1) # Add uid and provider fields into attr_accesiable list
+	attr_accessible :email, :password, :password_confirmation, :remember_me,:current_password,:role_ids, :attachment_attributes, :address_attributes, :first_name, :last_name, :gender, :mobile_number,:provider,:uid
+
+
+	2) # Add following line:
+	devise :omniauthable, :omniauth_providers => [:facebook, :google_oauth2]
+
+	3) # Add class method to handle data entry part
+			def self.find_for_google_oauth2(access_token, signed_in_resource=nil)
+		    data = access_token.info
+		    user = User.where(:provider => access_token.provider, :uid => access_token.uid ).first
+		    debugger
+		    if user
+		      return user
+		    else
+		      registered_user = User.where(:email => access_token.info.email).first
+		      if registered_user
+		        return registered_user
+		      else
+		        user = User.create(provider:access_token.provider,
+		          email: data["email"],
+		          uid: access_token.uid ,
+		          password: Devise.friendly_token[0,20],
+		        )
+		      end
+		    end
+		  end
+
+
+
+
+
+
+
+
 
 
 

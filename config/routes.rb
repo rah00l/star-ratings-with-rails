@@ -1,15 +1,14 @@
 Blog::Application.routes.draw do
 
-  devise_for :users
+  # devise_for :users
 
 #  root :to => "home#index"
-devise_for :users , controllers: { 
-        registrations: "devise/registrations", 
-        omniauth_callbacks: "omniauth_callbacks" } 
+devise_for :users , controllers: { registrations: "devise/registrations", :omniauth_callbacks => "omniauth_callbacks" } 
 
 devise_scope :user do
   get "sign_in", :to => "devise/sessions#new"
   get "sign_up", :to => "devise/registrations#new"
+  get '/users/sign_out' => 'devise/sessions#destroy'
   get "get_states" , :to => "devise/registrations#get_states"
   get "get_cities" , :to => "devise/registrations#get_cities"
   get "get_user_email_status" , :to => "devise/registrations#get_user_email_status"

@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me,:current_password,:role_ids, :attachment_attributes, :address_attributes, :first_name, :last_name, :gender, :mobile_number
+  attr_accessible :email, :password, :password_confirmation, :remember_me,:current_password,:role_ids, :attachment_attributes, :address_attributes, :first_name, :last_name, :gender, :mobile_number,  :provider, :uid
   # attr_accessible :title, :body
 
   # Added social-authentication:
@@ -45,11 +45,10 @@ class User < ActiveRecord::Base
       return !!self.roles.find_by_name(role.to_s.camelize)
   end
 
-
+  # class method for google oauth
   def self.find_for_google_oauth2(access_token, signed_in_resource=nil)
     data = access_token.info
     user = User.where(:provider => access_token.provider, :uid => access_token.uid ).first
-    debugger
     if user
       return user
     else
@@ -64,6 +63,21 @@ class User < ActiveRecord::Base
         )
       end
     end
+  end
+
+# class method for facebook oauth
+  def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
+    user = User.where(:provider => auth.provider, :uid => auth.uid).first
+    unless user
+      user = User.create(  provider:auth.provider,
+                           uid:auth.uid,
+                           email:auth.info.email,
+                           password:Devise.friendly_token[0,20]
+                           )
+      #user.ensure_authentication_token!
+      # added extra to create authentication token for user
+    end
+    user
   end
 
 end
