@@ -200,7 +200,7 @@ A - rm solr/pids/development/sunspot-solr-development.pid
 
 
 -------------------------------------------------------------------------------------------
-
+GOOGLE_OAUTH2:
 
 Q - While integrating rails app with google authentication api - gem 'omniauth-google-oauth2' 
 Access Not Configured. Please use Google Developers Console to activate the API for your project.
@@ -209,9 +209,126 @@ A - Please check config/initializer/devise.rb (proper values were inserted or no
 # config.omniauth :github, 'APP_ID', 'APP_SECRET' )
 
 -------------------------------------------------------------------------------------------
-
-
+GOOGLE_OAUTH2:
 
 Q - Faraday::SSLError (SSL_connect returned=1 errno=0 state=SSLv3 read server certificate B: certificate verify failed):
+
+A - 
+
+This issue persistes because certification issue like site redirecting to https and your internet provider might be blocked at your end check this issue by appling proxy settings.
+
+Or 
+
+silence_warnings do
+  OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE if Rails.env.development?
+end
+
+-------------------------------------------------------------------------------------------
+In order to set https to http for rubygems api for downloading gems then use follwoing cmd: (if there were certificate issue)
+
+  gem source -a http://rubygems.org/
+-------------------------------------------------------------------------------------------
+GOOGLE_OAUTH2:
+
+Q - could not authenticate you from googleoauth2 because "invalid credentials".
+
+
+A- Downgraded gem version from 0.2.6 to 0.2.2.
+
+
+gem 'omniauth-google-oauth2','0.2.2'
+
+-------------------------------------------------------------------------------------------
+GOOGLE_OAUTH2:
+
+How to solve “OmniAuth::Strategies::OAuth2::CallbackError” error?
+/ (google_oauth2) Callback phase initiated twice rails /
+CSRF detected with Omniauth and Google
+
+
+A - As Richlewis was referring to, if you are using Devise with OmniAuth you need to skip the extra omniauth.rb initializer and simply config.provider "KEY", "SECRET" inside of initializers/devise.rb and then carry on with your implementation.
+
+
+
+-------------------------------------------------------------------------------------------
+GOOGLE_OAUTH2:
+
+Q - AbstractController::ActionNotFound (The action 'google_oauth2' could not be found for Devise::OmniauthCallbacksController)
+
+
+This error occurs because you might have two devise_for :users route which is creating four routs instead of two and routes not match and this error occurs.
+
+check with the folowing command 
+
+rake routes | grep auth
+
+rahul@ps4466-u brew_ideas (master) $rake routes | grep auth 
+
+1- user_omniauth_authorize GET|POST /users/auth/:provider(.:format)        omniauth_callbacks#passthru {:provider=>/facebook|google_oauth2/}
+
+2-  user_omniauth_callback GET|POST /users/auth/:action/callback(.:format) omniauth_callbacks#(?-mix:facebook|google_oauth2)
+
+So check into your routes.rb file 
+# devise_for :users
+
+devise_for :users , controllers: { registrations: "devise/registrations", :omniauth_callbacks => "omniauth_callbacks" } 
+
+-------------------------------------------------------------------------------------------
+DEVISE:
+
+Q -
+Routing Error
+
+No route matches [GET] "/users/sign_out"
+
+
+A - Add following route to your routes.rb file:
+
+get '/users/sign_out' => 'devise/sessions#destroy'
+
+-------------------------------------------------------------------------------------------
+GOOGLE_OAUTH2:
+
+Q-
+
+****** 403 Error: redirect_uri_mismatch
+
+A -
+Note: - Default: Redirect Uri changes with suggested and after update wait for 10 mins so that changes should be applicable.
+
+
+http://localhost:3000/auth/google_oauth2/callback
+
+Above url would be:
+
+http://localhost:3000/users/auth/google_oauth2/callback
+
+-------------------------------------------------------------------------------------------
+GOOGLE_OAUTH2:
+
+Q - 
+401. That’s an error.
+
+***** Error: invalid_client
+
+no application name
+Request Details
+
+    scope=https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile
+    response_type=code
+    redirect_uri=http://localhost:3000/users/auth/google_oauth2/callback
+    access_type=offline
+    state=6c7bfedd04016e04815fe493c89be02e8436aafd6fc70212
+    client_id=154908962849-167os8snlpngm2cnfcggmdlfcka3oj0o.apps.googleusercontent.com
+
+That’s all we know.
+
+
+A- 
+  That error is displayed in case that under "APIs & auth" -> "Consent screen" you have empty field "PRODUCT NAME" - you need to select e-mail address as well.
+
+You can find "Consent screen" under a link!, click on project name and then go to "APIs & auth" -> "Consent screen".
+
+-------------------------------------------------------------------------------------------
 
 
