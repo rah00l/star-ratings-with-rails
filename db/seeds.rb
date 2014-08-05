@@ -6,8 +6,11 @@ other_role = Role.find_or_create_by_name("Other")
 
 User.delete_all
 
-test_user = User.create! email: "rahul@gmail.com", password: "rahul123", password_confirmation: "rahul123"
-test_user.role_ids=(admin_role.id)
+puts 'DEFAULT ADMIN USER..'
+admin_user = User.find_or_create_by_email :email => ENV['ADMIN_EMAIL'].dup, :password => ENV['ADMIN_PASSWORD'].dup, :password_confirmation => ENV['ADMIN_PASSWORD'].dup
+admin_user.role_ids=(admin_role.id)
+# test_user = User.create! email: "rahul@gmail.com", password: "rahul123", password_confirmation: "rahul123"
+
 
 #open("http://openconcept.ca/sites/openconcept.ca/files/country_code_drupal_0.txt") {|countr| countr.read.each_line {|con| code, name = con.chomp.split("|"); Country.create!(:name => name, :code => code)}}
 
