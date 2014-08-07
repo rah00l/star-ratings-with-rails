@@ -1,3 +1,7 @@
+
+
+** Worked on Following Things:
+------------------------------
 1. simple blog application ..
   	Article ...
 	  Comments ...
@@ -13,7 +17,7 @@
    rails generate devise:views user 
 
 .... seed file need to be set ...? ?
-.... Deploy on Heroku ....? ? ?
+.... Deploy on Heroku ....? ? ? --- (for sunspot it's not gone support / basic app was deployed by pushing all pre-compiled assets.)
 
 5. ActiveRecord-Reputation  --Added (Added voting system on comments ..)
 
@@ -34,12 +38,18 @@ Using gem 'hermitage' implemented cool image gallery into application.
 9. For image gallery need to add some fancy way to show it's slide show ..
 
 
-*) Highlight searched word ..fun. need to add ..(Sunspot)
-
 *) Need to create address model for users further information storage (?) (has_one with user)
- 	i)  Multiple drop-down mapping ...Country ---> States ---> Cities ---> pin code (savon) with Ajax). --- Done
- 	ii) User email address already existance   (feature with Ajax)  --- Done
+10. 	i)  Multiple drop-down mapping ...Country ---> States ---> Cities ---> pin code (savon) with 			Ajax). --- Done
+ 		ii) User email address already existance   (feature with Ajax)  --- Done
 
+* Need to login using any social app also ? -
+11. For google it has been done / for others need to work on.
+
+
+*******************************************************************************************************
+Proposed Things:
+
+*) Highlight searched word ..fun. need to add ..(Sunspot)
 
 *) sunspot search need to be more explore with respect to associated models.
 
@@ -66,7 +76,7 @@ Using gem 'hermitage' implemented cool image gallery into application.
 
 * Need facility to share comments on (social sites)
 
-* Need to login using any social app also
+
 
 * Need to Add activeadmin gem ...
 

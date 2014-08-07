@@ -69,7 +69,7 @@ gem 'omniauth-google-oauth2'
 group :development, :test do
   gem 'factory_girl_rails'
   gem 'rspec-rails'
-#  gem 'thin'  # right now not reqiure 
+  gem 'thin'  
 end
 
 
