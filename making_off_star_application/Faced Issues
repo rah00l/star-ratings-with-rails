@@ -330,5 +330,29 @@ A-
 You can find "Consent screen" under a link!, click on project name and then go to "APIs & auth" -> "Consent screen".
 
 -------------------------------------------------------------------------------------------
+Q - Carrierwave
+
+ Errno::ENOENT in Admin::PhotosController#create
+
+No such file or directory - identify -quiet -ping /tmp/mini_magick20140806-24567-xjoqht.png
+
+This error occurs during uploading image it's having storage issue because for it's processing required third party s/w was not installed.
+
+So check in to your carrierwave config file which image process is enabled and accordingly install s/w.
+
+For RMagick:
+
+include CarrierWave::RMagick  ---> 
+
+sudo apt-get install imagemagick libmagickwand-dev
+
+Or for Imagmagick:
+
+  sudo apt-get install imagemagick
+
+A - You need to install imagemagick on your operating system.
+
+-------------------------------------------------------------------------------------------
+
 
 
