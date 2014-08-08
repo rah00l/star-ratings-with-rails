@@ -63,6 +63,126 @@ remote_image_url
 
 
 
+sudo apt-get -y install autoconf automake build-essential libass-dev libfreetype6-dev libgpac-dev 
+  libsdl1.2-dev libtheora-dev libtool libva-dev libvdpau-dev libvorbis-dev libx11-dev 
+  libxext-dev libxfixes-dev pkg-config texi2html zlib1g-dev
+
+
+  sudo apt-get install git automake build-essential gettext libasound2-dev libbinio-dev libbs2b-dev libcddb2-dev libcdio-cdda-dev libcue-dev libcurl4-gnutls-dev libdbus-glib-1-dev libfaad-dev libflac-dev libfluidsynth-dev libgl1-mesa-dev libgtk-3-dev libguess-dev libjack-jackd2-dev liblircclient-dev libmms-dev libmodplug-dev libmp3lame-dev libmpg123-dev libneon27-gnutls-dev libnotify-dev libpulse-dev libsamplerate0-dev libsdl1.2-dev libsndfile1-dev libvorbis-dev libwavpack-dev libxml2-dev yasm
+
+
+cd ~/ffmpeg_sources
+wget http://ffmpeg.org/releases/ffmpeg-snapshot.tar.bz2
+tar xjvf ffmpeg-snapshot.tar.bz2
+cd ffmpeg
+PATH="$PATH:$HOME/bin" PKG_CONFIG_PATH="$HOME/ffmpeg_build/lib/pkgconfig" ./configure 
+  --prefix="$HOME/ffmpeg_build" 
+  --extra-cflags="-I$HOME/ffmpeg_build/include" 
+  --extra-ldflags="-L$HOME/ffmpeg_build/lib" 
+  --bindir="$HOME/bin" 
+  --enable-gpl 
+  --enable-libass 
+  --enable-libfdk-aac 
+  --enable-libfreetype 
+  --enable-libmp3lame 
+  --enable-libopus 
+  --enable-libtheora 
+  --enable-libvorbis 
+  --enable-libvpx 
+  --enable-libx264 
+  --enable-nonfree 
+  --enable-x11grab
+PATH="$PATH:$HOME/bin" make
+make install
+make distclean
+hash -r
+
+
+------------------------------------------------------------------------------------------------------
+
+Please note
+These commands were tested working on a 32-bit Ubuntu 12.04 system. They may or may not work on other systems.
+
+Dependencies:
+
+sudo apt-get install git automake build-essential gettext libasound2-dev libbinio-dev libbs2b-dev libcddb2-dev libcdio-cdda-dev libcue-dev libcurl4-gnutls-dev libdbus-glib-1-dev libfaad-dev libflac-dev libfluidsynth-dev libgl1-mesa-dev libgtk-3-dev libguess-dev libjack-jackd2-dev liblircclient-dev libmms-dev libmodplug-dev libmp3lame-dev libmpg123-dev libneon27-gnutls-dev libnotify-dev libpulse-dev libsamplerate0-dev libsdl1.2-dev libsndfile1-dev libvorbis-dev libwavpack-dev libxml2-dev yasm
+
+------------------------------------
+
+FFmpeg (optional, needed for WMA and various other formats):
+
+wget http://www.ffmpeg.org/releases/ffmpeg-1.2.1.tar.bz2
+tar xf ffmpeg-1.2.1.tar.bz2
+
+cd ffmpeg-1.2.1
+./configure --prefix=$HOME/ffmpeg-build
+make -j4
+make -j4 Install
+cd ..
+
+------------------------------------------------------------------------------------------------------
+
+tar xf ffmpeg-1.2.1.tar.bz2
+
+sudo apt-get install ffmpeg
 
 
 
+options = {video_codec: "libx264", frame_rate: 10, resolution: "320x240", video_bitrate: 300, 		video_bitrate_tolerance: 100,
+           aspect: 1.333333, keyframe_interval: 90,
+           x264_vprofile: "high", x264_preset: "slow",
+           
+           audio_codec: "libfaac", audio_bitrate: 32, audio_sample_rate: 22050, audio_channels: 1,
+           threads: 2,
+           custom: "-vf crop=60:60:10:10"}
+
+
+
+           process encode_video: [:mp4, resolution: :same, custom: '-strict experimental -acodec aac',
+                         watermark: {
+                            path: File.join(Rails.root, "app", "assets", "images", "wm.jpg"),
+                            position: :bottom_right, # also: :top_right, :bottom_left, :bottom_right
+                            pixels_from_edge: 15
+                         }
+  ]
+
+
+
+
+
+
+Remove : and Fresh Install:
+-----------------------------
+
+		sudo apt-get purge ffmpeg /
+		
+		sudo apt-get remove ffmpeg		
+
+		sudo apt-get --purge remove libav-tools
+		sudo apt-get --purge autoremove
+
+		which ffmpeg and then mv same path with last folder got change.
+		
+
+------------------------------------------------------------------------------------------------------		
+
+	--> sudo apt-get remove ffmpeg x264 libav-tools libvpx-dev libx264-dev
+
+
+  --> sudo apt-get -y install build-essential checkinstall git libfaac-dev libgpac-dev libjack-jackd2-dev libmp3lame-dev libopencore-amrnb-dev libopencore-amrwb-dev librtmp-dev libsdl1.2-dev libtheora-dev libva-dev libvdpau-dev libvorbis-dev libx11-dev libxfixes-dev pkg-config texi2html yasm zlib1g-dev
+
+
+
+
+
+
+
+
+PATH="$PATH:$HOME/bin" PKG_CONFIG_PATH="$HOME/ffmpeg_build/lib/pkgconfig" ./configure   --prefix="$HOME/ffmpeg_build" --extra-cflags="-I$HOME/ffmpeg_build/include"  --extra-ldflags="-L$HOME/ffmpeg_build/lib" --bindir="$HOME/bin" --enable-gpl --enable-libass --enable-libfdk-aac --enable-libfreetype --enable-libmp3lame --enable-libopus --enable-libtheora --enable-libvorbis --enable-libvpx --enable-libx264 --enable-nonfree --enable-x11grab 
+
+PATH="$PATH:$HOME/bin" 
+
+make
+
+
+make install
