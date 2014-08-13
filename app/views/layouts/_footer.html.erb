@@ -1,0 +1,28 @@
+
+  <!-- Footer -->
+
+  <footer class="row">
+    <div class="large-12 columns">
+      <hr />
+      <div class="row">
+        <div class="large-6 columns">
+          <p>&copy; <%= Time.now.year %> Rahul Patil
+          <a href = "http://twitter.com/AndrewLinfordSF"><%= image_tag 'twitter_32.png' %></a>
+          <a href = "http://sg.linkedin.com/pub/andrew-linford/35/67b/956"><%= image_tag 'linkedin_32.png' %></a>
+          <a href = "http://github.com/oleger814"><%= image_tag 'github_32.png' %></a>
+          <a href="mailto:andrew@discovership.com?Subject=Website" target="_top"><%= image_tag 'google_32.png' %></p>
+        </div>
+        <div class="large-6 columns">
+          <ul class="inline-list right">
+            <li><%= link_to "Home", root_path %></li>
+           <!-- <li><a href="http://andrewlinford.wordpress.com/">Blog</a></li>-->
+            <li><%= link_to "Articles", articles_path %></li>
+            <li><%= link_to "Photos", photos_path %></li>
+            <li><%= link_to "Music", "" %></li>
+            <li><%= link_to "Events", events_path %></li>
+            <li><%= link_to "Media", "" %></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>

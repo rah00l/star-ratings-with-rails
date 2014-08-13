@@ -17,6 +17,7 @@ group :assets do
    gem "therubyracer", "~> 0.10.2"
 
   gem 'uglifier', '>= 1.0.3'
+  gem 'zurb-foundation'
 end
 
 gem 'jquery-rails', '~> 2.3.0'
@@ -71,6 +72,8 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'thin'  
 end
+
+
 
 
 group :test do

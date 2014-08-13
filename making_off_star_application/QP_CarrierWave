@@ -162,7 +162,7 @@ Remove : and Fresh Install:
 		sudo apt-get --purge autoremove
 
 		which ffmpeg and then mv same path with last folder got change.
-		
+
 
 ------------------------------------------------------------------------------------------------------		
 
@@ -186,3 +186,6 @@ make
 
 
 make install
+
+
+ffmpeg -i journey.wav -af 'volume=0.5' output.wav

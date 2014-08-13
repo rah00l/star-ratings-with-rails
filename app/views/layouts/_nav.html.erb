@@ -1,0 +1,102 @@
+<nav class="top-bar">
+  <ul class="title-area">
+    <li class="name">
+      <h1><%= link_to "Rahul Patil", root_path %></h1>
+    </li>
+    <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+  </ul>
+  <section class="top-bar-section">
+  <ul class="right">
+    <% if user_signed_in? %>
+      <li class="divider"></li>
+      <li><%= link_to "Home", root_path %></li>
+      <li class="divider"></li>
+      <li><%= link_to "Articles", articles_path %></li>
+      <li class="divider"></li>
+      <!--<li><a href="http://andrewlinford.wordpress.com/">Blog</a></li>-->
+      <!--<li class="divider"></li>
+      <li class="has-dropdown"><%#= link_to "Resume", resume_path %>
+        <ul class="dropdown">
+          <li><%#= link_to "General Information", resume_path %></li>
+          <%# unless @tags.nil? || @tags.count == 0 %>
+            <li><label>Featured Resumes</label></li>
+            <%# @tags.each do |tag| %>
+              <li><%#= link_to tag.title, tag_path(:title => tag.title) %></li>
+            <%# end %>
+          <%# end %>
+        </ul>
+      </li>
+      <li class="divider"></li>-->
+      <!-- <li class="has-dropdown"><%#= link_to "Photos", photos_path %>-->
+      <!--  <ul class="dropdown">
+          <li><%#= link_to "All Photos", photos_path %></li>
+          <li><label>Featured Slideshows</label></li>
+          <%# unless @featured_slideshows.nil? || @featured_slideshows == 0 %>
+            <%# @featured_slideshows.each do |slideshow| %>
+              <li><%#= link_to slideshow.title, slideshow_path(:title => slideshow.title) %></li>
+            <%# end %>
+          <%# end %>
+        </ul>-->
+      </li>
+      <li class="divider"></li>
+      <li><%= link_to "Music", "" %></li>
+      <li class="divider"></li>
+      <li><%= link_to "Photos", photos_path %></li>
+      <li class="divider"></li>
+      <li><%= link_to "Events", events_path %></li>
+      <li class="divider"></li>
+      <li><%= link_to "Media", "" %></li>
+      <li class="divider"></li>
+      <li class="has-dropdown"><%= link_to current_user.email, edit_user_registration_path %>
+      <ul class="dropdown">
+          <li><%= link_to "Edit Profile", edit_user_registration_path %></li>
+          <li><%= link_to "Change Password", edit_user_path %></li>
+          <!--<li><label>Featured Slideshows</label></li>-->
+          <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></li>
+      </ul>
+      <%#=  %>
+      <% else %>
+      <li><%= link_to "Sign Up", new_user_registration_path %></li> <li class="divider">/</li> <li><%= link_to "Sign In", new_user_session_path %></li> 
+      <% end %>
+      </ul>
+  </section>
+</nav>
+
+
+
+<% if @title == "Home" %>
+  <header class="show-for-medium-up" id="homepage">
+    <div class="row">
+      <div class="small-8 small-centered columns">
+        <br>
+        <h1>Rahul Patil</h1>
+        <h4>The personal webpage - have a look around!</h4>
+        <br>
+        <%= link_to "See Rahul Patil's Articles", articles_path, :class=>"round button" %>
+        <br>
+        <div id="watch">
+          <section id="twitter">
+            <a href="http://twitter.com/">@rah2387l</a>
+          </section>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <header class="show-for-small" id="small-homepage">
+    <div class="row">
+      <div class="small-9 small-centered columns">
+        <h1>Rahul Patil</h1>
+        <h4>The personal webpage</h4>
+        <br>
+        <%= link_to "See Rahul's Blogs", articles_path, :class=>"round button" %>
+        <div id="watch">
+          <section id="twitter">
+            <a href="http://twitter.com/">@rah2387l</a>
+          </section>
+        </div>
+      </div>
+    </div>
+  </header>
+<hr>
+<% end %>

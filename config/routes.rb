@@ -1,5 +1,8 @@
 Blog::Application.routes.draw do
 
+  # get "main/index"
+  root :to => 'main#index'
+
   # devise_for :users
 
 #  root :to => "home#index"
@@ -44,5 +47,5 @@ end
 
 
 
-root to: 'articles#index'
+# root to: 'articles#index'
 end

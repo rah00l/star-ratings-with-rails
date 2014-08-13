@@ -13,6 +13,7 @@
 //= require jquery
 //= require hermitage
 //= require jquery_ujs
+//= require foundation
 //= require raty.min.js
 //= require bootstrap
 //= require_tree .
@@ -24,3 +25,4 @@ $(document).ready(function(){
     $('#flash_error').remove();
   }, 3000);
  })
+$(function(){ $(document).foundation(); });

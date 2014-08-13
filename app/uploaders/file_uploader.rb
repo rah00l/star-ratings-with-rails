@@ -32,6 +32,12 @@ class FileUploader < CarrierWave::Uploader::Base
   # end
 
   # Create different versions of your uploaded files:
+
+    # def is_landscape?(new_file)
+    #   image = ::MiniMagick::Image::read(File.binread(@file.file))
+    #   #Rails.logger.info "from in is_landscape? : #{image[:width] > image[:height]}"
+    #   image[:width] > image[:height]
+    # end
     
 
     version :small_thumb do
@@ -50,11 +56,17 @@ class FileUploader < CarrierWave::Uploader::Base
      process :resize_to_fit => [400, 400]
     end
 
+    # version :slideshow do
+    #   process :resize_to_fill => [1020, 680, gravity = 'Center'], if: :is_landscape?
+    #   process :resize_and_pad => [1020, 680, background=:transparent, gravity = 'Center']
+    # end
+
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
-  # def extension_white_list
-  #   %w(jpg jpeg gif png)
-  # end
+  def extension_white_list
+    %w(jpg jpeg gif png)
+  end
+  
 
   # Override the filename of the uploaded files:
   # Avoid using model.id or version_name here, see uploader/store.rb for details.
