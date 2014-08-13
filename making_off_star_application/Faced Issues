@@ -356,3 +356,105 @@ A - You need to install imagemagick on your operating system.
 
 
 
+
+
+* gem install heroku --no-ri --no-rdoc
+
+* heroku create (will ask heroku account login and create app overthere.)
+
+* git push heroku master
+
+Q- fatal: 'heroku' does not appear to be a git repository
+
+A- Need to install heroku gem first and also need to create heroku create app also.
+
+   
+----------------------------------------------------------------------------------------------------------------
+
+Q-  While git push heroku master --Error "Permission denied (publickey)."
+    Then 
+
+A - You have to upload your public key to Heroku:
+    heroku keys:add ~/.ssh/id_rsa.pub
+    If you don't have a public key, Heroku will prompt you to add one automatically which works seamlessly.      Just use:
+  heroku keys:add
+----------------------------------------------------------------------------------------------------------------
+
+Q - Gem::Ext::BuildError: ERROR: Failed to build gem native extension for pg gem installing ...
+
+A - For ubuntu user first install dependent library and then again try for bundle install
+
+  sudo apt-get install postgresql
+  sudo apt-get install libpq-dev
+
+----------------------------------------------------------------------------------------------------------------
+** Install git conflict solve tool - Meld 
+
+sudo apt-get update && sudo apt-get install meld
+
+* When you receive CONFLICT , your current branch got changed with (no branch)..
+
+git mergetool
+
+Solve conflict with tool (refered meld ..)
+
+After solving conflict ...
+
+Only "git add"  those file whichver got changed.
+
+Then , 
+
+git rebase --continue 
+
+This command will continue with rebase code with local code .. and retrive back on TRACK like (no branch) --> current_branch..
+
+Then you can easily 
+
+git push origin current_branch
+
+------------------------  -------------------------------------------------------------------------------
+
+If there were conflict issue take pull by referencing repository.
+git pull git@heroku.com:intense-journey-8377.git
+
+
+-------------------------------------------------------------------------------------------------------
+In order to stop\start application which is present on heroku, following commands are,
+
+$ heroku maintenance:on
+Maintenance mode enabled.
+
+$ heroku maintenance:off
+Maintenance mode disabled.
+-------------------------------------------------------------------------------------------------------
+
+# This setting is at config/application.rb keep false for heroku deployment.
+config.assets.initialize_on_precompile = false
+
+# This setting at config/environment/production.rb
+# Don't fallback to assets pipeline if a precompiled asset is missed
+  config.assets.compile = true
+
+-------------------------------------------------------------------------------------------------------
+There are two ways you can use the asset pipeline on Heroku.
+
+1.    Compiling assets locally.
+2.    Compiling assets during slug compilation.
+
+1.    Compiling assets locally.
+  RAILS_ENV=production bundle exec rake assets:precompile
+
+  git add public/assets
+  git commit -m "vendor compiled assets"
+
+2. Compiling assets during slug compilation
+
+Troubleshooting
+
+  config.assets.initialize_on_precompile = false
+
+
+
+
+
+
