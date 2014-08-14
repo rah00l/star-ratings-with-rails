@@ -52,8 +52,44 @@ Blueprint-css-framework:
 http://sraji.wordpress.com/2010/12/21/introduction-to-blueprint-css-framework/
 
 
+Carrierwave:
+http://hackernotes.org/carrierwaveuploader/carrierwave
 
 
+Google Storage: Cloud Reg. and Use :
+---------------------------------------
+https://developers.google.com/storage/docs/signup?csw=1#activate
+https://developers.google.com/storage/docs/signup?csw=1#before
+
+Sign up here and get your credentials here under the section “Interoperable Access”.
+
+CarrierWave.configure do |config|
+  config.fog_credentials = {
+    :provider                         => 'Google',
+    :google_storage_access_key_id     => 'xxxxxx',
+    :google_storage_secret_access_key => 'yyyyyy'
+  }
+  config.fog_directory = 'name_of_directory'
+end
+
+In your uploader, set the storage to :fog
+
+class AvatarUploader < CarrierWave::Uploader::Base
+  storage :fog
+end
+
+
+
+* ROR/Sintra/Drupal Help :
+--------------------------------
+http://www.millwoodonline.co.uk/
+
+
+Zurb Foundations: (css framwork)
+---------------------------------
+http://foundation.zurb.com/docs/v/4.3.2/
+
+http://foundation.zurb.com/docs/v/4.3.2/components/kitchen-sink.html
 
 
 

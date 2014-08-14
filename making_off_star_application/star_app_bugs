@@ -20,9 +20,13 @@
 
 11. Country/state/city drop-down not proper design (Design issue)
 
-12. Email already existance --  need testing and need to improve user experince.
+12. Email already existance --  want to test and need to improve user experince.
 
-13. state and city for selected user is not populated correctly.
+13. state and city for selected user is not populated correctly. --- (Resolved.)
+
+14. Drop-downs of Country,state,city -- need to apply proper css -- zurb foundation. (Design Related.)
+
+
 
 
 

@@ -1,2 +1,154 @@
-<h1>Main#index</h1>
-<p>Find me in app/views/main/index.html.erb</p>
+ <div class="row">
+        <div class="large-12 columns">
+          <div class="row">
+
+            <!-- Feed -->
+
+            <div class="large-4 small-12 columns">
+              <% unless @latest_blog_posts.nil? %>
+              <h2 class="text-center"><a href="http://andrewlinford.wordpress.com/">Blog</a></h2><hr>
+              <div class="panel">
+                <h5><%= link_to @latest_blog_posts.first.title, @latest_blog_posts.first.link, :target => "_blank" %></h5>
+                <h6 class="subheader">
+                <%=  truncate(strip_tags(@latest_blog_posts.first.description), :length=>150) %>
+              </h6>
+              <h6><%= link_to "Read More", @latest_blog_posts.first.link, :target => "_blank" %></h6>
+                </div>
+                <% if @latest_blog_posts.count > 1 %>
+                <div class="panel">
+                  <h5><%= link_to @latest_blog_posts[1].title, @latest_blog_posts[1].link, :target => "_blank" %></h5>
+                </div>
+                <% @latest_blog_posts[2..3].each do |post| %>
+                <div class="panel hide-for-small">
+                  <h5><%= link_to post.title, post.link, :target => "_blank" %></h5>
+                </div>
+                <% end %>
+              <% end %>
+              <a href="http://andrewlinford.wordpress.com/" class="right">All entries>> </a>
+            <% end %>
+            </div>
+
+            <!-- End Feed -->
+
+
+            <!-- News -->
+            <div class="large-5 columns">
+              <h1 class="text-center">Latest News</h1>
+                <%# if @news.nil? %>
+                  <h3>Current Plans</h3>
+                  <div class="row">
+                    <div class="small-1 column">
+                    </div>
+                    <div class="small-11 columns">
+                      <h5 class="subheader">Andrew will be a member of the Coro Fellows in Public Afairs Class of 2013</h5><hr>
+                    </div>
+                  </div>
+
+                  <h3>Other news</h3>
+                  <div class="row">
+                    <div class="small-1 column">
+                    </div>
+                    <div class="small-11 columns">
+                      <h5 class="subheader">Andrew has been working hard on learning Ruby on Rails</h5><hr>
+                    </div>
+                  </div>
+                <%# else %>
+                  <%# @news.each do |news| %>
+                    <h3><%#= news.title %></h3>
+                    <div class="row">
+                      <div class="small-1 column">
+                      </div>
+                      <div class="small-11 columns">
+                        <h5 class="subheader"><%#= news.summary.html_safe %></h5><hr>
+                      </div>
+                    </div>
+                  <%# end %>
+                <%# end %>
+              </div>
+            <!-- End News -->
+
+
+            <!-- Media -->
+
+            <div class="large-3 small-12 columns">
+              <h2 class="text-center"><%#= link_to "Media", media_path %></h2><hr>
+
+                <%# @media.each do |media| %>
+                  <div class="panel">
+                    <h5><a href="<%#= media.website %>"><%#= media.title %></a></h5>
+                    <%# unless media.summary == "" || media == @media.second %>
+                      <h6 class="subheader"><%#= media.summary.html_safe %></h6>
+                    <%# end %>
+                  </div>
+                <%# end %>
+            </div>
+
+            <!-- End Media -->
+
+
+
+
+          </div>
+        </div>
+      </div>
+
+<div class="row">
+  <div class="large-9 small-11 small-centered text-center columns">
+    <h2>Featured <%#= link_to "Photo", photos_path %></h2>
+    <div class="show-for-medium-up">
+      <%#= image_tag 'poppies.jpg' %>
+    </div>
+    <div class="show-for-small">
+      <%#= image_tag 'poppies.jpg' %>
+    </div>
+    <br><%#= link_to "More Photos", photos_path, :class=> "round button" %>
+  </div>
+</div>
+
+<div class="row">
+        <div class="large-12 columns">
+          <div class="row">
+            <!-- Shows -->
+            <div class="large-6 columns">
+              <h2 class="text-center">Recent <%#= link_to "Projects", projects_path %></h2>
+                <% #if @project.nil? %>
+                  <div class="row">
+                    <div class="small-11 columns">
+                      <p>Andrew has been working hard at Discovership, a new web application for finding experiential-learning opportunities</p>
+                    </div>
+                  </div>
+                <%# else %>
+                  <div class="row">
+                    <h4><%#= @project.title %></h4>
+                    <div class="small-12">
+                        <% #unless @project.summary =="" %>
+                          <p><%#= @project.summary %></p>
+                        <%# end %>
+                      <a href="<%#= project_path(:title => @project.title) %>" class="button round">Find Out More</a></li>
+                    </div>
+                  </div>
+                <%# end %>
+              </div>
+            <div class="large-6 columns">
+              <h2 class="text-center">Recent <%#= link_to "Music", music_path %></h2>
+                <%# if @piece.nil? %>
+                  <div class="row">
+                    <div class="small-12">
+                      <p>Andrew has finished up work on a String Quartet that takes inspiration from national anthems across the world.</p>
+                    </div>
+                    <a href="#" class="button round">Find Out More</a>
+                  </div>
+                <%# else %>
+                  <div class="row">
+                    <h4><%#= @piece.title %></h4>
+                    <div class="small-12">
+                        <% #unless @piece.summary =="" %>
+                          <p><%#= @piece.summary %></p>
+                        <%# end %>
+                      <a href="<%#= piece_path(:title => @piece.title) %>" class="button round">Find Out More</a></li>
+                    </div>
+                  </div>
+                <% #end %>
+          </div>
+        </div>
+      </div>

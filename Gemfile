@@ -37,6 +37,8 @@ gem 'carrierwave'
 # For image processing
 gem 'rmagick'
 
+gem "mini_magick"
+
 # For adding reputation system (voting system)
 gem 'activerecord-reputation-system', require: 'reputation_system'
 
