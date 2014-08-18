@@ -47,8 +47,9 @@
       <li class="divider"></li>
       <li><%= link_to "Media", "" %></li>
       <li class="divider"></li>
-      <li class="has-dropdown"><%= link_to current_user.email, edit_user_registration_path %>
+      <li class="has-dropdown"><%= link_to "Account" %>
       <ul class="dropdown">
+          <li><%= link_to "View Profile" %></li>
           <li><%= link_to "Edit Profile", edit_user_registration_path %></li>
           <li><%= link_to "Change Password", edit_user_path %></li>
           <!--<li><label>Featured Slideshows</label></li>-->
@@ -67,6 +68,10 @@
 <%# if @title == "Home" %>
 <% if @photo.present? && @photo.attachments.present? %>
   <header class="show-for-medium-up" >
+  <% flash.each do |name, msg| %>
+    <%= content_tag :div, msg, id: "flash_#{name}" %>
+    <% end %>
+    <br>
     <div class="row">
       <div class="small-11 small-centered columns">
         <br>

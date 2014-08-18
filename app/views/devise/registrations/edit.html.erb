@@ -1,14 +1,29 @@
 <h2>Edit <%= resource_name.to_s.humanize %></h2>
 
-<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
-<%= devise_error_messages! %>
+<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, class: "custom" }) do |f| %>
+ <%#= devise_error_messages! %>
 
-<%= render partial: "personal_information" ,locals: {f: f}  %><hr>
-<%= render partial: "address_information" ,locals: {f: f, user: resource}  %>
-
-<div>
-  <%= f.submit "Update" %>
+<div class="section-container auto" data-section>
+  <section class="active">
+    <p class="title" data-section-title><a href="#">Personal Details</a></p>
+    <div class="content" data-section-content>
+      <p><%= render partial: "personal_information" ,locals: {f: f}  %></p>
+    </div>
+  </section>
+  <section>
+    <p class="title" data-section-title><a href="#">Contact Details</a></p>
+    <div class="content" data-section-content>
+      <p><%= render partial: "address_information" ,locals: {f: f, user: resource}  %>
+      	<div>
+  <%= f.submit "Update" %> 
+  <%= link_to "Back", :back ,class: "button"%>
 </div>
+      </p>
+    </div>
+  </section>
+</div>
+
+
 
 <% end %>
 
@@ -16,4 +31,4 @@
 
 <!-- <p>Unhappy? <%#= button_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete %></p> -->
 
-<%= link_to "Back", :back %>
+

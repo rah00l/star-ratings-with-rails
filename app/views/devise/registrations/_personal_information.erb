@@ -1,7 +1,8 @@
 
-<div>
+<div class="form-container">
 <h3><b>Personal Details</b></h3>
-  <%= f.label :email %><br />
+ <div class="field">
+  <%= f.label :email %>
   <%= f.email_field :email, :autofocus => true %></div>
 
    <%# if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
@@ -16,19 +17,18 @@
 
  <!-- <div><%#= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
  <%#= f.password_field :current_password %></div> -->
-
   <div class="field">
-    <%= f.label :first_name %><br />
+    <%= f.label :first_name %>
     <%= f.text_field :first_name %>
   </div>  
 
   <div class="field">
-    <%= f.label :last_name %><br />
+    <%= f.label :last_name %>
     <%= f.text_field :last_name %>
   </div>  
 
   <div class="field">
-    <%= f.label :gender %><br />
+    <%= f.label :gender %>
     <%= f.radio_button :gender, 'Male', checked: true %>
     <%= f.label :gender_male , "Male" %>
     <%= f.radio_button :gender, 'Female' %>
@@ -36,19 +36,19 @@
   </div>  
 
   <div class="field">
-    <%= f.label :mobile_number %><br />
+    <%= f.label :mobile_number %>
     <%= f.text_field :mobile_number %>
   </div>  
 
   <div class="field">
     <%= f.fields_for :attachment do |attach| %>
-    <%= attach.label :file, "Upload Photo" %><br />
+    <%= attach.label :file, "Upload Photo" %>
     <%= attach.file_field :file %> <br/>     
     <% end %>
   </div>
 
   <p>
-    <%= f.label :roles %><br />
+    <%= f.label :roles %>
     <% Role.all.each do |role| %>
     <%= check_box_tag :role_ids,role.id,@user.roles.include?(role),:name => 'user[role_ids][]' %>
     <%= role.name %><br />

@@ -1,4 +1,5 @@
-<div class="field">
+<br>
+<div class="form-container">
 <h3><b>Contact Details</b></h3>
 	<%= f.fields_for :address do |address| %>
 	
@@ -8,18 +9,18 @@
 	</div>
 
 	<div class="field">
-	<%= address.label :street_address, "Address" %><br/>
+	<%= address.label :street_address, "Address" %>
 	<%= address.text_area :street_address %> <br/>
 	</div>
 
 	<div class="field">
 	<%= address.label :landmark, "Area/Landmark" %>
-	<%= address.text_field :landmark %> <br/>
+	<%= address.text_field :landmark %> <br/>	
 	</div>
 
 	<div class="field">
 	<%= address.label :country_id, "Country" %>
-	<%= address.collection_select :country_id, Country.all, :code, :name, prompt: true %> <br/>
+	<%= address.collection_select :country_id, Country.all, :code, :name, prompt: true ,class: "medium"%> 
 	</div>
 
 	<div class="field">
