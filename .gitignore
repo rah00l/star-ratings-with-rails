@@ -23,6 +23,7 @@
 
 # Ignore the default SQLite database.
 /db/*.sqlite3
+Gemfile.lock
 
 # Ignore all logfiles and tempfiles.
 /log/*.log
@@ -33,6 +34,7 @@
 #/app/assets/images/
 *~
 /solr
+/coverage
 
 # scm revert files
 **.orig

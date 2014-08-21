@@ -462,7 +462,71 @@ Q - RSpec loading all gem files (lots of warnings --)
 A - Basically, recent rspec versions added --warnings to the .rspec file by default. This has led to lots of warnings about code in gems being output. The 'fix' for now is to remove the --warnings line.
 
 -------------------------------------------------------------------------------------------------------
+Rspec
+-----
+
+Q - While running rspec testcases need to run solr server:
+
+You can invoke Rake tasks as following:
+-----------------------------------------
+
+require 'rake'
+Rake::Task[name].invoke
+
+/
+
+can add rake task to spec file also.
+
+-------------------------------------------------------------------------------------------------------
+Rspec
+-----
 
 
+Q - Using `should_not` from rspec-expectations' old `:should` / should not be valid rspec deprecated 
+
+A - should and should_not got deprecated ...instead use 
+
+expect(FactoryGirl.build(:article)).to be_valid
+
+example : 
+
+no_name_article.should_not be_valid
+
+CAN WRITE LIKE:
+------------------
+
+expect { no_name_article }.not_to raise_error
+
+
+foo.should eq(bar)
+foo.should_not eq(bar)
+
+
+expect(foo).to eq(bar)
+expect(foo).not_to eq(bar)
+
+
+-------------------------------------------------------------------------------------------------------
+
+
+Q -  Failure/Error: expect(FactoryGirl.build(:article)).to be_valid
+     FactoryGirl::AttributeDefinitionError:
+     Attribute already defined: name
+
+
+A - Check @ apropriate factory defination weather a perticuler attribute is not definded twice .
+
+-------------------------------------------------------------------------------------------------------
+
+Q - Failure/Error: expect(article).to have(1).errors_on(:name)
+     NoMethodError:
+
+
+A - 
+     gem 'rspec-collection_matchers'
+
+     require 'rspec/collection_matchers'     
+
+-------------------------------------------------------------------------------------------------------
 
 
