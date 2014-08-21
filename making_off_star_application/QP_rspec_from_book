@@ -1,0 +1,69 @@
+	Book: --> 	"EveryDayRailsRspec"
+-----------------------------------------------------
+
+Setting up RSpec
+
+Gemfile
+
+group :development, :test do
+	gem "rspec-rails", "~> 2.13.0"
+	gem "factory_girl_rails", "~> 4.2.1"
+end
+
+group :test do
+	gem "faker", "~> 1.1.2"
+	gem "capybara", "~> 2.0.2"
+	gem "database_cleaner", "~> 0.9.1"
+	gem "launchy", "~> 2.2.0"
+end
+
+
+
+config/database.yml
+------------------------
+test:
+adapter: sqlite3
+database: db/test.sqlite3
+pool: 5
+timeout: 5000
+
+
+*** bundle exec rails generate rspec:install
+
+
+
+config/application.rb
+------------------------
+
+config.generators do |g|
+	g.test_framework :rspec,
+	fixtures: true,
+	view_specs: false,
+	helper_specs: false,
+	routing_specs: false,
+	controller_specs: true,
+	request_specs: false
+	g.fixture_replacement :factory_girl, dir: "spec/factories"
+end
+
+
+
+DB Prepare:
+.............
+
+rake db:test:clone
+
+Execuation:
+...........
+|
+|
+ --->  rspec 
+
+***********************************************************************************************
+
+Creating a model spec
+
+rails g rspec:model article
+
+
+

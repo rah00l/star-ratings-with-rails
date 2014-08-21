@@ -72,6 +72,7 @@ gem 'omniauth-google-oauth2'
 group :development, :test do
   gem 'factory_girl_rails'
   gem 'rspec-rails'
+  gem 'rspec-collection_matchers'
   gem 'thin'  
 end
 
@@ -84,7 +85,11 @@ group :test do
   gem 'database_cleaner', '1.0.1'
 #  gem 'email_spec'  # For basic testing not require
   gem 'launchy'
+
+  gem 'simplecov', :require => false#, :group => :test
 end
+
+
 
 # For debugging application step by step
 gem 'debugger', group: [:development, :test]

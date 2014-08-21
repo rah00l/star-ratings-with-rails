@@ -7,6 +7,10 @@ class Article < ActiveRecord::Base
   # after_create only calls once at the time of record creation \ but after_save will call every time of record updation also
   after_create :set_published_at
 
+  # Validation 
+  validates :name, presence: true, uniqueness: true
+  validates :content, presence: true
+
   # This block belongs to sunshot serach engine where indexing got applied.
   searchable do
     text :name#, :content
