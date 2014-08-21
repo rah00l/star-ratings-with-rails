@@ -1,6 +1,11 @@
 Quick Pointers For Using Rspecs in to your rails App:  (28/07/14)
 *****************************************************
+Links:
+------
 
+https://github.com/rspec/rspec-rails
+
+-----------------------------------------------------------------------------------------
 
 ADD GEMS:
 Following gems shold be add into your Gemfile 
@@ -24,24 +29,46 @@ bundle install
 -----------------------------------------------------------------------------------------
 
 Rails generator commands:
+rails generate rspec:install
+/
 rails g rspec:install
-rspec:install
+
+
+Already Existing Controllers create specs by:
+
+rails g rspec:controller articles
+
 
 -----------------------------------------------------------------------------------------
 PREPARE TEST ENV:
 
 rake db:migrate && rake db:test:prepare
-	
------------------------------------------------------------------------------------------
+
+RAILS_ENV=test rails c
 
 
+rake db:create:all
 
+rake db:migrate RAILS_ENV=test
 
 For run specs :
+
+# Run only model specs
+bundle exec rspec spec/models
+
+# Run only specs for AccountsController
+bundle exec rspec spec/controllers/accounts_controller_spec.rb
+
+
+bundle exec rspec spec/controllers/
+
 rake spec / rspec spec
 
 In order to make color enable on console while running specs 
 # Add following line at your /spec/spec_helper.rb file
 config.color = true
+
+
+
 
 
