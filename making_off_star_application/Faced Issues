@@ -453,7 +453,15 @@ Troubleshooting
 
   config.assets.initialize_on_precompile = false
 
+-------------------------------------------------------------------------------------------------------
+Rspec
+-----
 
+Q - RSpec loading all gem files (lots of warnings --)
+
+A - Basically, recent rspec versions added --warnings to the .rspec file by default. This has led to lots of warnings about code in gems being output. The 'fix' for now is to remove the --warnings line.
+
+-------------------------------------------------------------------------------------------------------
 
 
 
