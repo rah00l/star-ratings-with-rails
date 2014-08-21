@@ -30,7 +30,10 @@ RSpec.describe Article, :type => :model do
 
 	it "should create a new instance given a valid attribute" do
 		# article = Article.create!(@attr)
-		expect(FactoryGirl.build(:article)).to be_valid
+		article = FactoryGirl.build(:article)
+		expect(article).to be_valid
+		article.run_callbacks(:save)
+		article.run_callbacks(:create)
 	end
 
 

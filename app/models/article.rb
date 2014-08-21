@@ -35,7 +35,7 @@ class Article < ActiveRecord::Base
 private
 
   def set_published_at
-    value = (self.created_at + 1.day)
+    value = (self.created_at + 1.day) unless self.created_at.nil?
     self.update_attributes(:published_at => value)
   end  
 
