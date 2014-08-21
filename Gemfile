@@ -68,6 +68,9 @@ gem 'omniauth'
 # gem 'omniauth-oauth2'
 gem 'omniauth-google-oauth2'
 
+# for facebook authentication
+gem 'omniauth-facebook'
+
 # For testing app 
 group :development, :test do
   gem 'factory_girl_rails'

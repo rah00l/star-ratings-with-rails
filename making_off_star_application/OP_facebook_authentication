@@ -1,0 +1,12 @@
+Facebook Authentication :
+----------------------------
+
+App ID:
+1427325274156452
+
+App Secret:
+f9f4424d564ef4a33cf50017fe2f27da
+
+
+Add in Gemfile:
+gem 'omniauth-facebook'
