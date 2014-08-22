@@ -58,7 +58,9 @@ module Blog
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
 
-
+    #### TODO Data fetch from yml file ..
+    # File.join(Rails.root, 'config', 'env.yml')
+    # oauth_config = YAML::load(File.open("#{Rails.root}/config/oauth.yml"))
 
 
     config.generators do |g|

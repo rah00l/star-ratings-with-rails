@@ -1,0 +1,546 @@
+Q - Rails - how to solve this issue of an orphaned migration?
+
+ up     20120209023430  Create tasks
+
+A - rake db:migrate:reset db:seed
+
+-------------------------------------------------------------------------------------------
+
+Q - Rails: error while installing rubyracer - (while installing libv8 gem also)
+
+Q - Gem::Ext::BuildError: ERROR: Failed to build gem native extension.
+
+    /home/rahul/.rvm/rubies/ruby-1.9.3-p194/bin/ruby extconf.rb
+
+    gem "therubyracer", "~> 0.10.2"
+
+
+A - I figured the easiest thing is to use the last version of the gem. So I updated my Gemfile to point to the last version like so:gem "therubyracer", "~> 0.10.2" and I was able to successfully install the gem. If you want to manually install the gem, you can use: gem install therubyracer --version "~> 0.10.2" 
+
+-------------------------------------------------------------------------------------------
+
+Spree Related:
+
+Q - Bundler could not find compatible versions for gem "rails":
+  In Gemfile:
+    spree (= 2.2.2) ruby depends on
+      spree_core (= 2.2.2) ruby depends on
+        rails (~> 4.0.5) ruby
+
+    rails (4.0.4)
+
+
+ADD: (Instead of)
+
+#gem 'spree', :git => "https://github.com/spree/spree.git" , branch: '2-1-stable' 
+gem 'spree', :git => "https://github.com/spree/spree.git", branch: '2-1-stable'
+gem 'spree_auth_devise', :git => "https://github.com/radar/spree_auth_devise.git", branch: '2-1-stable'
+
+
+#gem 'spree', '2.2.2'
+#gem 'spree_gateway', :git => 'https://github.com/spree/spree_gateway.git', :branch => '2-2-stable'
+#gem 'spree_auth_devise', :git => 'https://github.com/spree/spree_auth_devise.git', :branch => '2-2-stable'
+
+
+gem install nokogiri -- --use-system-libraries
+
+
+-------------------------------------------------------------------------------------------
+SUNSPOT
+Q - Errno::ECONNREFUSED (Connection refused - connect(2)):  
+
+Sunspot::Solr::Server::JavaMissing: You need a Java Runtime Environment to run the Solr server
+
+After integration of sunspot solr search engine ,
+Executing "rails s" if you are facing issue
+
+Check weather your machine having JVM or not,
+if not try to install by following options..
+
+Option 1: 
+
+Download "jdk7" from oracle site:
+http://www.oracle.com/technetwork/java/javase/downloads/java-archive-downloads-javase7-521261.html
+
+Download by this command:
+https://edelivery.oracle.com/otn-pub/java/jdk/8u5-b13/jdk-8u5-linux-i586.tar.gz
+
+Then execute following commands 
+----------------------------------------
+tar -xvf jdk-8u5-linux-i586.tar.gz
+Create jvm folder inside /usr/lib/ and then move it to that folder
+sudo mkdir -p /usr/lib/jvm
+sudo mv ./jdk1.8.0_05/ /usr/lib/jvm/jdk1.8.0_05/
+----------------------------------------
+
+sudo update-alternatives --install "/usr/bin/java" "java" "/usr/lib/jvm/jdk1.8.0_05/bin/java" 1
+sudo update-alternatives --install "/usr/bin/javac" "javac" "/usr/lib/jvm/jdk1.8.0_05/bin/javac" 1
+sudo update-alternatives --install "/usr/bin/javaws" "javaws" "/usr/lib/jvm/jdk1.8.0_05/bin/javaws" 1
+
+Ensure right users have the right permission:
+
+sudo chmod a+x /usr/bin/java 
+sudo chmod a+x /usr/bin/javac 
+sudo chmod a+x /usr/bin/javaws
+sudo chown -R root:root /usr/lib/jvm/jdk1.8.0_05
+
+Then ensure with following commnad that java is properly installed,
+java -version
+
+
+Option 2:
+Then, you have to do only this:
+* sudo add-apt-repository ppa:webupd8team/java
+
+* sudo apt-get update
+sudo apt-get install oracle-java7-installer
+
+And type this to check the version:
+java -version
+
+
+-------------------------------------------------------------------------------------------
+SUNSPOT
+Q - rake aborted! --Solr Response: Service Unavailable
+
+A - Pre-requiste: Need to have Java Vertual Machine Env.(JVM) installed. 
+    While executing following command of 
+    rake sunspot:reindex --trace 
+
+    Error: 503 Service Unavailable. or Solr Response: Service Unavailable.. 
+
+    Solution: 
+      1. Stop processes of solr / sunspot
+       ps aux | grep 'solr' or 
+       ps -ef | grep sunspot 
+
+       kill -9 PROCESS_ID 
+
+       Then 
+       2. gem uninstall sunspot_rails 
+       3. rm -rf solr (from current application directory)
+       4. reboot machine
+       5. gem install sunspot_rails
+       6. rake sunspot:solr:start (it will create solr folder in application and add some configurational files into it)
+       7. rake sunspot:reindex
+
+
+
+-------------------------------------------------------------------------------------------
+SUNSPOT
+Q - Rails app: Solr throwing RSolr::Error::Http - 404 Not Found when executing search
+
+A - My fix for this problem is: Comment the path parameter(default configuration) at config/sunspot.yml configuration file. Default was: #path: /solr/development.
+
+    After this, 
+    1. Stop all processes of solr by,
+        ps aux | grep 'solr' 
+
+        kill PROCESS_ID
+
+    2. Remove "solr" folder which was inside at your application directory.
+        rm -rf solr
+        This will remove your previous configurations.
+
+    3.Then, rake sunspot:solr:start
+
+    4. After starting solr server then again try for reindex, rake sunspot:reindex
+      Issue must be resolved.
+
+
+-------------------------------------------------------------------------------------------
+SECRET_TOKEN 
+Q - You must set config.secret_key_base in your app's config.       
+
+A - Create file in config/initializers/
+    secret_token.rb
+
+    Generate your secret token,
+    rake secret
+    Copy secret token at secret_token.rb file with following format.
+    
+    YourApplication::Application.config.secret_token = 'your secret token'
+
+-------------------------------------------------------------------------------------------
+   
+SUNSPOT   
+
+RAILS_ENV=production bundle exec rake sunspot:solr:start
+
+ -------------------------------------------------------------------------------------------
+
+ ActiveAdmin Pagination - Issue -
+
+Q - NoMethodError (undefined method `per' for #<ActiveRecord::Relation
+
+A - 
+
+ * If you use will_paginate in your app, you need to configure an initializer for Kaminari to avoid conflicts.
+ 
+ # config/initializers/kaminari.rb  
+Kaminari.configure do |config|
+  config.page_method_name = :per_page_kaminari
+end
+
+-------------------------------------------------------------------------------------------
+SUNSPOT:-
+Q - 
+rake aborted!
+Errno::EPERM: Operation not permitted
+/home/rahul/.rvm/gems/ruby-1.9.3-p194@star-rating/gems/sunspot_solr-2.1.1/lib/sunspot/solr/server.rb:61:in `kill'
+/home/rahul/.rvm/gems/ruby-1.9.3-p194@star-rating/gems/sunspot_solr-2.1.1/lib/sunspot/solr/server.rb:61:in `start'
+/home/rahul/.rvm/gems/ruby-1.9.3-p194@star-rating/gems/sunspot_solr-2.1.1/lib/sunspot/solr/tasks.rb:5:in `block (3 levels) in <top (required)>'
+/home/rahul/.rvm/gems/ruby-1.9.3-p194@star-rating/bin/ruby_noexec_wrapper:14:in `eval'
+/home/rahul/.rvm/gems/ruby-1.9.3-p194@star-rating/bin/ruby_noexec_wrapper:14:in `<main>'
+Tasks: TOP => sunspot:solr:start
+(See full trace by running task with --trace)
+
+
+A - rm solr/pids/development/sunspot-solr-development.pid
+
+
+-------------------------------------------------------------------------------------------
+GOOGLE_OAUTH2:
+
+Q - While integrating rails app with google authentication api - gem 'omniauth-google-oauth2' 
+Access Not Configured. Please use Google Developers Console to activate the API for your project.
+
+A - Please check config/initializer/devise.rb (proper values were inserted or not 
+# config.omniauth :github, 'APP_ID', 'APP_SECRET' )
+
+-------------------------------------------------------------------------------------------
+GOOGLE_OAUTH2:
+
+Q - Faraday::SSLError (SSL_connect returned=1 errno=0 state=SSLv3 read server certificate B: certificate verify failed):
+
+A - 
+
+This issue persistes because certification issue like site redirecting to https and your internet provider might be blocked at your end check this issue by appling proxy settings.
+
+Or 
+
+silence_warnings do
+  OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE if Rails.env.development?
+end
+
+-------------------------------------------------------------------------------------------
+In order to set https to http for rubygems api for downloading gems then use follwoing cmd: (if there were certificate issue)
+
+  gem source -a http://rubygems.org/
+-------------------------------------------------------------------------------------------
+GOOGLE_OAUTH2:
+
+Q - could not authenticate you from googleoauth2 because "invalid credentials".
+
+
+A- Downgraded gem version from 0.2.6 to 0.2.2.
+
+
+gem 'omniauth-google-oauth2','0.2.2'
+
+-------------------------------------------------------------------------------------------
+GOOGLE_OAUTH2:
+
+How to solve “OmniAuth::Strategies::OAuth2::CallbackError” error?
+/ (google_oauth2) Callback phase initiated twice rails /
+CSRF detected with Omniauth and Google
+
+
+A - As Richlewis was referring to, if you are using Devise with OmniAuth you need to skip the extra omniauth.rb initializer and simply config.provider "KEY", "SECRET" inside of initializers/devise.rb and then carry on with your implementation.
+
+
+
+-------------------------------------------------------------------------------------------
+GOOGLE_OAUTH2:
+
+Q - AbstractController::ActionNotFound (The action 'google_oauth2' could not be found for Devise::OmniauthCallbacksController)
+
+
+This error occurs because you might have two devise_for :users route which is creating four routs instead of two and routes not match and this error occurs.
+
+check with the folowing command 
+
+rake routes | grep auth
+
+rahul@ps4466-u brew_ideas (master) $rake routes | grep auth 
+
+1- user_omniauth_authorize GET|POST /users/auth/:provider(.:format)        omniauth_callbacks#passthru {:provider=>/facebook|google_oauth2/}
+
+2-  user_omniauth_callback GET|POST /users/auth/:action/callback(.:format) omniauth_callbacks#(?-mix:facebook|google_oauth2)
+
+So check into your routes.rb file 
+# devise_for :users
+
+devise_for :users , controllers: { registrations: "devise/registrations", :omniauth_callbacks => "omniauth_callbacks" } 
+
+-------------------------------------------------------------------------------------------
+DEVISE:
+
+Q -
+Routing Error
+
+No route matches [GET] "/users/sign_out"
+
+
+A - Add following route to your routes.rb file:
+
+get '/users/sign_out' => 'devise/sessions#destroy'
+
+-------------------------------------------------------------------------------------------
+GOOGLE_OAUTH2:
+
+Q-
+
+****** 403 Error: redirect_uri_mismatch
+
+A -
+Note: - Default: Redirect Uri changes with suggested and after update wait for 10 mins so that changes should be applicable.
+
+
+http://localhost:3000/auth/google_oauth2/callback
+
+Above url would be:
+
+http://localhost:3000/users/auth/google_oauth2/callback
+
+-------------------------------------------------------------------------------------------
+GOOGLE_OAUTH2:
+
+Q - 
+401. That’s an error.
+
+***** Error: invalid_client
+
+no application name
+Request Details
+
+    scope=https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile
+    response_type=code
+    redirect_uri=http://localhost:3000/users/auth/google_oauth2/callback
+    access_type=offline
+    state=6c7bfedd04016e04815fe493c89be02e8436aafd6fc70212
+    client_id=154908962849-167os8snlpngm2cnfcggmdlfcka3oj0o.apps.googleusercontent.com
+
+That’s all we know.
+
+
+A- 
+  That error is displayed in case that under "APIs & auth" -> "Consent screen" you have empty field "PRODUCT NAME" - you need to select e-mail address as well.
+
+You can find "Consent screen" under a link!, click on project name and then go to "APIs & auth" -> "Consent screen".
+
+-------------------------------------------------------------------------------------------
+Q - Carrierwave
+
+ Errno::ENOENT in Admin::PhotosController#create
+
+No such file or directory - identify -quiet -ping /tmp/mini_magick20140806-24567-xjoqht.png
+
+This error occurs during uploading image it's having storage issue because for it's processing required third party s/w was not installed.
+
+So check in to your carrierwave config file which image process is enabled and accordingly install s/w.
+
+For RMagick:
+
+include CarrierWave::RMagick  ---> 
+
+sudo apt-get install imagemagick libmagickwand-dev
+
+Or for Imagmagick:
+
+  sudo apt-get install imagemagick
+
+A - You need to install imagemagick on your operating system.
+
+-------------------------------------------------------------------------------------------
+
+
+
+
+
+* gem install heroku --no-ri --no-rdoc
+
+* heroku create (will ask heroku account login and create app overthere.)
+
+* git push heroku master
+
+Q- fatal: 'heroku' does not appear to be a git repository
+
+A- Need to install heroku gem first and also need to create heroku create app also.
+
+   
+----------------------------------------------------------------------------------------------------------------
+
+Q-  While git push heroku master --Error "Permission denied (publickey)."
+    Then 
+
+A - You have to upload your public key to Heroku:
+    heroku keys:add ~/.ssh/id_rsa.pub
+    If you don't have a public key, Heroku will prompt you to add one automatically which works seamlessly.      Just use:
+  heroku keys:add
+----------------------------------------------------------------------------------------------------------------
+
+Q - Gem::Ext::BuildError: ERROR: Failed to build gem native extension for pg gem installing ...
+
+A - For ubuntu user first install dependent library and then again try for bundle install
+
+  sudo apt-get install postgresql
+  sudo apt-get install libpq-dev
+
+----------------------------------------------------------------------------------------------------------------
+** Install git conflict solve tool - Meld 
+
+sudo apt-get update && sudo apt-get install meld
+
+* When you receive CONFLICT , your current branch got changed with (no branch)..
+
+git mergetool
+
+Solve conflict with tool (refered meld ..)
+
+After solving conflict ...
+
+Only "git add"  those file whichver got changed.
+
+Then , 
+
+git rebase --continue 
+
+This command will continue with rebase code with local code .. and retrive back on TRACK like (no branch) --> current_branch..
+
+Then you can easily 
+
+git push origin current_branch
+
+------------------------  -------------------------------------------------------------------------------
+
+If there were conflict issue take pull by referencing repository.
+git pull git@heroku.com:intense-journey-8377.git
+
+
+-------------------------------------------------------------------------------------------------------
+In order to stop\start application which is present on heroku, following commands are,
+
+$ heroku maintenance:on
+Maintenance mode enabled.
+
+$ heroku maintenance:off
+Maintenance mode disabled.
+-------------------------------------------------------------------------------------------------------
+
+# This setting is at config/application.rb keep false for heroku deployment.
+config.assets.initialize_on_precompile = false
+
+# This setting at config/environment/production.rb
+# Don't fallback to assets pipeline if a precompiled asset is missed
+  config.assets.compile = true
+
+-------------------------------------------------------------------------------------------------------
+There are two ways you can use the asset pipeline on Heroku.
+
+1.    Compiling assets locally.
+2.    Compiling assets during slug compilation.
+
+1.    Compiling assets locally.
+  RAILS_ENV=production bundle exec rake assets:precompile
+
+  git add public/assets
+  git commit -m "vendor compiled assets"
+
+2. Compiling assets during slug compilation
+
+Troubleshooting
+
+  config.assets.initialize_on_precompile = false
+
+-------------------------------------------------------------------------------------------------------
+Rspec
+-----
+
+Q - RSpec loading all gem files (lots of warnings --)
+
+A - Basically, recent rspec versions added --warnings to the .rspec file by default. This has led to lots of warnings about code in gems being output. The 'fix' for now is to remove the --warnings line.
+
+-------------------------------------------------------------------------------------------------------
+Rspec
+-----
+
+Q - While running rspec testcases need to run solr server:
+
+You can invoke Rake tasks as following:
+-----------------------------------------
+
+require 'rake'
+Rake::Task[name].invoke
+
+/
+
+can add rake task to spec file also.
+
+-------------------------------------------------------------------------------------------------------
+Rspec
+-----
+
+
+Q - Using `should_not` from rspec-expectations' old `:should` / should not be valid rspec deprecated 
+
+A - should and should_not got deprecated ...instead use 
+
+expect(FactoryGirl.build(:article)).to be_valid
+
+example : 
+
+no_name_article.should_not be_valid
+
+CAN WRITE LIKE:
+------------------
+
+expect { no_name_article }.not_to raise_error
+
+
+foo.should eq(bar)
+foo.should_not eq(bar)
+
+
+expect(foo).to eq(bar)
+expect(foo).not_to eq(bar)
+
+
+-------------------------------------------------------------------------------------------------------
+
+
+Q -  Failure/Error: expect(FactoryGirl.build(:article)).to be_valid
+     FactoryGirl::AttributeDefinitionError:
+     Attribute already defined: name
+
+
+A - Check @ apropriate factory defination weather a perticuler attribute is not definded twice .
+
+-------------------------------------------------------------------------------------------------------
+
+Q - Failure/Error: expect(article).to have(1).errors_on(:name)
+     NoMethodError:
+
+
+A - 
+     gem 'rspec-collection_matchers'
+
+     require 'rspec/collection_matchers'     
+
+-------------------------------------------------------------------------------------------------------
+
+
+Q - Can't reindex Sunspot SOLR - Error - RSolr::Error::Http - 500 Internal Server Error
+
+A - 
+The solution:
+
+    rake sunspot:solr:stop
+    rm -rvf solr (Delete your /solr directory)
+    rake sunspot:solr:start
+    rake sunspot:solr:reindex
+
+
+
+
+
