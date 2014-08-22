@@ -540,7 +540,12 @@ The solution:
     rake sunspot:solr:start
     rake sunspot:solr:reindex
 
+-------------------------------------------------------------------------------------------------------
+
+Q - If inside facets count comes wrong then check that you need to reindex 
+
+A - rake sunspot:solr:reindex
 
 
-
+-------------------------------------------------------------------------------------------------------
 

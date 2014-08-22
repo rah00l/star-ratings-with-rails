@@ -50,6 +50,10 @@ Using gem 'hermitage' implemented cool image gallery into application.
 *******************************************************************************************************
 Proposed Things:
 
+*) During deploying app (stagging/Testing) so in that case 1) proper data/seed data should be populate 2) All required rake tasks (solr stop/db reset/db seed/solr rm old indexes/start solr create new one /reindex them )should be run in sequence manner.
+3) All private/secret data like keys/code shold be take from .yml file --Need to add those things.
+
+
 *) Highlight searched word ..fun. need to add ..(Sunspot)
 
 *) sunspot search need to be more explore with respect to associated models.
