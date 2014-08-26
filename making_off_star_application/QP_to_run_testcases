@@ -1,0 +1,6 @@
+rake db:test:prepare
+
+rake sunspot:solr:start RAILS_ENV=test
+
+rspec 
+

@@ -152,7 +152,7 @@ A - My fix for this problem is: Comment the path parameter(default configuration
 SECRET_TOKEN 
 Q - You must set config.secret_key_base in your app's config.       
 
-A - Create file in config/initializers/
+A1 - Create file in config/initializers/
     secret_token.rb
 
     Generate your secret token,
@@ -160,6 +160,35 @@ A - Create file in config/initializers/
     Copy secret token at secret_token.rb file with following format.
     
     YourApplication::Application.config.secret_token = 'your secret token'
+
+
+A2 -    And if application is on rails 4.1 
+
+    then create file config/secrets.yml and add following content with secret key
+
+
+    # Be sure to restart your server when you modify this file.
+
+# Your secret key is used for verifying the integrity of signed cookies.
+# If you change this key, all old signed cookies will become invalid!
+
+# Make sure the secret is at least 30 characters and all random,
+# no regular words or you'll be exposed to dictionary attacks.
+# You can use `rake secret` to generate a secure secret key.
+
+# Make sure the secrets in this file are kept private
+# if you're sharing your code publicly.
+
+development:
+  secret_key_base: fa074d8bffb862d508cb2ed8c05ac36c4c70f39d2607f6e70e2462a1f0818e0cb5daecfdafc27ad248f2abd8c4ba34d21c05186070d6373a2772e3d8d476a2a9
+
+test:
+  secret_key_base: 513fb7657945b56098db290394bf23f5e11463c473fb228719428a30fd34b8b899dff3f6173c32d7e6bc028dc3276f15dcba11b684d27983d8203fb5634ce8ae
+
+# Do not keep production secrets in the repository,
+# instead read values from the environment.
+production:
+  secret_key_base: <%= ENV["SECRET_KEY_BASE"] %>
 
 -------------------------------------------------------------------------------------------
    
@@ -507,7 +536,8 @@ expect(foo).not_to eq(bar)
 
 
 -------------------------------------------------------------------------------------------------------
-
+Rspec
+-----
 
 Q -  Failure/Error: expect(FactoryGirl.build(:article)).to be_valid
      FactoryGirl::AttributeDefinitionError:
@@ -517,6 +547,8 @@ Q -  Failure/Error: expect(FactoryGirl.build(:article)).to be_valid
 A - Check @ apropriate factory defination weather a perticuler attribute is not definded twice .
 
 -------------------------------------------------------------------------------------------------------
+Rspec
+-----
 
 Q - Failure/Error: expect(article).to have(1).errors_on(:name)
      NoMethodError:
@@ -548,4 +580,37 @@ A - rake sunspot:solr:reindex
 
 
 -------------------------------------------------------------------------------------------------------
+
+Rspec
+-----
+
+Q - While running rspec --
+
+    Failure/Error: existing_user = create(:user)
+     ActionView::Template::Error:
+       Missing host to link to! Please provide the :host parameter, set default_url_options[:host], or set :only_path to true
+
+A - config.action_mailer.default_url_options = {:host => "localhost:3000"}
+
+
+-------------------------------------------------------------------------------------------------------
+
+Rspec
+-----
+
+Q -
+
+Failure/Error: expect(build(:user, first_name: nil)).to have(2).errors_on(:first_name)
+       expected 2 errors on :first_name, got 0
+
+
+A - 
+
+As this first_name filed is optional so no error generated so errors count should be  0 
+
+expect(build(:user, first_name: nil)).to have(0).errors_on(:first_name)
+
+-------------------------------------------------------------------------------------------------------
+
+
 

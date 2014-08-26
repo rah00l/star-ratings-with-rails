@@ -2,27 +2,32 @@ require 'rails_helper'
 
 RSpec.describe User, :type => :model do
   
-	  before(:each) do
-    @attr = {
-      # :name => "Example User",
-      :email => "user@example.com",
-      :password => "changeme",
-      :password_confirmation => "changeme"
-    }
+	 	 it "should create a new instance given a valid attribute" do
+      	expect(build(:user)).to be_valid
+  	 end
 
-  end
+  	 it "should require an email address" do
+  	   	expect(build(:user, email: nil)).to have(1).errors_on(:email)
+	   end
 
-  	it "should create a new instance given a valid attribute" do
-    	expect(build(:user)).to be_valid
-  	end
+      it "is invalid without a password" do
+        expect(build(:user, password: nil)).to have(1).errors_on(:password)
+      end
 
-  	it "should require an email address" do
-  		expect(build(:user, email: nil)).to have(1).errors_on(:email)
-	end
+      it "is valid without a lastname" do
+        expect(build(:user, last_name: nil)).to have(0).errors_on(:last_name)
+      end
 
-	it "should require a password" do
-  		expect(build(:user, password: nil)).to have(1).errors_on(:password)
-	end	
+      it "is invalid without a firstname" do
+        expect(build(:user, first_name: nil)).to have(0).errors_on(:first_name)
+      end
+
+      it "is invalid with a duplicate email" do
+        existing_user = create(:user)
+        expect(User.new(email: existing_user.email)).to have(1).errors_on(:email)
+      end
+
+      
 
   # it "should accept valid email addresses" do
   #   addresses = %w[user@foo.com THE_USER@foo.bar.org first.last@foo.jp]
