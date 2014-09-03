@@ -1,0 +1,32 @@
+<h1><%= @music.title %></h1>
+<p><%= @music.description.html_safe %></p>
+	<% @music_attachments.each do |music_attachment| %>
+		<!-- <%# unless piece_section.title == "" %>
+			<h3><%#= piece_section.title %></h3>
+		<%# end %>
+		<%# unless piece_section.description == "" %>
+			<p><%#= piece_section.description %></p>
+		<%# end %>
+		<%# unless piece_section.youtube == "" %>
+			<div class="small-10 small-centered columns">
+				<div class="flex-video">
+					<iframe width="420" height="315" frameborder="0" allowfullscreen="" src="<%#= piece_section.youtube %>"></iframe>
+				</div>
+			</div>
+		<%# end %> -->
+		<%# if piece_section.audio_mp3? ||  piece_section.audio_wav? ||  piece_section.audio_ogg? %>
+		<% if music_attachment.present? %>
+		<audio controls>
+			<%# if piece_section.audio_mp3? %>
+			<source src="<%= music_attachment.file_url %>" type="audio/mpeg" />
+			<%# end %>
+			<%# if piece_section.audio_wav? %>
+				<!-- <source src="<%#= piece_section.audio_wav_url.to_s %>" type="audio/wav" /> -->
+			<%# end %>
+			<%# if piece_section.audio_ogg? %>
+				<!-- <source src="<%#= piece_section.audio_ogg_url.to_s %>" type="audio/ogg" /> -->
+			<%# end %>
+			Your browser does not support this audio file.
+		</audio controls>
+	<% end %>
+<% end %>

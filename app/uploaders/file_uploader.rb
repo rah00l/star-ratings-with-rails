@@ -33,39 +33,45 @@ class FileUploader < CarrierWave::Uploader::Base
 
   # Create different versions of your uploaded files:
 
+    version :small_thumb , if: :image? do
+     process :resize_to_fit => [64, 64]
+    end
+
+    version :thumb , if: :image? do
+     process :resize_to_fit => [150, 150]
+    end
+
+    version :medium , if: :image? do
+     process :resize_to_fit => [300, 300]
+    end
+
+    version :large , if: :image? do
+     process :resize_to_fit => [400, 400]
+    end
+
+    version :slideshow, if: :image? do
+      process :resize_to_fill => [1020, 680, gravity = 'Center'], if: :is_landscape?
+      process :resize_and_pad => [1020, 680, background=:transparent, gravity = 'Center']
+    end
+
+    # Add a white list of extensions which are allowed to be uploaded.
+    # For images you might use something like this:
+    def extension_white_list
+      %w(jpg jpeg gif png mp3 wav ogg)
+    end
+
+
+    protected
+
     def is_landscape?(new_file)
       image = ::MiniMagick::Image::read(File.binread(@file.file))
       Rails.logger.info "from in is_landscape? : #{image[:width] > image[:height]}"
       image[:width] > image[:height]
     end
-    
 
-    version :small_thumb do
-     process :resize_to_fit => [64, 64]
+    def image?(new_file)
+      new_file.content_type.start_with? 'image'
     end
-
-    version :thumb do
-     process :resize_to_fit => [150, 150]
-    end
-
-    version :medium do
-     process :resize_to_fit => [300, 300]
-    end
-
-    version :large do
-     process :resize_to_fit => [400, 400]
-    end
-
-    version :slideshow do
-      process :resize_to_fill => [1020, 680, gravity = 'Center'], if: :is_landscape?
-      process :resize_and_pad => [1020, 680, background=:transparent, gravity = 'Center']
-    end
-
-  # Add a white list of extensions which are allowed to be uploaded.
-  # For images you might use something like this:
-  def extension_white_list
-    %w(jpg jpeg gif png mp3 wav ogg)
-  end
   
 
   # Override the filename of the uploaded files:

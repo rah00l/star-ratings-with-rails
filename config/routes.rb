@@ -1,12 +1,18 @@
 Blog::Application.routes.draw do
 
+  # get "music/index"
+
+  # get "music/music"
+
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
+
   # get "main/index"
   root :to => 'main#index'
 
-  # devise_for :users
-
-#  root :to => "home#index"
-devise_for :users , controllers: { registrations: "devise/registrations", :omniauth_callbacks => "omniauth_callbacks" } 
+  #  root :to => "home#index"
+  devise_for :users , controllers: { registrations: "devise/registrations", :omniauth_callbacks => "omniauth_callbacks" } 
+  # ActiveAdmin.routes(self)
 
 devise_scope :user do
   get "sign_in", :to => "devise/sessions#new"
@@ -18,6 +24,15 @@ devise_scope :user do
 end
 
 # devise_for :users, :skip => [:registrations]
+  # ActiveAdmin.routes(self)
+
+  match 'music', :to => "music#index"
+  match '/music/:title', :to => "music#music", as: 'piece'
+
+  resources :music do
+    resource :music
+  end
+
 
 resource :user do
   collection do

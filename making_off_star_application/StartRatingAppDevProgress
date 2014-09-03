@@ -47,8 +47,14 @@ Using gem 'hermitage' implemented cool image gallery into application.
 11. For google it has been done / for others need to work on.
 
 
+
+
 *******************************************************************************************************
 Proposed Things:
+
+*) Need to have admin section where active_admin have proper forms like active_admin  		can add articles/photos/images/audio/videos and lot more .....
+
+*) Form fill area need to have *'s @ manditory field section. 
 
 *) During deploying app (stagging/Testing) so in that case 1) proper data/seed data should be populate 2) All required rake tasks (solr stop/db reset/db seed/solr rm old indexes/start solr create new one /reindex them )should be run in sequence manner.
 3) All private/secret data like keys/code shold be take from .yml file --Need to add those things.

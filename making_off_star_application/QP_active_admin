@@ -1,4 +1,9 @@
 # Generator ..
 rails g active_admin:install
 
+
+rake db:migrate
+
+rails g active_admin:resource music 
+
 rails destroy model AdminUser
