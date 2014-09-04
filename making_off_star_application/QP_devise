@@ -184,12 +184,32 @@ rails generate devise:views confirmable
 
 
 rake db:migrate
+----------------------------------------------------------------------------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------
+How To: Access current_user helper method in model:
+--------------------------------------------------------------------------
+
+1.  At application controller add before_filter
+
+  before_filter :set_user
+
+  def set_user
+    Attachment.current_user = current_user unless current_user.nil? 
+  end
 
 
+2. Then the model where you want to use current_user method use
+
+    after_create :set_user_id
+
+    private
+    def set_user_id
+        self.update_attributes(:user_id => current_user.id) unless current_user.nil?
+    end  
 
 
-
-
+----------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 

@@ -31,5 +31,29 @@ index do
   end
 
 
+show do
+	attributes_table do
+	  row :title
+	  row :featured
+	  row :summary
+	  row :description
+      panel("Attachments") do
+      	table_for music.attachments do |music_attachment|
+    		column :file
+    		column :attachable_type
+    		
+    # 		column("Audio") do |piece_section|
+    # 			a_array = Array.new
+    # 			a_array.push(piece_section.audio_mp3)
+    # 			a_array.push(piece_section.audio_wav)
+    # 			a_array.push(piece_section.audio_ogg)
+				# a_array.join(", ")
+    # 		end
+   			column :user_id
+    	end
+      end
+	end
+end
+
 
 end
