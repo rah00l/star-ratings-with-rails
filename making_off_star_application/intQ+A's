@@ -123,8 +123,18 @@ Following are some of the key differences in features of Web Server and Applicat
 
     Web Server is designed to serve HTTP Content. App Server can also serve HTTP Content but is not limited to just HTTP. It can be provided other protocol support such as RMI/RPC
     Web Server is mostly designed to serve static content, though most Web Servers have plugins to support scripting languages like Perl, PHP, ASP, JSP etc. through which these servers can generate dynamic HTTP content.
-    Most of the application servers have Web Server as integral part of them, that means App Server can do whatever Web Server is capable of. Additionally App Server have components and features to support Application level services such as Connection Pooling, Object Pooling, Transaction Support, Messaging services etc.
-    As web servers are well suited for static content and app servers for dynamic content, most of the production environments have web server acting as reverse proxy to app server. That means while servicing a page request, static contents (such as images/Static HTML) are served by web server that interprets the request. Using some kind of filtering technique (mostly extension of requested resource) web server identifies dynamic content request and transparently forwards to app server
+
+    Most of the application servers have Web Server as integral part of them, that means App Server can do whatever Web Server is capable of. 
+
+    Additionally App Server have components and features to support Application level services such as 
+    * Connection Pooling, 
+    * Object Pooling, 
+    * Transaction Support, 
+    * Messaging services etc.
+
+    As web servers are well suited for static content and app servers for dynamic content, most of the production environments have web server acting as reverse proxy to app server. 
+
+    That means while servicing a page request, static contents (such as images/Static HTML) are served by web server that interprets the request. Using some kind of filtering technique (mostly extension of requested resource) web server identifies dynamic content request and transparently forwards to app server
 
 Example of such configuration is Apache Tomcat HTTP Server and Oracle (formerly BEA) WebLogic Server. Apache Tomcat HTTP Server is Web Server and Oracle WebLogic is Application Server.
 
@@ -457,15 +467,18 @@ load(File.dirname(__FILE__) + "/schema.rb")
 
 Rails 4 :
 
-Datatype:
+* Datatype:
+  ----------
 
 datatypes (for postgress database) : hstore , (array: true)
 
-ActiveRecord :
+* ActiveRecord :
+  ---------------
 
-ActiveRecord - (return active_relation object)
+* ActiveRecord - (return active_relation object)
 
-ActiveRecord-Mothods - not, order method can pass hash 
+    Methods-
+    not, order method can pass hash 
 
 dynamic finder methods has been deprecated but find_by_name is still there.
 
@@ -473,39 +486,43 @@ ActiveModel -> can include ActiveModel::Model and can use any ruby class with al
 
 Yes it is also available previously but not easier need to include library files ...
 
-Not need to remove index.html from public folder. it's now dynamicaly generated.
+* Not need to remove index.html from public folder. it's now dynamicaly generated.
 
-turbolink is auto enabled (In order to make Single Page Application)-instead of reloading the entire page only part of page has been used to make turbolink requests.
+* turbolink is auto enabled (In order to make Single Page Application)-instead of    reloading the entire page only part of page has been used to make turbolink requests.
 
 
 Controller : 
-
+------------
 before_filter / now got know as before_action ...
 
+Model :
+--------
 New patch request introduced which would work similler to put.
 Can use update instead of update_attribut/s interchangably. 
 
 Introduced strong parameters not need to add attr_atributes ..
 
 Views :
-
+------
 collection_check_boxes  (to atchive many-to-many kind of relation with check boxes)
 
 date_field (like html 5 date field which populate calender)
 
-cash digest and russian doll
+* cash digest and russian doll
 
 routes:
+--------
 
 concerns (useful while concern with complicated routes/api's call url/ polymorphic assocation routes)
 
 instead of match route can use what type of http request it is for.
 
-Can use constrains with help of that can specify protocol then route will generate likewise.
+Can use constrains with help of that can specify protocol then route will generate likewise. like ftp ...
 
 Test:
+-------
 
-where test directory is strucured differently
+where test directory is strucured differently.
 
 
 ******************************************************************************************************************************************************
@@ -516,12 +533,17 @@ This is a very good question. I was as well very confused with all of this and I
 
 Many people on this thread and on google explain very well that :
 
+1-
+
 attr_accessible specifies a whitelist of attributes that are allowed to be updated in bulk (all the attributes of an object model together at the same time) This is mainly (and only) to protect your application from "Mass assignement" pirate exploit. This is explained here on the official Rails doc : Mass Assignement
 
 attr_accessor is a ruby code to (quickly) create setter and getter in a Class. That's all.
 
+2-
 
-attr_accessor is a ruby method that makes a getter and a setter. attr_accessible is a Rails method that allows you to pass in values to a mass assignment: new(attrs) or update_attributes(attrs). 
+attr_accessor is a ruby method that makes a getter and a setter. 
+
+attr_accessible is a Rails method that allows you to pass in values to a mass assignment: new(attrs) or update_attributes(attrs). 
 
 The attr_protected method takes a list of attributes that will not be accessible for mass-assignment.
 
