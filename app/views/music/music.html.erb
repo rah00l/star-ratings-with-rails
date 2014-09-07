@@ -1,5 +1,6 @@
 <h1><%= @music.title %></h1>
 <p><%= @music.description.html_safe %></p>
+<hr>
 	<% @music_attachments.each do |music_attachment| %>
 		<!-- <%# unless piece_section.title == "" %>
 			<h3><%#= piece_section.title %></h3>
@@ -15,6 +16,10 @@
 			</div>
 		<%# end %> -->
 		<%# if piece_section.audio_mp3? ||  piece_section.audio_wav? ||  piece_section.audio_ogg? %>
+		<% if music_attachment.present? && (music_attachment.file.content_type.start_with? 'image') %>
+				<%= image_tag music_attachment.file_url(:thumb) %>
+		<% end %>
+		<br/>
 		<% if music_attachment.present? %>
 		<audio controls>
 			<%# if piece_section.audio_mp3? %>

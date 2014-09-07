@@ -1,3 +1,7 @@
+Link:
+http://www.sitepoint.com/easy-admin-interfaces-active-admin-rails/
+
+
 # Generator ..
 rails g active_admin:install
 

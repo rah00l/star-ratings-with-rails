@@ -68,10 +68,10 @@
 <%# if @title == "Home" %>
 <% if @photo.present? && @photo.attachments.present? %>
   <header class="show-for-medium-up" >
-  <% flash.each do |name, msg| %>
-    <%= content_tag :div, msg, id: "flash_#{name}" %>
-    <% end %>
-    <br>
+  <%# flash.each do |name, msg| %>
+    <%#= content_tag :div, msg, id: "flash_#{name}" %>
+    <%# end %>
+    <!-- <br> -->
     <div class="row">
       <div class="small-11 small-centered columns">
         <br>

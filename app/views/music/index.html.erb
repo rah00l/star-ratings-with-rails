@@ -7,7 +7,7 @@
 <% if @musics.count > 0 %>
 	<% if @featured_musics.count > 0 %>
 		<ul class="small-block-grid-1 medium-block-grid-2 large-block-grid-2">
-			<% @@featured_musics.each do |music| %>
+			<% @featured_musics.each do |music| %>
 				<li><h2><%= music.title %></h2>
 				<% unless music.summary =="" %>
 					<p><%= music.summary %></p>

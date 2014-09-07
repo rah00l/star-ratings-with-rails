@@ -28,6 +28,7 @@ gem 'devise'
 
 # For adding admin functionality
 gem 'activeadmin'
+gem 'active_admin_editor'
 
 # for Authorization 
 gem 'cancan'

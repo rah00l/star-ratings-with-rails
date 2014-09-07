@@ -1,0 +1,28 @@
+Appling css framwork to rails application:
+
+
+Add gem in Gemfile:
+
+gem 'zurb-foundation'
+
+----------------------------------------------------------------------------------------
+How to apply zurb-foundation flashes to application:
+
+The application layout file includes a messages partial:
+
+<%= render 'layouts/messages' %>
+
+Examine the file app/views/layouts/_messages.html.erb:
+
+<%# Rails flash messages styled for Zurb Foundation %>
+<% flash.each do |name, msg| %>
+  <% if msg.is_a?(String) %>
+    <div data-alert class="alert-box round <%= name.to_s == 'notice' ? 'success' : 'alert' %>">
+      <%= content_tag :div, msg %>
+      <a href="#" class="close">&times;</a>
+    </div>
+  <% end %>
+<% end %>
+
+
+----------------------------------------------------------------------------------------

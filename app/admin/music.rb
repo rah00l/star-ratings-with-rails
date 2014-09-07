@@ -12,7 +12,7 @@ index do
 	  f.input :title
 	  f.input :featured, :as => :radio    
 	  f.input :summary, :hint => "Summary only displayed on index pages"  
-	  f.input :description#, :as => :html_editor           
+	  f.input :description, :as => :html_editor           
 
 		f.has_many :attachments do |a|
 		 	a.input :file
