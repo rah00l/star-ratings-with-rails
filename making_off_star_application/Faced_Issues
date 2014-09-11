@@ -1,3 +1,6 @@
+ABWPP2838E
+
+
 Q - Rails - how to solve this issue of an orphaned migration?
 
  up     20120209023430  Create tasks
@@ -611,6 +614,14 @@ As this first_name filed is optional so no error generated so errors count shoul
 expect(build(:user, first_name: nil)).to have(0).errors_on(:first_name)
 
 -------------------------------------------------------------------------------------------------------
+Deployment:
+----------------
 
+Q-SQLite3::ReadOnlyException: attempt to write a readonly database on ubuntu server
 
+If you're running in development mode on the server (generally not what you want to do, but can be useful for learning), you need to modify the permissions of your sqlite database. So, if you're running an ubuntu AMI on EC2 (which I think you are) run sudo chown ubuntu:ubuntu development.sqlite3 and sudo chown ubuntu:ubuntu test.sqlite3.
+
+This changes the user who owns the file (chown = change owner) to the ubuntu user.
+
+-------------------------------------------------------------------------------------------------------
 
