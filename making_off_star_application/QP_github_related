@@ -1,0 +1,54 @@
+
+Add the below script in your bashrc file. Move to the end of the file and paste the below script snippet.
+
+----------------------------------------------------------------------------------------------
+$ gedit ~/.bashrc
+ 
+# Git branch in prompt.
+parse_git_branch() {
+git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+}
+export PS1="\u@\h \W\[\033[32m\]\$(parse_git_branch)\[\033[00m\] $"
+
+----------------------------------------------------------------------------------------------
+
+
+GitHub Basic steps to add your code on to git repository:
+----------------------------------------------------------
+
+git init 
+
+git add ---(whatever files)
+
+git commit -m "first message"
+
+git remote add origin repository_name (will generate appopriate config file and related information)
+
+git push origin master 
+
+----------------------------------------------------------------------------------------------
+
+
+** Install git conflict solve tool - Meld 
+
+sudo apt-get update && sudo apt-get install meld
+
+* When you receive CONFLICT , your current branch got changed with (no branch)..
+
+git mergetool
+
+Solve conflict with tool (refered meld ..)
+
+After solving conflict ...
+
+Only "git add"  those file whichver got changed.
+
+Then , 
+
+git rebase --continue 
+
+This command will continue with rebase code with local code .. and retrive back on TRACK like (no branch) --> current_branch..
+
+Then you can easily 
+
+git push origin current_branch
