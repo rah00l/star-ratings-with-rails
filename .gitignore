@@ -23,6 +23,8 @@
 
 # Ignore the default SQLite database.
 /db/*.sqlite3
+/config/local_env.yml
+/config/social_keys.yml
 Gemfile.lock
 
 # Ignore all logfiles and tempfiles.

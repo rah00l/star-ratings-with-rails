@@ -58,11 +58,25 @@ module Blog
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
 
+    ## Configuration of loacl environment file for private data\settings.
+    config.before_configuration do
+        env_file = File.join(Rails.root, 'config', 'local_env.yml')
+        YAML.load( File.open( env_file ) ).each do |key, value|
+            ENV[key.to_s] = value
+        end if File.exists?(env_file)
+    end
+
+    social_keys = File.join(Rails.root, 'config', 'social_keys.yml')
+    CONFIG = HashWithIndifferentAccess.new(YAML::load(IO.read(social_keys)))[Rails.env]
+    CONFIG.each do |k,v|
+      ENV[k.upcase] ||= v
+    end
+
     #### TODO Data fetch from yml file ..
     # File.join(Rails.root, 'config', 'env.yml')
     # oauth_config = YAML::load(File.open("#{Rails.root}/config/oauth.yml"))
 
-
+    ## This is custom configuration for application generate/use below mentioned test_framwork i.e. rspec.
     config.generators do |g|
         g.test_framework :rspec,
                 fixtures: true,

@@ -235,7 +235,16 @@ Devise.setup do |config|
 
   # My configuration @ (rahulpatil2387@gmail.com)
   # https://console.developers.google.com/project/154908962849/apiui/credential?authuser=0  
-  config.omniauth :google_oauth2, "154908962849-167os8snlpngm2cnfcggmdlfcka3oj0o.apps.googleusercontent.com", "POiFex30QwyDeGq-6s3kS46s"
+  # config.omniauth :google_oauth2, "154908962849-167os8snlpngm2cnfcggmdlfcka3oj0o.apps.googleusercontent.com", "POiFex30QwyDeGq-6s3kS46s"
+
+  # config.omniauth :facebook, "1427325274156452", "f9f4424d564ef4a33cf50017fe2f27da"  
+
+  config.omniauth :facebook, ENV["FACEBOOK_KEY"], ENV["FACEBOOK_SECRET"], { :scope => 'email, offline_access', :client_options => {:ssl => {:ca_file => '/usr/lib/ssl/certs/ca-certificates.crt'}}}
+  # config.omniauth :twitter, ENV["TWITTER_KEY"], ENV["TWITTER_SECRET"], { :scope => 'r_fullprofile, r_emailaddress', :client_options => {:ssl => {:ca_file => '/usr/lib/ssl/certs/ca-certificates.crt'}}}
+  # config.omniauth :linkedin, ENV["LINKEDIN_KEY"], ENV["LINKEDIN_SECRET"], { :scope => 'r_fullprofile r_emailaddress', :client_options => {:ssl => {:ca_file => '/usr/lib/ssl/certs/ca-certificates.crt'}}}
+  # config.omniauth :github, ENV['GITHUB_KEY'], ENV['GITHUB_SECRET'], scope: "user, public_repo"
+  config.omniauth :google_oauth2, ENV['GOOGLE_KEY'], ENV['GOOGLE_SECRET'], {}
+  
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
