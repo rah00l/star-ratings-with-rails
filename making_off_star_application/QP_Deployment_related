@@ -1,0 +1,48 @@
+
+Capistereno Rails app SQLite3 Cannot open Database :
+---------------------------------------------------
+
+Thanks to the comments from Adam P & Ben L above, I managed to make some head way on this. This Guide also solved my issue.
+
+I followed the steps in that guide above and in my database.yml file I changed the path to the production db from:
+
+`db/production.sqlite3`
+
+To
+
+`/www/testcap/shared/db/production.sqlite3` 
+
+(eg the absolute path)
+
+I then added this to my config/deploy.rb:
+
+role :db, "{my vps IP}", :primary => true
+
+On my VPS I went into the nginx conf & removed the line rails_env development (Passenger then sets it to production by default).
+
+And then ran cap deploy followed by cap deploy:migrate, which worked, and I get the app displayed when I visit the URL.
+
+I hope this might help someone out in the future stuck on the same issue :)
+
+Jack.
+
+--------------------------------------------------------------------------------------------------------------------------
+Q - 
+ 
+ stderr: Rails Error: Unable to access log file. Please ensure that /root/star-ratings-with-rails/log/production.log exists and is chmod 0666. The log level has been raised to WARN and the output directed to STDERR until the problem is fixed.
+
+ Rails Error: Unable to access log file. Please ensure that /root/star-ratings-with-rails/log/production.log exists and is chmod 0666. The log level has been raised to WARN and the output directed to STDERR until the problem is fixed.
+
+ A - 
+
+ chmod 0666 /root/star-ratings-with-rails/log/production.log
+
+	Provide full permission to your project:
+
+	sudo chmod -R 777 
+
+--------------------------------------------------------------------------------------------------------------------------
+
+
+
+

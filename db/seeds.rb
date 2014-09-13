@@ -13,6 +13,9 @@ admin_user = User.create! email: "rahul@gmail.com", password: "rahul123", passwo
 admin_user.role_ids=(admin_role.id)
 
 #open("http://openconcept.ca/sites/openconcept.ca/files/country_code_drupal_0.txt") {|countr| countr.read.each_line {|con| code, name = con.chomp.split("|"); Country.create!(:name => name, :code => code)}}
+AdminUser.delete_all
+
+AdminUser.create!(:email => 'admin@example.com', :password => 'password', :password_confirmation => 'password')
 
 
 Country.delete_all

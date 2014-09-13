@@ -1,0 +1,79 @@
+Location of nGinx installed :
+-----------------------------
+
+/opt/nginx/
+
+Configure file for nginx :
+----------------------------
+
+sudo /opt/nginx/conf/nginx.conf
+
+
+
+Configuration changes are  :	
+---------------------------  
+
+http {
+    passenger_root /home/rahul/.rvm/gems/ruby-1.9.3-p194@currency_tracker/gems/passenger-4.0.21;
+    passenger_ruby /home/rahul/.rvm/wrappers/ruby-1.9.3-p194@currency_tracker/ruby;
+
+
+
+ server {
+         listen 80;
+         server_name www.soo.com;
+         root /home/rahul/fuss/country_currencies/public;
+         passenger_enabled on;
+      }
+
+
+
+To start nginx server :
+------------------------
+
+sudo /opt/nginx/sbin/nginx
+
+After start check on browser 
+http://localhost/
+
+
+# To stop nginx server ....
+sudo /opt/nginx/sbin/nginx -s stop
+
+----------------------------------------------------------------------------------------
+For adding host name to Linux OS go to ..
+nano /etc/hosts
+add entry for your ip address with some namespace.
+e.g.
+
+14.97.122.211 www.example.com
+----------------------------------------------------------------------------------------
+For sunspot server stop and then start:
+----------------------------------------
+
+RAILS_ENV=production bundle exec rake sunspot:solr:start
+
+For Dbase migration and seed data:
+-----------------------------------
+
+RAILS_ENV=production bundle exec rake db:reset db:seed
+
+For assset clean
+------------------
+
+rake assets:clean
+
+Preparing pre-compile assets is:
+----------------------------------
+
+RAILS_ENV=production bundle exec rake assets:precompile
+
+
+
+********************************************************************************************
+For Troubleshooting ...
+
+
+tail -f /opt/nginx/logs/error.log
+
+	

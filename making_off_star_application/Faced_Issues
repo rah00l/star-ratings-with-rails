@@ -625,3 +625,23 @@ This changes the user who owns the file (chown = change owner) to the ubuntu use
 
 -------------------------------------------------------------------------------------------------------
 
+
+Q - 
+rails devise user change password from console
+
+A -
+
+irb(main):001:0> user = User.where("username = 'root'")
+irb(main):002:0> u = user.first
+irb(main):003:0> u.password="root2014@Robin"
+=> "root2014@Robin"
+irb(main):004:0> u.password_confirmation="root2014@Robin"
+=> "root2014@Robin"
+irb(main):005:0> u.save
+=> true
+irb(main):006:0> exit
+
+
+--------------------------------------------------------------------------------------------------------------------------
+
+
