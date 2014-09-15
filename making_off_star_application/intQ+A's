@@ -559,8 +559,69 @@ attr_accessor is used when you do not have a column in your database, but still 
 virtual attribute – an attribute not corresponding to a column in the database.
 
 
+******************************************************************************************************************************************************
+
+Singleton methods
+
+Since all methods are implemented and stored by the class definition, it should be impossible for an object to define its own methods. However, Ruby provides a way around this - you can define methods that are available only for a specific object. Such methods are called Singleton Methods. 
+Let us look at an example of a singleton method:
+
+Example Code:
+
+class Foo
+end
+
+foo=Foo.new
+
+def foo.shout
+  puts "Foo Foo Foo!"
+end
+
+foo.shout
+
+p Foo.new.respond_to?(:shout)
+
+
+## => stdout:
+
+Foo Foo Foo!
+false
 
 
 
+******************************************************************************************************************************************************
 
+
+
+ruby object oriented ?
+
+string symbols in ruby ?
+
+hases in ruby and actionsupport how it differs ?
+
+getter / setter methods in ruby ?
+
+abstraction in ruby ?
+
+object-overriding and object overwritting in ruby ?
+
+class and modules difference ?
+
+mixins ? (multiple inherientance)
+
+csrf - cross site request forgery rails ?
+
+test framworks in ruby ?
+
+xhr requests in rails ?
+
+get post request in http protocol difference ?
+
+TDD / BDD ?
+
+mysql vs mongodb ? 
+
+singleton object / class 
+
+design patterns ?
 
