@@ -591,6 +591,172 @@ false
 
 ******************************************************************************************************************************************************
 
+mixins ? (multiple inherientance)
+
+Mixins in Ruby:
+
+Before going through this section, I assume you have knowledge of Object Oriented Concepts.
+
+When a class can inherit features from more than one parent class, the class is supposed to show multiple inheritance.
+
+Ruby does not support multiple inheritance directly but Ruby Modules have another wonderful use. At a stroke, they pretty much eliminate the need for multiple inheritance, providing a facility called a mixin.
+
+Mixins give you a wonderfully controlled way of adding functionality to classes. However, their true power comes out when the code in the mixin starts to interact with code in the class that uses it.
+
+Let us examine the following sample code to gain an understand of mixin:
+
+module A
+   def a1
+   end
+   def a2
+   end
+end
+module B
+   def b1
+   end
+   def b2
+   end
+end
+
+class Sample
+include A
+include B
+   def s1
+   end
+end
+
+samp=Sample.new
+samp.a1
+samp.a2
+samp.b1
+samp.b2
+samp.s1
+
+Module A consists of the methods a1 and a2. Module B consists of the methods b1 and b2. The class Sample includes both modules A and B. The class Sample can access all four methods, namely, a1, a2, b1, and b2. Therefore, you can see that the class Sample inherits from both the modules. Thus, you can say the class Sample shows multiple inheritance or a mixin.
+
+
+******************************************************************************************************************************************************
+
+
+Defining a Class in Ruby:
+
+To implement object-oriented programming by using Ruby, you need to first learn how to create objects and classes in Ruby.
+
+A class in Ruby always starts with the keyword class followed by the name of the class. The name should always be in initial capitals. The class Customer can be displayed as:
+
+class Customer
+end
+
+You terminate a class by using the keyword end. All the data members in the class are between the class definition and the end keyword.
+Variables in a Ruby Class:
+
+Ruby provides four types of variables:
+
+    Local Variables: Local variables are the variables that are defined in a method. Local variables are not available outside the method. You will see more details about method in subsequent chapter. Local variables begin with a lowercase letter or _.
+
+    Instance Variables: Instance variables are available across methods for any particular instance or object. That means that instance variables change from object to object. Instance variables are preceded by the at sign (@) followed by the variable name.
+
+    Class Variables: Class variables are available across different objects. A class variable belongs to the class and is a characteristic of a class. They are preceded by the sign @@ and are followed by the variable name.
+
+    Global Variables: Class variables are not available across classes. If you want to have a single variable, which is available across classes, you need to define a global variable. The global variables are always preceded by the dollar sign ($).
+
+******************************************************************************************************************************************************
+
+Difference between TDD vs BDD 
+
+
+To me primary difference between BDD and TDD is focus and wording. And words are important for communicating your intent.
+
+TDD directs focus on testing. And since in "old waterfall world" tests come after implementation, then this mindset leads to wrong understanding and behaviour.
+
+BDD directs focus on behaviour and specification, and so waterfall minds are distracted. So BDD is more easily understood as design practice and not as testing practice.
+
+******************************************************************************************************************************************************
+
+ Rails Security Checklist :
+ ---------------------------
+
+* Security is a dull topic, but will become exciting if you screw it up. To avoid   such excitement, here is a checklist for reviewing security in models, controllers, and views. If you see holes, add a comment and I'll update the list.
+
+* Security checklist for models:
+
+    Use attr_accessible (or attr_protected if you must) to explicitly identify attributes that are accessible by .create and .update_attributes. Just because you don't expose an attribute on an edit form doesn't mean that someone won't try to post a value to it. I prefer attr_accessible over attr_protected as it fails on the side of safety when new fields are added to a model - you have to explicitly expose new fields.
+    Make sure queries are using the Rails bind variable facility for parameters, not string concatenation or the handy Ruby's #{...} syntax.
+    Use validations to prevent bad input.
+
+* Security checklist for controllers:
+
+    Make non-action controller methods private (if possible).
+    If non-action controller methods must be public, identify them with hide_action to prevent unwanted execution.
+    Make sure before_filters are in place if necessary for your authorization infrastructure.
+    Move queries from your controller to your model, and see the model checklist above.
+    Check for params[:id] usage - are you sure you can trust it? Check for proper ownership of the record.
+    Check for usage of hidden fields - a user can send anything to you through them, so treat them with suspicious just as params[:id] should be suspect.
+    Use filter_parameter_logging to prevent entry of sensitive unencrypted data (passwords, SSN's, credit card numbers, etc.) in your server logs.
+    Forget about your view code for a minute, and think about how to protect your controller from posts a malicious user could make to any of your exposed methods. All parameters (whether or not exposed on a form, and whether or not invisible) are suspect to length overruns, bypassing of any browser based validation, attacks with malformed data, etc.
+
+* Security checklist for views:
+
+    Make sure all data displayed is escaped with the helper method h(string).
+    Eliminate comments in your views that you don't wish the entire world to see.
+
+What else? (In particular, considerations for REST web services and AJAX need to be added). 
+
+
+******************************************************************************************************************************************************
+
+14 Bare Minimum Security Checks Before Releasing a Rails App
+
+When you upload your latest app to a production Web server and open it up to the world, you're really throwing your app to the elements - good and bad. If you don't pay any attention to security whatsoever, you're likely to fall foul of some cracker's nefarious scheme and your users will be complaining when something doesn't work or they're being spammed by geriatric Nigerian clowns with pots of gold to share. But what to do?
+
+Luckily, help is at hand in the shape of the official Ruby on Rails Security Guide, but Irish Rails developer Matthew Hutchinson has trawled through that guide as well as several illuminating blog posts relating to Rails security, and put together a 14 step checklist of "bare minimum" security checks to do before releasing your Rails app.
+
+In summary:
+
+-    Don't trust logged in users. (Authentication is one thing, authorization to perform certain tasks is another.)
+
+-    Beware of mass assignments. (Use attr_accessible in your models!)
+
+-    Make some attributes un-editable with attr_readonly.
+
+-    Watch out for SQL injection vectors. (Raw SQL in your code is a smell worth investigating.)
+
+-    Prevent executable files from being uploaded.
+
+-    Filter sensitive parameters from the logs.
+-    Beware CSRF (Cross-Site Request Forgery) and use protect_from_forgery and csrf_meta_tag.
+
+-    Beware XSS (Cross-Site Scripting) and use the h helper in views (this is the default in Rails 3, luckily).
+
+-    Watch out for session hijacks.
+
+-    Avoid using redirects to user supplied URLs.
+
+-    Avoid using user params or content in the send_file method.
+
+-    Make non-ActionController methods private.
+
+-    Check your dependencies for security updates and patches.
+
+-    Don't store passwords in the database as clear text.
+
+******************************************************************************************************************************************************
+
+Session vs. Cookies :
+
+ The main difference between cookies and sessions is that cookies are stored in the user's browser, and sessions are not. This difference determines what each is best used for.
+
+A cookie can keep information in the user's browser until deleted. If a person has a login and password, this can be set as a cookie in their browser so they do not have to re-login to your website every time they visit. You can store almost anything in a browser cookie. The trouble is that a user can block cookies or delete them at any time. If, for example, your website's shopping cart utilized cookies, and a person had their browser set to block them, then they could not shop at your website. 
+
+ Sessions are not reliant on the user allowing a cookie. They work instead like a token allowing access and passing information while the user has their browser open. The problem with sessions is that when you close your browser you also lose the session. So, if you had a site requiring a login, this couldn't be saved as a session like it could as a cookie, and the user would be forced to re-login every time they visit.
+
+You can of course get the best of both worlds! Once you know what each does, you can use a combination of cookies and sessions to make your site work exactly the way you want it to. 
+
+******************************************************************************************************************************************************
+
+    
+
+
 
 
 ruby object oriented ?
@@ -607,7 +773,7 @@ object-overriding and object overwritting in ruby ?
 
 class and modules difference ?
 
-mixins ? (multiple inherientance)
+
 
 csrf - cross site request forgery rails ?
 
@@ -618,7 +784,7 @@ xhr requests in rails ?
 get post request in http protocol difference ?
 
 TDD / BDD ?
-
+    
 mysql vs mongodb ? 
 
 singleton object / class 
