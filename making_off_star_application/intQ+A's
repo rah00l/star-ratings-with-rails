@@ -724,6 +724,7 @@ In summary:
 -    Prevent executable files from being uploaded.
 
 -    Filter sensitive parameters from the logs.
+
 -    Beware CSRF (Cross-Site Request Forgery) and use protect_from_forgery and csrf_meta_tag.
 
 -    Beware XSS (Cross-Site Scripting) and use the h helper in views (this is the default in Rails 3, luckily).
@@ -754,8 +755,96 @@ You can of course get the best of both worlds! Once you know what each does, you
 
 ******************************************************************************************************************************************************
 
-    
+Method overriding:-
 
+Method overriding, in object oriented programming, is a language feature that allows a subclass to provide a specific implementation of a method that is already provided by one of its superclasses. The implementation in the subclass overrides (replaces) the implementation in the superclass.
+
+
+
+class A  
+  def a  
+    puts 'In class A'  
+  end  
+end  
+  
+class B < A  
+  def a  
+    puts 'In class B'  
+  end  
+end  
+  
+b = B.new  
+b.a 
+
+
+
+Usage of super
+
+The way super handles arguments is as follows:
+
+    When you invoke super with no arguments Ruby sends a message to the parent of the current object, asking it to invoke a method of the same name as the method invoking super. It automatically forwards the arguments that were passed to the method from which it's called.
+    Called with an empty argument list - super()-it sends no arguments to the higher-up method, even if arguments were passed to the current method.
+    Called with specific arguments - super(a, b, c) - it sends exactly those arguments.
+
+
+
+    class Bicycle  
+      attr_reader :gears, :wheels, :seats  
+      def initialize(gears = 1)  
+        @wheels = 2  
+        @seats = 1  
+        @gears = gears  
+      end  
+    end  
+      
+    class Tandem < Bicycle  
+      def initialize(gears)  
+        super  
+        @seats = 2  
+      end  
+    end  
+    t = Tandem.new(2)  
+    puts t.gears  
+    puts t.wheels  
+    puts t.seats  
+    b = Bicycle.new  
+    puts b.gears  
+    puts b.wheels  
+    puts b.seats  
+
+******************************************************************************************************************************************************
+
+Ruby Overloading Methods:
+
+You want to create two different versions of a method with the same name: two methods that differ in the arguments they take.
+
+******************************************************************************************************************************************************
+
+Differences between private, public, and protected methods:
+
+Put simply, the differences between private, public, and protected methods are visibility of that method in the program, kinda like read-only, read and write, and near invisible.
+
+Unlike some of the other languages, you can't completely hide a Ruby private method, you can only access private methods for your instance of object and not for any other object instance of a class.
+
+Public, of course, is total accessibility and methods are usually defaulted to public with some exceptions.
+
+Protected methods are accessible from objects of the same class or even children, which is not the case for a private method.
+
+/-----------------------------------------------/
+
+* Ruby gives you three levels of protection:
+
+    Public methods can be called by everyone - no access control is enforced. A class's instance methods (these do not belong only to one object; instead, every instance of the class can call them) are public by default; anyone can call them. The initialize method is always private.
+    Protected methods can be invoked only by objects of the defining class and its subclasses. Access is kept within the family. However, usage of protected is limited.
+    Private methods cannot be called with an explicit receiver - the receiver is always self. This means that private methods can be called only in the context of the current object; you cannot invoke another object's private methods.
+
+
+
+******************************************************************************************************************************************************
+
+static method ?
+
+bang method ?
 
 
 
