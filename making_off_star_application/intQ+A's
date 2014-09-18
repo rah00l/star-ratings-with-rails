@@ -846,8 +846,6 @@ static method ?
 
 bang method ?
 
-
-
 ruby object oriented ?
 
 string symbols in ruby ?
@@ -861,8 +859,6 @@ abstraction in ruby ?
 object-overriding and object overwritting in ruby ?
 
 class and modules difference ?
-
-
 
 csrf - cross site request forgery rails ?
 
@@ -879,4 +875,17 @@ mysql vs mongodb ?
 singleton object / class 
 
 design patterns ?
+
+Advantages of "migrations" in rails ?
+
+while dealing with 3rd party API's what security concerns do we need to keep in mind ?
+
+"Transfering from http --> https" ?
+
+
+
+
+
+
+
 
