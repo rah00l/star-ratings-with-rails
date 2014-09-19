@@ -835,16 +835,148 @@ Protected methods are accessible from objects of the same class or even children
 * Ruby gives you three levels of protection:
 
     Public methods can be called by everyone - no access control is enforced. A class's instance methods (these do not belong only to one object; instead, every instance of the class can call them) are public by default; anyone can call them. The initialize method is always private.
+    
     Protected methods can be invoked only by objects of the defining class and its subclasses. Access is kept within the family. However, usage of protected is limited.
+    
     Private methods cannot be called with an explicit receiver - the receiver is always self. This means that private methods can be called only in the context of the current object; you cannot invoke another object's private methods.
 
 
 
 ******************************************************************************************************************************************************
 
+bang method ? diff. [ save and save! ] .
+
+
+save will return false if the record can't be saved (validation errors for instance).
+
+save! will raise an exception if the record can't be saved. Use save! when you are pretty dang sure it should save with no problem, and if it doesn't then its a pretty huge bug and an exception is appropriate.
+
+
+It's "just sugarcoating" for readability, but they do have common meanings:
+
+    Methods ending in ! perform some permanent or potentially dangerous change; for example:
+        Enumerable#sort returns a sorted version of the object while Enumerable#sort! sorts it in place.
+        In Rails, ActiveRecord::Base#save returns false if saving failed, while ActiveRecord::Base#save! raises an exception.
+        Kernel::exit causes a script to exit, while Kernel::exit! does so immediately, bypassing any exit handlers.
+    Methods ending in ? return a boolean, which makes the code flow even more intuitively like a sentence — if number.zero? reads like "if the number is zero", but if number.zero just looks weird.
+
+In your example, name.reverse evaluates to a reversed string, but only after the name.reverse! line does the name variable actually contain the reversed name. name.is_binary_data? looks like "is name binary data?".
+
+******************************************************************************************************************************************************
+
+Difference between delete and destroy ?
+
+Basically destroy runs any callbacks on the model while delete doesn't.
+
+
+Difference between delete and destroy in ActiveRecord
+
+This is well documented, but I keep running into the same issue and never learn from my mistakes. ;-)
+
+When you invoke 'destroy' or 'destroy_all' on an ActiveRecord object, the ActiveRecord 'destruction' process is initiated, it analyzes the class you're deleting, it determines what it should do for dependencies, runs through validations, etc.
+
+When you invoke 'delete' or 'delete_all' on an object, ActiveRecord merely tries to run the 'DELETE FROM tablename WHERE conditions' query against the db, performing no other ActiveRecord-level tasks.
+
+This also holds true for the :dependent option passed into the ActiveRecord::Association methods (belongs_to, has_one, has_many, has_and_belongs_to_many)
+
+Thus if you have a circular dependency between two model classes, and you want to delete both related records when one is deleted, one of the :dependent clauses _must_ be :destroy and the other :delete. if both are set to :destroy you'll have an infinite loop resulting in a "SystemStackError: stack level too deep" exception.
+
+For example
+
+class Person < ActiveRecord::Base
+has_one :address, :dependent => :destroy
+validate_presence_of :address
+end
+
+class Address < ActiveRecord::Base
+belongs_to :person, :dependent => :delete
+validates_presence_of :person
+end
+
+With this scenario, you are free to add a foreign key constraint to the person_id field of the addresses table and everything will still behave as expected. Best of luck.
+
+
+******************************************************************************************************************************************************
+
+pluck is on the db level. It will only query the particular field. See this.
+
+When you do:
+
+ User.first.gifts.collect(&:id)
+
+You have objects with all fields loaded and you simply get the id thanks to the method based on Enumerable.
+
+So:
+
+    if you only need the id, use pluck
+
+    if you need all fields, use collect
+
+    if you need some fields, use selectand collect
+
+******************************************************************************************************************************************************
+
+ORM ? why ORM ? If not there how things are done ?
+
+
+Object Relational Mapping
+
+Object-Relational Mapping, commonly referred to as its abbreviation ORM, is a technique that connects the rich objects of an application to tables in a relational database management system. Using ORM, the properties and relationships of the objects in an application can be easily stored and retrieved from a database without writing SQL statements directly and with less overall database access code.
+1.3 Active Record as an ORM Framework
+
+Active Record gives us several mechanisms, the most important being the ability to:
+
+    * Represent models and their data.
+    * Represent associations between these models.
+    * Represent inheritance hierarchies through related models.
+    * Validate models before they get persisted to the database.
+    * Perform database operations in an object-oriented fashion.
+
+******************************************************************************************************************************************************
+
+rake ?
+
+Rake is a utility similar to make in Unix. You can say Rake is the make of ruby - the R uby m AKE. Rails defines a number of tasks to help you.
+
+rake db:migrate,rake db:create,rake db:reset,rake db:seed
+
+Rake is Ruby Make, a standalone Ruby utility that replaces the Unix utility 'make', and uses a 'Rakefile' and .rake files to build up a list of tasks.
+
+** Rake utility allows you to create a job/task which uses rails environment.
+
+******************************************************************************************************************************************************
+
+Advantages of "migrations" in rails ?
+
+Rails Migration allows you to use Ruby to define changes to your database schema, making it possible to use a version control system to keep things synchronized with the actual code.
+
+This has many uses, including:
+
+    Teams of developers - if one person makes a schema change, the other developers just need to update, and run "rake migrate".
+
+    Production servers - run "rake migrate" when you roll out a new release to bring the database up to date as well.
+
+    Multiple machines - if you develop on both a desktop and a laptop, or in more than one location, migrations can help you keep them all synchronized.
+
+******************************************************************************************************************************************************
+
+rack ?
+
+Observer in rails ? (are they still in rails 4) ?
+
 static method ?
 
-bang method ?
+strong parameters ?
+
+gem vs plugin --> in rails can we keep plugins ?
+
+metaprogramming in ruby ? where we use ?
+
+what contains in rubygems?
+
+difference between has_one and belongs_to ?
+
+class and modules difference ?
 
 ruby object oriented ?
 
@@ -858,13 +990,13 @@ abstraction in ruby ?
 
 object-overriding and object overwritting in ruby ?
 
-class and modules difference ?
-
 csrf - cross site request forgery rails ?
 
 test framworks in ruby ?
 
 xhr requests in rails ?
+
+xss and csrf ?
 
 get post request in http protocol difference ?
 
@@ -876,7 +1008,7 @@ singleton object / class
 
 design patterns ?
 
-Advantages of "migrations" in rails ?
+
 
 while dealing with 3rd party API's what security concerns do we need to keep in mind ?
 
