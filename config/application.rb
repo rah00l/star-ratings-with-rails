@@ -68,10 +68,11 @@ module Blog
 
     social_keys = File.join(Rails.root, 'config', 'social_keys.yml')
     CONFIG = HashWithIndifferentAccess.new(YAML::load(IO.read(social_keys)))[Rails.env]
-    CONFIG.each do |k,v|
-      ENV[k.upcase] ||= v
+    unless CONFIG.blank? 
+        CONFIG.each do |k,v|
+            ENV[k.upcase] ||= v
+        end
     end
-
     #### TODO Data fetch from yml file ..
     # File.join(Rails.root, 'config', 'env.yml')
     # oauth_config = YAML::load(File.open("#{Rails.root}/config/oauth.yml"))
