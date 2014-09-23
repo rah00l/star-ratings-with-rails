@@ -960,6 +960,257 @@ This has many uses, including:
 
 ******************************************************************************************************************************************************
 
+* Difference between git pull vs git rebase ?
+
+git pull = git fetch + git merge against tracking upstream branch.
+
+git pull --rebase = git fetch + git rebase against tracking upstream branch.
+
+
+Git Pull:
+------------
+
+From what I understand, git pull will pull down from a remote whatever you ask (so, whatever trunk you’re asking for) and instantly merge it into the branch you’re in when you make the request. Pull is a high-level request that runs ‘fetch’ then a ‘merge’ by default, or a rebase with ‘–rebase’. You could do without it, it’s just a convenience.
+    
+    git checkout localBranch
+    git pull origin master
+    git branch
+    master
+    * localBranch
+
+The above will merge the remote “master” branch into the local “localBranch”.
+
+
+Git rebase:
+-------------
+
+Finally, git rebase is pretty cool. Anything you’ve changed by committing to your current branch but are no in the upstream are saved to a temporary area, so your branch is the same as it was before you started your changes, IE, clean. If you do ‘git pull –rebase’, git will pull down the remote changes, rewind your local branch, then replays all your changes over the top of your current branch one by one, until you’re all up to date. Awesome huh?
+
+******************************************************************************************************************************************************
+
+What is git merge?
+-------------------
+
+Once you’ve finished developing a feature in an isolated branch, it's important to be able to get it back into the main code base. Depending on the structure of your repository, Git has several distinct algorithms to accomplish this: a fast-forward merge or a 3-way merge.
+
+
+e.g. git branch 
+    ---> development
+
+    & your development branch is forward than master
+    and you want to make same at same level then 
+
+    git checkout master
+
+    git status
+
+    if any pending/unstaged ... commit and push that one.
+
+    git fetch  --> (will take download all untraked branches new one which were not at local)
+
+    git rebase origin/development  (This is nothing but merging development branch code with master.)
+
+******************************************************************************************************************************************************
+
+git fork
+--------- 
+
+people fork repositories when they want to make a change the code, because you don't have write access to the original repository
+
+In the forked repository they have write access and can push changes. They may even contribute back to the original repository using pull requests.
+
+
+Process of it:
+--------------
+
+In order to make a pull request you need to do the following steps:
+
+    Fork a repository (to which you want to make a pull request). Just click the fork button the the repository page and you will have a separate github repository preceded with your github username.
+    Clone the repository to your local machine. The Github software that you installed on your local machine can do this for you. Click the clone button beside the repository name.
+    Make local changes/commits to the files
+    sync the changes
+    go to your github forked repository and click the "Compare & Review" green button besides the branch button. (The button has icon - no text)
+    A new page will open showing your changes and then click the pull request link, that will send the request to the original owner of the repository you forked.
+
+It took me a while to figure this, hope this will help someone.
+
+******************************************************************************************************************************************************
+
+
+Rails 2 vs Rails 3 :
+
+
+1. Unobtrusive JavaScript - introduction of Unobtrusive JavaScript (UJS) to all of its JavaScript helper functions. *** In previous versions of Rails, JavaScript was generated inline with HTML, causing ugly and somewhat brittle code. ***
+
+    Rails 3 replaces all of the inline JavaScript with a couple of HTML5 attributes. All of the JavaScript event handlers to handle the actual confirmation box and deletion are stored in one central JavaScript file that is included with every rails project.
+
+2. Improved Security -XSS protection is now enabled by default. Rails 2 supported   XSS protection through the use of the h method.    
+
+    The h method would escape html and JavaScript to ensure that no malicious client-side code was executed.
+
+3. New Query Engine -
+    Rails 3 includes a cool new query engine that makes it easier to get back the data you want and gives you more flexibilitiy in your controller code.
+
+    In Rails 3, each of the passed in parameters has its own method, which can be chained together to get the same results.
+
+    The query is not actually executed until the data is needed (lazy loading); so these methods can even be used across multiple statements.   
+
+4. Easier Email -The ActionMailer module has been rewritten to make it a lot easier for your application to send email in Rails 3.
+
+5. Dependency Management - Rails 3 adds the Bundler gem to help manage your dependencies. Using Bundler in Rails 3 is extremely simple; add a line for each gem you require in your Gemfile, a file included in the root of each of your applications.
+
+******************************************************************************************************************************************************
+
+What is AJAX ?
+
+Ajax (Asynchronous JavaScript and XML) is a method of building interactive applications for the Web that process user requests immediately. Ajax combines several programming tools including JavaScript, dynamic HTML (DHTML), Extensible Markup Language (XML), cascading style sheets (CSS), the Document Object Model (DOM), and the Microsoft object, XMLHttpRequest. 
+
+Ajax allows content on Web pages to update immediately when a user performs an action, unlike an HTTP request, during which users must wait for a whole new page to load
+
+e.g. Google Maps is one well-known application that uses Ajax. The interface allows the user to change views and manipulate the map in real time. 
+
+Ajax applications do not require installation of a plug-in, but work directly with a Web browser. Because of the technique's reliance on 
+
+How it works ?
+
+Applications created with Ajax use an engine that acts as an intermediary between a user's browser and the server from which it is requesting information. Instead of loading a traditional Web page, the user's browser loads the Ajax engine, which displays the page the user sees. The engine continues to run in the background, using JavaScript to communicate with the Web browser. User input or clicking on the page sends a JavaScript call to the Ajax engine, which can respond instantly in many cases. If the engine needs additional data, it requests it from the server, usually using XML, while it is simultaneously updating the page.
+
+******************************************************************************************************************************************************
+SQL vs NoSQL: High-Level Differences
+
+    * SQL databases are primarily called as Relational Databases (RDBMS); whereas NoSQL database are primarily called as non-relational or distributed database.
+    SQL databases are table based databases whereas NoSQL databases are document based, key-value pairs, graph databases or wide-column stores. This means that SQL databases represent data in form of tables which consists of n number of rows of data whereas NoSQL databases are the collection of key-value pair, documents, graph databases or wide-column stores which do not have standard schema definitions which it needs to adhered to.
+
+    * SQL databases have predefined schema whereas NoSQL databases have dynamic schema for unstructured data.
+    SQL databases are vertically scalable whereas the NoSQL databases are horizontally scalable. SQL databases are scaled by increasing the horse-power of the hardware. NoSQL databases are scaled by increasing the databases servers in the pool of resources to reduce the load.
+
+    * SQL databases uses SQL ( structured query language ) for defining and manipulating the data, which is very powerful. In NoSQL database, queries are focused on collection of documents. Sometimes it is also called as UnQL (Unstructured Query Language). The syntax of using UnQL varies from database to database.
+
+    * SQL database examples: MySql, Oracle, Sqlite, Postgres and MS-SQL. NoSQL database examples: MongoDB, BigTable, Redis, RavenDb, Cassandra, Hbase, Neo4j and CouchDb
+
+    * For complex queries: SQL databases are good fit for the complex query intensive environment whereas NoSQL databases are not good fit for complex queries. On a high-level, NoSQL don’t have standard interfaces to perform complex queries, and the queries themselves in NoSQL are not as powerful as SQL query language.
+
+    * For the type of data to be stored: SQL databases are not best fit for hierarchical data storage. But, NoSQL database fits better for the hierarchical data storage as it follows the key-value pair way of storing data similar to JSON data. NoSQL database are highly preferred for large data set (i.e for big data). Hbase is an example for this purpose.
+    
+    * For scalability: In most typical situations, SQL databases are vertically scalable. You can manage increasing load by increasing the CPU, RAM, SSD, etc, on a single server. On the other hand, NoSQL databases are horizontally scalable. You can just add few more servers easily in your NoSQL database infrastructure to handle the large traffic.
+    
+    * For high transactional based application: SQL databases are best fit for heavy duty transactional type applications, as it is more stable and promises the atomicity as well as integrity of the data. While you can use NoSQL for transactions purpose, it is still not comparable and sable enough in high load and for complex transactional applications.
+
+    * For support: Excellent support are available for all SQL database from their vendors. There are also lot of independent consultations who can help you with SQL database for a very large scale deployments. For some NoSQL database you still have to rely on community support, and only limited outside experts are available for you to setup and deploy your large scale NoSQL deployments.
+
+    * For properties: SQL databases emphasizes on ACID properties ( Atomicity, Consistency, Isolation and Durability) whereas the NoSQL database follows the Brewers CAP theorem ( Consistency, Availability and Partition tolerance )
+    
+    * For DB types: On a high-level, we can classify SQL databases as either open-source or close-sourced from commercial vendors. NoSQL databases can be classified on the basis of way of storing data as graph databases, key-value store databases, document store databases, column store database and XML databases.
+
+
+
+
+******************************************************************************************************************************************************
+
+
+MyISAM vs Innodb - Quick comparison Table:
+
+MyISAM  Innodb
+
+Not *ACID compliant and non-transactional        |       *ACID compliant and       hence fully transactional with ROLLBACK and COMMIT and support for Foreign Keys
+
+MySQL 5.0 Default Engine                          |  Rackspace Cloud Default Engine
+
+Offers Compression                                 | Offers Compression
+
+Requires full repair/rebuild of indexes/tables     |     Auto recovery from crash   via replay of logs
+
+Changed Db pages written to disk instantly  Dirty pages converted from random to 
+
+sequential before commit and flush to disk
+
+No ordering in storage of data  Row data stored in pages in PK order
+
+Table level locking     Row level locking
+
+
+******************************************************************************************************************************************************
+
+Method overloading can be achieved by declaring two methods with the same name and different signatures. These different signatures can be either,
+
+    Arguments with different data types, eg: method(int a, int b) vs method(String a, String b)
+    Variable number of arguments, eg: method(a) vs method(a, b)
+
+We cannot achieve method overloading using the first way because there is no data type declaration in ruby(dynamic typed language). So the only way to define the above method is def(a,b)
+
+With the second option, it might look like we can achieve method overloading, but we can't. Let say I have two methods with different number of arguments,
+
+def method(a); end;
+def method(a, b = true); end; # second argument has a default value
+
+method(10)
+# Now the method call can match the first one as well as the second one, 
+# so here is the problem.
+
+So ruby needs to maintain one method in the method look up chain with a unique name.
+
+******************************************************************************************************************************************************
+
+bundle update and bundle install can all install the gems you specified in Gemfile but missing in gems.
+
+But bundle update does one thing more to upgrade:
+
+    If the gems specified in Gemfile don't have version, it will upgrade to whatever latest.
+
+    If the gems specified in Gemfile have version controlled with ~>, it will upgrade to the latest at the final digit, the patch version.
+
+    For example, if you have a gem in Gemfile
+
+    'foo_gem', '~> 2.1.0'
+
+    bundle update will check if newer version of 2.1.x is available in cloud. Say your current version is 2.1.2 and what's latest in cloud is 2.1.5, it will install 2.1.5. But if 2.2.6 is the newest, it won't do anything.
+
+Better practice in my opinion
+
+    Always add version to critical gems like rails.
+
+    Stick to bundle install(or bundle which is default to install) in most cases. Only do bundle update when it's really necessary and you are fully prepared for the result.
+
+******************************************************************************************************************************************************
+
+
+This operator matches strings against regular expressions.
+
+1.9.3-p194 :001 > m1 = /Ruby/.match("The future is Ruby")
+ => #<MatchData "Ruby"> 
+1.9.3-p194 :002 > m2 = "The future is Ruby" =~ /Ruby/  
+ => 14 
+1.9.3-p194 :003 > 
+
+
+.match O/P #=> 
+
+If there's no match, you get back nil. If there's a match, it returns an instance of the class MatchData.
+
+=~ O/P #=> 
+
+If the String matches the expression, the operator returns the offset, and if it doesn't, it returns nil.
+
+******************************************************************************************************************************************************
+
+Array without iterating compare ==> count with condition
+
+1.9.3-p194 :003 > ary = [1, 2, 4, 2]
+ => [1, 2, 4, 2] 
+1.9.3-p194 :004 > ary.count(2)  
+ => 2 
+1.9.3-p194 :005 > ary.count(4)  
+ => 1 
+
+******************************************************************************************************************************************************
+
+
+
+
+
+
+
+
 rack ?
 
 Observer in rails ? (are they still in rails 4) ?
