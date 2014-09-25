@@ -1,4 +1,44 @@
-* Compairesion of Postgreql and Mysql
+Why RUBY :-
+------------
+
+1. It’s easy to Learn
+2. Save time by writing more with less.
+3. Write web apps quickly and easily.
+4. The community will help you.
+5. It’s easy on the pocketbook.
+6. Ruby can be customized.
+7. It’s portable.
+8. You can make your own Domain-Specific language.
+9. Learning Ruby will get you more work.
+
+
+Ruby has many cool features which attract developers, such as 
+
+* the ability to create classes at runtime, (define method- metaprograming)
+* alter behavior of any particular object, 
+* monitor the number of classes in memory using ObjectSpace - ?, 
+* and an extensive list of test-suites. 
+
+
+
+- Ruby is considered a higher level programming language than C++. 
+- A high-level language features strong abstractions from computer details. 
+- Whereas low-level languages are closer to machine details (like memory addresses or CPU registers), high-level languages are closer to a naturally spoken language.
+
+************************************************************************************************************************************************
+
+Disadvantages of Ruby Programming:
+----------------------------------
+
+1. Less Communities and Support  --- compare to other language.
+2. Slow Processing --- compare to other language.
+            Ruby is often slower to run and requires more memory than Java, though this gap has closed somewhat with the release of Ruby 1.9.
+3. New Language
+
+************************************************************************************************************************************************
+
+* Compairesion of Postgreql and Mysql :-
+
 -----------------------------------------------------------------------------------------------
 			Postgreql			Mysql	
 -----------------------------------------------------------------------------------------------
@@ -52,7 +92,7 @@ Let me suggest some reasons for using PostgreSQL over MySQL:
     Use of geographical data
     R-Trees (i.e., used on indexes)
 
-************************************************************************
+************************************************************************************************************************************************
 
  Difference between HTTP and HTTPS: HTTPS = HTTP + SSL
 
@@ -70,13 +110,10 @@ In other words, we can say, HTTPS works similar to HTTP but SSL adds some spice 
 
 
 
-************************************************************************
+************************************************************************************************************************************************
 
 Simple Object Access Protocol (SOAP) and REpresentational State Transfer (REST) :-
     SOAP and REST are protocols: a set of rules for requesting information from a server using a specific technique.
-
-
-
 
 SOAP: -
     * Originally developed by Microsoft, SOAP really isn’t as simple as the acronym would suggest.
@@ -85,8 +122,6 @@ SOAP: -
     * The XML used to make requests and receive responses in SOAP can become extremely complex. In some programming languages, you need to build those         requests manually, which becomes problematic because SOAP is intolerant of errors.
     * Part of the magic is the Web Services Description Language (WSDL). This is another file that’s associated with SOAP. It provides a definition of          how the Web service works, so that when you create a reference to it, the IDE can completely automate the process.
     * One of the most important SOAP features is built-in error handling. If there’s a problem with your request, the response contains error information           that you can use to fix the problem.
-
-
 
 
 REST:-
@@ -115,7 +150,9 @@ REST is easier to use for the most part and is more flexible. It has the followi
     Closer to other Web technologies in design philosophy.
 
 ******************************************************************************************************************************************************
+
 Web Server and Application server:-
+------------------------------------
 
 Most of the times these terms Web Server and Application server are used interchangeably.
 
@@ -141,7 +178,6 @@ Example of such configuration is Apache Tomcat HTTP Server and Oracle (formerly 
 In some cases the servers are tightly integrated such as IIS and .NET Runtime. IIS is web server. When equipped with .NET runtime environment, IIS is capable of providing application services.
 
 ******************************************************************************************************************************************************
-
 
 Differences between Procs and Lambdas: 
     * It is important to mention that they are both Proc objects.
@@ -192,6 +228,7 @@ Differences between Procs and Lambdas:
 ******************************************************************************************************************************************************
 
 The Asset Pipeline :-
+---------------------
 
     *** The first feature of the pipeline is to concatenate assets, which can reduce the number of requests that a browser makes to render a web page.          Web browsers are limited in the number of requests that they can make in parallel, so fewer requests can mean faster loading for your application.
         Sprockets concatenates all JavaScript files into one master .js file and all CSS files into one master .css file. 
@@ -203,6 +240,7 @@ The Asset Pipeline :-
 
 ******************************************************************************************************************************************************
 Ruby Keyword super :- 
+----------------------
 
 A common use of inheritance is to have overridden methods in a subclass do something in addition to what the superclass method did, rather than something entirely different (like in previous examples). This allows us to re-use behaviour that exists in a superclass, then modify to suit the needs of the subclass.
 
@@ -241,7 +279,6 @@ Can eat small fishes..!can eat big fishes..!
 
 ******************************************************************************************************************************************************
 
-
 jQuery differences between the bind and live functions:
 
 In short: .bind() will only apply to the items you currently have selected in your jQuery object. .live() will apply to all current matching elements, as well as any you might add in the future.
@@ -264,12 +301,75 @@ Because of this bubbling behaviour though, not all events can be handled this wa
 
 ******************************************************************************************************************************************************
 
-Q- difference between collection routes and member routes in Rails
+Thread -  
+--------
+  
+  In computer science, a thread of execution is the smallest sequence of programmed instructions that can be managed independently by an operating system scheduler. A thread is a light-weight process.
+
+* Threads that belong to the same process share that process’s resources. This is why it is more economical to have threads in some cases. 
+
+* Every feature comes with a price. Threads are good, but if you are writing multithreaded application code then you should be aware of handling race conditions. What is a race condition?
+
+
+
+    Race conditions arise in software when separate computer processes or threads of execution depend on some shared state. Operations upon shared states are critical sections that must be mutually exclusive. Failure to obey this rule opens up the possibility of corrupting the shared state.
+
+
+Mutual Exclusion - To fix race conditions, we have to control the program so that when one thread is doing work another should wait unitl the working thread finishes. This is called Mutual Exclusion and we use this concept to remove race conditions in our programs.
+
+This is because of mutex.synchronize. One and only one thread can access the block wrapped in mutex.synchronize at any time. Other threads have to wait until the current thread that is processing completes. 
+
+
+******************************************************************************************************************************************************
+
+Q- difference between collection routes and member routes in Rails:-
 
 A member route will require an ID, because it acts on a member. A collection route doesn't because it acts on a collection of objects. Preview is an example of a member route, because it acts on (and displays) a single object. Search is an example of a collection route, because it acts on (and displays) a collection of objects.
 
 ******************************************************************************************************************************************************
 
+What is the difference between includes and joins?
+
+The most important concept to understand when using includes and joins is they both have their optimal use cases.
+
+    " Includes uses eager loading whereas joins uses lazy loading "
+
+Includes -
+
+With includes, Active Record ensures that all of the specified associations are loaded using the minimum possible number of queries.
+
+In other words, when querying a table for data with an associated table, both tables are loaded into memory which in turn reduce the amount of database queries required to retrieve any associated data.
+
+e.g. 
+
+Company.includes(:persons).where(:persons => { active: true } ).all
+ 
+@companies.each do |company|
+     company.person.name
+end
+
+When iterating through each of the companies and displaying the persons name, we would normally have to retrieve the persons name with a separate database query each time. However, when using the includes method, it has already eagerly loaded the associated person table, so this block only required a single query. Awesome, right?!
+
+So what happens if I want to retrieve all companies with an active associated Person record, but I don’t want to display any data from the Person table? It’s starting to seem a tad overkill loading the associated table…well that’s where the joins method starts to shine!
+
+
+e.g.
+
+Company.joins(:persons).where(:persons => { active: true } ).all
+ 
+ 
+@companies.each do |company|
+     company.name
+end
+
+
+
+Visually the only difference is replacing the includes method call with joins, however under the hood there is a lot more going on. The joins method lazy loads the database query by utilising the associated table, but only loading the Company table into memory as the associated Person table is not required.Therefore we are not loading redundant data into memory needlessly; although if we wanted to use the Person table data later on from the same array variable, it would require further database queries.
+
+Recently I fell victim to not using the awesome power behind the includes method in my Trado codebase. I noticed a severe performance leak when monitoring the database queries in my local instance server logs, which is a habit I would advise starting.
+
+
+******************************************************************************************************************************************************
 Q - Preload, Eagerload, Includes and Joins. 
 
 Preload loads the association data in a separate query. 
@@ -1079,7 +1179,12 @@ Applications created with Ajax use an engine that acts as an intermediary betwee
 SQL vs NoSQL: High-Level Differences
 
     * SQL databases are primarily called as Relational Databases (RDBMS); whereas NoSQL database are primarily called as non-relational or distributed database.
-    SQL databases are table based databases whereas NoSQL databases are document based, key-value pairs, graph databases or wide-column stores. This means that SQL databases represent data in form of tables which consists of n number of rows of data whereas NoSQL databases are the collection of key-value pair, documents, graph databases or wide-column stores which do not have standard schema definitions which it needs to adhered to.
+    
+    SQL databases are table based databases whereas NoSQL databases are document based, key-value pairs, graph databases or wide-column stores. 
+
+    This means that SQL databases represent data in form of tables which consists of n number of rows of data whereas 
+
+    NoSQL databases are the collection of key-value pair, documents, graph databases or wide-column stores which do not have standard schema definitions which it needs to adhered to.
 
     * SQL databases have predefined schema whereas NoSQL databases have dynamic schema for unstructured data.
     SQL databases are vertically scalable whereas the NoSQL databases are horizontally scalable. SQL databases are scaled by increasing the horse-power of the hardware. NoSQL databases are scaled by increasing the databases servers in the pool of resources to reduce the load.
@@ -1151,7 +1256,9 @@ So ruby needs to maintain one method in the method look up chain with a unique n
 
 ******************************************************************************************************************************************************
 
-bundle update and bundle install can all install the gems you specified in Gemfile but missing in gems.
+bundle update and 
+
+bundle install can all install the gems you specified in Gemfile but missing in gems.
 
 But bundle update does one thing more to upgrade:
 
@@ -1204,12 +1311,102 @@ Array without iterating compare ==> count with condition
 
 ******************************************************************************************************************************************************
 
+Dynamic language:-
+
+dynamic language, you can create methods on the fly, add instance variables, define constants and invoke existing methods dynamically 
+
+
+******************************************************************************************************************************************************
+
+Metaprogramming : -Any code that significantly raises the level of abstraction and/or any code that creates code. 
+
+Metaprogramming is what makes Ruby awesome. It’s writing code to write code. It’s dynamic code generation. 
+
+
+
+Java - Unfortunately Java does not readily support class creation at runtime (mitaprograming not support).
+
+
+
+
+e.g. 
+
+send
+dynamic_finders
+define_method
+define_singleton_method
+alias_method
+instance_eval
+class_eval
+module_eval
+const_get
+const_defined?
+const_set
+
+
+******************************************************************************************************************************************************
+
+** Metaprogramming Ruby, an in-depth guide to dynamic code and code generation in Ruby. 
+
+ class_eval and instance_eval -  These methods allow you to evaluate arbitrary code in the context of a particular class or object. 
+
+ They're slightly similar to  'call', 'apply' and 'bind' in JavaScript, in that you are altering the value of self (this in JavaScript) when you use them. 
+
+
+
+class Person
+end
+
+Person.class_eval do
+  def say_hello
+   "Hello!"
+  end
+end
+
+jimmy = Person.new
+jimmy.say_hello # "Hello!"
+
+
+In this example, class_eval allows us to define a method within the Person class outside of its original definition and without reopening the class with the standard syntax. This could be useful when the class you want to add this method to is not known until runtime.
+
+
+
+class Person
+end
+
+Person.instance_eval do
+  def human?
+    true
+  end
+end
+
+Person.human? # true
+
+This example of instance_eval is similar, but evaluates the code in the context of an instance instead of a class. This is confusing at first, because in these examples class_eval creates instance methods and instance_eval creates class methods. There is reason behind the madness, however.
+
+** class_eval is a method of the Module class, meaning that the receiver will be a module or a class. The block you pass to class_eval is evaluated in the context of that class.
+
+** instance_eval, on the other hand, is a method of the Object class, meaning that the receiver will be an object. The block you pass to instance_eval is evaluated in the context of that object.
 
 
 
 
 
 
+
+
+******************************************************************************************************************************************************
+
+Ruby/rails performance tools :-
+
+*** The "bullet gem" is a great starting point to find N+1 queries, unecessary eager  loading and opportunity to use counter cache.
+
+*** But what if it’s not something that bullet can pickup? Well I personally like "rack-mini-profiler". MiniProfiler will profile your code and report it in a very nice way right on your page.
+
+*** You can also go further down the hole and use the "ruby-prof gem". If it’s the case where your bottleneck is not the database or if you’re not on a rack application where you can use the MiniProfiler.
+
+
+******************************************************************************************************************************************************
 
 rack ?
 
