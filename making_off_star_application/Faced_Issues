@@ -644,4 +644,21 @@ irb(main):006:0> exit
 
 --------------------------------------------------------------------------------------------------------------------------
 
+* Mongodb:-
 
+
+Q -  Moped::Errors::ConnectionFailure 
+
+ Could not connect to a primary node for replica set <Moped::Cluster nodes=[<Moped::Node resolved_address="127.0.0.1:27017">]>
+
+
+Check service started or not if not make it start:
+
+ sudo service mongod status
+
+  sudo service mongod start
+
+--------------------------------------------------------------------------------------------------------------------------
+
+
+  

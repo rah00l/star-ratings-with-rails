@@ -10,6 +10,7 @@ class ArticlesController < ApplicationController
       order_by(:published_at, :desc)
     end
     @articles = @search.results
+    #Article.all(:joins => :comments, :select => "articles.*, count(comments.id) as comments_count", :group => "articles.id")
     respond_to do |format|
         format.html
         format.js

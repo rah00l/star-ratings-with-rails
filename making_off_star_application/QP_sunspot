@@ -1,3 +1,16 @@
+********************************************************************************
+
+After adding a new key inside model need to restart solr server in order to have indexing ...
+
+rake sunspot:solr:stop
+
+rake sunspot:solr:start
+
+rake sunspot:solr:reindex
+
+********************************************************************************
+
+
 # Add gem in Gemfile 
 gem 'sunspot_rails'
 

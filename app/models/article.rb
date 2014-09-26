@@ -12,9 +12,12 @@ class Article < ActiveRecord::Base
   validates :content, presence: true
 
   # This block belongs to sunshot serach engine where indexing got applied.
-  searchable do
+  searchable  do
     text :name#, :content
     text :content, :published_month
+    text :comments do
+      comments.map { |comment| comment.content }
+    end
     time :published_at
     string :published_month
 

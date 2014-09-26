@@ -853,6 +853,13 @@ A cookie can keep information in the user's browser until deleted. If a person h
 
 You can of course get the best of both worlds! Once you know what each does, you can use a combination of cookies and sessions to make your site work exactly the way you want it to. 
 
+
+ * prior to Rails 4 session data was stored as a Base64 encoded Ruby object. Starting from version 4.0.0 Rails encrypts and signs this object before saving.
+
+ 
+
+
+
 ******************************************************************************************************************************************************
 
 Method overriding:-
@@ -1407,6 +1414,11 @@ Ruby/rails performance tools :-
 
 
 ******************************************************************************************************************************************************
+
+
+Active Resource :-
+
+    
 
 rack ?
 

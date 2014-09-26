@@ -1,4 +1,7 @@
 
+"Doing something just for the sake of being educated is boring. Better let’s take a real world problem and learn something while solving it..!"
+
+
 How To Create Your Own Gem - 
 http://guides.rubygems.org/make-your-own-gem/
 
@@ -42,6 +45,8 @@ http://www.sitepoint.com/
 http://david.heinemeierhansson.com/
 http://iroller.ru/
 http://railsapps.github.io/rails-environment-variables.html
+http://big-elephants.com/2014-01/handling-rails-4-sessions-with-go/
+
 
 
 For rspec best practices:
