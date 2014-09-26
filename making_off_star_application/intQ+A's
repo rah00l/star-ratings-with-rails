@@ -1073,6 +1073,8 @@ git pull = git fetch + git merge against tracking upstream branch.
 
 git pull --rebase = git fetch + git rebase against tracking upstream branch.
 
+  skip_before_filter :authenticate, :only => [:login]
+  skip_before_filter :authenticate, :only => [:index]
 
 Git Pull:
 ------------
