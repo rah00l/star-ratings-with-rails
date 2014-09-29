@@ -1362,6 +1362,12 @@ const_set
  They're slightly similar to  'call', 'apply' and 'bind' in JavaScript, in that you are altering the value of self (this in JavaScript) when you use them. 
 
 
+    * "Most notably classes and methods - can be changed at runtime .."
+
+    * methods to a class can be added removed or redefined ...
+
+
+
 
 class Person
 end
