@@ -1073,8 +1073,6 @@ git pull = git fetch + git merge against tracking upstream branch.
 
 git pull --rebase = git fetch + git rebase against tracking upstream branch.
 
-  skip_before_filter :authenticate, :only => [:login]
-  skip_before_filter :authenticate, :only => [:index]
 
 Git Pull:
 ------------
@@ -1405,8 +1403,15 @@ This example of instance_eval is similar, but evaluates the code in the context 
 
 
 
+******************************************************************************************************************************************************
+
+send method :
 
 
+Ruby gives you convinient way for you to call any method on an object using send method.
+
+Send takes, as it's first argument the name of the method that you want to call.
+This name can either a symbol or string.
 
 
 

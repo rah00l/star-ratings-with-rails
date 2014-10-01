@@ -31,6 +31,7 @@ http://rubymonk.com
 http://rubylearning.com/
 http://www.sitepoint.com/threads-ruby/
 http://www.sitepoint.com/config-threadsafe/
+https://www.amberbit.com/blog/2014/4/10/ruby-the-good-parts/
 
 
 Blogger site:
@@ -46,6 +47,10 @@ http://david.heinemeierhansson.com/
 http://iroller.ru/
 http://railsapps.github.io/rails-environment-variables.html
 http://big-elephants.com/2014-01/handling-rails-4-sessions-with-go/
+http://www.trottercashion.com/2011/02/08/rubys-define_method-method_missing-and-instance_eval.html
+https://www.amberbit.com/blog
+* http://jes.al/blog/
+
 
 
 
@@ -64,6 +69,18 @@ http://www.railstips.org/
 
 Rails App Performace Related :
 http://www.airpair.com/ruby-on-rails/performance
+http://www.cheynewallace.com/ruby-on-rails-performance-tuning/
+
+
+Building and-documenting-api-in-rails:
+https://www.amberbit.com/blog/2014/2/19/building-and-documenting-api-in-rails/
+http://jes.al/2013/10/architecting-restful-rails-4-api/
+
+
+Good App For Navigation Purpose While Travelling:
+
+http://www.byway.io/
+A Google Maps experiment built using AngularJS to show POIs between two locations. Helps find ATM, bank, convenience store or a cafe while travelling from point A to B
 
 
 
