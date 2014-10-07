@@ -659,6 +659,15 @@ Check service started or not if not make it start:
   sudo service mongod start
 
 --------------------------------------------------------------------------------------------------------------------------
+FACEBOOK
+---------
+
+Q -
+  App Not Setup: The developers of this app have not set up this app properly for Facebook Login.
 
 
-  
+A -
+  Go to Apps and select your APP and click on the Status & review then select "YES" access public then click confirm button to finished
+
+
+--------------------------------------------------------------------------------------------------------------------------
