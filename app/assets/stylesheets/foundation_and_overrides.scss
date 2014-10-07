@@ -70,6 +70,9 @@ $default-float: left;
 // $body-font-style: normal;
 
 // Font-smoothing
+$font_family: 'Oswald', sans-serif;
+$box_shadow: 0 0 1px #000;
+$fnt_weight: 700;
 
 // $font-smoothing: antialiased;
 
@@ -94,6 +97,115 @@ $default-float: left;
 // $shiny-edge-size: 0 1px 0;
 // $shiny-edge-color: rgba(#fff, .5);
 // $shiny-edge-active-color: rgba(#000, .2);
+
+
+// my custom css
+
+.image_outer{
+  background: url("/assets/bg_pattern.png") repeat-x ;
+  width: 100%;
+  height: 415px;
+  .image_cotainer{
+    width: 100%;
+    height: 415px;
+    background: url("/assets/bg_pic.jpg") no-repeat top center;
+    .cloud_image{
+      width: 980px;
+      margin: 0 auto;
+      height: 415px;
+      background: url("/assets/slider_background.png")no-repeat 0 -60px;
+      
+      .image_right{
+        width: 465px;
+        float: left;
+        height: 280px;
+        background: url("/assets/pointer-image.png") no-repeat 0 65px;
+
+      }
+
+      .image_content_left{
+        width: 475px;
+        float: right;
+        h1{
+          font-family: $font_family;
+          font-size: 28px;
+          margin-top: 62px;
+          color: #444;
+          font-weight: 400;
+          border-bottom: 5px solid #309EEB;
+          width: 420px;
+          padding-bottom: 8px;
+        }
+        .useit_container{
+          width: 400px;
+          .useit{
+            float: left;
+            font-family: $font_family;
+            font-size: 24px;
+            font-weight: 300;
+            padding: 53px 0 0 0;
+          }
+          .mark{
+            font-family: $font_family;
+            font-size: 95px;
+            padding: 0 51px 0 27px;
+            float: left;
+            height: 130px;
+            line-height: 130px;
+          }
+          .image_posts{
+            float: left;
+            ul{
+              margin: 0;
+              padding: 0;
+              li{
+                list-style-type: none;
+                a{
+                  font-family: $font_family;
+                  font-size: 20px;
+                  color: #444;
+                  line-height: 32px;
+                  cursor: default;
+                  &:hover{
+                    text-decoration: none;
+                  }
+                }
+              }
+            }
+          }
+        }/* useit_container */
+      }/*image_content_left*/
+
+      .image_btn{
+        clear: both;
+        text-align: center;
+          a{
+            display: inline-block;
+            width: 111px;
+            text-align: center;
+            height: 40px;
+            line-height: 40px;
+            color: white;
+            font-size: 23px;
+            text-shadow: 0 0 1px black;
+            margin: 13px 0 0 0;
+            border-radius: 3px;
+            border-bottom: 2px solid #163844;
+            font-weight: $fnt_weight;
+            font-family: $font_family;
+            background: #216C88 url("/assets/bg_pattern.png");
+            //.ease;
+            &:hover{
+              background: #277A99;
+              box-shadow: $box_shadow;
+              text-decoration: none;
+              }
+          }
+        }
+        
+    }
+  }/* image_cotainer */
+}/* image_outer */
 
 // Control whether or not CSS classes come through in the CSS files.
 

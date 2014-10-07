@@ -62,47 +62,53 @@
       </ul>
   </section>
 </nav>
+  
+  <%= render 'shared/messages' %>
+  <%= backgroung_image_for_home %>
+
+  
 
 
 
 <%# if @title == "Home" %>
-<% if @photo.present? && @photo.attachments.present? %>
-  <header class="show-for-medium-up" >
+<%# if @photo.present? && @photo.attachments.present? %>
+  <!-- <header class="show-for-medium-up" > -->
   <%# flash.each do |name, msg| %>
     <%#= content_tag :div, msg, id: "flash_#{name}" %>
     <%# end %>
     <!-- <br> -->
-    <div class="row">
-      <div class="small-11 small-centered columns">
-        <br>
+    <!-- <div class="row"> -->
+      <!-- <div class="small-11 small-centered columns"> -->
+        <!-- <br> -->
         <!-- <h1>Rahul Patil</h1> -->
         <!-- <h4>The personal webpage - have a look around!</h4> -->
-        <br> 
+        <!-- <br>  -->
         <%#= link_to "See Rahul Patil's Articles", articles_path, :class=>"round button" %>
           <!-- <br>
           <div id="watch">
             <section id="twitter">
               <a href="http://twitter.com/">@rah2387l</a>
             </section> -->
-            <div class="slideshow-wrapper">
-              <div class="preloader"></div>
-              <ul data-orbit>
+            <!-- <div class="slideshow-wrapper"> -->
+              <!-- <div class="preloader"></div> -->
+              <!-- <ul data-orbit> -->
               
-              <% @photo.attachments.each do |image| %>
-                <li>
-                  <%= image_tag image.file_url(:slideshow).to_s %>
+              <%# @photo.attachments.each do |image| %>
+                <!-- <li> -->
+                  <%#= image_tag image.file_url(:slideshow).to_s %>
                   <!-- <div class="orbit-caption"><%#= photo.title %><%#= ": " + photo.description  unless photo.description == "" %></div> -->
-                </li>
-                <% end %>
-              </ul>
+                <!-- </li> -->
+                <%# end %>
+              <!-- </ul> -->
               
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </header>
-<% end %>
+            <!-- </div> -->
+          <!-- </div> -->
+        <!-- </div> -->
+      <!-- </div> -->
+    <!-- </div> -->
+  <!-- </header> -->
+<%# end %>
+
   <!-- <header class="show-for-small" id="small-homepage">
     <div class="row">
       <div class="small-9 small-centered columns">

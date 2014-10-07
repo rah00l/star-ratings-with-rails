@@ -1,5 +1,9 @@
 module ApplicationHelper
 
+	def backgroung_image_for_home
+		render partial: 'shared/home_bg_image' if controller_name == 'main' && action_name == 'index'
+	end
+
 	def get_provider_image_info(provider)
 		puts "provider's choice is: #{provider}"
 		provider_choice = provider
