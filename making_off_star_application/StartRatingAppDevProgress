@@ -52,6 +52,12 @@ Using gem 'hermitage' implemented cool image gallery into application.
 *******************************************************************************************************
 Proposed Things:
 
+*) " google calender "  need to integrate in Event Model for full functionality.
+
+*) Proper Footer also required.
+
+*) Need to add more test cases rspec by refering --> "pinteresting" 
+
 *) Need to have admin section where active_admin have proper forms like active_admin  		can add articles/photos/images/audio/videos and lot more .....
 
 *) Form fill area need to have *'s @ manditory field section. 
