@@ -26,12 +26,19 @@ http://andywenk.github.io/programming/2014/06/27/ruby-create-a-hash-from-arrays/
 
 
 
+Ruby Method Look Up:
+----------------------
+
+https://practicingruby.com/articles/method-lookup-2
+http://madebydna.com/all/code/2011/06/24/eigenclasses-demystified.html
+
 Ruby Reference Guide:
 http://rubymonk.com
 http://rubylearning.com/
 http://www.sitepoint.com/threads-ruby/
 http://www.sitepoint.com/config-threadsafe/
 https://www.amberbit.com/blog/2014/4/10/ruby-the-good-parts/
+
 
 
 Blogger site:
@@ -50,7 +57,13 @@ http://big-elephants.com/2014-01/handling-rails-4-sessions-with-go/
 http://www.trottercashion.com/2011/02/08/rubys-define_method-method_missing-and-instance_eval.html
 https://www.amberbit.com/blog
 * http://jes.al/blog/
+http://blog.teamtreehouse.com
 
+** Writing custom Asset Pipeline processors to compress images **** (Asset Pipeline) :-
+----------------------------------------------------------------------------------------
+
+http://www.davidverhasselt.com/2013/10/27/how-to-write-a-custom-asset-pipeline-processor-to-compress-image-files/
+http://www.aloop.org/2012/06/03/tips-for-rails-asset-pipeline/
 
 
 

@@ -1,3 +1,4 @@
+
 Why RUBY :-
 ------------
 
@@ -20,7 +21,6 @@ Ruby has many cool features which attract developers, such as
 * and an extensive list of test-suites. 
 
 
-
 - Ruby is considered a higher level programming language than C++. 
 - A high-level language features strong abstractions from computer details. 
 - Whereas low-level languages are closer to machine details (like memory addresses or CPU registers), high-level languages are closer to a naturally spoken language.
@@ -34,6 +34,25 @@ Disadvantages of Ruby Programming:
 2. Slow Processing --- compare to other language.
             Ruby is often slower to run and requires more memory than Java, though this gap has closed somewhat with the release of Ruby 1.9.
 3. New Language
+
+************************************************************************************************************************************************
+
+Ruby Object Oriented Programming Language:
+-------------------------------------------
+
+A class definition starts with the keyword class followed by the class name and is delimited with an end. For example, we defined the Box class using the keyword class as follows:
+
+class Box
+   code
+end
+
+We declare objects of a class using new keyword. 
+
+box1 = Box.new
+box2 = Box.new
+
+
+The initialize method is a standard Ruby class method and works almost same way as constructor works in other object oriented programming languages. The initialize method is useful when you want to initialize some class variables at the time of object creation.
 
 ************************************************************************************************************************************************
 
@@ -92,7 +111,42 @@ Let me suggest some reasons for using PostgreSQL over MySQL:
     Use of geographical data
     R-Trees (i.e., used on indexes)
 
+******************************************************************************************************************************************************
+
+SQL vs NoSQL: High-Level Differences
+
+    * SQL databases are primarily called as Relational Databases (RDBMS); whereas NoSQL database are primarily called as non-relational or distributed database.
+    
+    * SQL databases are table based databases whereas NoSQL databases are document based, key-value pairs, graph databases or wide-column stores. 
+
+    * This means that SQL databases represent data in form of tables which consists of n number of rows of data whereas NoSQL databases are the collection of key-value pair, documents, graph databases or wide-column stores which do not have standard schema definitions which it needs to adhered to.
+
+    * SQL databases have predefined schema whereas NoSQL databases have dynamic schema for unstructured data.
+
+    * SQL databases are vertically scalable whereas the NoSQL databases are horizontally scalable. SQL databases are scaled by increasing the horse-power of the hardware. NoSQL databases are scaled by increasing the databases servers in the pool of resources to reduce the load.
+
+    * SQL databases uses SQL ( structured query language ) for defining and manipulating the data, which is very powerful. In NoSQL database, queries are focused on collection of documents. Sometimes it is also called as UnQL (Unstructured Query Language). The syntax of using UnQL varies from database to database.
+
+    * SQL database examples:- MySql, Oracle, Sqlite, Postgres and MS-SQL. 
+      NoSQL database examples: MongoDB, BigTable, Redis, RavenDb, Cassandra, Hbase, Neo4j and CouchDb.
+
+    * For complex queries:- SQL databases are good fit for the complex query intensive environment whereas NoSQL databases are not good fit for complex queries. On a high-level, NoSQL don’t have standard interfaces to perform complex queries, and the queries themselves in NoSQL are not as powerful as SQL query language.
+
+    * For the type of data to be stored: SQL databases are not best fit for hierarchical data storage. But, NoSQL database fits better for the hierarchical data storage as it follows the key-value pair way of storing data similar to JSON data. NoSQL database are highly preferred for large data set (i.e for big data). Hbase is an example for this purpose.
+    
+    * For scalability: In most typical situations, SQL databases are vertically scalable. You can manage increasing load by increasing the CPU, RAM, SSD, etc, on a single server. On the other hand, NoSQL databases are horizontally scalable. You can just add few more servers easily in your NoSQL database infrastructure to handle the large traffic.
+    
+    * For high transactional based application: SQL databases are best fit for heavy duty transactional type applications, as it is more stable and promises the atomicity as well as integrity of the data. While you can use NoSQL for transactions purpose, it is still not comparable and sable enough in high load and for complex transactional applications.
+
+    * For support: Excellent support are available for all SQL database from their vendors. There are also lot of independent consultations who can help you with SQL database for a very large scale deployments. For some NoSQL database you still have to rely on community support, and only limited outside experts are available for you to setup and deploy your large scale NoSQL deployments.
+
+    * For properties: SQL databases emphasizes on ACID properties ( Atomicity, Consistency, Isolation and Durability) whereas the NoSQL database follows the Brewers CAP theorem ( Consistency, Availability and Partition tolerance )
+    
+    * For DB types: On a high-level, we can classify SQL databases as either open-source or close-sourced from commercial vendors. NoSQL databases can be classified on the basis of way of storing data as graph databases, key-value store databases, document store databases, column store database and XML databases.
+
+
 ************************************************************************************************************************************************
+
 
  Difference between HTTP and HTTPS: HTTPS = HTTP + SSL
 
@@ -107,8 +161,6 @@ How HTTPS works?
 For HTTPS connection, public key and signed certificates are required for the server. 
  When using an https connection, the server responds to the initial connection by offering a list of encryption methods it supports. In response, the client selects a connection method, and the client and server exchange certificates to authenticate their identities. After this is done, both parties exchange the encrypted information after ensuring that both are using the same key, and the connection is closed. In order to host https connections, a server must have a public key certificate, which embeds key information with a verification of the key owner's identity. Most certificates are verified by a third party so that clients are assured that the key is secure.
 In other words, we can say, HTTPS works similar to HTTP but SSL adds some spice in it.
-
-
 
 ************************************************************************************************************************************************
 
@@ -224,6 +276,12 @@ Differences between Procs and Lambdas:
 
         proc_test                 # calling proc_test prints nothing
 
+******************************************************************************************************************************************************
+
+Q- difference between collection routes and member routes in Rails:-
+
+A member route will require an ID, because it acts on a member. A collection route doesn't because it acts on a collection of objects. Preview is an example of a member route, because it acts on (and displays) a single object. Search is an example of a collection route, because it acts on (and displays) a collection of objects.
+
 
 ******************************************************************************************************************************************************
 
@@ -236,6 +294,48 @@ The Asset Pipeline :-
     *** The second feature of the asset pipeline is asset minification or compression. For CSS files, this is done by removing whitespace and comments.             For JavaScript, more complex processes can be applied. You can choose from a set of built in options or specify your own.
 
     *** The third feature of the asset pipeline is it allows coding assets via a higher-level language, with precompilation down to the actual assets.          Supported languages include Sass for CSS, CoffeeScript for JavaScript, and ERB for both by default.
+
+******************************************************************************************************************************************************
+
+What is the difference between includes and joins?
+
+The most important concept to understand when using includes and joins is they both have their optimal use cases.
+
+    " Includes uses eager loading whereas joins uses lazy loading "
+
+Includes -
+
+With includes, Active Record ensures that all of the specified associations are loaded using the minimum possible number of queries.
+
+In other words, when querying a table for data with an associated table, both tables are loaded into memory which in turn reduce the amount of database queries required to retrieve any associated data.
+
+e.g. 
+
+Company.includes(:persons).where(:persons => { active: true } ).all
+ 
+@companies.each do |company|
+     company.person.name
+end
+
+When iterating through each of the companies and displaying the persons name, we would normally have to retrieve the persons name with a separate database query each time. However, when using the includes method, it has already eagerly loaded the associated person table, so this block only required a single query. Awesome, right?!
+
+So what happens if I want to retrieve all companies with an active associated Person record, but I don’t want to display any data from the Person table? It’s starting to seem a tad overkill loading the associated table…well that’s where the joins method starts to shine!
+
+
+e.g.
+
+Company.joins(:persons).where(:persons => { active: true } ).all
+ 
+ 
+@companies.each do |company|
+     company.name
+end
+
+Visually the only difference is replacing the includes method call with joins, however under the hood there is a lot more going on. The joins method lazy loads the database query by utilising the associated table, but only loading the Company table into memory as the associated Person table is not required.Therefore we are not loading redundant data into memory needlessly; although if we wanted to use the Person table data later on from the same array variable, it would require further database queries.
+
+Recently I fell victim to not using the awesome power behind the includes method in my Trado codebase. I noticed a severe performance leak when monitoring the database queries in my local instance server logs, which is a habit I would advise starting.
+
+
 
 
 ******************************************************************************************************************************************************
@@ -279,27 +379,6 @@ Can eat small fishes..!can eat big fishes..!
 
 ******************************************************************************************************************************************************
 
-jQuery differences between the bind and live functions:
-
-In short: .bind() will only apply to the items you currently have selected in your jQuery object. .live() will apply to all current matching elements, as well as any you might add in the future.
-
-The underlying difference between them is that live() makes use of event bubbling. That is, when you click on a button, that button might exist in a <p>, in a <div>, in a <body> element; so in effect, you're actually clicking on all of those elements at the same time.
-
-live() works by attaching your event handler to the document, not to the element. When you click on that button, as illustrated before, the document receives the same click event. It then looks back up the line of elements targeted by the event and checks to see if any of them match your query.
-
-The outcome of this is twofold: firstly, it means that you don't have to continue reapplying events to new elements, since they'll be implicitly added when the event happens. However, more importantly (depending on your situation), it means that your code is much much lighter! If you have 50 <img> tags on the page and you run this code:
-
-$('img').click(function() { /* doSomething */ });
-
-...then that function is copied into each of those elements. However, if you had this code:
-
-$('img').live('click', function() { /* doSomething */ });
-
-...then that function is stored only in one place (on the document), and is applied to whatever matches your query at event time.
-
-Because of this bubbling behaviour though, not all events can be handled this way. As Ichiban noted, these supported events are click, dblclick mousedown, mouseup, mousemove, mouseover, mouseout, keydown, keypress, keyup.
-
-******************************************************************************************************************************************************
 
 Thread -  
 --------
@@ -319,156 +398,63 @@ Mutual Exclusion - To fix race conditions, we have to control the program so tha
 
 This is because of mutex.synchronize. One and only one thread can access the block wrapped in mutex.synchronize at any time. Other threads have to wait until the current thread that is processing completes. 
 
-
 ******************************************************************************************************************************************************
 
-Q- difference between collection routes and member routes in Rails:-
+Include vs Extend in Ruby:
+----------------------------
 
-A member route will require an ID, because it acts on a member. A collection route doesn't because it acts on a collection of objects. Preview is an example of a member route, because it acts on (and displays) a single object. Search is an example of a collection route, because it acts on (and displays) a collection of objects.
+The difference between include and extend in regards to modules. Include is for adding methods to an instance of a class and extend is for adding class methods. Let’s take a look at a small example.
 
-******************************************************************************************************************************************************
 
-What is the difference between includes and joins?
-
-The most important concept to understand when using includes and joins is they both have their optimal use cases.
-
-    " Includes uses eager loading whereas joins uses lazy loading "
-
-Includes -
-
-With includes, Active Record ensures that all of the specified associations are loaded using the minimum possible number of queries.
-
-In other words, when querying a table for data with an associated table, both tables are loaded into memory which in turn reduce the amount of database queries required to retrieve any associated data.
-
-e.g. 
-
-Company.includes(:persons).where(:persons => { active: true } ).all
- 
-@companies.each do |company|
-     company.person.name
+module Foo
+  def foo
+    puts 'heyyyyoooo!'
+  end
 end
 
-When iterating through each of the companies and displaying the persons name, we would normally have to retrieve the persons name with a separate database query each time. However, when using the includes method, it has already eagerly loaded the associated person table, so this block only required a single query. Awesome, right?!
+class Bar
+  include Foo
+end
 
-So what happens if I want to retrieve all companies with an active associated Person record, but I don’t want to display any data from the Person table? It’s starting to seem a tad overkill loading the associated table…well that’s where the joins method starts to shine!
+Bar.new.foo # heyyyyoooo!
+Bar.foo # NoMethodError: undefined method ‘foo’ for Bar:Class
 
+class Baz
+  extend Foo
+end
+
+Baz.foo # heyyyyoooo!
+Baz.new.foo # NoMethodError: undefined method ‘foo’ for #<Baz:0x1e708>
+
+As you can see, include makes the foo method available to an instance of a class and extend makes the foo method available to the class itself.
+
+
+******************************************************************************************************************************************************
+
+Require vs Load :
+-------------------
+
+require searches for the library in all the defined search paths and also appends .rb or .so to the file name you enter.With load you need to add the full name of the library.
+
+If you require the same file twice, it will be loaded and evaluated only once. load, on the other hand, loads and evaluates the file every time.
 
 e.g.
+Here is the code from 'boot.rb'
+require 'rubygems'
 
-Company.joins(:persons).where(:persons => { active: true } ).all
- 
- 
-@companies.each do |company|
-     company.name
-end
+# Set up gems listed in the Gemfile.
+ENV['BUNDLE_GEMFILE'] ||= File.expand_path('../../Gemfile', __FILE__)
+
+require 'bundler/setup' if File.exists?(ENV['BUNDLE_GEMFILE'])
 
 
-
-Visually the only difference is replacing the includes method call with joins, however under the hood there is a lot more going on. The joins method lazy loads the database query by utilising the associated table, but only loading the Company table into memory as the associated Person table is not required.Therefore we are not loading redundant data into memory needlessly; although if we wanted to use the Person table data later on from the same array variable, it would require further database queries.
-
-Recently I fell victim to not using the awesome power behind the includes method in my Trado codebase. I noticed a severe performance leak when monitoring the database queries in my local instance server logs, which is a habit I would advise starting.
+load(File.dirname(__FILE__) + "/schema.rb")
 
 
 ******************************************************************************************************************************************************
-Q - Preload, Eagerload, Includes and Joins. 
 
-Preload loads the association data in a separate query. 
-
-User.preload(:posts).to_a
-
-# =>
-SELECT "users".* FROM "users"
-SELECT "posts".* FROM "posts"  WHERE "posts"."user_id" IN (1)
-
-This is how includes loads data in the default case.
-
-Since preload always generates two sql we can't use posts table in where condition. Following query will result in an error.
-
-
-User.preload(:posts).where("posts.desc='ruby is awesome'")
-
-# =>
-SQLite3::SQLException: no such column: posts.desc: 
-SELECT "users".* FROM "users"  WHERE (posts.desc='ruby is awesome')
-
-
-----------------------------------------------------------------------------------
-Includes :
-
-*Q* User.includes(:posts).where('posts.desc = "ruby is awesome"').to_a
-
-# =>
-SELECT "users"."id" AS t0_r0, "users"."name" AS t0_r1, "posts"."id" AS t1_r0, 
-       "posts"."title" AS t1_r1, 
-       "posts"."user_id" AS t1_r2, "posts"."desc" AS t1_r3 
-FROM "users" LEFT OUTER JOIN "posts" ON "posts"."user_id" = "users"."id" 
-WHERE (posts.desc = "ruby is awesome")
-
- As you can see includes switches from using two separate queries to creating a single LEFT OUTER JOIN to get the data. And it also applied the supplied condition.
-
-----------------------------------------------------------------------------------
-
-Eager loading loads all association in a single query using LEFT OUTER JOIN.
-
-User.eager_load(:posts).to_a
-
-# =>
-SELECT "users"."id" AS t0_r0, "users"."name" AS t0_r1, "posts"."id" AS t1_r0, 
-       "posts"."title" AS t1_r1, "posts"."user_id" AS t1_r2, "posts"."desc" AS t1_r3 
-FROM "users" LEFT OUTER JOIN "posts" ON "posts"."user_id" = "users"."id"
-
-
-----------------------------------------------------------------------------------
-
-Joins brings association data using inner join. 
-
-User.joins(:posts)
-
-# =>
-SELECT "users".* FROM "users" INNER JOIN "posts" ON "posts"."user_id" = "users"."id"
-
-
-In the above case no posts data is selected. Above query can also produce duplicate result. To see it let's create some sample data.
-
-def self.setup
-  User.delete_all
-  Post.delete_all
-
-  u = User.create name: 'Neeraj'
-  u.posts.create! title: 'ruby', desc: 'ruby is awesome'
-  u.posts.create! title: 'rails', desc: 'rails is awesome'
-  u.posts.create! title: 'JavaScript', desc: 'JavaScript is awesome'
-
-  u = User.create name: 'Neil'
-  u.posts.create! title: 'JavaScript', desc: 'Javascript is awesome'
-
-  u = User.create name: 'Trisha'
-end
-
-With the above sample data if we execute User.joins(:posts) then this is the result we get
-
-#<User id: 9, name: "Neeraj">
-#<User id: 9, name: "Neeraj">
-#<User id: 9, name: "Neeraj">
-#<User id: 10, name: "Neil">
-
-We can avoid the duplication by using distinct .
-
-User.joins(:posts).select('distinct users.*').to_a
-
-Also if we want to make use of attributes from posts table then we need to select them.
-
-records = User.joins(:posts).select('distinct users.*, posts.title as posts_title').to_a
-records.each do |user|
-  puts user.name
-  puts user.posts_title
-end
-
-Note that using joins means if you use user.posts then another query will be performed.
-
-******************************************************************************************************************************************************
-
-Class and Instance Methods in Ruby
+Class and Instance Methods in Ruby:
+------------------------------------
 
 One Line Summary
 
@@ -513,57 +499,8 @@ e.g. destroy is an instance method, save and update_attributes
 
 ******************************************************************************************************************************************************
 
-Include vs Extend in Ruby
-
-The difference between include and extend in regards to modules. Include is for adding methods to an instance of a class and extend is for adding class methods. Let’s take a look at a small example.
-
-
-module Foo
-  def foo
-    puts 'heyyyyoooo!'
-  end
-end
-
-class Bar
-  include Foo
-end
-
-Bar.new.foo # heyyyyoooo!
-Bar.foo # NoMethodError: undefined method ‘foo’ for Bar:Class
-
-class Baz
-  extend Foo
-end
-
-Baz.foo # heyyyyoooo!
-Baz.new.foo # NoMethodError: undefined method ‘foo’ for #<Baz:0x1e708>
-
-As you can see, include makes the foo method available to an instance of a class and extend makes the foo method available to the class itself.
-
 
 ******************************************************************************************************************************************************
-
-Require vs Load :
-
-require searches for the library in all the defined search paths and also appends .rb or .so to the file name you enter.With load you need to add the full name of the library.
-
-If you require the same file twice, it will be loaded and evaluated only once. load, on the other hand, loads and evaluates the file every time.
-
-e.g.
-Here is the code from 'boot.rb'
-require 'rubygems'
-
-# Set up gems listed in the Gemfile.
-ENV['BUNDLE_GEMFILE'] ||= File.expand_path('../../Gemfile', __FILE__)
-
-require 'bundler/setup' if File.exists?(ENV['BUNDLE_GEMFILE'])
-
-
-load(File.dirname(__FILE__) + "/schema.rb")
-
-
-******************************************************************************************************************************************************
-
 
 Rails 4 :
 
@@ -635,28 +572,27 @@ Many people on this thread and on google explain very well that :
 
 1-
 
-attr_accessible specifies a whitelist of attributes that are allowed to be updated in bulk (all the attributes of an object model together at the same time) This is mainly (and only) to protect your application from "Mass assignement" pirate exploit. This is explained here on the official Rails doc : Mass Assignement
-
 attr_accessor is a ruby code to (quickly) create setter and getter in a Class. That's all.
 
-2-
+attr_accessor as a ruby method that is the combination of attr_reader and attr_writer.
 
 attr_accessor is a ruby method that makes a getter and a setter. 
-
-attr_accessible is a Rails method that allows you to pass in values to a mass assignment: new(attrs) or update_attributes(attrs). 
-
-The attr_protected method takes a list of attributes that will not be accessible for mass-assignment.
-
-The attr_accessible method it is the exact opposite of attr_protected, because it takes a list of attributes that will be accessible. 
-
-
-attr_accessor as a ruby method that is the combination of attr_reader and attr_writer.
 
 NOTE! Don’t use attr_accessor for database attributes – Rails creates those accessors for you.
 
 attr_accessor is used when you do not have a column in your database, but still want to show a field in your forms. This field is a “virtual attribute” in a Rails model.
 
 virtual attribute – an attribute not corresponding to a column in the database.
+
+2-
+
+attr_accessible specifies a whitelist of attributes that are allowed to be updated in bulk (all the attributes of an object model together at the same time) This is mainly (and only) to protect your application from "Mass assignement" pirate exploit. This is explained here on the official Rails doc : Mass Assignement.
+
+attr_accessible is a Rails method that allows you to pass in values to a mass assignment: new(attrs) or update_attributes(attrs). 
+
+The attr_protected method takes a list of attributes that will not be accessible for mass-assignment.
+
+The attr_accessible method it is the exact opposite of attr_protected, because it takes a list of attributes that will be accessible. 
 
 
 ******************************************************************************************************************************************************
@@ -855,10 +791,6 @@ You can of course get the best of both worlds! Once you know what each does, you
 
 
  * prior to Rails 4 session data was stored as a Base64 encoded Ruby object. Starting from version 4.0.0 Rails encrypts and signs this object before saving.
-
- 
-
-
 
 ******************************************************************************************************************************************************
 
@@ -1182,39 +1114,6 @@ How it works ?
 
 Applications created with Ajax use an engine that acts as an intermediary between a user's browser and the server from which it is requesting information. Instead of loading a traditional Web page, the user's browser loads the Ajax engine, which displays the page the user sees. The engine continues to run in the background, using JavaScript to communicate with the Web browser. User input or clicking on the page sends a JavaScript call to the Ajax engine, which can respond instantly in many cases. If the engine needs additional data, it requests it from the server, usually using XML, while it is simultaneously updating the page.
 
-******************************************************************************************************************************************************
-SQL vs NoSQL: High-Level Differences
-
-    * SQL databases are primarily called as Relational Databases (RDBMS); whereas NoSQL database are primarily called as non-relational or distributed database.
-    
-    SQL databases are table based databases whereas NoSQL databases are document based, key-value pairs, graph databases or wide-column stores. 
-
-    This means that SQL databases represent data in form of tables which consists of n number of rows of data whereas 
-
-    NoSQL databases are the collection of key-value pair, documents, graph databases or wide-column stores which do not have standard schema definitions which it needs to adhered to.
-
-    * SQL databases have predefined schema whereas NoSQL databases have dynamic schema for unstructured data.
-    SQL databases are vertically scalable whereas the NoSQL databases are horizontally scalable. SQL databases are scaled by increasing the horse-power of the hardware. NoSQL databases are scaled by increasing the databases servers in the pool of resources to reduce the load.
-
-    * SQL databases uses SQL ( structured query language ) for defining and manipulating the data, which is very powerful. In NoSQL database, queries are focused on collection of documents. Sometimes it is also called as UnQL (Unstructured Query Language). The syntax of using UnQL varies from database to database.
-
-    * SQL database examples: MySql, Oracle, Sqlite, Postgres and MS-SQL. NoSQL database examples: MongoDB, BigTable, Redis, RavenDb, Cassandra, Hbase, Neo4j and CouchDb
-
-    * For complex queries: SQL databases are good fit for the complex query intensive environment whereas NoSQL databases are not good fit for complex queries. On a high-level, NoSQL don’t have standard interfaces to perform complex queries, and the queries themselves in NoSQL are not as powerful as SQL query language.
-
-    * For the type of data to be stored: SQL databases are not best fit for hierarchical data storage. But, NoSQL database fits better for the hierarchical data storage as it follows the key-value pair way of storing data similar to JSON data. NoSQL database are highly preferred for large data set (i.e for big data). Hbase is an example for this purpose.
-    
-    * For scalability: In most typical situations, SQL databases are vertically scalable. You can manage increasing load by increasing the CPU, RAM, SSD, etc, on a single server. On the other hand, NoSQL databases are horizontally scalable. You can just add few more servers easily in your NoSQL database infrastructure to handle the large traffic.
-    
-    * For high transactional based application: SQL databases are best fit for heavy duty transactional type applications, as it is more stable and promises the atomicity as well as integrity of the data. While you can use NoSQL for transactions purpose, it is still not comparable and sable enough in high load and for complex transactional applications.
-
-    * For support: Excellent support are available for all SQL database from their vendors. There are also lot of independent consultations who can help you with SQL database for a very large scale deployments. For some NoSQL database you still have to rely on community support, and only limited outside experts are available for you to setup and deploy your large scale NoSQL deployments.
-
-    * For properties: SQL databases emphasizes on ACID properties ( Atomicity, Consistency, Isolation and Durability) whereas the NoSQL database follows the Brewers CAP theorem ( Consistency, Availability and Partition tolerance )
-    
-    * For DB types: On a high-level, we can classify SQL databases as either open-source or close-sourced from commercial vendors. NoSQL databases can be classified on the basis of way of storing data as graph databases, key-value store databases, document store databases, column store database and XML databases.
-
-
 
 
 ******************************************************************************************************************************************************
@@ -1407,13 +1306,10 @@ This example of instance_eval is similar, but evaluates the code in the context 
 
 send method :
 
-
 Ruby gives you convinient way for you to call any method on an object using send method.
 
 Send takes, as it's first argument the name of the method that you want to call.
 This name can either a symbol or string.
-
-
 
 ******************************************************************************************************************************************************
 
@@ -1426,13 +1322,168 @@ Ruby/rails performance tools :-
 *** You can also go further down the hole and use the "ruby-prof gem". If it’s the case where your bottleneck is not the database or if you’re not on a rack application where you can use the MiniProfiler.
 
 
+
+
 ******************************************************************************************************************************************************
+
+Q - Preload, Eagerload, Includes and Joins. 
+
+Preload loads the association data in a separate query. 
+
+User.preload(:posts).to_a
+
+# =>
+SELECT "users".* FROM "users"
+SELECT "posts".* FROM "posts"  WHERE "posts"."user_id" IN (1)
+
+This is how includes loads data in the default case.
+
+Since preload always generates two sql we can't use posts table in where condition. Following query will result in an error.
+
+
+User.preload(:posts).where("posts.desc='ruby is awesome'")
+
+# =>
+SQLite3::SQLException: no such column: posts.desc: 
+SELECT "users".* FROM "users"  WHERE (posts.desc='ruby is awesome')
+
+
+----------------------------------------------------------------------------------
+Includes :
+
+*Q* User.includes(:posts).where('posts.desc = "ruby is awesome"').to_a
+
+# =>
+SELECT "users"."id" AS t0_r0, "users"."name" AS t0_r1, "posts"."id" AS t1_r0, 
+       "posts"."title" AS t1_r1, 
+       "posts"."user_id" AS t1_r2, "posts"."desc" AS t1_r3 
+FROM "users" LEFT OUTER JOIN "posts" ON "posts"."user_id" = "users"."id" 
+WHERE (posts.desc = "ruby is awesome")
+
+ As you can see includes switches from using two separate queries to creating a single LEFT OUTER JOIN to get the data. And it also applied the supplied condition.
+
+----------------------------------------------------------------------------------
+
+Eager loading loads all association in a single query using LEFT OUTER JOIN.
+
+User.eager_load(:posts).to_a
+
+# =>
+SELECT "users"."id" AS t0_r0, "users"."name" AS t0_r1, "posts"."id" AS t1_r0, 
+       "posts"."title" AS t1_r1, "posts"."user_id" AS t1_r2, "posts"."desc" AS t1_r3 
+FROM "users" LEFT OUTER JOIN "posts" ON "posts"."user_id" = "users"."id"
+
+
+----------------------------------------------------------------------------------
+
+Joins brings association data using inner join. 
+
+User.joins(:posts)
+
+# =>
+SELECT "users".* FROM "users" INNER JOIN "posts" ON "posts"."user_id" = "users"."id"
+
+
+In the above case no posts data is selected. Above query can also produce duplicate result. To see it let's create some sample data.
+
+def self.setup
+  User.delete_all
+  Post.delete_all
+
+  u = User.create name: 'Neeraj'
+  u.posts.create! title: 'ruby', desc: 'ruby is awesome'
+  u.posts.create! title: 'rails', desc: 'rails is awesome'
+  u.posts.create! title: 'JavaScript', desc: 'JavaScript is awesome'
+
+  u = User.create name: 'Neil'
+  u.posts.create! title: 'JavaScript', desc: 'Javascript is awesome'
+
+  u = User.create name: 'Trisha'
+end
+
+With the above sample data if we execute User.joins(:posts) then this is the result we get
+
+#<User id: 9, name: "Neeraj">
+#<User id: 9, name: "Neeraj">
+#<User id: 9, name: "Neeraj">
+#<User id: 10, name: "Neil">
+
+We can avoid the duplication by using distinct .
+
+User.joins(:posts).select('distinct users.*').to_a
+
+Also if we want to make use of attributes from posts table then we need to select them.
+
+records = User.joins(:posts).select('distinct users.*, posts.title as posts_title').to_a
+records.each do |user|
+  puts user.name
+  puts user.posts_title
+end
+
+Note that using joins means if you use user.posts then another query will be performed.
+
+******************************************************************************************************************************************************
+
+
+jQuery differences between the bind and live functions:
+
+In short: .bind() will only apply to the items you currently have selected in your jQuery object. .live() will apply to all current matching elements, as well as any you might add in the future.
+
+The underlying difference between them is that live() makes use of event bubbling. That is, when you click on a button, that button might exist in a <p>, in a <div>, in a <body> element; so in effect, you're actually clicking on all of those elements at the same time.
+
+live() works by attaching your event handler to the document, not to the element. When you click on that button, as illustrated before, the document receives the same click event. It then looks back up the line of elements targeted by the event and checks to see if any of them match your query.
+
+The outcome of this is twofold: firstly, it means that you don't have to continue reapplying events to new elements, since they'll be implicitly added when the event happens. However, more importantly (depending on your situation), it means that your code is much much lighter! If you have 50 <img> tags on the page and you run this code:
+
+$('img').click(function() { /* doSomething */ });
+
+...then that function is copied into each of those elements. However, if you had this code:
+
+$('img').live('click', function() { /* doSomething */ });
+
+...then that function is stored only in one place (on the document), and is applied to whatever matches your query at event time.
+
+Because of this bubbling behaviour though, not all events can be handled this way. As Ichiban noted, these supported events are click, dblclick mousedown, mouseup, mousemove, mouseover, mouseout, keydown, keypress, keyup.
+
+******************************************************************************************************************************************************
+
 
 
 Active Resource :-
 
+Chirag:
+
+    1. i18n -> 2 methods ?
+
+    2. how to use i18n in javascript ?
+
+    3. Active Relation ? lazy loading ? (Arel ..)
+
+    4. Rails Cashing ?
+
+    5. what comes in application controller ?
+
+    6. date format with the help of i18n ?
+
+    7. multi Tenant Architechture
+
+    8. different log levels  --> debug, info , warning, error.
+        e.g. 
+    * during development of application [ development ] <---> debug log 
+    
+    * E-commerce site suppose we have keeping information about daily transaction count         <--->  info log
+
+    * product stock has been reducing so keep product in stock <---> warning log
+
+    * error occurs like user has provided wrong url so got page break <---> error log
+
+    9. 
+
+
  Ray B -
  --------   
+
+
   Method_missing ?
  
   What is REST ?
