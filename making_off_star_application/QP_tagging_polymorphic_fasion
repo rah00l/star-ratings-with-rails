@@ -1,0 +1,54 @@
+Started to make tagging for multiple models using polymorphic approach:
+
+## TODO From Scrach -
+-------------------------
+
+1. Create Tags model 
+
+rails g model tag name
+
+class Tag < ActiveRecord::Base
+  attr_accessible :name
+  has_many :taggings
+   
+end
+
+
+2.Create common tagging model
+
+rails g model tagging taggable_id:integer taggable_type:string user_id:integer tag_id:intege
+
+class Tagging < ActiveRecord::Base
+  attr_accessible :tag_id, :taggable_id, :taggable_type, :user_id
+
+  belongs_to :tag
+  belongs_to :taggable, polymorphic: true
+
+end
+
+
+3. Add common functionality to other models:
+
+has_many :taggings, as: :taggable, :dependent => :destroy
+
+rake db:migrate 
+
+
+--------------------------------------------------------------------------------
+
+Reverse oprations:
+
+From above migration created two tables so rollback twice.
+
+rake db:rollback
+
+rake db:rollback
+
+then . 
+
+rails d model tag name
+
+rails d model tagging taggable_id:integer taggable_type:string user_id:integer tag_id:integer
+
+
+

@@ -1,6 +1,6 @@
 class Article < ActiveRecord::Base
   attr_accessible :content, :name , :published_at, :created_at
-  has_many :comments, as: :commentable
+  has_many :comments, as: :commentable, :dependent => :destroy
   has_many :ratings
 
   belongs_to :user
