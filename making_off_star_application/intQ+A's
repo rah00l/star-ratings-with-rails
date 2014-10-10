@@ -502,6 +502,31 @@ e.g. destroy is an instance method, save and update_attributes
 
 ******************************************************************************************************************************************************
 
+Rails 2 vs Rails 3 :
+--------------------
+
+1. Unobtrusive JavaScript - introduction of Unobtrusive JavaScript (UJS) to all of its JavaScript helper functions. *** In previous versions of Rails, JavaScript was generated inline with HTML, causing ugly and somewhat brittle code. ***
+
+    Rails 3 replaces all of the inline JavaScript with a couple of HTML5 attributes. All of the JavaScript event handlers to handle the actual confirmation box and deletion are stored in one central JavaScript file that is included with every rails project.
+
+2. Improved Security -XSS protection is now enabled by default. Rails 2 supported   XSS protection through the use of the h method.    
+
+    The h method would escape html and JavaScript to ensure that no malicious client-side code was executed.
+
+3. New Query Engine -
+    Rails 3 includes a cool new query engine that makes it easier to get back the data you want and gives you more flexibilitiy in your controller code.
+
+    In Rails 3, each of the passed in parameters has its own method, which can be chained together to get the same results.
+
+    The query is not actually executed until the data is needed (lazy loading); so these methods can even be used across multiple statements.   
+
+4. Easier Email -The ActionMailer module has been rewritten to make it a lot easier for your application to send email in Rails 3.
+
+5. Dependency Management - Rails 3 adds the Bundler gem to help manage your dependencies. Using Bundler in Rails 3 is extremely simple; add a line for each gem you require in your Gemfile, a file included in the root of each of your applications.
+
+******************************************************************************************************************************************************
+
+
 Rails 4 :
 
 * Datatype:
@@ -673,8 +698,8 @@ Module A consists of the methods a1 and a2. Module B consists of the methods b1 
 
 ******************************************************************************************************************************************************
 
-
 Defining a Class in Ruby:
+--------------------------
 
 To implement object-oriented programming by using Ruby, you need to first learn how to create objects and classes in Ruby.
 
@@ -706,38 +731,6 @@ To me primary difference between BDD and TDD is focus and wording. And words are
 TDD directs focus on testing. And since in "old waterfall world" tests come after implementation, then this mindset leads to wrong understanding and behaviour.
 
 BDD directs focus on behaviour and specification, and so waterfall minds are distracted. So BDD is more easily understood as design practice and not as testing practice.
-
-******************************************************************************************************************************************************
-
- Rails Security Checklist :
- ---------------------------
-
-* Security is a dull topic, but will become exciting if you screw it up. To avoid   such excitement, here is a checklist for reviewing security in models, controllers, and views. If you see holes, add a comment and I'll update the list.
-
-* Security checklist for models:
-
-    Use attr_accessible (or attr_protected if you must) to explicitly identify attributes that are accessible by .create and .update_attributes. Just because you don't expose an attribute on an edit form doesn't mean that someone won't try to post a value to it. I prefer attr_accessible over attr_protected as it fails on the side of safety when new fields are added to a model - you have to explicitly expose new fields.
-    Make sure queries are using the Rails bind variable facility for parameters, not string concatenation or the handy Ruby's #{...} syntax.
-    Use validations to prevent bad input.
-
-* Security checklist for controllers:
-
-    Make non-action controller methods private (if possible).
-    If non-action controller methods must be public, identify them with hide_action to prevent unwanted execution.
-    Make sure before_filters are in place if necessary for your authorization infrastructure.
-    Move queries from your controller to your model, and see the model checklist above.
-    Check for params[:id] usage - are you sure you can trust it? Check for proper ownership of the record.
-    Check for usage of hidden fields - a user can send anything to you through them, so treat them with suspicious just as params[:id] should be suspect.
-    Use filter_parameter_logging to prevent entry of sensitive unencrypted data (passwords, SSN's, credit card numbers, etc.) in your server logs.
-    Forget about your view code for a minute, and think about how to protect your controller from posts a malicious user could make to any of your exposed methods. All parameters (whether or not exposed on a form, and whether or not invisible) are suspect to length overruns, bypassing of any browser based validation, attacks with malformed data, etc.
-
-* Security checklist for views:
-
-    Make sure all data displayed is escaped with the helper method h(string).
-    Eliminate comments in your views that you don't wish the entire world to see.
-
-What else? (In particular, considerations for REST web services and AJAX need to be added). 
-
 
 ******************************************************************************************************************************************************
 
@@ -779,7 +772,47 @@ In summary:
 
 ******************************************************************************************************************************************************
 
+ Rails Security Checklist :
+ ---------------------------
+
+* Security is a dull topic, but will become exciting if you screw it up. To avoid   such excitement, here is a checklist for reviewing security in models, controllers, and views. If you see holes, add a comment and I'll update the list.
+
+* Security checklist for models:
+
+    * Use attr_accessible (or attr_protected if you must) to explicitly identify attributes that are accessible by .create and .update_attributes. Just because you don't expose an attribute on an edit form doesn't mean that someone won't try to post a value to it. I prefer attr_accessible over attr_protected as it fails on the side of safety when new fields are added to a model - you have to explicitly expose new fields.
+
+    * Make sure queries are using the Rails bind variable facility for parameters, not string concatenation or the handy Ruby's #{...} syntax.
+    Use validations to prevent bad input.
+
+* Security checklist for controllers:
+
+    * Make non-action controller methods private (if possible).
+    
+    * If non-action controller methods must be public, identify them with hide_action to prevent unwanted execution.
+    
+    * Make sure before_filters are in place if necessary for your authorization infrastructure.
+    
+    * Move queries from your controller to your model, and see the model checklist above.
+    Check for params[:id] usage - are you sure you can trust it? Check for proper ownership of the record.
+
+    * Check for usage of hidden fields - a user can send anything to you through them, so treat them with suspicious just as params[:id] should be suspect.
+    Use filter_parameter_logging to prevent entry of sensitive unencrypted data (passwords, 
+    SSN's, credit card numbers, etc.) in your server logs.
+
+    * Forget about your view code for a minute, and think about how to protect your controller from posts a malicious user could make to any of your exposed methods. All parameters (whether or not exposed on a form, and whether or not invisible) are suspect to length overruns, bypassing of any browser based validation, attacks with malformed data, etc.
+
+* Security checklist for views:
+
+    Make sure all data displayed is escaped with the helper method h(string).
+    Eliminate comments in your views that you don't wish the entire world to see.
+
+What else? (In particular, considerations for REST web services and AJAX need to be added). 
+
+
+******************************************************************************************************************************************************
+
 Session vs. Cookies :
+--------------------
 
  The main difference between cookies and sessions is that cookies are stored in the user's browser, and sessions are not. This difference determines what each is best used for.
 
@@ -795,6 +828,7 @@ You can of course get the best of both worlds! Once you know what each does, you
 ******************************************************************************************************************************************************
 
 Method overriding:-
+--------------------
 
 Method overriding, in object oriented programming, is a language feature that allows a subclass to provide a specific implementation of a method that is already provided by one of its superclasses. The implementation in the subclass overrides (replaces) the implementation in the superclass.
 
@@ -815,9 +849,8 @@ end
 b = B.new  
 b.a 
 
-
-
-Usage of super
+Usage of super :-
+--------------
 
 The way super handles arguments is as follows:
 
@@ -854,12 +887,69 @@ The way super handles arguments is as follows:
 ******************************************************************************************************************************************************
 
 Ruby Overloading Methods:
+-----------------------------
 
 You want to create two different versions of a method with the same name: two methods that differ in the arguments they take.
+
+Constructor overloading:
+-----------------------------
+Constructor overloading is the ability to have multiple types of constructors in a class. This way we can create an object with different number or different types of parameters.
+
+Ruby has no constructor overloading that we know from some programming languages. This behaviour can be simulated to some extent with default parameter values in Ruby.
+
+#!/usr/bin/ruby
+
+
+class Person
+
+    def initialize name="unknown", age=0
+        @name = name
+        @age = age        
+    end
+    
+    def to_s
+        "Name: #{@name}, Age: #{@age}"
+    end
+
+end
+
+p1 = Person.new
+p2 = Person.new "unknown", 17
+p3 = Person.new "Becky", 19
+p4 = Person.new "Robert"
+
+p p1, p2, p3, p4
+
+This example shows how we could simulate constructor overloading on a Person class that has two member fields. When the name parameter is not specified, the string "unknown" is used instead. For unspecified age we have 0.
+
+def initialize name="unknown", age=0
+    @name = name
+    @age = age        
+end
+
+The constructor takes two parameters. They have a default value. The default value is used if we do not specify our own values at the object creation. Note that the order of parameters must be kept. First comes the name, then the age.
+
+p1 = Person.new
+p2 = Person.new "unknown", 17
+p3 = Person.new "Becky", 19
+p4 = Person.new "Robert"
+
+p p1, p2, p3, p4
+
+We create four objects. The constructors take different number of parameters.
+
+$ ./consover.rb
+Name: unknown, Age: 0
+Name: unknown, Age: 17
+Name: Becky, Age: 19
+Name: Robert, Age: 0
+
+This is the output of the example. 
 
 ******************************************************************************************************************************************************
 
 Differences between private, public, and protected methods:
+-----------------------------------------------------------
 
 Put simply, the differences between private, public, and protected methods are visibility of that method in the program, kinda like read-only, read and write, and near invisible.
 
@@ -1075,30 +1165,6 @@ It took me a while to figure this, hope this will help someone.
 
 ******************************************************************************************************************************************************
 
-
-Rails 2 vs Rails 3 :
-
-
-1. Unobtrusive JavaScript - introduction of Unobtrusive JavaScript (UJS) to all of its JavaScript helper functions. *** In previous versions of Rails, JavaScript was generated inline with HTML, causing ugly and somewhat brittle code. ***
-
-    Rails 3 replaces all of the inline JavaScript with a couple of HTML5 attributes. All of the JavaScript event handlers to handle the actual confirmation box and deletion are stored in one central JavaScript file that is included with every rails project.
-
-2. Improved Security -XSS protection is now enabled by default. Rails 2 supported   XSS protection through the use of the h method.    
-
-    The h method would escape html and JavaScript to ensure that no malicious client-side code was executed.
-
-3. New Query Engine -
-    Rails 3 includes a cool new query engine that makes it easier to get back the data you want and gives you more flexibilitiy in your controller code.
-
-    In Rails 3, each of the passed in parameters has its own method, which can be chained together to get the same results.
-
-    The query is not actually executed until the data is needed (lazy loading); so these methods can even be used across multiple statements.   
-
-4. Easier Email -The ActionMailer module has been rewritten to make it a lot easier for your application to send email in Rails 3.
-
-5. Dependency Management - Rails 3 adds the Bundler gem to help manage your dependencies. Using Bundler in Rails 3 is extremely simple; add a line for each gem you require in your Gemfile, a file included in the root of each of your applications.
-
-******************************************************************************************************************************************************
 
 What is AJAX ?
 
