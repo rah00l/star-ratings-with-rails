@@ -9,14 +9,21 @@ rails g model tag name
 
 class Tag < ActiveRecord::Base
   attr_accessible :name
+  
   has_many :taggings
-   
+
+  has_many :sites, :through => :taggings, :source => :taggable, :source_type => "Site"
+
+  has_many :addresses, through: :taggings, source: :taggable, source_type: Address
+
+  has_many :users, through: :taggings, source: :taggable, source_type: User
+ 
 end
 
 
 2.Create common tagging model
 
-rails g model tagging taggable_id:integer taggable_type:string user_id:integer tag_id:intege
+rails g model tagging taggable_id:integer taggable_type:string tag_id:intege
 
 class Tagging < ActiveRecord::Base
   attr_accessible :tag_id, :taggable_id, :taggable_type, :user_id
@@ -29,7 +36,18 @@ end
 
 3. Add common functionality to other models:
 
-has_many :taggings, as: :taggable, :dependent => :destroy
+class Site < ActiveRecord::Base
+
+attr_accessible :domain_name, :name, :tag_list
+
+has_many :tags, :through => :taggings
+
+has_many :taggings, :as => :taggable
+
+.....................................
+
+Route formation issue for above example so stop customization. 
+
 
 rake db:migrate 
 
@@ -49,6 +67,14 @@ then .
 rails d model tag name
 
 rails d model tagging taggable_id:integer taggable_type:string user_id:integer tag_id:integer
+
+
+
+For remaining portion of implementation refer following blogs
+
+http://joshsymonds.com/blog/2012/07/04/rails-concerns-ii-taggable/
+
+http://www.cerioli.com/2012/10/14/14/
 
 
 
