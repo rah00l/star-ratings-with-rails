@@ -1,11 +1,15 @@
 class Article < ActiveRecord::Base
-  attr_accessible :content, :name , :published_at, :created_at
+  attr_accessible :content, :name , :published_at, :created_at, :tag_list
   has_many :comments, as: :commentable, :dependent => :destroy
   has_many :ratings
 
   belongs_to :user
   # after_create only calls once at the time of record creation \ but after_save will call every time of record updation also
   after_create :set_published_at
+
+  default_scope order: 'published_at DESC'
+
+  acts_as_taggable
 
   # Validation 
   validates :name, presence: true, uniqueness: true

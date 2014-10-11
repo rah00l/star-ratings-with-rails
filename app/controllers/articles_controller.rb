@@ -1,7 +1,11 @@
 class ArticlesController < ApplicationController
     before_filter :authenticate_user! ,:except => [:index]
     load_and_authorize_resource :except=>[:index,:show]
+
     def index
+    if params[:tag]
+      @articles = Article.tagged_with(params[:tag]).paginate(page: params[:page], per_page: 10)
+    else  
     @search = Sunspot.search(Article) do
       fulltext params[:search]
       facet(:published_month)
@@ -14,6 +18,7 @@ class ArticlesController < ApplicationController
     respond_to do |format|
         format.html
         format.js
+    end  
     end  
     #@articles.
   end
@@ -50,7 +55,7 @@ end
   def update
     @article = Article.find(params[:id])
     if @article.update_attributes(params[:article])
-      redirect_to @article, notice: "Article was successfully updated."
+      redirect_to articles_path, notice: "Article was successfully updated."
     else
       render :edit
     end

@@ -46,8 +46,9 @@ resources :articles do
   resources :comments do 
     member { post :vote_for_article }
   end
-
 end
+
+get 'tags/:tag', to: 'articles#index', as: :tag
 
 resources :photos do
   resources :comments do

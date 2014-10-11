@@ -73,6 +73,9 @@ gem 'omniauth-google-oauth2'
 # for facebook authentication
 gem 'omniauth-facebook'
 
+# to add tagging
+gem 'acts-as-taggable-on'
+
 # For testing app 
 group :development, :test do
   gem 'factory_girl_rails'

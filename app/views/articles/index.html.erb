@@ -14,7 +14,13 @@
   </p>
 <% end %>
 <br/>
-
+<div id="tag_cloud">
+  <% tag_cloud Article.tag_counts, %w{s m l} do |tag, css_class| %>
+    <%= link_to tag.name, tag_path(tag.name), class: css_class %>
+  <% end %>
+</div>
+<br/>
+<% if params[:tag].blank?  %>
 <div id="facets">
   <h3>Published</h3>
   <ul>
@@ -29,6 +35,7 @@
     <% end %>
   </ul>
 </div>
+<% end %>
 
 <p><%= link_to "New Article", new_article_path %></p>
 

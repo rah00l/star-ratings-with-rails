@@ -4,5 +4,5 @@
     <h5 ><%= link_to "Rate this:", article %></h5>
     </div>
   <div class="content"><%= simple_format(article.content) %></div>
-  <br/>
+<p>Tags: <%= raw article.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %></p>
 <%# end %>

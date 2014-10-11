@@ -1,0 +1,21 @@
+1.
+/Gemfile
+gem 'acts-as-taggable-on'
+
+$ bundle install
+
+2.
+When upgrading
+
+Re-run the migrations generator
+
+    rake acts_as_taggable_on_engine:install:migrations
+
+It will create any new migrations and skip existing ones
+
+rake db:migrate
+
+3.
+
+
+

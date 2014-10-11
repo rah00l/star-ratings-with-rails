@@ -2,7 +2,7 @@ jQuery ->
   page_regexp = /\d+$/
 
   pushPage = (page) ->
-    History.pushState null, "InfiniteScrolling | Page " + page, "?page=" + page
+    History.pushState null, "Welcome to my world | Page " + page, "?page=" + page
     return
 
   window.preparePagination = (el) ->
