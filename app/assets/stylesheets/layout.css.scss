@@ -10,7 +10,33 @@
   .l { font-size: 1.8em; }
 }
 
+// Custom flash css added
+.alert-box.success {
+    background-color: #dff0d8;
+    border-color: #457a1a;
+    color: #457a1a;
+}
+
+.alert-box.alert {
+    background-color: #fce7e7;
+    border-color: #b00;
+    color: #b00;
+}
+
+
 /*
+.flash_notice {
+  background-color: #dff0d8;
+  border-color: #d6e9c6;
+  color: #468847;
+}
+.flash_alert {
+  background-color: #f2dede;
+  border-color: #eed3d7;
+  color: #b94a48;
+}
+
+
 
 html, body {
   background-color: #4B7399;
