@@ -297,6 +297,74 @@ The Asset Pipeline :-
 
 ******************************************************************************************************************************************************
 
+How Rails Handle Sessions ?
+
+Cookies + Sessions = ♥
+
+Rails uses a CookieStore to handle sessions. What it means is that all the informations needed to identify a user's session is sent to the client and nothing is stored on the server. When a user sends a request, the session's cookie is processed and validated so rails, warden, devise, etc. can figure out who you are and instantiate the correct user from the database.
+
+Like I said earlier, cookies are how server can remember who you are from one request to another. Everytime you send a request to a server, you send every cookie you have for that domain. Nothing new here. A session cookie is signed and encrypted (encryption is new in Rails 4) then sent to the browser. That cookie is actually an hash that would look like this if you run something like Warden and Devise:
+
+
+cookie = {
+  "session_id": "Value",
+  "_csrf_token": "token",
+  "user_id": "1"
+}
+
+Additional Information:
+
+Encryption & Signature:
+
+From the hash above, the cookie will become an encrypted and signed string that will then be sent to the client's browser in a Base64 format. Encryption is done with ActiveSupport::MessageEncryptor and the signature is done with ActiveSupport::MessageVerifier.
+
+Those are the two gatekeepers for your application, if they are compromised, someone could log in as anyone. This is why Ruby on rails' guide specifies to use strong secrets for your session keys.
+
+
+
+******************************************************************************************************************************************************
+Model Associations
+
+    Explain the difference between a has_one and belongs_to association:
+
+        has_one: Indicates a direct 1:1 relationship between objects where each instance of a model contains one instance of another model.
+
+                A product has_one provider, a customer has_one order.
+
+RoR_Q&A_has_one
+
+A has_one association schematic, from Rubyonrails.org
+
+    belongs_to: Represents the inverse of a has_one (or has_many) association.
+
+        ex) An order belongs_to  a customer.
+
+RoR_Q&A_belongs_to
+
+A belongs_to association schematic, from Rubyonrails.org
+
+        A good way to remember this is that if a table has foreign keys, its model should have a belongs_to association.
+
+        Be able to explain the difference and describe an example of how you would assign these associations to two related models.
+
+    
+    Explain a polymorphic association:-
+    -----------------------------------------
+
+        Polymorphic associations allow a model to belong to more than one other model through a single association.
+
+            A polymorphic association schematic, from Rubyonrails.org
+
+        Model structures of a polymorphic association, in Ruby code, from Ruybonrails.org
+
+        Here, the class Picture belongs_to both Employee and Product, but does so through a single association rather than through multiple.
+
+        Be sure to know an appropriate situation to create a polymorphic association, such as creating a comment model associated with multiple other models (articles, photos, etc.). The advantage of using polymorphism here is that it allows you to create a single comment model, rather than separate models for each one (PhotoComment model, ArticleComment model, etc.)
+
+
+******************************************************************************************************************************************************
+
+
 What is the difference between includes and joins?
 
 The most important concept to understand when using includes and joins is they both have their optimal use cases.
@@ -335,10 +403,20 @@ Visually the only difference is replacing the includes method call with joins, h
 
 Recently I fell victim to not using the awesome power behind the includes method in my Trado codebase. I noticed a severe performance leak when monitoring the database queries in my local instance server logs, which is a habit I would advise starting.
 
+******************************************************************************************************************************************************
+
+Duck typing :
+
+    calling any method on any object, regardless of its class.
 
 
+    When I see a bird that walks like a duck and swims like a duck and quacks like a duck, I call that bird a duck.
+
+In duck typing, a programmer is only concerned with ensuring that objects behave as demanded of them in a given context, rather than ensuring that they are of a specific type. Instead of specifying types formally, duck typing practices rely on documentation, clear code, and testing to ensure correct use.
 
 ******************************************************************************************************************************************************
+
+
 Ruby Keyword super :- 
 ----------------------
 
@@ -399,6 +477,19 @@ Mutual Exclusion - To fix race conditions, we have to control the program so tha
 This is because of mutex.synchronize. One and only one thread can access the block wrapped in mutex.synchronize at any time. Other threads have to wait until the current thread that is processing completes. 
 
 ******************************************************************************************************************************************************
+
+Interfaces i ruby:
+---------------------
+
+Interfaces are usually introduced to static typed OO languages in order to make up for lack of multiple inheritance. In other words, they are more of a necessary evil than something useful per se.
+
+Ruby, on the other hand:
+
+    Is dynamically typed language with "duck typing", so if you want to call method foo on two objects, they don't need to neither inherit same ancestor class, nor implement the same interface.
+    Supports multiple inheritance through concept of mixins, again no need for interfaces here.
+
+******************************************************************************************************************************************************
+
 
 Include vs Extend in Ruby:
 ----------------------------
@@ -1208,8 +1299,10 @@ Table level locking     Row level locking
 
 ******************************************************************************************************************************************************
 
-Method overloading can be achieved by declaring two methods with the same name and different signatures. These different signatures can be either,
+Method overloading - 
+----------------------
 
+Method overloading can be achieved by declaring two methods with the same name and different signatures. These different signatures can be either,
     Arguments with different data types, eg: method(int a, int b) vs method(String a, String b)
     Variable number of arguments, eg: method(a) vs method(a, b)
 
@@ -1225,6 +1318,11 @@ method(10)
 # so here is the problem.
 
 So ruby needs to maintain one method in the method look up chain with a unique name.
+
+How to atchive it :
+---------------------
+
+*** Ruby has four tricks to mimic method overloading, and I am going to bundle the first two together. The first is default values in the method definition. Simply give a parameter a default value and it becomes optional.
 
 ******************************************************************************************************************************************************
 

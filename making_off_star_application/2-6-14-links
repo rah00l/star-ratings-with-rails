@@ -38,6 +38,8 @@ http://rubylearning.com/
 http://www.sitepoint.com/threads-ruby/
 http://www.sitepoint.com/config-threadsafe/
 https://www.amberbit.com/blog/2014/4/10/ruby-the-good-parts/
+http://www.gotealeaf.com/books/ruby/read/more_stuff#exceptionhandling
+http://www.devinterface.com/blog/en/2010/06/design-patterns-in-ruby-abstract-factory/
 
 
 
@@ -58,6 +60,8 @@ http://www.trottercashion.com/2011/02/08/rubys-define_method-method_missing-and-
 https://www.amberbit.com/blog
 * http://jes.al/blog/
 http://blog.teamtreehouse.com
+
+http://pothibo.com/2013/09/sessions-and-cookies-in-ruby-on-rails ---- (cookieStore in rails cool article.)
 
 ** Writing custom Asset Pipeline processors to compress images **** (Asset Pipeline) :-
 ----------------------------------------------------------------------------------------

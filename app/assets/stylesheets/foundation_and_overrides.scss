@@ -101,6 +101,30 @@ $fnt_weight: 700;
 
 // my custom css
 
+.custom_image_posts {
+    font-size: 15px;
+    color: #444444;
+    font-family: "Oswald",sans-serif;
+    font-weight: 600;
+     width: 550px;
+     
+}
+
+.custom_image_posts li  
+{
+  list-style-type: none;
+a 
+ {
+  font-size: 19px;
+    line-height: 28px; 
+    text-decoration: none; 
+    color: #444444;
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  }
+}
+
+//a { text-decoration: none; }
+
 .body_bg_img{
         background: url("/assets/login_bg_image.jpg") no-repeat center center fixed; 
       -webkit-background-size: cover;
@@ -136,10 +160,10 @@ $fnt_weight: 700;
         float: right;
         h1{
           font-family: $font_family;
-          font-size: 28px;
+          font-size: 27px;
           margin-top: 62px;
           color: #444;
-          font-weight: 400;
+          font-weight: 600;
           border-bottom: 5px solid #309EEB;
           width: 420px;
           padding-bottom: 8px;
@@ -149,8 +173,8 @@ $fnt_weight: 700;
           .useit{
             float: left;
             font-family: $font_family;
-            font-size: 24px;
-            font-weight: 300;
+            font-size: 22px;
+            font-weight: 400;
             padding: 53px 0 0 0;
           }
           .mark{
