@@ -10,9 +10,9 @@
 
 6. Search and Facets needs proper allignments (Design Related..)
 
-7. Artilce do not having publish-at feature so need to add that thing into it.
+7. Artilce do not having publish-at feature so need to add that thing into it. --Added (it's auto )
 
-8. Pagination had alignment issue (Design Related..)
+8. Pagination had alignment issue (Design Related..)    
 
 9. Require to test entire application through..
 
@@ -28,16 +28,20 @@
 
 15. Home page design issues :
 	a) Logo should be override on bg_image
-	b) Front portion of "Use It For"  should be come up side-----------------Done       
-	c) 
+	b) Front portion of "Use It For"  should be come up side ----------- Done       
+	
 
-16. Through-out application button's also made in orange / blue .	
+16. Through-out application button's / links also made in orange / blue. (Desiign issue)
 
-17. Search button not properly alligned.
+17. Search button not properly alligned.  (Design Issue)
 
 18. After hedear/menu needs blue line. -----------------Done
 
-19. Good font family need to apply for application.
+19. Good font family need to apply for application and @ articles also need to add class kepp proper text font-family for it.
+
+20. Tagging needs proper design --- (Design Issue )
+
+
 
 
 
