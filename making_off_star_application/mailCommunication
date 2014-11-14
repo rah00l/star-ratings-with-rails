@@ -1,0 +1,1214 @@
+
+
+Mail Ways:
+----------
+
+
+Hi Swami/Venkatesh,
+ 
+I was trying to execute Analytic proc, none of them are passing, we have completed one test case , when we execute it separately it is passing but when we add that as proc it is failing, even when we try to run existing  analytics proc then also they are failing. We are looking for your help to resolve this issue
+ 
+Our investigation  : it is not taking value from template file and not creating session, however we have provided correct value in template. Need to check if anywhere else we need to update value
+ 
+I tried many time to reach you via chat but it seems you are busy, could you please let me know once you get time , will sit and resolve the issue.
+ 
+Thanks,
+Puja
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Puja,
+ 
+I am not able to clearly get what is failing for you. Can you attach your script/lib/template files and attach/paste  the failure logs, so that we can take a look.
+ 
+Will setup a 30 minute meeting tomorrow to discuss this if required.
+ 
+Thanks & Regards,
+Swami
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Puja,
+ 
+As Venkatesh explained to you offline, we have issues opening MSE Analytics UI on Linux execution server, so we need to have a Win7 machine running Selenium Remote Control Server to open MSE Analytics UI.
+ 
+For the time being you can use our webgl machine 10.30.36.74 (vnc password : lab).  It is configured and has all required stuff running.  Please request for a similar machine dedicated for your team.
+ 
+Please check this SELENIUM_SERVER_IP – in your config file. This should point to the IP address of that Selenium RC Server.
+ 
+These are the points to be noted to bring this selenium RC server.
+ 
+1.       Have a high end PC running windows 7 connected to a monitor permanently and always on with a good graphics card
+2.       Disable remote desktop. Run VNC on it.
+3.       selenium-server-standalone-2.37.0.jar - keep this jar file in C://selenium directory
+4.       Have Latest firefox installed in windows 7 and check your browser support webgl (http://get.webgl.org/) – shown below
+5.       Run this “java -jar selenium-server-standalone-2.37.0.jar -port 5000 -firefoxProfileTemplate C:\selenium\firefoxprofile” in cmd prompt in windows 7
+6.       Have folder “firefoxprofile” under C://selenium directory (Please follow steps in attachment file selenium.txt for what are files we should have in firefoxprofile folder) 
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Hi Neha ,
+ 
+I have updated sheet as per the current progress. Please see the important points.
+ 
+1.Completed one task : Start getting TOIs on Presence automation setup
+2. Started working on ‘CSCul78143’ (60% completed) and ‘CSCum86883’ (30 % completed) both are in progress.
+3.Discussed issue with Venkatesh (HCL team) but issue is not yet resolved, will try to resolve by tomorrow.
+ 
+Kindly refer attached sheet for details.
+ 
+Thanks,
+Puja
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Hi Neha,
+ 
+I have updated sheet as per the current progress. Please see the important points.
+ 
+1)We have completed automation for  ‘CSCum46790’.
+2)Facing some issue in clicking element and dropped mail to Venkatesh for help.
+3)Started working on ‘CSCul78143’ and ‘CSCum86883’
+ 
+Kindly refer attached sheet for details.
+ 
+Thanks,
+Puja
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Hi Puja,
+ 
+Please see inline.
+ 
+Salil/Samir – As I understand other tracks must also need the MSE added to PI setup. If Puja is still blocked, can you please help Puja with the setup or share the setup from other tracks ?
+ 
+Shweta – Can you please help the team with a Windows 7 machine. I will share the spec with you.
+ 
+Regards,
+Neha
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Hi Neha/Abhishek.
+ 
+Today we  did not get much time to work on sprint task .Please find below worked task today.
+ 
+1.Gone through document and video  simulator and check the feasibility – how we can  configure and what extra resource required for this – Dropped separate mail with Analysis.
+Neha >>  Please get in touch with Swami. HCL team has used simulator and should be able to help with this.
+ 
+2.Worked on MSE – Uninstall and install the Mse , We are not able to add MSE(172.19.28.49 ) to correspondence PI (Dev VM downhttps://172.19.28.71/) : So we tried one different PI(https://172.19.28.128/) to add and check UI , if it is working or not- Still facing the same issue.We checked data base as well but data base doesn’t have any data.
+Neha>> Try as per Abhishek’s response to your other email.  Also, the VMs are up now.
+ 
+Blockers :
+1.Dev VM : 172.19.28.71 down.
+Neha>> The VMs are up now as per Aaron’s email.
+ 
+2.Still didn’t get any data to proceed work.
+Neha>>As discussed, simulator and getting clients added to the Controller/Aps you are using should resolve the data issue.
+ 
+3.Recieved Mail from HCL team(Swami) : By the way we will need 10.30.36.74 machine for our script runs from next week., - Then we will be blocked if they won’t allow us to use.
+ 
+Thanks,
+Puja
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Hi Neha,
+ 
+Thanks for the inputs . I have created Separate tab for ‘Sprint2’ and added two new test cases as replacement of two defer cases. I have updated percentage column with progress and updated comment section. Please check the sheet attached.
+ 
+ 
+Thanks,
+Puja
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Hi Puja,
+ 
+Attached is the updated report with our comments.  We have advised to move couple of cases to next Sprint. Please pick up couple of tasks from the other tasks in Abhishek’s ppt to replace those in the current Sprint.
+ 
+Regards,
+Neha
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Hello All,
+ 
+Attached is the updated status report. We have three major issues mentioned in the ‘Risks’ tab and seek your attention.
+ 
+ 
+Thanks,
+Puja
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Hi Abhishek/Neha,
+ 
+Today we have completed analysis on sprint 2 task .Please find the below status updated with respective column in attached xls.
+ 
+1.Performed manually steps for each cases.
+2.We did analysis against each task and updated  Dependency column(column J).
+3.We have done estimation and updated ‘start planned’ and ‘End planned’ date column (Column E and Column F).
+4.Discuss few cases with HCL team to check feasibility for Installer related test cases.
+5.Created one owner column, who can provide solution for related queries/issues.
+ 
+ 
+Kindly let me know if you need to prioritize task and  would you like to remove any case or add  Analytics Presence test case in this sprint.
+ 
+ 
+Thanks,
+Puja
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Hi Samir
+ 
+I have updated the CSV to the best of my knowledge. It seems there are 2 blockers mainly :
+ 
+
+    Windows 7 machine which Salil should be able to help
+    Getting more data into the MSE which the simulator or the setup should be able to help.
+
+ 
+I can see one more controller on the PI which you are using which is marked unreachable. If that controller has data can you check the connection once ?
+ 
+Regards,
+Abhishek
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Subject : Automation weekly call reschedule time
+
+
+Hi Neha/Abhishek,
+ 
+Could you please let me know your comfortable time for automation weekly call -  India morning  time.
+ 
+Then I will reschedule our existing call.
+ 
+Thanks,
+Puja
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Hi Swami,
+ 
+Could you please help to setup Simulator, we came up with the below question(refer below mail) , could you please help on this?
+ 
+ 
+ 
+Thanks,
+Puja
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Hi Abhishek,
+ 
+As discussed on yesterday call, we gone through the document and recording. Please see the below finding.
+ 
+As per document below are the minimum requirement and we have Red Hat Enterprise Linux Client release 5.5 (Tikanga)
+ 
+* The version of redhat: release 4 is required. Other version may not work.
+* Require the same sub network for dev box and mse.
+ 
+And also we need simulator code path (Code of CountLocSim – complete path) so we can copy the code and proceed to check if release 5.5 (Tikanga) will work.
+ 
+ 
+Note: We have executed the given command and try to check data in current MSE without Simulator(172.19.28.135,DB name :Loc, Table name : mobilestation_loc_h) .we found zero record.
+ 
+Thanks,
+Puja
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Hi Abhishek,
+ 
+Actually we perform all steps which were mentioned in following mail  and executed  following two commands also,
+but this document (Installation of MSE) was not updated one so missed out following two commands to mention in document.
+ 
+chmod +x CISCO-MSE-L-K9-7-7-1-14-64bit.bin
+./ CISCO-MSE-L-K9-7-7-1-14-64bit.bin
+ 
+And also at the time of uninstalling MSE, we choose options like  uninstall/remove everything which were previously installed, like remove db/licensees and all.
+Can you please suggest  what else wrong steps performed  during installation of MSE because of MSE GUI (Analytics Tab) was not working?
+ 
+Thanks,
+Puja
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Hi Puja
+
+I cannot see the step where you run the .bin file (it is mentioned in the steps but the command is not included) :
+
+./ CISCO-MSE-L-K9-7-7-1-14-64bit.bin
+
+Before running the .bin file you might need to change permissions on the file using chmod +x CISCO-MSE-L-K9-7-7-1-14-64bit.bin. 
+
+Also recommended is that after uninstall you should clear the data / oracle folders if possible :
+
+rm -rf /opt/oracle/
+rm -rf /opt/data/
+rm -rf /etc/ora*
+
+Regards,
+Abhishek
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+Hi Abhishek,
+ 
+We have uninstalled  and install MSE again in  172.19.28.49. Still we are facing the same issue. Below are the steps we followed.
+ 
+1. SERVICES TO CHECK STATUS
+ 
+/etc/init.d/msed status
+OR
+getserverinfo
+ 
+2. DOWN THE EXISTING MSE SERVICES IF UP
+/etc/init.d/msed stop
+ 
+3. THEN UNINSTALL EXISTING (REMOVE ALL DB AND ALL)
+/opt/mse/uninstall/uninstall
+./uninstall
+ 
+4.FOR INSTALLATION (DOWNLOAD UNZIP AND RUN .bin file)
+cd /opt/installers
+wget wnbu-components/MSE_O_7_7/MSE_Cisco/7.7.1.14/CISCO-MSE-L-K9-7-7-1-14-64bit.bin.gz
+gunzip CISCO-MSE-L-K9-7-7-1-14-64bit.bin.gz
+ 
+5. THEN SERVICES TO CHECK STATUS
+getserverinfo
+OR
+/etc/init.d/msed status
+ 
+6. reboot
+ 
+7. ADD MSE(RUN VM IP) entry at PI (http://dev_vm_ip)
+ 
+8.THEN MAKE UP/DOWN THE SERVICES OF MSE (CMX Analytics/CA/ ...etc)
+ 
+ 
+Kindly let me know your comfortable time  in Monday for Webex.
+ 
+Thanks,
+Puja
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+NMSP SIMULATOR DISCUSSION
+
+Hi Swam,
+ 
+I just attach an introduction to NMSP-sim which have the situation you may meet. The second link in this file has the source code of simulator.
+ 
+You can try to run that first. If there is any problem, just send me back. I will check email every day.
+ 
+Best,
+ 
+Jian
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Hi Swam,
+ 
+I have a flight this evening. Probably not available. I can send you some link which has the introduction and source code. Also my own document of detail for setting up simulator.
+
+Since you need 1m records, but so far, nmsp-sim have some problem for sending too much data. The most reliable number of clients is 50,000. My suggest is run simulator 20 times. I made some changes so that restart simulator won’t eliminate the stored clients. I can send you the modified code.
+ 
+Thanks
+ 
+Jian
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Jian, Abhishek,
+ 
+My team members do not have home access, hence may not be able to attend IST late night.
+ 
+We should be fine with 9 am IST 28/8.
+ 
+Jian, Please let us know if 9 am is not ok and if you prefer 8.30 am IST
+ 
+Thanks,
+Swami
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+MSE Test Cases
+
+Abhishek,
+ 
+With the NMSP simulator, we were able to generate huge number of records for the Upgrade/Restore testcases. For the Analytics, we were able to generated many records on the MSE with the simulator, but we were not able to see the data on the Analytics Pages (Dashboard, Reports , Analytics tabs).  I guess this is because, for our Analytics cases, we needed to filter based on the Zones, Zone lists, maps. I am not sure if we can generate records on NMSP simulator with maps,zones related data. In that case, we might be able to see the data on Analytics pages. Please correct if wrong. – Jian , please comment on this.
+ 
+We used real client for our analytics cases.
+ 
+I also guess we can check with Talwar Sim for the Analytics cases.
+ 
+I shall request Venkatesh to check Persistent team’s NMSP simulator anyways to check if we can find something. 
+ 
+I have also forwarded the webex recording and documents given by Jian to us regarding the NMSP simulator.
+ 
+Thanks & Regards,
+Swami
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Hi Swami
+ 
+It seems the Persistent team is blocked on getting data on a few test cases. Could we please investigate and resolve the issue if possible. One option may be to give a TOI on the MSE simulator which Venkatesh was using at some point of time from Jian to inject data into MSE and Analytics. 
+ 
+Regards,
+Abhishek
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Hi Samir,
+
+We have prepared sheet and give our finding and blocker.Please review the same 'Sheet -Sprint2 and Risk' and kindly let us know if any changes required.
+
+
+Can we have call now and discuss this on details.
+
+Thanks,
+Puja
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+Hi Samir
+ 
+I have updated the CSV to the best of my knowledge. It seems there are 2 blockers mainly :
+ 
+
+    Windows 7 machine which Salil should be able to help
+    Getting more data into the MSE which the simulator or the setup should be able to help.
+
+ 
+I can see one more controller on the PI which you are using which is marked unreachable. If that controller has data can you check the connection once ?
+ 
+Regards,
+Abhishek
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Hi Shweta,
+ 
+Can you please point me to a contact who can allocate a Windows box to the Automation team? The current VM s that we have are all Linux boxes.
+ 
+Thanks,
+Sali
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Require Your Attention : CMX Automation
+
+
+Hi Salil/Samir,
+
+ 
+
+We have started working on automation test cases. We have following work stopping issues that seeks your attention to resolve. Please advise.
+
+ 
+
+1.We do not have working MSE 7.7  for automating Analytics  fixed defects. For time being we are using Nishita mse. However Nishita’s mse also doesn’t have sufficient data required for automation(as per Cisco requirement).
+
+ 
+
+2.Today Neha dropped mail for Presence UI automation– Again here we couldn’t start because of data issue and the intension of giving this area to persistent because of we owing this module(development), I discuss and follow up  with  Nilesh, Manoj, Ravindra and Madhura. I have done some configuration changes as well as per Ravindra suggestion but so far no progress.
+
+ 
+
+Attached mail and below mails are for details reference.
+
+ 
+
+Thanks,
+
+Puja
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Hi Puja,
+
+ 
+
+Thanks for the update. Appreciate the efforts you guys are putting to resolve the issues. Please start looking into the Presence Analytics test cases and automating bug fixes as well.
+
+ 
+
+Regards,
+
+Neha
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Hi Neha/Abhishek,
+
+ 
+
+We have completed Date verification test case of 1st part (picking date from date picker with positive and negative value, but on 2nd part- time selection we are working on it  as this is not general text or field, we are finding feasible way to automate this part) .
+
+ 
+
+we have also started working on ‘Zone names stay consistent though tab change’ test case.
+
+ 
+
+Thanks,
+
+Puja
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Hi Neha/Abhishek,
+
+ 
+
+We have resolved all the configuration related issue with help of HCL team and started working on writing new test case.
+
+ 
+
+Thanks
+
+Puja
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Hi Neha/Abhishek,
+
+ 
+
+We have created configuration file as per our requirement/setup and sent it  for review to Swami.
+
+ 
+
+While executing the testcase with new configuration file  , we were facing few issues like SSH connection issue with execution server , proxy server related issues and adobe flash player /firefox version related issues.
+
+ 
+
+Now we  are able to resolved first two issues .Today we had a call with Swami, he has given few suggestions and we are working on it and trying to resolve the third issue ’ adobe flash player /firefox version issue’
+
+ 
+
+Will try to resolve issue asap and start work on test case.
+
+ 
+
+Thanks,
+
+Puja
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Neha, Abhishek,
+
+ 
+
+We are still having issues in setting up the environment, the team is sending a detailed mail. HCL team is guiding us in the same.
+
+Will keep you posted on the demo date.
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Neha, Abhishek,
+
+ 
+
+We are preparing for the 1st test case automation demo on Monday.
+
+ 
+
+Puja and Rahul are having challenges in setting up the environment which is followed with the HCL team, majority of the issues are resolved.
+
+For other queries / issue they have already drooped you a mail and it has been now been resolved by James.
+
+ 
+
+Next Steps:
+
+1.       Setting up the test environment – Adding Controller – Configuring Maps (Campus, Building, Floor), MSE sync – Manually done. Work in progress for automation for setting up the configuration files.
+
+2.       Analytics UI – Test case for Date Verification – Manually done. Automation to be initiated after the configuration task.
+
+ 
+
+Regards,
+
+Samir Kajale
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Hi Samir,
+
+ 
+
+Can you please share the date when can we have this initial demo ?
+
+Also, let us know in case the team has any questions for us.
+
+ 
+
+Regards,
+
+Neha
+
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Neha,
+
+ 
+
+I will update you on the demo tomorrow - if we can give it tomorrow or delay it. Was not able to get the status from the team.
+
+ 
+
+Regards,
+
+Samir Kajale
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Automation Initial Demo
+
+Hi Neha/Abhishek,
+ 
+We have completed Date verification test case of 1st part (picking date from date picker with positive and negative value, but on 2nd part- time selection we are working on it  as this is not general text or field, we are finding feasible way to automate this part) .
+ 
+we have also started working on ‘Zone names stay consistent though tab change’ test case.
+ 
+Thanks,
+Puja
+
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Neha,
+ 
+I saw this a bit late, please let me know if we can schedule a call during your day time tomorrow.
+Around 9 AM your time which will be 9.30 pm for us.
+ 
+OR we will have to push it to Tuesday. (Monday is a holiday for us)
+ 
+Regards,
+Samir Kajale
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Hi Puja,
+ 
+Thanks for the update. Appreciate the efforts you guys are putting to resolve the issues. Please start looking into the Presence Analytics test cases and automating bug fixes as well.
+ 
+Regards,
+Neha
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Hi Neha/Abhishek,
+ 
+We have completed Date verification test case of 1st part (picking date from date picker with positive and negative value, but on 2nd part- time selection we are working on it  as this is not general text or field, we are finding feasible way to automate this part) .
+ 
+we have also started working on ‘Zone names stay consistent though tab change’ test case.
+ 
+Thanks,
+Puja
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Hi Neha/Abhishek,
+ 
+We have resolved all the configuration related issue with help of HCL team and started working on writing new test case.
+ 
+Thanks
+Puja
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Hi Neha/Abhishek,
+ 
+We have created configuration file as per our requirement/setup and sent it  for review to Swami.
+ 
+While executing the testcase with new configuration file  , we were facing few issues like SSH connection issue with execution server , proxy server related issues and adobe flash player /firefox version related issues.
+ 
+Now we  are able to resolved first two issues .Today we had a call with Swami, he has given few suggestions and we are working on it and trying to resolve the third issue ’ adobe flash player /firefox version issue’
+ 
+Will try to resolve issue asap and start work on test case.
+ 
+Thanks,
+Puja
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Neha, Abhishek,
+ 
+We are still having issues in setting up the environment, the team is sending a detailed mail. HCL team is guiding us in the same.
+Will keep you posted on the demo date.
+ 
+Regards,
+Samir Kajale
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+Neha, Abhishek,
+ 
+We are preparing for the 1st test case automation demo on Monday.
+ 
+Puja and Rahul are having challenges in setting up the environment which is followed with the HCL team, majority of the issues are resolved.
+For other queries / issue they have already drooped you a mail and it has been now been resolved by James.
+ 
+Next Steps:
+1.       Setting up the test environment – Adding Controller – Configuring Maps (Campus, Building, Floor), MSE sync – Manually done. Work in progress for automation for setting up the configuration files.
+2.       Analytics UI – Test case for Date Verification – Manually done. Automation to be initiated after the configuration task.
+ 
+Regards,
+Samir Kajale
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Hi Neha/Abhishek,
+ 
+We have completed Date verification test case of 1st part (picking date from date picker with positive and negative value, but on 2nd part- time selection we are working on it  as this is not general text or field, we are finding feasible way to automate this part) .
+ 
+we have also started working on ‘Zone names stay consistent though tab change’ test case.
+ 
+Thanks,
+Puja
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Hi Neha/Abhishek,
+ 
+We have created configuration file as per our requirement/setup and sent it  for review to Swami.
+ 
+While executing the testcase with new configuration file  , we were facing few issues like SSH connection issue with execution server , proxy server related issues and adobe flash player /firefox version related issues.
+ 
+Now we  are able to resolved first two issues .Today we had a call with Swami, he has given few suggestions and we are working on it and trying to resolve the third issue ’ adobe flash player /firefox version issue’
+ 
+Will try to resolve issue asap and start work on test case.
+ 
+Thanks,
+Puja
+
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Neha, Abhishek,
+ 
+We are still having issues in setting up the environment, the team is sending a detailed mail. HCL team is guiding us in the same.
+Will keep you posted on the demo date.
+ 
+Regards,
+Samir Kajale
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Neha, Abhishek,
+ 
+We are preparing for the 1st test case automation demo on Monday.
+ 
+Puja and Rahul are having challenges in setting up the environment which is followed with the HCL team, majority of the issues are resolved.
+For other queries / issue they have already drooped you a mail and it has been now been resolved by James.
+ 
+Next Steps:
+1.       Setting up the test environment – Adding Controller – Configuring Maps (Campus, Building, Floor), MSE sync – Manually done. Work in progress for automation for setting up the configuration files.
+2.       Analytics UI – Test case for Date Verification – Manually done. Automation to be initiated after the configuration task.
+ 
+Regards,
+Samir Kajale
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Hi Salil,
+
+We need MSE 7.7 , Earlier provided mse having some issues and not yet resolved, discuss the same issue with Nilesh as well , he is also not aware of the issue.
+
+We need it for automation because so far we are using Nishita mse but in automation if you provide ip of mse which is loaded in multiple PI in that  case it will throw multiple extra popup which is not taken care of existing scripts.
+
+Thanks,
+
+Puja
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+CMX automation : Configuration file verification
+
+Hi Swami,
+ 
+We have installed Firefox 14.0.1 version as you suggested while debugging and trying to execute the script but script picked old version of Firefox, then we un installed older version of FF  and restart the machine. We are getting new below error while executing the test case.
+ 
+irb(main):003:0> browser = Watir::Browser.new :ff, :profile => profile
+UNKNOWN_PROMPT -- 03/10/14 06:41:46 -- Timeout executing command browser = Watir::Browser.new :ff, :profile => profile.
+ 
+browser.goto 'https://172.19.28.208/'
+Selenium::WebDriver::Error::WebDriverError: unable to obtain stable firefox connection in 60 seconds (127.0.0.1:7055)
+ 
+Please suggest on this as we are stuck as friday issue is still not resolved  .
+ 
+Thanks,
+Puja
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Hi Swami,
+ 
+We have tried the same steps again and facing same issues which I reported to Venkatesh on Friday(Please install adobe player) . however I am not getting this adobe player window if I am performing the same steps manually , not sure then why it is asking while execute it from automation suit.
+ 
+Kindly let me know if you are following any addition steps and  made any configuration changes.
+ 
+Thanks,
+Puja
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Puja,
+ 
+I can see Venkatesh has helped you through webex chat to fix your config file error (your execution name was incorrect earlier, it is fixed now).   Also since your exec server is unable to reach internet, NCS login page will take time to finish loading as it tries to attempt to contact adobe. As per Venkatesh’s suggestion I can see you have added a 300 second sleep for the time being (Please get internet connectivity working on your server to avoid this wait time, or have a proxy server and configure the proxy server on your execution server through the lib itself)
+ 
+After these 2 changes, I can see script is progressing smoothly. Please see below.
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Hi Swami,
+ 
+Could you please arrange an half an hour call with you or your team, we are trying to resolve our issues but still it persist and we are unable to proceed.
+ 
+Kindly let me know your comfortable time for call.
+ 
+Thanks,
+Puja
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Hi Swami,
+ 
+Please find config file attached , initially we were getting some error , we tried to resolved in our end  but one error we are unable to resolve and not able to proceed, please have a look in configuration file as well as error which have coming by executing test case file .
+ 
+Thanks,
+Puja
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Hi Swami,
+ 
+We have done with set up of MSC,PI and also done with the configuration file, we just wanted to verify our configuration file with you so that it will not affect at your setups.
+ 
+Please confirm your comfortable time on tomorrow so that we can verify this thing.
+ 
+Thanks
+Puja
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Hi Swami,
+ 
+Thanks for the session, that really help.
+ 
+1.       Cannot load such file –zip/zip : on irb while require ‘watir-webdriver’ – Which machine are you seeing this issue in ? Can you give IP address ?
+ 
+As discussed, We are not able to execute the test and getting above error .Please debug and let us  know the problem and solution as well, so in future we will do it from our end.
+ 
+IP - 172.19.28.223 , credential -  root/blender  .
+ 
+Thanks,
+Puja
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Puja,
+ 
+1.       If you refer any of our tcl NGAI script, you can see how to call any ngai proc from inside the script. Please refer to the procedures in the lib folders to see samples of how to write lib procs for actions similar to what you are looking for. Please make sure you follow the guidelines/format to be followed when writing NGAI procedures.
+ 
+2.       In TCL, we already have libraries available to connect to GUI via irb. You can look into /ngai_tcl/lib/infra/device_console where we connect to PI,MSE GUI.
+ 
+3.       Can’t find NGAI package – error message --- Which machine are you seeing this issue in ? Have you checked out all required files from ngai_tcl ?
+ 
+4.       Cannot load such file –zip/zip : on irb while require ‘watir-webdriver’ – Which machine are you seeing this issue in ? Can you give IP address ?
+ 
+ 
+Will setup a 30 minute meeting for tomorrow afternoon
+ 
+Thanks & Regards,
+Swami
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Adding few more question.
+ 
+1.How to call ngai_tcl -> lib-> platform specific-> mse-> common –gui – proc/functions  in our main script file.
+ 
+Example:
+Steps.. 1.login into analytics,
+              2. Go to analytics tab,
+             3 in left menu select build and zone etc. and
+             4 .Run
+	
+ 
+Now I my understanding  is that, I have to declare this element or retrieve the element .like analytics tab, zone combo box,  run button  for that I have write code in ngai_tcl -> lib-> platform specific-> mse-> common –gui (like folder) and then I have to call that step/proc/function/file in main script file.
+ 
+2.As we have irb session in iTest and how to do that in TCL: how /where to write  ruby code/irb session in TCL.
+ 
+Thanks,
+Puja
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+HI Swami,
+ 
+I am facing some problem while executing the existing tcl script to check function behavior .Please find below and help on this.
+ 
+1)Can’t find NGAI package – error message : we tried with below command  but it’s not resolve the problem .
+ 
+setenv CVSROOT :ext:cvs_user@wnbu-cvs:/auto/wnbu-cvsroot
+set env CVS_RSH ssh
+ 
+ 
+2)Cannot load such file –zip/zip : on irb while require ‘watir-webdriver’ – We tried to check some sample scripts.
+ 
+Request you  please arrange half an hour session daily to trouble shoot our issues at least next two three days because some time small issue took our half or whole day to trouble shoot as we are not very handy on this.
+ 
+Kindly let me know your comfortable time to setup webex meeting .
+ 
+Thanks,
+Puja
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Subject: CMX :Analytics Automation query
+
+Hi Abhishek,
+ 
+We are working on automation for date verification test case , we are pretty much clear for Analytics tab but few confusion with Reports and Dashboard. Please let me know the scope of the data verification test case
+ 
+Analytics : what would you like to have in test case?
+select date range : start date and end date
+Select from preset
+ 
+Dashboard : what would you want to verify ?
+ 
+Reports : what would you want to verify ?
+ 
+Because as mention in test case document –‘Please repeat the same steps for Report and dashboard’, .Please guide us on the same.
+ 
+Thanks,
+Puja
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Hi,
+What I want you to test is trying to set,
+ 
+Start date: today End date: yesterday
+ 
+Start time: now, End time: one hour ago
+è  these both should not be allowed
+ 
+Start date: 30th December 2013, End date 2nd January 2014
+è This should be fine if we have data spanning that period
+ 
+The dashboard, analytics and reports all have date windows in which we can test this.
+ 
+James
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Subject : CMX automation TOI
+
+Hi Swami,
+
+Please let me know the quick pointer to  start Analytic test case to automate,  In our last meeting, we had shown how to checkout NGAI scripts in iTest, also I hope you were successful in checking out TCL NGAI scripts as pointed out in the documents which we sent to you.  As also discussed in our last meeting, you should be able to find out the Analytics related scripts in the scripts->mse folder.   We will setup a meeting to show pointers to our TCL and iTest libraries and scripts for the  Analytics related scripts which we have automated.
+ 
+
+Puja :Yes we downloaded iTest and TCl scripts in ITest tool window, however I got error after that and the same reported to Balaji , it is not yet resolved. Let me know when we can have call TCL and iTest libraries and scripts for the  Analytics related scripts which we have automated?
+ 
+
+1.what setup required (Functional and Automation) – We will need 1-2 MSE, 1 PI, 1-2 WLCs, few APs, few clients, may need Talwar Sim as analytics will need more data.
+
+Puja: I am not sure about the above requirement you mentioned , we should discuss this with more details.
+
+
+2.How many VM required (so far we have dev and run) any more VM required? – Might need 1 VM server for PI and 1-2 appliance MSE or a high end VM server to deploy Virtual MSEs. This might be good enough for automation. For group runs, you might need an extra setup.
+
+Puja: So I guess , one run and one dev VMs will work?
+
+ 
+
+3.What all thing we need to install in VM and how/from where ? – I hope you are already aware of deploying PI, MSE etc … on VM. Please confirm.
+
+Puja: No I am not aware of this.
+
+4.How are where to run test case and what all configuration required to execute  existing /new test cases. –  I hope you are already have some idea on the analytics feature. Also, I hope you have basic understanding on WLC,PI, MSE and how they work together etc.
+
+Puja: I have bit idea about the few features but not sure that are sufficient or not.
+
+
+So far we have installed only iTest in Window. Will it work? –  iTest in windows must be good enough for individual automation. You will need CEL execution servers to make group runs later.
+
+Puja: what is CEL execution server
+
+What is your comfortable time to have call today?
+
+Thanks,
+
+Puja
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Hi Swami,
+
+ 
+
+Thanks for the session ,Venkatesh explained us one test case which he has created in  iTest , however  he was not able to execute it because the configuration was not proper in Test Case
+
+One small question for  you ,He mentioned that you should have VNC viewer and server, do you have document for that, how to install/configure VNC server and start VNC viewer, do we need any credentials  for that.
+
+Balaji has given me this link but I guess this is not sufficient, Could you please confirm ?
+
+http://wikicentral.cisco.com/display/WNBUCODC/VNC+Guide
+
+Thanks,
+Puja
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Puja,
+
+ 
+
+Please note these were covered in the meeting today (https://cisco.webex.com/ciscosales/lsr.php?RCID=83f1d5a984c34154ade8821205052876 – webex recording link)
+
+ 
+
+·         iTest sample script explanation (common_setup, test, common_cleanup)
+
+·         Common library procedure to connect devices (device_console)
+
+·         Sample Library procedures related to MSE and ANalytics (add_mse, config_add_widget)
+
+·         What is NGAI and why we using version/platform based library procedures
+
+·         Demo on manually checking simple analytics ui test case and explained the same with script
+
+·         FFTB file for iTest and config file for TCL were discussed – specifically device WCS_1 & MSE_1 were discussed, how to fetch values from testbed file
+
+·         NGAI_TCL sample script shown; usage of  pre_test_setup & post_test_setup library modules
+
+·         Explained how to run NGAI_TCL script in execution server
+
+·         Overview of tes-lite  for group runs
+
+ 
+
+Execution demo of a testcase was not possible because the testbeds were in use.
+
+ 
+
+Do you need VNC server running on your desktop (In this case, it should be pretty simple – downloading and installing from google ? or any execution server – in this case, make sure you have Cisco enterprise linux running on it and please follow this http://wnbu-tes/tes/help/setting_up_linux_machine_as_tes_execution_server.htm
+
+Thanks & Regards,
+Swami
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Hi Asit,
+
+Please give us at least one set of VMs(Dev and run) for QA  on priority basis, because we have to do all automation related setup and after that setup call with HCL team.
+
+Kindly let me know by when will get that.
+
+Thanks.
+Puja
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Subject: RE: Automation session
+
+ 
+
+Puja,
+
+ 
+
+1.       How and from where will get iTest and TCL installer with correct version.
+
+<Swami>      For iTest Installers: we can download the same from below link,  http://wikicentral.cisco.com/display/PROJECT/WNBU+FanFare (login CEC password).  In this link one can find details about windows/ linux installers files, license server             details, cvs server details, aetest files and packages required for it.
+
+                        For TCL installers : No need If one is using Cisco enterprise linux, by default TCL installers will come in it, if one is using other linux servers , one have to download latest “Active State TCL” installer file from browsing google.
+
+ 
+
+2.       From where we can get our existing automation code.
+
+<Swami>    Refer to this webex recording  for iTest files checkout https://cisco.webex.com/ciscosales/lsr.php?AT=pb&SP=MC&rID=58709962&rKey=45c39a0c56974e6f
+
+                      For tcl files checkout and commit: you can refer to TCL NGAI edcs doc which was sent earlier
+
+ 
+
+3.       What all functionalities we have cover in iTest and what all functionality we have cover  in TCL  automation.(coverage)
+
+<Swami>    As discussed in our meeting, we used iTest for our automation earlier. So all our earlier automated regression scripts are in iTest. Also, all sanity related automation is currently done on iTest.  The new feature automation and any new automation which we will work on we will be using TCL unless there are very specific dependencies.
+
+ 
+
+4.       What are all challenging are in our project (CMX) with both the tools.
+
+<Swami>    In both iTest and TCL we use Ruby (Interactive Ruby) for GUI automation of MSE GUI and PI GUI. For the MSE CLI, we use ssh from both iTest and TCL.  Only for the CMX Analytics automation, we ran into issues in opening MSE Analytics GUI in linux execution servers. So we decided to use Win 7 machines to open MSE GUI and test. For this purpose alone, we use Selenium Remote Control where Win 7 machine acts as Selenium RC server and the Linux exec server acts as the Selenium RC client. Other than this, we have few objects/actions which cannot be automated in Ruby/Selenium like draw operations, 3d view verification, drag and drop etc …
+
+ 
+
+Please setup a meeting for 11.30 am for Wednesday. Let us know what other information you need.
+
+ 
+
+Thanks & Regards,
+
+Swami
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Subject: RE: Automation session
+
+ 
+
+Hi Swami,
+
+ 
+
+As discussed, today you are busy. Could you please let me know your comfortable time for tomorrow morning, So I will send you invite and block calendar for respective members in advance.
+
+ 
+
+Thanks,
+
+Puja
+
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Hi Swami,
+
+ 
+
+We are going through the document and VODs , it is in-progress. If anyone from your team can help us to demonstrate few below things.
+
+ 
+
+1.       How and from where will get iTest and TCL installer with correct version.
+
+2.       From where we can get our existing automation code.
+
+3.       What all functionalities we have cover in iTest and what all functionality we have cover  in TCL  automation.(coverage)
+
+4.       What are all challenging are in our project (CMX) with both the tools.
+
+ 
+
+It would very helpful for us, if  anyone from your team can give small demo which is project specific  then later on we can have call for automation problem/ issues.
+
+ 
+
+Thanks,
+
+Puja
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Hi Puja,
+
+Were you able to go through all the documents, VODs which we had sent earlier.
+
+They must contain all the information from TOIs on iTest, TCL, NGAI etc …
+
+What other information are you looking for ?
+
+Thanks & Regards,
+Swami
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Hi Sameer,
+
+You have given the general TIMS link, I got to know about the data base from Balaji (on chat) and one project pine bridge. There are 18-19 folders and many sub folders as well. Do you want us to concentrate any specific area,Is this the right project ? because when I asked to Balaji for Analytic area he had  given me some other project link i.e Master-MSE. Please guide us on this.
+
+
+
+Thanks,
+Puja
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Hi Samir ,
+ 
+Can we get this information from Neha/Savitha or Chennai Team ? Once we go through testcases , we will get to know the level of TC they wrote and when we play around the automation code/scripts then we can do our side home work and will ask question accordingly before that automation walk through will be not much use i guess.
+ 
+ 
+Thanks,
+Puj
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
