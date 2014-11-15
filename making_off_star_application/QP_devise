@@ -184,6 +184,24 @@ rails generate devise:views confirmable
 
 
 rake db:migrate
+
+
+Allowing Unconfirmed Access:
+------------------------------
+
+If you want to add a "grace period" where unconfirmed users may still login, use the allow_unconfirmed_access_for config option (which defaults to 0):
+
+# in Devise Initializer
+config.allow_unconfirmed_access_for = 365.days
+
+Alternatively, you may want to skip required confirmation all-together:
+
+# in User.rb
+protected
+def confirmation_required?
+  false
+end   
+
 ----------------------------------------------------------------------------------------------------------------------------------------------------
 
 --------------------------------------------------------------------------

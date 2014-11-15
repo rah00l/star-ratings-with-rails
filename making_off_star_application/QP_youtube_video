@@ -1,0 +1,9 @@
+# Implementing showing videos
+http://www.sitepoint.com/youtube-rails/
+
+
+gem 'youtube_it', '~> 2.4.0'
+
+
+
+rails g model Video link:string title:string author:string duration:string likes:integer dislikes:integer

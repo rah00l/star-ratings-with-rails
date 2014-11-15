@@ -76,6 +76,9 @@ gem 'omniauth-facebook'
 # to add tagging
 gem 'acts-as-taggable-on'
 
+# For implementing video functionality
+gem 'youtube_it', '~> 2.4.0'
+
 # For testing app 
 group :development, :test do
   gem 'factory_girl_rails'

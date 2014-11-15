@@ -33,6 +33,8 @@ end
     resource :music
   end
 
+resources :videos, only: [:index, :new, :create]
+
 
 resource :user do
   collection do
