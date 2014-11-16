@@ -1,0 +1,122 @@
+p {
+    font-size: 14px;
+    line-height: 1.6;
+    margin: 0 0 17px;
+}
+
+a {
+    color: #2BA6CB;
+    line-height: inherit;
+    font-size: 14px;
+    text-decoration: none      !important;
+}
+
+a:hover { text-decoration: underline    !important;	 }
+
+label {
+    color: #4D4D4D;
+    cursor: pointer;
+    display: block;
+    font-size: 15px;
+    font-weight: 500;
+    margin-bottom: 0.1875em;
+}
+
+
+.top-bar-section ul li > a {
+    background: none repeat scroll 0 0 #222222;
+    color: #FFFFFF;
+    display: block;
+    font-size: 1em;
+    font-weight: bold;
+    padding: 12px 0 12px 15px;
+    width: 100%;
+}
+
+form input[type=text], form input[type=password], form input[type=email], form input[type=number], form input[type=url], form input[type=tel], form textarea {
+  width: 65%;
+  border: 1px solid #c9d0d6;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  font-size: 14px;
+  font-family: Helvetica, Arial, sans-serif;
+  outline: none;
+  padding: 8px 10px 7px;
+}
+
+.remember_me{
+	 color: #4D4D4D;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 0.1875em;
+}
+
+
+input[type="submit"] {
+	background-color: #2ba6cb 		!important;
+    border-color: #2284A1;
+    border-style: solid;
+    border-width: 1px;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: bold;
+    line-height: normal;
+    margin: 0 0 1.25em;
+    padding: 0.75em 1.5em 0.8125em;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+}
+
+.custom_button {
+    
+}
+
+
+
+/*button, .button {
+  border-style: solid;
+  border-width: 1px;
+  cursor: pointer;
+  font-family: inherit;
+  font-weight: bold;
+  line-height: normal;
+  margin: 0 0 1.25em;
+  position: relative;
+  text-decoration: none;
+  text-align: center;
+  display: inline-block;
+  padding-top: 0.75em;
+  padding-right: 1.5em;
+  padding-bottom: 0.8125em;
+  padding-left: 1.5em;
+  font-size: 1em;
+  background-color: #2ba6cb;
+  border-color: #2284a1;
+  color: white;
+}*/
+
+
+/*.button {
+    background-color: #2BA6CB 		!important;
+    border-color: #2284A1;
+    border-style: solid;
+    border-width: 1px;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    font-family: inherit;
+    font-size: 1em;
+    font-weight: bold;
+    line-height: normal;
+    margin: 0 0 1.25em;
+    padding: 0.75em 1.5em 0.8125em;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+}*/
