@@ -47,7 +47,7 @@
 
 23. @ Sign Up page for new user registration once user entered email id it shows email ids availability ..i.e. fine but once it is available then user shifted @ password field then need to remove inline validation message ... (Dev Related issue).
 
-
+24. Article index page button/text_field alignment issue.
 
 
 

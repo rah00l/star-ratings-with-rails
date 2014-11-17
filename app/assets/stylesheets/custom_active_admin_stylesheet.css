@@ -54,8 +54,149 @@ form input[type=text], form input[type=password], form input[type=email], form i
 }
 
 
-input[type="submit"] {
-	background-color: #2ba6cb 		!important;
+
+form input[type=submit] {
+  /*-webkit-border-radius: 200px;*/
+  /*-moz-border-radius: 200px;*/
+  /*border-radius: 200px;*/
+  display: inline-block;
+  font-weight: bold;
+  font-size: 12px;
+  font-family: inherit;
+  line-height: normal;
+  margin: 0 0 1.25em;
+  padding: 0.75em 1.5em 0.8125em;
+  text-decoration: none;
+  /*-webkit-font-smoothing: antialiased;*/
+  /*background: -webkit-linear-gradient(-90deg, #2ba6cb, #414549);*/
+  /*background: -moz-linear-gradient(-90deg, #2ba6cb, #2ba6cb);*/
+  /*background: linear, -90deg, #2ba6cb, #414549;*/
+  background: #2ba6cb;
+  /*filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FF838A90', endColorstr='#FF414549');
+  -ms-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FF838A90', endColorstr='#FF414549');*/
+  /*text-shadow: black 0 1px 0;*/
+  text-align: center;
+  text-decoration: none;  
+  /*box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1), 0 1px 0 0px rgba(255, 255, 255, 0.2) inset;*/
+  border-color: #2284A1;
+  border-style: solid;
+  border-width: 1px;
+  color: #FFFFFF;
+  cursor: pointer;
+}
+
+
+.article_search_field{
+  width: 75%;
+}
+
+
+form input[type=submit]:not(.disabled):hover {
+  background: #2284a1;
+  /*background: -webkit-linear-gradient(-90deg, #8b9297, #484d51);
+  background: -moz-linear-gradient(-90deg, #8b9297, #484d51);
+  background: linear, -90deg, #8b9297, #484d51;*/
+ /* filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FF8B9297', endColorstr='#FF484D51');
+  -ms-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FF8B9297', endColorstr='#FF484D51');*/
+}
+
+
+a.button, a:link.button, a:visited.button, input[type=submit] {
+  /*-webkit-border-radius: 200px;
+  -moz-border-radius: 200px;
+  border-radius: 200px;*/
+  display: inline-block;
+  font-weight: bold;
+  font-size: 12px;
+  font-family: inherit;
+  line-height: normal;
+  margin: 0 0 1.25em;
+  padding: 0.75em 1.5em 0.8125em;
+  text-decoration: none;
+  /*-webkit-font-smoothing: antialiased;*/
+  background: #2ba6cb;
+  /*background: -webkit-linear-gradient(-90deg, #838a90, #414549);
+  background: -moz-linear-gradient(-90deg, #838a90, #414549);
+  background: linear, -90deg, #838a90, #414549;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FF838A90', endColorstr='#FF414549');
+  -ms-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FF838A90', endColorstr='#FF414549');*/
+  /*text-shadow: black 0 1px 0;*/
+  /*box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1), 0 1px 0 0px rgba(255, 255, 255, 0.2) inset;*/
+  text-align: center;
+  text-decoration: none; 
+  border-color: #2284A1;
+  border-style: solid;
+  border-width: 1px;
+  color: #FFFFFF;
+  cursor: pointer;
+}
+
+
+a.button:not(.disabled):hover, a:link.button:not(.disabled):hover, a:visited.button:not(.disabled):hover, input[type=submit]:not(.disabled):hover {
+  background: #2284a1;
+ /* background: -webkit-linear-gradient(-90deg, #8b9297, #484d51);
+  background: -moz-linear-gradient(-90deg, #8b9297, #484d51);
+  background: linear, -90deg, #8b9297, #484d51;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FF8B9297', endColorstr='#FF484D51');
+  -ms-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FF8B9297', endColorstr='#FF484D51');*/
+}
+
+/* line 121, ../../../../.rvm/gems/ruby-1.9.3-p194@star-rating/gems/zurb-foundation-4.3.2/scss/foundation/components/_buttons.scss */
+/*button:hover, button:focus, .button:hover, .button:focus {
+  background-color: #2284a1;
+}*/
+/* line 132, ../../../../.rvm/gems/ruby-1.9.3-p194@star-rating/gems/zurb-foundation-4.3.2/scss/foundation/components/_buttons.scss */
+/*button:hover, button:focus, .button:hover, .button:focus {
+  color: white;
+}*/
+
+/*form input[type=submit]:not(.disabled):hover {
+  background: #8b9297;
+  background: -webkit-linear-gradient(-90deg, #8b9297, #484d51);
+  background: -moz-linear-gradient(-90deg, #8b9297, #484d51);
+  background: linear, -90deg, #8b9297, #484d51;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FF8B9297', endColorstr='#FF484D51');
+  -ms-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FF8B9297', endColorstr='#FF484D51');
+}*/
+
+/* Default class for button in active-admin */
+
+/*form input[type=submit] {
+  -webkit-border-radius: 200px;
+  -moz-border-radius: 200px;
+  border-radius: 200px;
+  display: inline-block;
+  font-weight: bold;
+  font-size: 1.0em;
+  font-family: Helvetica, Arial, sans-serif;
+  line-height: 12px;
+  margin-right: 3px;
+  padding: 7px 16px 6px;
+  text-decoration: none;
+  -webkit-font-smoothing: antialiased;
+  background: #838a90;
+  background: -webkit-linear-gradient(-90deg, #838a90, #414549);
+  background: -moz-linear-gradient(-90deg, #838a90, #414549);
+  background: linear, -90deg, #838a90, #414549;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FF838A90', endColorstr='#FF414549');
+  -ms-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FF838A90', endColorstr='#FF414549');
+  text-shadow: black 0 1px 0;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1), 0 1px 0 0px rgba(255, 255, 255, 0.2) inset;
+  border: solid 1px #484e53;
+  border-color: #484e53;
+  border-top-color: #616a71;
+  border-right-color: #484e53;
+  border-bottom-color: #363b3f;
+  border-left-color: #484e53;
+  color: #efefef;
+  cursor: pointer;
+}*/
+
+
+/* Default class for button in zurb-foundation */
+
+/*form input[type=submit] {
+	background-color: #2ba6cb;
     border-color: #2284A1;
     border-style: solid;
     border-width: 1px;
@@ -71,11 +212,11 @@ input[type="submit"] {
     position: relative;
     text-align: center;
     text-decoration: none;
-}
+}*/
 
-.custom_button {
+/*.custom_button {
     
-}
+}*/
 
 
 

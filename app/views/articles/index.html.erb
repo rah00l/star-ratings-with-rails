@@ -11,9 +11,9 @@
   
    <div class="row">
     <div class="large-9 columns">
-     <%= text_field_tag :search, params[:search]  %>
+     <span><%= text_field_tag :search, params[:search]  %></span>
+     <span><%= submit_tag "Search", :name => nil %></span>
     </div>
-    <%= submit_tag "Search", :name => nil , class: "custom_button"%>
   </div>
   
     
