@@ -43,7 +43,9 @@
 
 21. Sign-in / Sign-up page need to modify ..(design related)
 
+22. After appling new css classes for text-field and all form element , drop-down boxes content is not alligned proper .. need to fix  ... (Design related) ..see @ /user_profile/edit/contact_details/selection_boxes.
 
+23. @ Sign Up page for new user registration once user entered email id it shows email ids availability ..i.e. fine but once it is available then user shifted @ password field then need to remove inline validation message ... (Dev Related issue).
 
 
 
