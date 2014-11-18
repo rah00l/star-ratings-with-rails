@@ -722,3 +722,46 @@ ActionMailer::Base.sendmail_settings = {
 
 
 --------------------------------------------------------------------------------------------------------------------------
+
+
+
+ 2 down vote favorite
+  
+
+I have an app , it uses devise to send confirmation mails for the newly registered users , I have smtp settings under the development.rb file as
+
+  config.action_mailer.default_url_options = { :host => 'http://localhost:3000' }
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+  :enable_starttls_auto => true,
+  :address => "smtp.gmail.com",
+  :port => 587,
+  :domain => "gmail.com",
+  :authentication => :login,
+  :user_name => "my_username@gmail.com",
+  :password => "mygmail password"
+    }
+
+This is throwing me with an error like ,
+
+Net::SMTPAuthenticationError in Devise::RegistrationsController#create
+
+535-5.7.1 Please log in with your web browser and then try again. Learn more at
+
+Any Ideas how to resolve this ?
+
+Resolved using these settings ..
+
+ config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+ config.action_mailer.perform_deliveries = true
+ config.action_mailer.default :charset => "utf-8"
+  ActionMailer::Base.smtp_settings = {
+  :address              => "smtp.gmail.com",
+  :port                 => 587,
+  :user_name            => "my_username@gmail.com",
+  :password             => 'my_gmail password',
+  :authentication       => "plain",
+  :enable_starttls_auto => true
+  }
+
