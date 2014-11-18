@@ -1,3 +1,54 @@
+.body_bg_img {
+  /* Location of the image */
+  /*background-image: url(images/background-photo.jpg);*/
+  background: url("/assets/background-photo.jpg");
+  
+  /* Background image is centered vertically and horizontally at all times */
+  background-position: center center;
+  
+  /* Background image doesn't tile */
+  background-repeat: no-repeat;
+  
+  /* Background image is fixed in the viewport so that it doesn't move when 
+     the content's height is greater than the image's height */
+  background-attachment: fixed;
+  
+  /* This is what makes the background image rescale based
+     on the container's size */
+  background-size: cover;
+  
+  /* Set a background color that will be displayed
+     while the background image is loading */
+  background-color: #464646;
+}
+
+
+/*.body_bg_img{
+        background: url("/assets/login_bg_image.jpg") no-repeat center center fixed; 
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
+}*/
+
+.sign-in-box {
+    background: black;
+        color: white;
+        border-radius: 1em;
+        padding: 1em;
+        /*position: absolute;*/
+        top: 50%;
+        left: 50%;
+        margin-right: -50%;
+        /*transform: translate(-50%, -50%);*/
+  /* position:absolute;
+  top:50%;
+  left:50%;
+  margin-top:-50px;  this is half the height of your div  
+  margin-left:-100px; /*this is half of width of your div*/*/*/
+}
+
+
 p {
     font-size: 14px;
     line-height: 1.6;
@@ -72,6 +123,7 @@ form input[type=submit] {
   /*background: -moz-linear-gradient(-90deg, #2ba6cb, #2ba6cb);*/
   /*background: linear, -90deg, #2ba6cb, #414549;*/
   background: #2ba6cb;
+  /*background: #309eeb;*/
   /*filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FF838A90', endColorstr='#FF414549');
   -ms-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FF838A90', endColorstr='#FF414549');*/
   /*text-shadow: black 0 1px 0;*/
@@ -139,6 +191,18 @@ a.button:not(.disabled):hover, a:link.button:not(.disabled):hover, a:visited.but
   background: linear, -90deg, #8b9297, #484d51;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FF8B9297', endColorstr='#FF484D51');
   -ms-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FF8B9297', endColorstr='#FF484D51');*/
+}
+
+form.custom .custom.dropdown .current {
+  cursor: default;
+  white-space: nowrap;
+  line-height: 2.25em;
+  color: rgba(0, 0, 0, 0.75);
+  text-decoration: none;
+  overflow: hidden;
+  display: block;
+  margin-left: 0.5em;
+  margin-right: 2.3125em;
 }
 
 /* line 121, ../../../../.rvm/gems/ruby-1.9.3-p194@star-rating/gems/zurb-foundation-4.3.2/scss/foundation/components/_buttons.scss */
