@@ -31,22 +31,117 @@
       background-size: cover;
 }*/
 
-.sign-in-box {
-    background: black;
-        color: white;
-        border-radius: 1em;
-        padding: 1em;
+
+/*.sign-in-box {
+    background: none repeat scroll 0 0 rgba(255, 255, 255, 0.698);
+    border-radius: 1em;
+    color: #FFFFFF;
+    left: 50%;
+    margin: 100px;
+    padding: 27px 0 0 49px;
+    /*text-align: center;*/
+    /*top: 50%;*/
+/*}*/
+
+
+
+.signin_container {
+    background: none repeat scroll 0 0 #444444;
+    margin: 60px auto 0;
+    width: 380px;
+}
+
+
+.login_heading {
+    background: url("/assets/signin-heading.png") no-repeat scroll 10px 10px #E7E7E7;
+    border: 1px solid #BBBBBB;
+    font-size: 25px;
+    padding: 15px;
+    text-indent: 45px;
+}
+
+
+a.login_facebook {
+    background: url("/assets/Login-with-facebook.png") no-repeat scroll 8px 10px rgba(0, 0, 0, 0);
+    display: block;
+    height: 60px;
+    margin-bottom: 20px;
+    text-indent: -9999px;
+    width: 345px;
+}
+
+.or_image{
+      margin-bottom: 10px;
+     }
+
+     .form_container {
+    color: #FFFFFF;
+    padding: 15px;
+    width: 355px;
+}
+
+
+.remember_margin {
+    margin: -14px 0 6px;
+}
+
+.remember_me {
+    display: inline-block;
+    width: 150px;
+}
+
+
+.control-group {
+    margin-bottom: 10px;
+}
+
+
+
+/*.signin_container{
+  background: #444;
+  width: 380px;
+  margin: 0 auto;
+  margin-top: 60px;
+  .login_heading{
+    padding: @pad;
+    border: 1px solid #bbb;
+    font-size: 25px;
+    text-indent: 45px;
+    background: #e7e7e7 url("/assets/signin-heading.png") no-repeat 10px 10px;
+  }
+  
+}/* signin_container */
+
+/*.custom_text_filed{
+      border: 1px solid #C9D0D6;
+    border-radius: 3px;
+    font-family: Helvetica,Arial,sans-serif;
+    font-size: 17px;
+    margin-left: -8px;
+    outline: medium none;
+    padding: 8px 10px 7px;
+    width: 88%;
+}*/
+
+
+/*.sign-in-box {
+   /*background: black;*/
+        /*color: white;*/
+        /*border-radius: 1em;*/
+        /*padding: 1em;*/
         /*position: absolute;*/
-        top: 50%;
-        left: 50%;
-        margin-right: -50%;
+        /*top: 50%;*/
+        /*left: 50%;*/
+         /*margin: 100px;*/
+         /*background: none repeat scroll 0 0 rgba(255, 255, 255, 0.698);*/
+        /*margin-right: -50%;*/
         /*transform: translate(-50%, -50%);*/
   /* position:absolute;
   top:50%;
   left:50%;
   margin-top:-50px;  this is half the height of your div  
-  margin-left:-100px; /*this is half of width of your div*/*/*/
-}
+  margin-left:-100px; /*this is half of width of your div*/
+/*}*/
 
 
 p {
@@ -96,7 +191,7 @@ form input[type=text], form input[type=password], form input[type=email], form i
   padding: 8px 10px 7px;
 }
 
-.remember_me{
+.remember_me_label{
 	 color: #4D4D4D;
     cursor: pointer;
     font-size: 14px;
@@ -204,6 +299,17 @@ form.custom .custom.dropdown .current {
   margin-left: 0.5em;
   margin-right: 2.3125em;
 }
+
+
+form #new_user div .form_container .input_styling {
+    background: url("/assets/username.png") no-repeat scroll 6px 10px #FFFFFF;
+    border-radius: 0;
+    height: 30px;
+    text-indent: 30px;
+    width: 332px;
+}
+
+
 
 /* line 121, ../../../../.rvm/gems/ruby-1.9.3-p194@star-rating/gems/zurb-foundation-4.3.2/scss/foundation/components/_buttons.scss */
 /*button:hover, button:focus, .button:hover, .button:focus {
