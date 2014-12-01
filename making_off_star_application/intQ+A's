@@ -322,6 +322,38 @@ Those are the two gatekeepers for your application, if they are compromised, som
 
 
 
+
+******************************************************************************************************************************************************
+method_missing :
+----------------
+
+http://code.tutsplus.com/tutorials/ruby-for-newbies-missing-methods--net-20924
+
+Let’s say your working with a Ruby object. And let’s also say that you aren’t entirely familiar with this object. And let’s also say that you call a method that doesn’t exist on the object.
+    
+o = <span class="skimlinks-unlinked">Object.new</span>
+o.some_method
+# NoMethodError: undefined method `some_method' for #<Object:0x00000100939828>
+
+This is less than desirable, so Ruby has an awesome way of allowing us to rescue ourselves from this. Check this out:
+
+    
+class OurClass
+  def method_missing (method_name)
+    puts "there's no method called '#{method_name}'"
+  end
+end
+ 
+o = <span class="skimlinks-unlinked">OurClass.new</span>
+o.some_method
+# => there's no method called 'some_method'
+
+We can create a method called method_missing in our class. If the object we’re calling the method on doesn’t have the method (and doesn’t inherit the method from another class or module), Ruby will give us one more chance to do something useful: if the class has a method_missing method, we’ll hand the information about the method cal to method_missing and let it sort the mess out.
+
+Well, that’s great; we’re no longer getting an error message.
+
+
+
 ******************************************************************************************************************************************************
 Model Associations
 
@@ -1610,6 +1642,34 @@ $('img').live('click', function() { /* doSomething */ });
 Because of this bubbling behaviour though, not all events can be handled this way. As Ichiban noted, these supported events are click, dblclick mousedown, mouseup, mousemove, mouseover, mouseout, keydown, keypress, keyup.
 
 ******************************************************************************************************************************************************
+
+
+http://code.tutsplus.com/tutorials/ruby-for-newbies-missing-methods--net-20924
+
+Let’s say your working with a Ruby object. And let’s also say that you aren’t entirely familiar with this object. And let’s also say that you call a method that doesn’t exist on the object.
+    
+o = <span class="skimlinks-unlinked">Object.new</span>
+o.some_method
+# NoMethodError: undefined method `some_method' for #<Object:0x00000100939828>
+
+This is less than desirable, so Ruby has an awesome way of allowing us to rescue ourselves from this. Check this out:
+
+    
+class OurClass
+  def method_missing (method_name)
+    puts "there's no method called '#{method_name}'"
+  end
+end
+ 
+o = <span class="skimlinks-unlinked">OurClass.new</span>
+o.some_method
+# => there's no method called 'some_method'
+
+We can create a method called method_missing in our class. If the object we’re calling the method on doesn’t have the method (and doesn’t inherit the method from another class or module), Ruby will give us one more chance to do something useful: if the class has a method_missing method, we’ll hand the information about the method cal to method_missing and let it sort the mess out.
+
+Well, that’s great; we’re no longer getting an error message.
+
+
 
 
 
