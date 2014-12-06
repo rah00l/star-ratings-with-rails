@@ -95,7 +95,11 @@ a.login_facebook {
     margin-bottom: 10px;
 }
 
-
+input[type="checkbox"] {
+    cursor: pointer;
+    padding-left: 20px;
+}
+}
 
 /*.signin_container{
   background: #444;
@@ -189,6 +193,7 @@ form input[type=text], form input[type=password], form input[type=email], form i
   font-family: Helvetica, Arial, sans-serif;
   outline: none;
   padding: 8px 10px 7px;
+    margin-bottom: 25px;
 }
 
 .remember_me_label{
