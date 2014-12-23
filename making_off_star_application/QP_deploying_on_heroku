@@ -1,0 +1,44 @@
+
+ FOR DEPOLYING APP ON HEROKU :
+ -----------------------------
+
+   git push heroku for_heroku:master
+   
+   heroku  rake sunspot:solr:start
+    
+   heroku rake sunspot:reindex 
+    
+   heroku rake db:migrate db:seed
+    
+   gem install heroku --no-ri --no-rdoc
+	
+   heroku create (will ask heroku account login and create app overthere.)
+
+   git push heroku master
+
+   git push heroku for_heroku:master (if your code is on any other branch other than master)
+
+
+heroku config : 
+  160  
+  161: $ heroku config:set GITHUB_USERNAME=joesmith
+  162  Adding config vars and restarting myapp... done, v12
+  163  GITHUB_USERNAME: joesmith
+  164  
+  165: $ heroku config
+  166  GITHUB_USERNAME: joesmith
+  167  OTHER_VAR:    production
+  168  
+  169: $ heroku config:get GITHUB_USERNAME
+  170  joesmith
+  171  
+  172: $ heroku config:unset GITHUB_USERNAME
+  173  Unsetting GITHUB_USERNAME and restarting myapp... done, v13
+  174  
+  175: heroku config:set WEBSOLR_URL=
+  176  
+  177  WEBSOLR_URL    =>
+
+
+
+
