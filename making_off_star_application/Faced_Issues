@@ -765,3 +765,34 @@ Resolved using these settings ..
   :enable_starttls_auto => true
   }
 
+--------------------------------------------------------------------------------------------------------------------------
+
+For creating scaffold of already existing model can use "scaffold_controller" 
+
+rails g scaffold_controller User
+
+--------------------------------------------------------------------------------------------------------------------------
+
+Routing Issue :-
+-------------------
+
+Q - Ruby On Rails custom route always redirects to controller's show action
+
+resources :pickup_point_time_details do 
+      collection do
+        get 'get_route_start_time'
+      end
+  end
+
+Try
+
+resources :games do
+  collection do
+    get 'load'
+  end
+end
+
+Right now it's interpreting 'games/load' as 'games/:id' with the :id parameter set to 'load', and routing 'games/:id' to GamesController#show.
+
+
+--------------------------------------------------------------------------------------------------------------------------
