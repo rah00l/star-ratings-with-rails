@@ -147,6 +147,17 @@ SQL vs NoSQL: High-Level Differences
 
 ************************************************************************************************************************************************
 
+Ruby ORM List :
+-------------------
+
+1.    ActiveRecord, part of Ruby on Rails, open source
+2.    Sequel
+3.    Datamapper (inactive)
+4.    iBATIS (inactive)
+
+
+************************************************************************************************************************************************
+
 
  Difference between HTTP and HTTPS: HTTPS = HTTP + SSL
 

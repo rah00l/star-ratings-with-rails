@@ -4,8 +4,11 @@ Links:
 ------
 
 https://github.com/rspec/rspec-rails
+http://arjanvandergaag.nl/blog/factory_girl_tips.html (factory-girl)
+http://railsguides.net/integral-factories-in-tests-with-factory-girl/
 
 -----------------------------------------------------------------------------------------
+STEP # 1:
 
 ADD GEMS:
 Following gems shold be add into your Gemfile 
@@ -25,18 +28,66 @@ group :test do
   gem 'launchy'
 end
 
+OR //
+
+group :development, :test do
+  gem 'sqlite3'
+  gem 'rspec-rails'#, '~> 2.14.1'
+  gem 'capybara'#, '~> 2.2.1'
+  gem 'factory_girl_rails'
+  gem 'database_cleaner'#, :git => "git://github.com/bmabey/database_cleaner.git"
+  gem 'selenium-webdriver'
+end
+
+-----------------------------------------------------------------------------------------
 bundle install 
 -----------------------------------------------------------------------------------------
 
+STEP # 2:
+
 Rails generator commands:
-rails generate rspec:install
-/
-rails g rspec:install
+
+--> rails generate rspec:install
+[ or / ]
+--> rails g rspec:install
 
 
 Already Existing Controllers create specs by:
 
 rails g rspec:controller articles
+
+*********************************************************************************************
+
+*** Introduction of FactoryGirl (in rails_helper.rb)
+
+# --------------------------For FactoryGirl Added Following Configurations ------------
+  config.include FactoryGirl::Syntax::Methods
+
+  config.before(:suite) do
+    DatabaseCleaner.strategy = :truncation
+    DatabaseCleaner.clean_with(:truncation)
+  end
+
+  # Cleaning worked because gem was sourced from github
+  config.around(:each) do |example|
+    DatabaseCleaner.cleaning do
+      example.run
+    end
+  end
+# ----------------------------------------------------------------------------
+
+*********************************************************************************************
+
+*********************************************************************************************
+RSPEC .rspec file configuration for console display:
+-----------------------------------------------------
+
+--color
+--format documentation
+--order default
+--require spec_helper
+
+*********************************************************************************************
 
 
 -----------------------------------------------------------------------------------------
@@ -46,6 +97,7 @@ rake db:migrate && rake db:test:prepare
 
 RAILS_ENV=test rails c
 
+-----------------------------------------------------------------------------------------
 
 rake db:create:all
 
@@ -59,7 +111,6 @@ bundle exec rspec spec/models
 # Run only specs for AccountsController
 bundle exec rspec spec/controllers/accounts_controller_spec.rb
 
-
 bundle exec rspec spec/controllers/
 
 rake spec / rspec spec
@@ -68,7 +119,13 @@ In order to make color enable on console while running specs
 # Add following line at your /spec/spec_helper.rb file
 config.color = true
 
+-----------------------------------------------------------------------------------------
+FOR THIS STAR RATING APP:-
 
+rake db:test:prepare
 
+rake sunspot:solr:start RAILS_ENV=test
+
+rspec 
 
 
