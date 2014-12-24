@@ -1,0 +1,67 @@
+Links :
+https://github.com/seyhunak/twitter-bootstrap-rails
+http://getbootstrap.com/getting-started/#examples
+http://www.gotealeaf.com/blog/integrating-rails-and-bootstrap-part-1
+
+
+Install the Ruby Gems for Bootstrap
+
+Let’s add the necessary gems to our Gemfile:
+
+gem 'bootstrap-sass', '~> 3.2.0'
+gem 'autoprefixer-rails'
+
+Autoprefixer (autoprefixer-rails) is optional, but recommended. It automatically adds the proper vendor prefixes to your CSS code when it is compiled.
+
+Now run
+
+bundle install
+
+to install the gems.
+
+Import Bootstrap CSS assets
+
+We will rename app/assets/stylesheets/application.css to app/assets/stylesheets/application.css.sass. Then we can import the Bootstrap assets in your newly-renamed application.css.sass file.
+
+// app/assets/stylesheets/application.css.sass
+
+...
+
+@import "bootstrap-sprockets"
+@import "bootstrap"
+
+
+When you compile, imported assets render a compiled version of their contents where the @import statement was found.
+
+Import Bootstrap Javascript assets
+
+You need to add:
+
+//= require bootstrap-sprockets
+
+to your app/assets/javascripts/application.js file.
+
+It is important that it comes after:
+
+//= require jquery
+
+Your file should look like this:
+
+// app/assets/javascripts/application.js
+
+...
+
+//= require jquery
+//= require jquery_ujs
+//= require turbolinks
+//= require bootstrap-sprockets
+//= require_tree .
+
+It is also important that:
+
+//= require_tree .
+
+is the last thing to be required.
+
+The reason is, //= require_tree . compiles each of the other Javascript files in the javascripts directory and any subdirectories. If you require bootstrap-sprockets after everything else, your other scripts may not have access to the Bootstrap functions.
+
