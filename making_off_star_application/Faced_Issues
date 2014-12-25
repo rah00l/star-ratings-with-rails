@@ -796,3 +796,16 @@ Right now it's interpreting 'games/load' as 'games/:id' with the :id parameter s
 
 
 --------------------------------------------------------------------------------------------------------------------------
+Rspec - FactoryGirl:
+---------------------
+Q - 
+`method_missing': Factory already registered: route (FactoryGirl::DuplicateDefinitionError)
+
+A- 
+
+Check bymistakly added same factory twice.
+
+
+ --------------------------------------------------------------------------------------------------------------------------
+
+

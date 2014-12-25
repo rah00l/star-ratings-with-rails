@@ -39,6 +39,26 @@ group :development, :test do
   gem 'selenium-webdriver'
 end
 
+
+OR / (Latest for rails 4.1)
+
+
+group :development, :test do
+  gem "rspec-rails", "~> 3.1.0"
+  gem "factory_girl_rails", "~> 4.4.1"
+  gem 'guard-rspec', '~> 4.3.1'
+  gem 'spring-commands-rspec', '~> 1.0.2'
+end
+
+group :test do
+  gem "faker", "~> 1.4.3"
+  gem "capybara", "~> 2.4.3"
+  gem "database_cleaner", "~> 1.3.0"
+  gem "launchy", "~> 2.4.2"
+  gem "selenium-webdriver", "~> 2.43.0"
+  gem 'shoulda-matchers', '~> 2.6.2'
+end
+
 -----------------------------------------------------------------------------------------
 bundle install 
 -----------------------------------------------------------------------------------------
@@ -88,6 +108,30 @@ RSPEC .rspec file configuration for console display:
 --require spec_helper
 
 *********************************************************************************************
+
+
+config.generators do |g|
+  g.orm             :active_record
+  g.template_engine :erb
+  g.test_framework  :test_unit, fixture: false
+  g.stylesheets     false
+  g.javascripts     false
+end
+
+
+#  config/application.rb
+
+config.generators do |g|
+        g.test_framework :rspec,
+                fixtures: true,
+                view_specs: false,
+                helper_specs: false,
+                routing_specs: false,
+                controller_specs: true,
+                request_specs: false
+                g.fixture_replacement :factory_girl, dir: "spec/factories"
+    end
+
 
 
 -----------------------------------------------------------------------------------------
