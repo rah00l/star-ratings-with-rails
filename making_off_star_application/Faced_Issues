@@ -808,4 +808,18 @@ Check bymistakly added same factory twice.
 
  --------------------------------------------------------------------------------------------------------------------------
 
+Q - 
 
+ERROR Errno::ECONNRESET: Connection reset by peer @ io_fillbuf - fd
+
+
+A- WebRick has been replaced with Thin.
+
+in Gemfile add :
+
+gem 'thin'  
+
+bundle install 
+
+
+-------------------------------------------------------------------------------------------------------
