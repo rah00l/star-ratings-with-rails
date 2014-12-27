@@ -4,7 +4,7 @@
   <div class="event">
   	<h3><%= link_to event.name, event %></h3>
     <div class="date">From <%= event.starts_at.strftime("%B %d, %Y") %> to <%= event.ends_at.strftime("%B %d, %Y") %></div>
-    <div><%= event.description %></div>
+    
   </div>
 <% end %>
 

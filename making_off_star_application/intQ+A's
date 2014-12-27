@@ -308,6 +308,9 @@ The Asset Pipeline :-
 
 ******************************************************************************************************************************************************
 
+Single Table Inheritance: vs Polymorphic Association:-
+******************************************************
+
 This is a common to have join between two tables based on condition. suppose we have table in database called comments and we can have comments on different thing like a video, profile or picture. So keeping DRY (Don’t repeat yourself) principle in mind while designing your database. You may want to have relationship between single comments table and videos or profiles table.
 
 At database level you should have two fields in table one field (i.e. type) that identifies the type of comment whether it is a comment on video or it’s a comment on profile, and another field (i.e source_id) that contains id of the video or profile that comment was on.
@@ -568,7 +571,7 @@ This is because of mutex.synchronize. One and only one thread can access the blo
 
 ******************************************************************************************************************************************************
 
-Interfaces i ruby:
+Interfaces in ruby:
 ---------------------
 
 Interfaces are usually introduced to static typed OO languages in order to make up for lack of multiple inheritance. In other words, they are more of a necessary evil than something useful per se.
@@ -1483,10 +1486,35 @@ Metaprogramming : -Any code that significantly raises the level of abstraction a
 Metaprogramming is what makes Ruby awesome. It’s writing code to write code. It’s dynamic code generation. 
 
 
-
 Java - Unfortunately Java does not readily support class creation at runtime (mitaprograming not support).
 
+******************************************************************************************************************************************************
 
+Some of the highlights: Ruby 2.0.0-p0  :- 
+---------------------------------------
+
+    Language core features
+        Keyword arguments, which give flexibility to API design
+        Module#prepend, which is a new way to extend a class
+        A literal %i, which creates an array of symbols easily
+        __dir__, which returns the dirname of the file currently being executed
+        The UTF-8 default encoding, which make many magic comments omissible
+    Built-in libraries
+        Enumerable#lazy and Enumerator::Lazy, for (possibly infinite) lazy stream
+        Enumerator#size and Range#size, for lazy size evaluation
+        #to_h, which is a new convention for conversion to Hash
+        Onigmo, which is a new regexp engine (a fork of Oniguruma)
+        Asynchronous exception handling API
+    Debug support
+        DTrace support, which enables run-time diagnosis in production
+        TracePoint, which is an improved tracing API
+    Performance improvements
+        GC optimization by bitmap marking
+        Kernel#require optimization which makes Rails startup very fast
+        VM optimization such as method dispatch
+        Float operation optimization
+
+******************************************************************************************************************************************************
 
 
 e.g. 
@@ -1680,6 +1708,7 @@ Note that using joins means if you use user.posts then another query will be per
 
 
 jQuery differences between the bind and live functions:
+----------------------------------------------------------
 
 In short: .bind() will only apply to the items you currently have selected in your jQuery object. .live() will apply to all current matching elements, as well as any you might add in the future.
 
@@ -1700,6 +1729,8 @@ $('img').live('click', function() { /* doSomething */ });
 Because of this bubbling behaviour though, not all events can be handled this way. As Ichiban noted, these supported events are click, dblclick mousedown, mouseup, mousemove, mouseover, mouseout, keydown, keypress, keyup.
 
 ******************************************************************************************************************************************************
+method_missing :
+------------------
 
 
 http://code.tutsplus.com/tutorials/ruby-for-newbies-missing-methods--net-20924
@@ -1727,8 +1758,16 @@ We can create a method called method_missing in our class. If the object we’re
 
 Well, that’s great; we’re no longer getting an error message.
 
+******************************************************************************************************************************************************
 
+Ruby Module vs Class :
+-----------------------
 
+Ruby modules allow you to create groups of methods that you can then include or mix into any number of classes. Modules only hold behaviour, unlike classes, which hold both behaviour and state.
+
+Since a module cannot be instantiated, there is no way for its methods to be called directly. Instead, it should be included in another class, which makes its methods available for use in instances of that class.
+
+******************************************************************************************************************************************************
 
 
 Active Resource :-

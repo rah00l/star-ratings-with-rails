@@ -1,0 +1,6 @@
+
+Refinements:-
+
+Due to Ruby’s open classes you can redefine or add functionality to existing classes. This is called a “monkey patch”. Unfortunately the scope of such changes is global. All users of the monkey-patched class see the same changes. This can cause unintended side-effects or breakage of programs.
+
+Refinements are designed to reduce the impact of monkey patching on other users of the monkey-patched class. Refinements provide a way to extend a class locally.
