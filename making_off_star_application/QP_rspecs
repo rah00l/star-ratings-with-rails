@@ -76,6 +76,8 @@ Already Existing Controllers create specs by:
 
 rails g rspec:controller articles
 
+rails g rspec:model article
+
 *********************************************************************************************
 
 *** Introduction of FactoryGirl (in rails_helper.rb)
