@@ -157,6 +157,9 @@ bundle exec rspec spec/models
 # Run only specs for AccountsController
 bundle exec rspec spec/controllers/accounts_controller_spec.rb
 
+# Run only specific or single test 
+bundle exec rspec spec/controllers/routes_controller_spec.rb:46
+
 bundle exec rspec spec/controllers/
 
 rake spec / rspec spec
@@ -174,4 +177,31 @@ rake sunspot:solr:start RAILS_ENV=test
 
 rspec 
 
+-----------------------------------------------------------------------------------------
+
+After adding device wanted to compatiable with existing rspec test-cases then need to add following code :
+
+  before(:each){
+    @request.env["devise.mapping"] = Devise.mappings[:user]
+  }
+
+# POST action ----------
+
+before(:each){
+      # debugger
+      @user = FactoryGirl.create(:user)
+      sign_in @user
+    }
+
+After adding this try by running test case you might get following exception ..
+
+ NoMethodError:
+       undefined method `sign_in' for #<RSpec
+
+
+The ideal solution would be to create a file at spec/support/devise.rb and include the devise test helpers in the Rspec config through the following code:
+
+Rspec.configure do |config|
+  config.include Devise::TestHelpers, :type => :controller
+end
 
