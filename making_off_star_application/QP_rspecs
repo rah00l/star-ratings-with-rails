@@ -205,3 +205,59 @@ Rspec.configure do |config|
   config.include Devise::TestHelpers, :type => :controller
 end
 
+-----------------------------------------------------------------------------------------
+
+
+Addition to this add Capybara in app:
+
+
+1. Add gem in Gemfile
+
+gem 'capybara'
+
+
+2. Add these two require statements beneath: rails_helper.rb @ spec directory
+
+require 'capybara/rails'
+require 'capybara/rspec'
+
+
+3. Next, in the RSpec.configure
+
+config.include FactoryGirl::Syntax::Methods
+
+config.before(:suite) do
+  DatabaseCleaner.strategy = :truncation
+end
+
+config.before(:each) do
+  DatabaseCleaner.start
+end
+
+config.after(:each) do
+  DatabaseCleaner.clean
+end
+
+4. create a folder called features. Now you are ready to use Capybara and FactoryGirl for your tests!
+
+
+  In your new features folder, create a file called anything_spec.rb / main_spec.rb and put this code in it:
+
+
+  Start with simple code like:
+
+  require 'rails_helper'
+
+describe "Launch Application" do
+
+  before :each do
+    visit root_path
+  end
+
+end
+
+
+
+
+
+
