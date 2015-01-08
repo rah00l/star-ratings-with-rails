@@ -10,4 +10,414 @@ Hide answer
 
 eql? – Checks if the value and type of two operands are the same (as opposed to the == operator which compares values but ignores types). For example, 1 == 1.0 evaluates to true, whereas 1.eql?(1.0) evaluates to false.
 
-equal? – Compares the identity of two objects; i.e., returns true iff both operands have the same object id (i.e., if they both refer to the same object). Note that this will return false when comparing two identical copies of the same 
+equal? – Compares the identity of two objects; i.e., returns true iff both operands have the same object id (i.e., if they both refer to the same object). Note that this will return false when comparing two identical copies of the same.
+
+************************************************************************************************************
+
+
+Q 2 
+
+Given:
+
+x = "hello"
+
+Explain the difference between:
+
+x += " world"
+
+and
+
+x.concat " world"
+
+Hide answer
+
+The += operator re-initializes the variable with a new value, so a += b is equivalent to a = a + b.
+
+Therefore, while it may seem that += is mutating the value, it’s actually creating a new object and pointing the the old variable to that new object.
+
+This is perhaps easier to understand if written as follows:
+
+foo = "foo"
+foo2 = foo
+foo.concat "bar"
+
+puts foo
+=> "foobar"
+puts foo2
+=> "foobar"
+
+foo += "baz"
+puts foo
+=> "foobarbaz"
+puts foo2
+=> "foobar"
+
+(Examining the object_id of foo and foo2 will also demonstrate that new objects are being created.)
+
+The difference has implications for performance and also has different mutation behavior than one might expect.
+
+
+************************************************************************************************************
+
+Q3 In Ruby code, you quite often see the trick of using an expression like array.map(&:method_name) as a shorthand form of array.map { |element| element.method_name }. How exactly does it work?
+Hide answer
+
+When a parameter is passed with & in front of it (indicating that is it to be used as a block), Ruby will call to_proc on it in an attempt to make it usable as a block. Symbol#to_proc quite handily returns a Proc that will invoke the method of the corresponding name on whatever is passed to it, thus enabling our little shorthand trick to work.
+
+
+************************************************************************************************************
+
+Q 4 
+
+Which of the expressions listed below will result in "false"?
+
+true    ? "true" : "false"
+false   ? "true" : "false"
+nil     ? "true" : "false"
+1       ? "true" : "false"
+0       ? "true" : "false"
+"false" ? "true" : "false"
+""      ? "true" : "false"
+[]      ? "true" : "false"
+
+Hide answer
+
+In Ruby, the only values that evaluate to false are false and nil. Everything else – even zero (0) and an empty array ([]) – evaluates to true.
+
+This comes as a real surprise to programmers who have previously been working in other languages like JavaScript.
+
+(Thanks to Ruby Gotchas for this question.)
+
+
+************************************************************************************************************
+
+Q 5 Write a function that sorts the keys in a hash by the length of the key as a string. For instance, the hash:
+
+{ abc: 'hello', 'another_key' => 123, 4567 => 'third' }
+
+should result in:
+
+["abc", "4567", "another_key"]
+
+Hide answer
+
+As is always true in programming, there are in fact multiple ways to accomplish this.
+
+The most straightforward answer would be of the form:
+
+hsh.keys.map(&:to_s).sort_by(&:length)
+
+or:
+
+hsh.keys.collect(&:to_s).sort_by { |key| key.length }
+
+Alternatively, Ruby’s Enumerable mixin provides many methods to operate on collections. The key here is to turn the hash keys into a collection, convert them all to strings, then sort the array.
+
+def key_sort hsh
+	hsh.keys.collect(&:to_s).sort { |a, b| a.length <=> b.length }
+end
+
+An equivalent call of the collect method is done with the usual block syntax of:
+
+collect { |x| x.to_s }
+
+
+
+
+
+************************************************************************************************************
+
+
+Q 6 
+Consider the following code:
+
+VAL = 'Global'
+ 
+module Foo
+  VAL = 'Foo Local'
+ 
+  class Bar
+    def value1
+      puts VAL
+    end
+  end
+end
+ 
+class Foo::Bar
+  def value2
+    puts VAL
+  end
+end
+
+What will be the value of each of the following:
+
+Foo::Bar.new.value1
+Foo::Bar.new.value2
+
+Explain your answer.
+Hide answer
+
+Foo::Bar.new.value1 will be equal to 'Foo Local' and Foo::Bar.new.value2 will be equal to 'Global'.
+
+Here’s why:
+
+The module keyword (as well as the class and def keywords) will create a new lexical scope for all of its contents. The above module Foo therefore creates the scope Foo in which the VAL constant equal to 'Foo Local' is defined. Inside Foo, we declare class Bar, which creates another new lexical scope (named Foo::Bar) which also has access to its parent scope (i.e., Foo) and all of its constants.
+
+However, when we then declare Foo::Bar (i.e., using ::), we are actually creating yet another lexical scope, which is also named Foo::Bar (how’s that for confusing!). However, this lexical scope has no parent (i.e., it is entirely independent of the lexcial scope Foo created earlier) and therefore does not have any access to the contents of the ‘Foo’ scope. Therefore, inside class Foo::Bar, we only have access to the VAL constant declared at the beginning of the script (i.e., outside of any module) with the value 'Global'
+
+
+************************************************************************************************************
+
+Q 7 What is the difference between calling super and calling super()?
+
+
+A call to super invokes the parent method with the same arguments that were passed to the child method. An error will therefore occur if the arguments passed to the child method don’t match what the parent is expecting.
+
+A call to super() invokes the parent method without any arguments, as presumably expected. As always, being explicit in your code is a good thing.
+
+(Thanks to Ruby Gotchas for this question.)
+
+
+
+
+************************************************************************************************************
+
+Q 8 What will be the result of each of the following lines of code:
+
+times_two 5
+times_two(5)
+times_two (5)
+sum 1, 2
+sum(1, 2)
+sum (1, 2)
+
+Hide answer
+
+The first three lines of code will all print out 10, as expected.
+
+The next two lines of code will both print out 3, as expected.
+
+However, the last line of code (i.e., sum (1,2)) will result in the following:
+
+syntax error, unexpected ',', expecting ')'
+sum (1, 2)
+       ^
+
+The problem is the space between the method name and the open parenthesis. Because of the space, the Ruby parser thinks that (1, 2) is an expression that represents a single argument, but (1, 2) is not a valid Ruby expression, hence the error.
+
+Note that the problem does not occur with single argument methods (as shown with our timesTwo method above), since the single value is a valid expression (e.g., (5) is a valid expression which simply evaluates to 5).
+
+
+************************************************************************************************************
+
+
+Q 9 Is the line of code below valid Ruby code? If so, what does it do? Explain your answer.
+
+-> (a) {p a}["Hello world"]
+
+Hide answer
+
+Yes, it’s valid. Here’s how to understand what it does:
+
+The -> operator creates a new Proc, which is one of Ruby’s function types. (The -> is often called the “stabby proc”. It’s also called the “stabby lambda”, as it creates a new Proc instance that is a lambda. All lambdas are Procs, but not all Procs are lambdas. There are some slight differences between the two.)
+
+This particular Proc takes one parameter (namely, a). When the Proc is called, Ruby executes the block p a, which is the equivalent of puts(a.inspect) (a subtle, but useful, difference which is why p is sometimes better than puts for debugging). So this Proc simply prints out the string that is passed to it.
+
+You can call a Proc by using either the call method on Proc, or by using the square bracket syntax, so this line of code also invokes the Proc and passes it the string “Hello World”.
+
+So putting that all together, this line of code (a) creates a Proc that takes a single parameter a which it prints out and (b) invokes that Proc and passes it the string “Hello world”. So, in short, this line of code prints “Hello World”.
+
+
+************************************************************************************************************
+
+Q 10 What will val1 and val2 equal after the code below is executed? Explain your answer.
+
+val1 = true and false  # hint: output of this statement in IRB is NOT value of val1!
+val2 = true && false
+
+Hide answer
+
+Although these two statements might appear to be equivalent, they are not, due to the order of operations. Specifically, the and and or operators have lower precedence than the = operator, whereas the && and || operators have higher precedence than the = operator, based on order of operations.
+
+To help clarify this, here’s the same code, but employing parentheses to clarify the default order of operations:
+
+(val1 = true) and false    # results in val1 being equal to true
+val2 = (true && false)     # results in val2 being equal to false
+
+This is, incidentally, a great example of why using parentheses to clearly specify your intent is generally a good practice, in any language. But whether or not you use parentheses, it’s important to be aware of these order of operations rules and to thereby ensure that you are properly determining when to employ and / or vs. && / ||.
+
+
+
+************************************************************************************************************
+
+Q 11
+
+What paths (HTTP verb and URL) will be defined by the following snippet in config/routes.rb?
+
+resources :posts do
+  member do
+    get 'comments'
+  end
+  collection do
+    post 'bulk_upload'
+  end
+end
+
+Hide answer
+
+Using the resource method to define routes will automatically generate routes for the standard seven restful actions:
+
+    GET /posts
+    POST /posts
+    GET /posts/new
+    GET /posts/:id/edit
+    GET /posts/:id
+    PATCH/PUT /posts/:id
+    DELETE /posts/:id
+
+Note that Rails also supports the (relatively) new URL verb PATCH for partial updates to records. (In theory, a PUT request should only be valid if the entire record is included in the request.)
+
+The extra routes defined inside of the block passed to resources will generate one route valid for individual posts (GET /posts/:id/comments) as well as one defined for the top-level resource (POST /posts/bulk_upload).
+
+************************************************************************************************************
+Q 12
+
+What is the difference between Ruby’s Hash and ActiveSupport’s HashWithIndifferentAccess?
+Hide answer
+
+The Hash class in Ruby’s core library retrieves values by doing a standard == comparison on the keys. This means that a value stored for a Symbol key (e.g. :my_value) cannot be retrieved using the equivalent String (e.g. ‘my_value’). On the other hand, HashWithIndifferentAccess treats Symbol keys and String keys as equivalent so that the following would work:
+
+h = HashWithIndifferentAccess.new
+h[:my_value] = 'foo'
+h['my_value'] #=> will return "foo"
+
+************************************************************************************************************
+Q 13
+What’s the problem with the following controller code? What would be the consequence of leaving this code in a production app? How would you fix it?
+
+class MyController < ApplicationController
+  def options
+    options = {}
+    available_option_keys = [:first_option, :second_option, :third_option]
+    all_keys = params.keys.map(&:to_sym)
+    set_option_keys = all_keys & available_option_keys
+    set_option_keys.each do |key|
+      options[key] = params[key]
+    end
+    options
+  end
+end
+
+Hide answer
+
+It’s dangerous to convert user supplied parameters to symbols, since Symbol objects in Ruby are not garbage collected. An attacker could send a series of requests with random keys that would be turned into symbols, quickly exhausting your server’s available memory and taking down your site.
+
+There are two ways that this could be fixed. The first would be to use slice to eliminate values from the params hash that are not valid option keys. This would look something like:
+
+params.slice(*available_option_keys)
+
+An alternative, some would argue better, option would simply be to use String keys for your options. Unless you have an extremely large number of possible option keys, you won’t actually save that much memory by using Symbol keys instead.
+
+************************************************************************************************************
+
+Q 14 -
+
+What is CSRF? How does Rails protect against it?
+Hide answer
+
+CSRF stands for Cross-Site Request Forgery. This is a form of an attack where the attacker submits a form on your behalf to a different website, potentially causing damage or revealing sensitive information. Since browsers will automatically include cookies for a domain on a request, if you were recently logged in to the target site, the attacker’s request will appear to come from you as a logged-in user (as your session cookie will be sent with the POST request).
+
+In order to protect against CSRF attacks, you can add protect_from_forgery to your ApplicationController. This will then cause Rails to require a CSRF token to be present before accepting any POST, PUT, or DELETE requests. The CSRF token is included as a hidden field in every form created using Rails’ form builders. It is also included as a header in GET requests so that other, non-form-based mechanisms for sending a POST can use it as well. Attackers are prevented from stealing the CSRF token by browsers’ “same origin” policy.
+
+
+************************************************************************************************************
+
+Q 15 
+
+How would you define a Person model so that any Person can be assigned as the parent of another Person (as demonstrated in the Rails console below)? What columns would you need to define in the migration creating the table for Person?
+
+irb(main):001:0> john = Person.create(name: "John")
+irb(main):002:0> jim = Person.create(name: "Jim", parent: john)
+irb(main):003:0> bob = Person.create(name: "Bob", parent: john)
+irb(main):004:0> john.children.map(&:name)
+=> ["Jim", "Bob"]
+
+And for a more advanced challenge: Update the Person model so that you can also get a list of all of a person’s grandchildren, as illustrated below. Would you need to make any changes to the corresponding table in the database?
+
+irb(main):001:0> sally = Person.create(name: "Sally")
+irb(main):002:0> sue = Person.create(name: "Sue", parent: sally)
+irb(main):003:0> kate = Person.create(name: "Kate", parent: sally)
+irb(main):004:0> lisa = Person.create(name: "Lisa", parent: sue)
+irb(main):005:0> robin = Person.create(name: "Robin", parent: kate)
+irb(main):006:0> donna = Person.create(name: "Donna", parent: kate)
+irb(main):007:0> sally.grandchildren.map(&:name)
+=> ["Lisa", "Robin", "Donna"]
+
+
+
+************************************************************************************************************
+
+
+Q 16 - Create a route to be able to display pages with different information about different types of beer. The route should recognize URL paths like /beer/<beer_type> and should use the same controller action for each type of beer with the actually beer type passed into the controller action as a parameter. The valid beer types are:
+
+    IPA
+    brown_ale
+    pilsner
+    lager
+    lambic
+    hefeweizen
+
+Any other type of beer specified should generate a 404 status code.
+Hide answer
+
+One option would be to generate a simple get route that specifies the controller action to call and passes the kind of beer as a parameter:
+
+get 'beers/:kind' => 'beers#kind'
+
+Then, within the context of the controller action, if the kind parameter is not included in the list of valid kinds, the action can raise a ActionController::RoutingError, which will redirect to 404 in production.
+
+Alternatively, a simpler solution is to check against the list of valid kinds in the definition of the route. This can be accomplished using the constraints option as follows:
+
+kinds = %w|IPA brown_ale pilsner lager lambic hefweizen|
+get 'beers/:kind' => 'beers#kind', constraints: {kind: Regexp.new(kinds.join('|'))}
+
+This code calls the BeersController#kind action method with params['kind'] set to a string representing the beer type given in the URL path. The key is using the constraints option for the route to specify a regular expression to use to verify the route is correct. In this case, the lambda checks to see that the kind parameter is included in the list of valid beer types.
+
+Or perhaps an even better solution would be to use resource routing. This has the added benefit of providing URL generation helpers, but at the cost of requiring that the parameter name for the beer be passed as :id. This would look something like:
+
+kinds = %w|IPA brown_ale pilsner lager lambic hefweizen|
+resource :beer, only: [:show], constraints: {id: Regexp.new(kinds.join('|'))}
+
+
+************************************************************************************************************
+ 
+ Q 17
+
+ What’s the issue with the controller code below? How would you fix it?
+
+class CommentsController < ApplicationController
+  def users_comments
+    posts = Post.all
+    comments = posts.map(&:comments).flatten
+    @user_comments = comments.select do |comment|
+      comment.author.username == params[:username]
+    end
+  end
+end
+
+Hide answer
+
+This is a classic example of the notorious “n+1” bug. The first line will retrieve all of the Post objects from the database, but then the very next line will make an additional request for each Post to retrieve the corresponding Comment objects. To make matters worse, this code is then making even more database requests in order to retrieve the Author of each Comment.
+
+This can all be avoided by changing the first line in the method to:
+
+posts = Post.includes(comments: [:author]).all
+
+This tells ActiveRecord to retrieve the corresponding Comment and Author records from the database immediately after the initial request for all Posts, thereby reducing the number of database requests to just three.
+
+Please note that the above answer is only one of a few ways that it is possible to avoid incurring an “n+1” penalty, and each alternative will have its own caveats and corner cases. The above answer was selected to be presented here since it requires the smallest change to the existing code and makes no assumptions regarding the reverse association of Comment to Post.
+
+
+************************************************************************************************************
+
+
