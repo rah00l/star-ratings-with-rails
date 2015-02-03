@@ -76,5 +76,73 @@ http://joshsymonds.com/blog/2012/07/04/rails-concerns-ii-taggable/
 
 http://www.cerioli.com/2012/10/14/14/
 
+#########################################################################################
+------------------------------------------------------------------------------------
+#########################################################################################
+
+For Migration Structure:
+
+Needs Tag ang Tagging entities..
+
+create_table "tags", :force => true do |t|
+t.string "name"
+t.datetime "created_at", :null => false
+t.datetime "updated_at", :null => false
+end
+
+ 
+
+create_table "taggings", :force => true do |t|
+t.integer "tag_id"
+t.integer "taggable_id"
+t.string "taggable_type"
+t.datetime "created_at", :null => false
+t.datetime "updated_at", :null => false
+end
+
+add_index "taggings", ["tag_id"], :name => "index_taggings_on_tag_id"
+
+---------------------------------------------------------------------------------------
+
+
+class Tag < ActiveRecord::Base
+
+attr_accessible :name
+
+has_many :sites, :through => :taggings, :source => :taggable, :source_type => "Site"
+
+has_many :links, :through => :taggings, :source => :taggable, :source_type => "Link"
+
+has_many :taggings
+
+end
+
+
+
+
+class Tagging < ActiveRecord::Base
+
+attr_accessible :taggable_id, :taggable_type
+
+belongs_to :tag
+belongs_to :taggable, :polymorphic => true
+
+end
+
+
+
+class Site < ActiveRecord::Base
+
+attr_accessible :domain_name, :name, :tag_list
+
+has_many :tags, :through => :taggings
+
+has_many :taggings, :as => :taggable
+
+
+
+
+
+
 
 

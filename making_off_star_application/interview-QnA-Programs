@@ -420,4 +420,12 @@ Please note that the above answer is only one of a few ways that it is possible 
 
 ************************************************************************************************************
 
+Q - In Array get sorted element by length
 
+arr = ["orange", "mango", "peru", "graps"]
+
+# ==> arr.sort_by {|x| x.length }
+
+# ==> arr.collect(&:to_s).sort_by(&:length)
+
+************************************************************************************************************
