@@ -261,8 +261,12 @@ Adding Guard :
 ---------------
 
 Add Guard (and any other dependencies) to a Gemfile in your project’s root:
+& also for getting terminal-notification after you saved file in application 
+need to add 2 more gems 'temonal-notifier-guard' and 'libnotify'.
 
 --> gem 'guard-rspec'
+--> gem "terminal-notifier-guard"
+--> gem 'libnotify'
 
 then install it by running Bundler:
 
@@ -317,6 +321,9 @@ guard :rspec, cmd: "bundle exec rspec" do
   end
 end
 
+
+And when I do the guard start command, those errors do not show:
+guard start
 
 
 
