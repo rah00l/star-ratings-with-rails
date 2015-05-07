@@ -4,3 +4,25 @@ Refinements:-
 Due to Ruby’s open classes you can redefine or add functionality to existing classes. This is called a “monkey patch”. Unfortunately the scope of such changes is global. All users of the monkey-patched class see the same changes. This can cause unintended side-effects or breakage of programs.
 
 Refinements are designed to reduce the impact of monkey patching on other users of the monkey-patched class. Refinements provide a way to extend a class locally.
+
+--------------------------------------------------------------------------------
+Minitest :- {unit,spec,mock,benchmark}
+
+minitest provides a complete suite of testing facilities supporting TDD, BDD, mocking, and benchmarking.
+
+there’s a well-understood process that most frameworks and testing tools follow:
+
+1    Setup: Establishes instances of data objects and preconditions essential for running the test.
+2   Exercise: Executes the method or logic to be tested.
+3    Verify: Verifies that the tested method has produced the expected result by making one or more assertions.
+4    Teardown: Cleans up or resets application state that should not be allowed to persist between tests.
+
+
+RSpec came along quite a bit later and introduced a more granular scheme of hooks for setting up test state that mapped more naturally to its block-based syntax.
+
+    before(:each) - logic to run before each individual test method
+    before(:all) / before(:context) - logic to run at the start of a context/describe block
+    before(:suite) - logic to run before the test suite runs
+    let - memoizes the result of a block and provides an accessor method for it
+
+--------------------------------------------------------------------------------

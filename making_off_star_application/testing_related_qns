@@ -1,0 +1,54 @@
+All test related Q n A's:-
+
+how to run all the tests with minitest? 
+
+1 Answer :  
+
+locks' answer is better, but I also wanted to point out that you can also run minitest directly from the command like with the ruby command. To run the tests in the spec/calculator_spec.rb file run:
+
+$ ruby spec/calculator_spec.rb 
+
+Remember to include the following code in the calculator_spec.rb file:
+
+require 'minitest/spec'
+require 'minitest/autorun'
+
+To run all tests in the spec/ directory, use the following command (see this post for more details Globbing doesn't work with Minitest - Only one file is run)
+
+$ for file in spec/*.rb; do ruby $file; done 
+
+
+2 Answer : 
+You can run
+
+    all tests: rake test
+    one test: ruby -Ilib spec/alpha_spec.rb
+
+-----------------------------------------------------------------------------------------
+
+Setup your rails 2.3 application with minitest :
+
+Any testing framework is made of two things, a way to define and run tests (call this the test runner) and an assertion framework.
+
+Looking at ActiveSupport it seems that if MiniTest is defined at all, running the rails Unit test runner will default to using MiniTest's assertions classes. This means you get to use Minitest's assertion syntax.
+
+Getting MiniTest defined should just be a case of requiring 'minitest\unit'.
+
+However if you want to use the runners, then you need to derive from the MniTest framework test fixture base classes.
+
+There is a step by step walkthrough in railscasts for setting it up yourself.
+
+It boils down to:
+
+    Remove test_unit from your config/applications.rb
+    Add the minitest gem to your gem file "Gemfile"
+    Setup the environment in a helper file you can include into your tests
+    Add a rake task to run the tests. (/lib/tasks/minitest.rake)
+
+Railscasts has the details.
+
+If you don't want to change your existing tests to do that.. then you have to monkey patch Test::Unit to redefine TestCase to either be the chosen MiniTest base class or something that derives from one. This is the approach that this gem takes and may give you some ideas on how best to go about that.
+
+The other solution is to do a search/replace through your code to switch the base classes of the test cases.
+
+I hope this helps. 
