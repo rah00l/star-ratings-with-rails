@@ -1,13 +1,29 @@
+Install nginx passenger module by :
+
+the correct way of running the Phusion Passenger installer for nginx, when using RVM, is to use rvmsudo as in:
+
+rvmsudo passenger-install-nginx-module
+
+check installed
+- which passenger-install-nginx-module
+
 Location of nGinx installed :
 -----------------------------
+
+To get passenger root path:
+
+passenger-config --root
+passenger_root /home/rahul/.rvm/gems/ruby-1.9.3-p194@redmine/gems/passenger-4.0.21;
+
+get the passenger_ruby path:
+which ruby
+passenger_ruby /home/rahul/.rvm/rubies/ruby-1.9.3-p194/bin/ruby;
 
 /opt/nginx/
 
 Configure file for nginx :
 ----------------------------
-
 sudo /opt/nginx/conf/nginx.conf
-
 
 
 Configuration changes are  :	
@@ -73,7 +89,42 @@ RAILS_ENV=production bundle exec rake assets:precompile
 ********************************************************************************************
 For Troubleshooting ...
 
-
 tail -f /opt/nginx/logs/error.log
 
-	
+tail -f /opt/nginx/logs/access.log
+------------------------------------------------------------------------------------------------------
+
+Issues 1: Nginx: Welcome to nginx! page keeps showing:
+
+In your sudo gedit /opt/nginx/conf/nginx.conf
+
+Solution :check following code should be commented in - nginx config file.
+
+    # location / {
+    #     root   html;
+    #     index  index.html index.htm;
+    #     passenger_enabled on;
+    # }
+
+--------------------------------------------------------------------
+
+Issue 2: If facing somthing like issue - 5.0.7/buildout/agents/PassengerWatchdog)
+does not exist
+
+Your passenger_root directive is incorrect. You can discover the correct value for it by following the guide here:
+
+Solution - Try to install passenger module by running script passenger-install-apache2-module . I had same problem but on nginx; I installed passenger via gem and then recompiled nginx manually with passenger module - this caused error described by you. After running passenger-install-nginx-module such error disappeared.
+
+
+Check passenger-install-nginx-module is properly installed.
+
+By 'which passenger-install-nginx-module'
+
+if not installed, try with:
+
+rvmsudo passenger-install-nginx-module
+
+This is for rvm users. Will solve problem
+
+
+--------------------------------------------------------------------
