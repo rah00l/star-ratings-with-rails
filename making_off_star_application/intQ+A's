@@ -323,6 +323,22 @@ Differences between Procs and Lambdas:
 
 ******************************************************************************************************************************************************
 
+Mocking and Stubbing:-
+----------------------
+
+Testing should be simple, fast, and indempotent. The purpose of stubbing is to replace classes or components that may be complex or slow the test down but still preserve the interface.
+
+For instance, you can create a stub that will return false records but still satisfy the needs of the test. The caveat of using stubs is that you have to be careful not to remove too much of the real world. You really do need to interact with your database at some point to see if all is well.
+
+With a stub you want to accomplish 2 things:
+
+    Replace a part of the real system in your test case with a stub.
+    Have the stub duplicate behavior of the real system part you replace.
+
+A mock object is similar to a stub object. However, it has the added functionality of checking how the client code actually uses the object. It does this with behavior verification, to ensure that the mock object is interacting with the client code in the manner we expect, it is fullfilling our expectations.
+
+******************************************************************************************************************************************************
+
 Q- difference between collection routes and member routes in Rails:-
 
 A member route will require an ID, because it acts on a member. A collection route doesn't because it acts on a collection of objects. Preview is an example of a member route, because it acts on (and displays) a single object. Search is an example of a collection route, because it acts on (and displays) a collection of objects.
@@ -1833,6 +1849,32 @@ Chirag:
     * error occurs like user has provided wrong url so got page break <---> error log
 
     9. 
+-------------------------------------------------------------------------
+
+Rake info:-
+
+I just checked the source and the dependencies are like this now:
+
+    db:create creates the database for the current env
+    db:create:all creates the databases for all envs
+    db:drop drops the database for the current env
+    db:drop:all drops the databases for all envs
+    db:migrate runs migrations for the current env that have not run yet
+    db:migrate:up runs one specific migration
+    db:migrate:down rolls back one specific migration
+    db:migrate:status shows current migration status
+    db:rollback rolls back the last migration
+    db:forward advances the current schema version to the next one
+    db:seed (only) runs the db/seed.rb file
+    db:schema:load loads the schema into the current env's database
+
+    db:schema:dump dumps the current env's schema (and seems to create the db as well)
+
+    db:setup runs db:schema:load, db:seed
+    db:reset runs db:drop db:setup
+    db:migrate:redo runs (db:migrate:down db:migrate:up) or (db:rollback db:migrate:migrate) depending on the specified migration
+    db:migrate:reset runs db:drop db:create db:migrate
+
 
 
  Ray B -
