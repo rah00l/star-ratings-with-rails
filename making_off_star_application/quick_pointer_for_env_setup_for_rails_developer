@@ -1,10 +1,13 @@
 Native Extensions:
-sudo apt-get update
 
+sudo apt-get update
+-----------------------------------------------------------------------------
 For GIT :
 sudo apt-get install git
 
 sudo apt-get install gitg
+
+-----------------------------------------------------------------------------
 
 For RVM installation:
 sudo apt-get install curl
@@ -12,6 +15,7 @@ sudo apt-get install curl
 curl -L get.rvm.io | bash -s stable
 
 source ~/.rvm/scripts/rvm
+-----------------------------------------------------------------------------
 
 For Sublime:
 
@@ -28,14 +32,17 @@ Or you just double clicked on it and Ubuntu Software Center installed it...
 So, in this case:
 
 sudo dpkg -r sublime-text
-
+-----------------------------------------------------------------------------
 
 Browser:
   firebug 
 
+-----------------------------------------------------------------------------
+
 Required Packages:
 gawk, g++, libreadline6-dev, zlib1g-dev, libssl-dev, libyaml-dev, libsqlite3-dev, sqlite3, autoconf, libgdbm-dev, libncurses5-dev, automake, libtool, bison, libffi-dev
 
+-----------------------------------------------------------------------------
 
 During bundle install :
 
@@ -65,6 +72,18 @@ git config --global user.name "Rahul"
 
 git config --global user.email "rahulpatil2387@gmail.com"
 
+-----------------------------------------------------------------------------
+Install phpmyadmin:
 
-Browser:
-  firebug 
+sudo apt-get update
+sudo apt-get install phpmyadmin
+
+sudo service apache2 status
+
+sudo service apache2 restart
+
+http://localhost/phpmyadmin (if apach2 running on port:80)
+
+-----------------------------------------------------------------------------
+
+
