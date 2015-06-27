@@ -1,0 +1,25 @@
+### This is example of database.yml file you can add your own db_name,
+## username / password as per your configurations.
+
+
+development:
+  adapter: mysql2
+  database: star_ratings_dev
+  username: root
+  password: 
+  host: localhost
+
+test:
+  adapter: mysql2
+  database: star_ratings_test
+  username: root
+  password: 
+  host: localhost
+
+ production:
+   adapter: mysql2
+   database: star_ratings_prod
+   username: root
+   password: 
+   host: localhost
+
