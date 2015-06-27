@@ -1,25 +1,25 @@
 class ArticlesController < ApplicationController
-    before_filter :authenticate_user! ,:except => [:index]
-    load_and_authorize_resource :except=>[:index,:show]
+  before_filter :authenticate_user! ,:except => [:index]
+  load_and_authorize_resource :except=>[:index,:show]
 
-    def index
+  def index
     if params[:tag]
       @articles = Article.tagged_with(params[:tag]).paginate(page: params[:page], per_page: 10)
-    else  
-    @search = Sunspot.search(Article) do
-      fulltext params[:search]
-      facet(:published_month)
-      with(:published_month, params[:month]) if params[:month].present?
-      paginate(page: params[:page], per_page: 10)
-      order_by(:published_at, :desc)
-    end
-    @articles = @search.results
-    #Article.all(:joins => :comments, :select => "articles.*, count(comments.id) as comments_count", :group => "articles.id")
-    respond_to do |format|
+    else
+      @search = Sunspot.search(Article) do
+        fulltext params[:search]
+        facet(:published_month)
+        with(:published_month, params[:month]) if params[:month].present?
+        paginate(page: params[:page], per_page: 10)
+        order_by(:published_at, :desc)
+      end
+      @articles = @search.results
+      #Article.all(:joins => :comments, :select => "articles.*, count(comments.id) as comments_count", :group => "articles.id")
+      respond_to do |format|
         format.html
         format.js
-    end  
-    end  
+      end
+    end
     #@articles.
   end
 
@@ -32,7 +32,7 @@ class ArticlesController < ApplicationController
     if @rating.blank?
       @rating = Rating.create(article_id: @article.id, user_id: current_user.id, score: 0)
     end
-end
+  end
 
   def new
     @article = Article.new
