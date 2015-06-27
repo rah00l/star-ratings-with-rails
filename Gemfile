@@ -1,5 +1,4 @@
 source 'https://rubygems.org'
-
 # gem 'rails', '3.2.3'
   gem 'rails', '3.2.13'
 
@@ -13,10 +12,8 @@ gem 'sqlite3'
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
-
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
    gem "therubyracer", "~> 0.10.2"
-
   gem 'uglifier', '>= 1.0.3'
   gem 'zurb-foundation'
 end
@@ -61,7 +58,6 @@ gem 'bootstrap-will_paginate', '~> 0.0.10'
 # This gem is for implementing image gallery.
 gem 'hermitage'
 
-
 # This gem is for populating database.
 gem 'populator'
 
@@ -82,25 +78,13 @@ gem 'youtube_it', '~> 2.4.0'
 # For testing app 
 group :development, :test do
   gem 'factory_girl_rails'
-  gem 'rspec-rails'
-  gem 'rspec-collection_matchers'
   gem 'thin'  
 end
 
-
-
-
 group :test do
-  gem 'capybara'
-#  gem 'cucumber-rails', :require=>false   # This is optional if you want to cover cucumber scenario also then add.
-  gem 'database_cleaner', '1.0.1'
-#  gem 'email_spec'  # For basic testing not require
   gem 'launchy'
-
-  gem 'simplecov', :require => false#, :group => :test
+  gem 'simplecov', :require => false
 end
-
-
 
 # For debugging application step by step
 gem 'debugger', group: [:development, :test]

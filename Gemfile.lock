@@ -63,12 +63,6 @@ GEM
       thor
     builder (3.0.4)
     cancan (1.6.10)
-    capybara (2.4.1)
-      mime-types (>= 1.16)
-      nokogiri (>= 1.3.3)
-      rack (>= 1.0.0)
-      rack-test (>= 0.5.4)
-      xpath (~> 2.0)
     carrierwave (0.10.0)
       activemodel (>= 3.2.0)
       activesupport (>= 3.2.0)
@@ -83,7 +77,6 @@ GEM
     coffee-script-source (1.7.0)
     columnize (0.8.9)
     daemons (1.1.9)
-    database_cleaner (1.0.1)
     debugger (1.6.8)
       columnize (>= 0.3.1)
       debugger-linecache (~> 1.2.0)
@@ -95,7 +88,6 @@ GEM
       orm_adapter (~> 0.1)
       railties (~> 3.1)
       warden (~> 1.2.1)
-    diff-lcs (1.2.5)
     docile (1.1.5)
     ejs (1.1.1)
     erubis (2.7.0)
@@ -214,24 +206,6 @@ GEM
     rmagick (2.13.3)
     rsolr (1.0.10)
       builder (>= 2.1.2)
-    rspec-collection_matchers (1.0.0)
-      rspec-expectations (>= 2.99.0.beta1)
-    rspec-core (3.0.4)
-      rspec-support (~> 3.0.0)
-    rspec-expectations (3.0.4)
-      diff-lcs (>= 1.2.0, < 2.0)
-      rspec-support (~> 3.0.0)
-    rspec-mocks (3.0.4)
-      rspec-support (~> 3.0.0)
-    rspec-rails (3.0.2)
-      actionpack (>= 3.0)
-      activesupport (>= 3.0)
-      railties (>= 3.0)
-      rspec-core (~> 3.0.0)
-      rspec-expectations (~> 3.0.0)
-      rspec-mocks (~> 3.0.0)
-      rspec-support (~> 3.0.0)
-    rspec-support (3.0.4)
     sass (3.3.8)
     sass-rails (3.2.6)
       railties (~> 3.2.0)
@@ -276,8 +250,6 @@ GEM
     warden (1.2.3)
       rack (>= 1.0)
     will_paginate (3.0.7)
-    xpath (2.0.0)
-      nokogiri (~> 1.3)
     youtube_it (2.4.2)
       builder
       excon
@@ -302,10 +274,8 @@ DEPENDENCIES
   bootstrap-sass (~> 3.0.3.0)
   bootstrap-will_paginate (~> 0.0.10)
   cancan
-  capybara
   carrierwave
   coffee-rails (~> 3.2.1)
-  database_cleaner (= 1.0.1)
   debugger
   devise
   factory_girl_rails
@@ -320,8 +290,6 @@ DEPENDENCIES
   progress_bar
   rails (= 3.2.13)
   rmagick
-  rspec-collection_matchers
-  rspec-rails
   sass-rails (~> 3.2.3)
   simplecov
   sqlite3
