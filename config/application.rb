@@ -89,18 +89,5 @@ module Blog
     #### TODO Data fetch from yml file ..
     # File.join(Rails.root, 'config', 'env.yml')
     # oauth_config = YAML::load(File.open("#{Rails.root}/config/oauth.yml"))
-
-    ## This is custom configuration for application generate/use below mentioned test_framwork i.e. rspec.
-    config.generators do |g|
-        g.test_framework :rspec,
-                fixtures: true,
-                view_specs: false,
-                helper_specs: false,
-                routing_specs: false,
-                controller_specs: true,
-                request_specs: false
-                g.fixture_replacement :factory_girl, dir: "spec/factories"
-    end
-
   end
 end
