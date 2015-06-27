@@ -2,7 +2,12 @@ require 'test_helper'
 
 class ArticlesControllerTest < ActionController::TestCase
   setup do
-    @article = articles(:one)
+    # @request    = ActionController::TestRequest.new
+
+    @article = FactoryGirl.create(:article)
+    @user = FactoryGirl.create(:user)
+    # @response   = ActionController::TestResponse.new
+    sign_in @user
   end
 
   test "should get index" do
