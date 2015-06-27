@@ -1,12 +1,18 @@
+## Check first that sunspot solr server has been start or not ?
+## Else it will throuws error while running seed
+
+puts "Creating few user roles...".upcase
 admin_role = Role.find_or_create_by_name("Admin")
 author_role = Role.find_or_create_by_name("Author")
 org_role= Role.find_or_create_by_name("organizer")
 photo_role = Role.find_or_create_by_name("Photographer")
 other_role = Role.find_or_create_by_name("Other")
+puts "Completed creation of basic roles...".upcase
 
+puts "Removing all users...".upcase
 User.delete_all
 
-puts 'DEFAULT ADMIN USER..'
+puts "Creating few users...application_user and admin for backend".upcase
 # admin_user = User.find_or_create_by_email :email => ENV['ADMIN_EMAIL'].dup, :password => ENV['ADMIN_PASSWORD'].dup, :password_confirmation => ENV['ADMIN_PASSWORD'].dup
 admin_user = User.create! email: "rahul@gmail.com", password: "rahul123", password_confirmation: "rahul123", confirmed_at: Time.now
 																											 
@@ -16,9 +22,10 @@ admin_user.role_ids=(admin_role.id)
 AdminUser.delete_all
 
 AdminUser.create!(:email => 'admin@example.com', :password => 'password', :password_confirmation => 'password')
-
+puts "Completed creation of users...".upcase
 
 Country.delete_all
+puts "Creating default countries...".upcase
 open("http://openconcept.ca/sites/openconcept.ca/files/country_code_drupal_0.txt") do |countries|
   countries.read.each_line do |country|
     code, name = country.chomp.split("|")
@@ -30,7 +37,7 @@ c1 = Country.find_by_name "India"
 c2 = Country.find_by_name "United States"
 
 State.delete_all
-
+puts "Creating default states...".upcase
 states1 = [{code: "MH", name: "Maharashtra", country_id: c1.id }, {code: "KA", name: "Karnataka", country_id: c1.id },
 		  {code: "AP", name: "Andhra Pradesh", country_id: c1.id }, {code: "PB", name: "Punjab", country_id: c1.id }]
 
@@ -54,7 +61,7 @@ s7 = State.find_by_name "New Jersey"
 s8 = State.find_by_name "New York" 	
 
 City.delete_all
-
+puts "Creating default cities...".upcase
 cities1 = [{code: "PN", name: "Pune", state_id: s1.id }, {code: "MB", name: "Mumbai", state_id: s1.id },
 		  {code: "KOP", name: "Kolhapur", state_id: s1.id }, {code: "SL", name: "Sangli", state_id: s1.id }]
 
@@ -111,7 +118,9 @@ City.create! cities8
 
 # other_user = User.create! email: "other@example.com" ,password: "user@123" ,password_confirmation: "user@123"
 # other_user.role_ids=([other_role.id])
+puts "deleting all articles...".upcase
 Article.delete_all
+puts "Creating few articles...".upcase
 
 batman = Article.create! name: "Batman", created_at: (rand*30).days.ago, content: <<-ARTICLE
 Batman is a fictional character created by the artist Bob Kane and writer Bill Finger. A comic book superhero, Batman first appeared in Detective Comics #27 (May 1939), and since then has appeared primarily in publications by DC Comics. Originally referred to as "The Bat-Man" and still referred to at times as "The Batman", he is additionally known as "The Caped Crusader", "The Dark Knight", and the "World's Greatest Detective," among other titles. (from Wikipedia)
@@ -255,13 +264,17 @@ ARTICLE
 # GettSunspot allows ordering on one or more non-text fields using the order_by method in the search DSL (if no order_by call is made, results are sorted by relevancy). order_by may be called more than once, and the earlier calls will have higher ordering precedence than the later calls. Each call to the method should take the field name and either :asc or :desc:
 # ARTICLE
 # sunspot_basics.update_attribute :created_at, (rand*173).days.ago
+puts "Completed creation of articles...".upcase
 
+puts "Deleting all events and photos..".upcase
 [Event, Photo].each(&:delete_all)
 
+puts "Creating few events...".upcase
 Event.create! name: "Capture the Joker", starts_at: 2.days.from_now, ends_at: 3.days.from_now, description: "The Joker is at it again. Find his secret lair and capture him to keep him from causing more trouble."
 
 Event.create! name: "Save the World", starts_at: 2.weeks.from_now, ends_at: 3.weeks.from_now, description: "An astroid is expected to collide with Earth around this time. It's a bird, it's a plain, it's Superman!"
 
+puts "Creating few photos...".upcase
 Photo.create! name: "The Dark Knight Rises", filename: "dark_knight_rises.jpg"
 Photo.create! name: "Superman", filename: "superman.jpg"
 
