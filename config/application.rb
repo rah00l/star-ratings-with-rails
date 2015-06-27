@@ -86,7 +86,6 @@ module Blog
     # ENV["FACEBOOK_SECRET"]
     social_keys = File.join(Rails.root, 'config', 'social_keys.yml')
     CONFIG = HashWithIndifferentAccess.new(YAML::load(IO.read(social_keys)))[Rails.env]
-    debugger
     unless CONFIG.blank?
       CONFIG.each do |k,v|
         ENV[k.upcase] ||= v
