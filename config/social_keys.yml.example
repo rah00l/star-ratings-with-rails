@@ -1,0 +1,35 @@
+# Add account credentials and API keys here.
+# This file should be listed in .gitignore to keep your settings secret!
+# Each entry sets a local environment variable and overrides ENV variables in the Unix shell.
+
+development:
+  facebook_key: "YOUR_KEY"
+  facebook_secret: "YOUR_SECRET"
+
+  github_key: "YOUR_KEY"
+  github_secret: "YOUR_SECRET"
+
+  google_key: "YOUR_KEY"
+  google_secret: "YOUR_SECRET"
+
+  linkedin_key: "YOUR_KEY"
+  linkedin_secret: "YOUR_SECRET"
+
+  twitter_key: "YOUR_KEY"
+  twitter_secret: "YOUR_SECRET"
+
+production:
+  facebook_key: "YOUR_KEY"
+  facebook_secret: "YOUR_SECRET"
+
+  github_key: "YOUR_KEY"
+  github_secret: "YOUR_SECRET"
+
+  google_key: "YOUR_KEY"
+  google_secret: "YOUR_SECRET"
+
+  linkedin_key: "YOUR_KEY"
+  linkedin_secret: "YOUR_SECRET"
+
+  twitter_key: "YOUR_KEY"
+  twitter_secret: "YOUR_SECRET"

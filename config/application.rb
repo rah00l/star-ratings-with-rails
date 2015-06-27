@@ -72,19 +72,25 @@ module Blog
     config.assets.version = '1.0'
 
     ## Configuration of loacl environment file for private data\settings.
+    ## e.g. ENV["GMAIL_USERNAME"]
+    ##      ENV["GMAIL_PASSWORD"]
     config.before_configuration do
-        env_file = File.join(Rails.root, 'config', 'local_env.yml')
-        YAML.load( File.open( env_file ) ).each do |key, value|
-            ENV[key.to_s] = value
-        end if File.exists?(env_file)
+      env_file = File.join(Rails.root, 'config', 'local_env.yml')
+      YAML.load( File.open( env_file ) ).each do |key, value|
+        ENV[key.to_s] = value
+      end if File.exists?(env_file)
     end
 
+    ## In application can above mentioned social_keys use following way -
+    # ENV["FACEBOOK_KEY"]
+    # ENV["FACEBOOK_SECRET"]
     social_keys = File.join(Rails.root, 'config', 'social_keys.yml')
     CONFIG = HashWithIndifferentAccess.new(YAML::load(IO.read(social_keys)))[Rails.env]
-    unless CONFIG.blank? 
-        CONFIG.each do |k,v|
-            ENV[k.upcase] ||= v
-        end
+    debugger
+    unless CONFIG.blank?
+      CONFIG.each do |k,v|
+        ENV[k.upcase] ||= v
+      end
     end
     #### TODO Data fetch from yml file ..
     # File.join(Rails.root, 'config', 'env.yml')
