@@ -5,10 +5,16 @@
 #   FactoryGirl.generate(:timestamp).strftime("%Y-%m-%d_%H-%M-%S")
 # end
 
+# "Admin","Author","organizer","Photographer","Other" -- default_roles
+
 FactoryGirl.define do
 
   sequence :email do |n|
     "test-#{n}@mail.com"
+  end
+
+  factory :role do |f|
+    f.name "Admin"
   end
 
   factory :user do |f|
