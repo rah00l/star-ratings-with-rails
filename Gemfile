@@ -87,6 +87,11 @@ group :test do
   gem 'minitest-colorize'
   gem 'minitest-focus'
 
+  # Guard allows to automatically & intelligently launch tests and
+  # Guard::Minite is for minitest framework when files are modified.
+  gem 'guard' # NOTE: this is necessary in newer versions
+  gem 'guard-minitest'
+
   gem 'launchy'
   gem 'simplecov', :require => false
 end
