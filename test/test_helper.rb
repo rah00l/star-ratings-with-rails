@@ -22,9 +22,9 @@ end
 
 class ActiveSupport::TestCase
   # Transactional fixtures accelerate your tests by wrapping each test method
-    # in a transaction that's rolled back on completion.  This ensures that the
-    # test database remains unchanged
-    self.use_transactional_fixtures = true
+  # in a transaction that's rolled back on completion.  This ensures that the
+  # test database remains unchanged
+  self.use_transactional_fixtures = true
 
   # Add more helper methods to be used by all tests here...
 end
