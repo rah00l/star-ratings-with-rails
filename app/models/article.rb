@@ -11,7 +11,7 @@ class Article < ActiveRecord::Base
   # 7   published_at  datetime                            Yes     NULL
   ############################## Scema Information #############################################################
 
-  attr_accessible :content, :name , :published_at, :created_at, :tag_list
+  attr_accessible :content, :name , :published_at, :created_at, :tag_list, :user_id,:id,:updated_at
   has_many :comments, as: :commentable, :dependent => :destroy
   has_many :ratings
 
