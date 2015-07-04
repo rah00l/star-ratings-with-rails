@@ -100,6 +100,9 @@ group :test do
   # and automatic merging of coverage across test suites
   gem 'launchy'
   gem 'simplecov', :require => false
+
+  # JSON formatter for the ruby 1.9+ coverage gem SimpleCov
+  gem 'simplecov-json', :require => false
 end
 
 # For debugging application step by step
