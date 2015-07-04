@@ -92,6 +92,12 @@ group :test do
   gem 'guard' # NOTE: this is necessary in newer versions
   gem 'guard-minitest'
 
+  # In order to get terminal notification added following gems
+  gem "terminal-notifier-guard"
+  gem 'libnotify' # This is for linux os getting notifications
+
+  # Code coverage for Ruby 1.9+ with a powerful configuration library
+  # and automatic merging of coverage across test suites
   gem 'launchy'
   gem 'simplecov', :require => false
 end
