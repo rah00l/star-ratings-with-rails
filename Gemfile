@@ -72,12 +72,17 @@ gem 'acts-as-taggable-on'
 gem 'youtube_it', '~> 2.4.0'
 
 # For testing app 
-group :development, :test do
-  gem 'factory_girl_rails'
+group :development do
   gem 'thin'  
 end
 
 group :test do
+  gem 'factory_girl_rails'
+
+  gem 'minitest-spec-rails', '~> 4.7'
+  gem 'minitest-colorize' # makes dots red/green and outputs failure info inline
+  gem 'minitest-focus'
+
   gem 'launchy'
   gem 'simplecov', :require => false
 end
