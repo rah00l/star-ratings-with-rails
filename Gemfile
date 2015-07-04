@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
-  gem 'rails', '3.2.13'
+gem 'rails', '3.2.13'
 
-  gem 'mysql2'
+gem 'mysql2'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -9,7 +9,7 @@ group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-   gem "therubyracer", "~> 0.10.2"
+  gem "therubyracer", "~> 0.10.2"
   gem 'uglifier', '>= 1.0.3'
   gem 'zurb-foundation'
 end
@@ -23,10 +23,10 @@ gem 'devise'
 gem 'activeadmin'
 gem 'active_admin_editor'
 
-# for Authorization 
+# for Authorization
 gem 'cancan'
 
-# For image file upload 
+# For image file upload
 gem 'carrierwave'
 
 # For image processing
@@ -71,9 +71,9 @@ gem 'acts-as-taggable-on'
 # For implementing video functionality
 gem 'youtube_it', '~> 2.4.0'
 
-# For testing app 
-group :development do
-  gem 'thin'  
+# For testing app
+group :development  do
+  gem 'thin'
 end
 
 group :test do
