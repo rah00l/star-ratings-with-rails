@@ -79,8 +79,12 @@ end
 group :test do
   gem 'factory_girl_rails'
 
+  # minitest-spec-rails gem makes it easy to use the
+  # MiniTest::Spec DSL within your existing Rails 2.3, 3.x or 4.x test suite.
   gem 'minitest-spec-rails', '~> 4.7'
-  gem 'minitest-colorize' # makes dots red/green and outputs failure info inline
+
+  # following gems makes dots red/green and outputs failure info inline & focues in the progress bar
+  gem 'minitest-colorize'
   gem 'minitest-focus'
 
   gem 'launchy'
