@@ -1,13 +1,18 @@
 require 'test_helper'
 
 class ArticlesControllerTest < ActionController::TestCase
-  setup do
-    # @request    = ActionController::TestRequest.new
 
-    @article = FactoryGirl.create(:article)
-    @user = FactoryGirl.create(:user)
-    # @response   = ActionController::TestResponse.new
-    sign_in @user
+  context "Articles Controller" do
+    setup do
+      # @request    = ActionController::TestRequest.new
+      role = FactoryGirl.create(:role)
+      @user = FactoryGirl.create(:user)
+      @user.roles << role
+      @article = FactoryGirl.create(:article)
+      # @response   = ActionController::TestResponse.new
+      sign_in @user
+    end
+
     should "get index" do
       get :index
       assert_response :success
