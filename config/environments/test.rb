@@ -11,6 +11,10 @@ Blog::Application.configure do
   config.serve_static_assets = true
   config.static_cache_control = "public, max-age=3600"
 
+  # mini_shoulda feature will help, To enable it, set the following configuration.
+  # Doing so only enables a few aliases that allow the Shoulda context, should, and should_eventually methods.
+  config.minitest_spec_rails.mini_shoulda = true
+
   # Log error messages when you accidentally call methods on nil
   config.whiny_nils = true
 
