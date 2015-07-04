@@ -1,4 +1,31 @@
 class User < ActiveRecord::Base
+
+    ############################# Scema Information ##############################################################
+    # #   Column                  Type            Collation       Null  Default     Extra
+    # 1   id                        int(11)                         No    None        AUTO_INCREMENT
+    # 2   email                     varchar(255)  utf8_unicode_ci   No
+    # 3   encrypted_password        varchar(255)  utf8_unicode_ci   No
+    # 4   reset_password_token      varchar(255)  utf8_unicode_ci   Yes   NULL
+    # 5   reset_password_sent_at    datetime                        Yes   NULL
+    # 6   remember_created_at       datetime                        Yes   NULL
+    # 7   sign_in_count             int(11)                         Yes   0
+    # 8   current_sign_in_at        datetime                        Yes   NULL
+    # 9   last_sign_in_at           datetime                        Yes   NULL
+    # 10  current_sign_in_ip        varchar(255)  utf8_unicode_ci   Yes   NULL
+    # 11  last_sign_in_ip           varchar(255)  utf8_unicode_ci   Yes   NULL
+    # 12  created_at                datetime                        No    None
+    # 13  updated_at                datetime                        No    None
+    # 14  first_name                varchar(255)  utf8_unicode_ci   Yes   NULL
+    # 15  last_name                 varchar(255)  utf8_unicode_ci   Yes   NULL
+    # 16  mobile_number             varchar(255)  utf8_unicode_ci   Yes   NULL
+    # 17  gender                    varchar(255)  utf8_unicode_ci   Yes   NULL
+    # 18  uid                       varchar(255)  utf8_unicode_ci   Yes   NULL
+    # 19  provider                  varchar(255)  utf8_unicode_ci   Yes   NULL
+    # 20  confirmation_token        varchar(255)  utf8_unicode_ci   Yes   NULL
+    # 21  confirmed_at              datetime                        Yes   NULL
+    # 22  confirmation_sent_at      datetime                        Yes   NULL
+    ############################# Scema Information ##############################################################
+
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
@@ -12,15 +39,15 @@ class User < ActiveRecord::Base
   # Added social-authentication:
   devise :omniauthable, :omniauth_providers => [:facebook, :google_oauth2]
 
-  # Added User Time Out Feature 
+  # Added User Time Out Feature
   devise :timeoutable, :timeout_in => 10.minutes
 
   has_many :ratings
-  
+
   has_many :articles
   has_many :photos
   has_many :events
- 
+
   has_many :comments
 
 
