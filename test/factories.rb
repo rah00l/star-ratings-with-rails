@@ -40,5 +40,10 @@ FactoryGirl.define do
     f.updated_at     nil
     f.published_at   nil
   end
+
+  # created photo's basic factory stucture
+  factory :photo do |f|
+    f.name "test-photo"
+  end
 end
 # name: "Batman", created_at: (rand*30).days.ago, content:
