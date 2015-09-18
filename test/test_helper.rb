@@ -12,6 +12,9 @@ end if ENV["COVERAGE"]
 
 ENV["RAILS_ENV"] = "test"
 require File.expand_path('../../config/environment', __FILE__)
+
+$fixtures_path = File.join( Rails.root, "test", "fixtures" )
+
 require 'rails/test_help'
 
 require 'factory_girl_rails'
