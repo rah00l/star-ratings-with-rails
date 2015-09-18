@@ -32,6 +32,11 @@ FactoryGirl.define do
     "Article-#{n}"
   end
 
+  # for generating titles for music
+  sequence :title do |n|
+    "music-#{n}"
+  end
+
   # created article's basic factory stucture
   factory :article do |f|
     f.name          { FactoryGirl.generate(:name) }
@@ -44,6 +49,23 @@ FactoryGirl.define do
   # created photo's basic factory stucture
   factory :photo do |f|
     f.name "test-photo"
+  end
+
+  # created photo's basic factory stucture
+  # factory :attachment do |f|
+  #   f.file nil
+  #   f.attachable_type ""
+  # end
+
+# created photo's basic factory stucture
+  factory :music do |f|
+    f.title     { FactoryGirl.generate(:title) }
+    f.description "predominantly musical instruments predominantly musical instruments"
+    f.featured false
+    f.summary "test summary"
+    # f.association   :attachments
+    # f.file nil
+    # f.attachable_type "Music"
   end
 end
 # name: "Batman", created_at: (rand*30).days.ago, content:
