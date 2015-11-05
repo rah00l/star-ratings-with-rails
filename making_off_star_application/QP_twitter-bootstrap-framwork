@@ -1,0 +1,8 @@
+
+
+Used twitter-bootstrap-rails 
+
+following generator commond is very quick way of designing CRUD actions 
+	* rails g bootstrap:themed tags -f *	
+
+
