@@ -40,7 +40,14 @@ Browser:
 -----------------------------------------------------------------------------
 
 Required Packages:
-gawk, g++, libreadline6-dev, zlib1g-dev, libssl-dev, libyaml-dev, libsqlite3-dev, sqlite3, autoconf, libgdbm-dev, libncurses5-dev, automake, libtool, bison, libffi-dev
+
+sudo apt-get install gawk g++ libreadline6-dev zlib1g-dev libssl-dev libyaml-dev libsqlite3-dev sqlite3 autoconf libgdbm-dev libncurses5-dev automake libtool bison libffi-dev
+
+# This is for mysql2 dependent
+
+sudo apt-get install ruby-mysql
+
+sudo apt-get install libmysqlclient-dev
 
 -----------------------------------------------------------------------------
 
@@ -73,6 +80,10 @@ git config --global user.name "Rahul"
 git config --global user.email "rahulpatil2387@gmail.com"
 
 -----------------------------------------------------------------------------
+Install first mysq-server:
+
+sudo apt-get install mysql-server
+
 Install phpmyadmin:
 
 sudo apt-get update
@@ -85,5 +96,23 @@ sudo service apache2 restart
 http://localhost/phpmyadmin (if apach2 running on port:80)
 
 -----------------------------------------------------------------------------
+Install Solr server::
 
+Sunspot::Solr::Server::JavaMissing: You need a Java Runtime Environment to run the Solr server
 
+# Installing Java with apt-get is easy. First, update the package index:
+
+sudo apt-get update
+
+# Then, check if Java is not already installed:
+
+java -version
+
+# If it returns "The program java can be found in the following packages", Java hasn't been installed yet, so execute the following command:
+
+sudo apt-get install default-jre
+
+# Then install java
+sudo apt-get install default-jdk
+
+-----------------------------------------------------------------------------
