@@ -29,7 +29,7 @@ FactoryGirl.define do
 
   # for generating names
   sequence :name do |n|
-    "Article-#{n}"
+    "testname-#{n}"
   end
 
   # for generating titles for music
@@ -67,5 +67,16 @@ FactoryGirl.define do
     # f.file nil
     # f.attachable_type "Music"
   end
+
+  # created event's basic factory stucture
+    factory :event do |f|
+      f.name      { FactoryGirl.generate(:name) }
+      f.description "This guide is designed for beginners who want to get started with a Rails application."
+      f.starts_at { FactoryGirl.generate(:timestamp) }
+      f.ends_at { FactoryGirl.generate(:timestamp) }
+      # f.association   :attachments
+      # f.file nil
+      # f.attachable_type "Music"
+    end
 end
 # name: "Batman", created_at: (rand*30).days.ago, content:
