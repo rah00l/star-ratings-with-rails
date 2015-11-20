@@ -49,6 +49,12 @@ sudo apt-get install ruby-mysql
 
 sudo apt-get install libmysqlclient-dev
 
+for mysql2 :
+
+p
+
+sudo apt-get install libmysql-ruby libmysqlclient-dev
+
 -----------------------------------------------------------------------------
 
 During bundle install :
