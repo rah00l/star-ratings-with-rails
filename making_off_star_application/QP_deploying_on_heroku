@@ -1,4 +1,37 @@
 
+  Add following to Gemfile as on heroku production database working and it's adapter is postgressserver:
+
+  # To enable features such as static asset serving and logging on Heroku please add rails_12factor gem to your Gemfile.
+  group :production do
+    gem 'pg'
+    gem 'rails_12factor'
+  end
+
+  gem install heroku --no-ri --no-rdoc
+
+  heroku create (will ask heroku account login and create app overthere.)
+
+  TO check remote repository list:
+  -> git remote -v
+
+  TO run any custom rake tasks:
+  -> heroku run rake prep:db:seed:transacts:yearly:fakes
+
+  To add repo.
+  -> git remote add heroku git@heroku.com:balanced-budget.git
+
+  TO remove remote:
+  -> git remote rm heroku
+
+  To verify logs:
+  -> heroku logs
+
+  To go into heroku application console:
+  heroku run bash
+
+  -> git push heroku feature/Dev-54-global-filter-options:master
+
+=====================================================================
  FOR DEPOLYING APP ON HEROKU :
  -----------------------------
 
