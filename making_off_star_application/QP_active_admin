@@ -1,10 +1,67 @@
-Link:
+Links:
 http://www.sitepoint.com/easy-admin-interfaces-active-admin-rails/
 
+http://jaysonlane.net/tech-blog/2012/04/rails-devise-and-active-admin-single-user-model/
+=============================================================================================
+
+[Rails] Devise and Active Admin Single User Model
+Posted on April 12, 2012
+
+If you’re working on a project that requires an Admin section and you already require authentication for other areas you should really consider using Active Admin with Devise. By default Active Admin uses Devise for it’s authentication but creates a new user model specific to admins. If you already have a user model in place or would like to simply have one user model, there’s not much to it.
+
+To get started, you’ll need to add a few gems to your gem file (if using > Rails 3.1, this assumes you already have sass-rails in your gem file.
+
+Gemfile:
+
+1 gem 'devise'
+2 gem 'activeadmin'
+3 gem 'meta_search',    '>= 1.1.0.pre'
+
+Go ahead and run bundle install to get those gems installed. We’ll start by configuring Devise. We’re going to create a user model named …wait for it… "User" (unique, I know). If you’ve never used Devise before and want more information, you can check out their readme here. To get going we’re going to run a few generators:
+
+-> rails generate devise:install
+
+Which generates our Devise installation. Followed by:
+
+-> rails generate devise User
+
+That generates our user model. Before we rake our user migrations, let’s add a boolean admin flag to the user model:
+
+-> rails generate migration add_admin_flag_to_users admin:bool
+
+Go ahead and run your migrations:
+
+-> rake db:migrate
+
+Now, let’s go ahead and install Active Admin — normally, if you’re following the Active Admin docs (available here) you’d run the following command:
+
+-> rails generate active_admin:install
+
+However, this generates it’s own user model (called AdminUser) that we don’t want. Instead, we’ll run the following command:
+
+-> rails generate active_admin:install --skip-users
+
+This basically tells Active Admin not to make it’s own model. If you look inside the Active Admin initializer there are, amongst other things, two methods that it uses to a) make sure the user is an admin (config.authentication_method = :authenticate_admin_user!) and b) return the admin user (config.current_user_method = :current_admin_user). Because we’re using our own model we need to define these methods and we’ll do so in the application_controller.rb:
+
+def authenticate_admin_user!
+  authenticate_user!
+  unless current_user.admin?
+    flash[:alert] = "This area is restricted to administrators only."
+    redirect_to root_path
+  end
+end
+
+def current_admin_user
+  return nil if user_signed_in? && !current_user.admin?
+  current_user
+end
+
+Now if you have a user that has the admin flag set to TRUE, they’ll be able to browse to /admin and view the Active Admin panel. If they’re not logged in, they’ll be prompted to do so, if they’re not an admin they’ll be redirected to the root path with a flash message informing them of the restricted area.
+
+=============================================================================================
 
 # Generator ..
 rails g active_admin:install
-
 
 rake db:migrate
 
