@@ -11,8 +11,16 @@
 
   heroku create (will ask heroku account login and create app overthere.)
 
+  You can rename an app at any time with the heroku apps:rename command
+  -> heroku apps:rename newname (it's change name of app and subdomain)
+
   TO check remote repository list:
   -> git remote -v
+
+  To run migrations
+  -> heroku run rake db:migrate
+
+  -> heroku run rake db:seed
 
   TO run any custom rake tasks:
   -> heroku run rake prep:db:seed:transacts:yearly:fakes
@@ -29,28 +37,29 @@
   To go into heroku application console:
   heroku run bash
 
-  -> git push heroku feature/Dev-54-global-filter-options:master
+    -> git push heroku feature/Dev-54-global-filter-options:master
 
 =====================================================================
  FOR DEPOLYING APP ON HEROKU :
  -----------------------------
+   gem install heroku --no-ri --no-rdoc
 
    git push heroku for_heroku:master
    
-   heroku  rake sunspot:solr:start
-    
-   heroku rake sunspot:reindex 
-    
-   heroku rake db:migrate db:seed
-    
-   gem install heroku --no-ri --no-rdoc
-	
    heroku create (will ask heroku account login and create app overthere.)
 
    git push heroku master
 
    git push heroku for_heroku:master (if your code is on any other branch other than master)
 
+---------------------------------------------------------
+   Application specific ::
+
+   heroku  rake sunspot:solr:start
+
+   heroku rake sunspot:reindex
+
+   heroku rake db:migrate db:seed
 
 heroku config : 
   160  
