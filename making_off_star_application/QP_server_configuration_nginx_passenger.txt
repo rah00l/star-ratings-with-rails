@@ -1,8 +1,27 @@
+Deploy a Rails App with Passenger and Nginx
+
+Introduction
+
+If you are a Ruby on Rails developer, you probably need a web server to host your web apps. This tutorial shows you how to use Phusion Passenger as your Rails-friendly web server. Passenger is easy to install, configure, and maintain and it can be used with Nginx or Apache. In this tutorial, we will install Passenger with Nginx on Ubuntu 14.04.
+
+An alternate method to deploy your Rails app is with this 1-Click Rails Installation that uses Nginx with Unicorn, a HTTP server that can handle multiple requests concurrently.
+
+By the end of this tutorial, you will have a test Rails application deployed on your Passenger/Nginx web server and accessible via a domain or IP address.
+
+Install passenger gem.
+
+ gem install passenger --no-ri --no-rdoc
+
 Install nginx passenger module by :
 
 the correct way of running the Phusion Passenger installer for nginx, when using RVM, is to use rvmsudo as in:
 
 rvmsudo passenger-install-nginx-module
+
+Installer will guide if any dependecy is missing on your machine.
+Like - Install below package
+
+sudo apt-get install libcurl4-openssl-dev
 
 check installed
 - which passenger-install-nginx-module
@@ -42,7 +61,33 @@ http {
          passenger_enabled on;
       }
 
+Before start nginx server check for port # 80 weather it is free or apache already been using,
 
+netstat -tulpn | grep :80
+
+Stop the service of apache2 by,
+
+sudo service apache2 stop
+
+In /etc/apache2/ports.conf, change the port as
+
+sudo gedit /etc/apache2/ports.conf
+
+From:
+Listen 80
+
+To:
+Listen 81
+
+Then go to /etc/apache2/sites-enabled/000-default.conf
+
+And change the first line as
+
+<VirtualHost *: 81>
+
+Now restart
+
+sudo service apache2 restart
 
 To start nginx server :
 ------------------------
@@ -127,4 +172,4 @@ rvmsudo passenger-install-nginx-module
 This is for rvm users. Will solve problem
 
 
---------------------------------------------------------------------
+--------------------------------------------------------------------            

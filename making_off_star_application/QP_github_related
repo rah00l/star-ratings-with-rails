@@ -4,7 +4,7 @@ Add the below script in your bashrc file. Move to the end of the file and paste 
 ----------------------------------------------------------------------------------------------
 $ gedit ~/.bashrc
  
-# Git branch in prompt.
+	# Git branch in prompt.
 parse_git_branch() {
 git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
 }
@@ -29,7 +29,7 @@ git push origin master
 ----------------------------------------------------------------------------------------------
 
 
-** Install git conflict solve tool - Meld 
+** Install Git conflict solve tool - Meld 
 
 sudo apt-get update && sudo apt-get install meld
 

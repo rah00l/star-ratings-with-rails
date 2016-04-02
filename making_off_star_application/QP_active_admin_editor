@@ -1,0 +1,29 @@
+
+====================================================================================
+
+	Active Admin Editor
+    Rich text editor for Active Admin using wysihtml5:
+    
+	Add the following to your Gemfile:
+
+		gem 'active_admin_editor'
+
+	Then can use like::
+
+	ActiveAdmin.register Page do
+  form do |f|
+    f.inputs do
+      f.input :title
+      f.input :content, as: :html_editor
+    end
+
+    f.buttons
+  end
+end
+
+
+Use gem if following error occurs::
+
+    Undefined mixin 'box-shadow' with Active Admin Editor
+
+gem 'active_admin_editor', github: 'ejholmes/active_admin_editor'

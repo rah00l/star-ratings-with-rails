@@ -16,22 +16,36 @@ curl -L get.rvm.io | bash -s stable
 
 source ~/.rvm/scripts/rvm
 -----------------------------------------------------------------------------
+::: Option 1 :::
 
-For Sublime:
+If you installed sublime-text-3 with apt-get, based on this article:
+
+http://www.webupd8.org/2013/07/sublime-text-3-ubuntu-ppa-now-available.html
+
+With these lines:
+
+sudo add-apt-repository ppa:webupd8team/sublime-text-3
+sudo apt-get update
+sudo apt-get install sublime-text-installer
+You could remove your installation:
+
+sudo apt-get remove sublime-text-installer
+
+::: Option 2 :::
 
 If you installed Sublime Text 3 from a .deb package which was downloaded directly from Sublime Text page: http://www.sublimetext.com/3
 
 And you have used this command for installation
 
-http://c758482.r82.cf2.rackcdn.com/sublime-text_build-3059_i386.deb
-
-sudo dpkg -i sublime-text_build-3059_i386.deb
-
+sudo dpkg -i sublime-text_build-3047_amd64.deb
 Or you just double clicked on it and Ubuntu Software Center installed it...
 
 So, in this case:
 
 sudo dpkg -r sublime-text
+But you have to reinstall Sublime Text 2 in each case... Your configurations are in different folders, so your previous settings which belongs to Sublime Text 2, will be still there.
+
+
 -----------------------------------------------------------------------------
 
 Browser:

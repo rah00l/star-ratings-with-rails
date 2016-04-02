@@ -68,3 +68,94 @@ rake db:migrate
 rails g active_admin:resource music 
 
 rails destroy model AdminUser
+
+=============================================================================================
+
+To implement a single user model with rails activeadmin and devise
+--------------------------------------------------------------------
+
+http://jaysonlane.net/tech-blog/2012/04/rails-devise-and-active-admin-single-user-model/
+
+To get started, you’ll need to add a few gems to your gem file
+
+gem 'devise'
+gem 'activeadmin', github: 'activeadmin'
+
+Go ahead and run bundle install to get those gems installed. We’ll start by configuring Devise. We’re going to create a user model named …wait for it… "User" (unique, I know). If you’ve never used Devise before and want more information, you can check out their readme here. To get going we’re going to run a few generators:
+
+-> rails generate devise:install
+
+Which generates our Devise installation. Followed by:
+
+-> rails generate devise User
+
+That generates our user model. Before we rake our user migrations, let’s add a boolean admin flag to the user model:
+
+-> rails generate migration add_admin_flag_to_users admin:bool
+
+Go ahead and run your migrations:
+
+-> rake db:migrate
+
+Now, let’s go ahead and install Active Admin — normally, if you’re following the Active Admin docs (available here) you’d run the following command:
+
+-> rails generate active_admin:install
+
+However, this generates it’s own user model (called AdminUser) that we don’t want. Instead, we’ll run the following command:
+
+-> rails generate active_admin:install --skip-users
+
+This basically tells Active Admin not to make it’s own model. If you look inside the Active Admin initializer there are, amongst other things, two methods that it uses to a) make sure the user is an admin (config.authentication_method = :authenticate_admin_user!) and b) return the admin user (config.current_user_method = :current_admin_user). Because we’re using our own model we need to define these methods and we’ll do so in the application_controller.rb:
+
+		def authenticate_admin_user!
+			authenticate_user! 
+				unless current_user.admin?
+				flash[:alert] = "This area is restricted to administrators only."
+				redirect_to root_path 
+			end
+		end
+
+		def current_admin_user
+			return nil if user_signed_in? && !current_user.admin?
+			current_user
+		end
+
+		Now if you have a user that has the admin flag set to TRUE, they’ll be able to browse to /admin and view the Active Admin panel. If they’re not logged in, they’ll be prompted to do so, if they’re not an admin they’ll be redirected to the root path with a flash message informing them of the restricted area.
+As stated earlier, you will need to update your config/initializers/active_admin.rb to reflect the correct auth method.
+
+---> 					<---
+Additionally, however, you will want to update the following settings as well:
+
+# This setting changes the method which Active Admin calls
+# to return the currently logged in user.
+config.current_user_method = :current_admin_user
+to
+
+config.current_user_method = :current_user
+and
+
+# This setting changes the path where the link points to. If it's
+# a string, the strings is used as the path. If it's a Symbol, we
+# will call the method to return the path.
+#
+# Default:
+config.logout_link_path = :destroy_admin_user_session_path
+to
+
+config.logout_link_path = :destroy_user_session_path
+Of course, you don't HAVE to update these (or the method mentioned in the post), and just over-ride the methods elsewhere, but this seems to be the easiest / cleanest approach. You will obviously need to substitute "user" in each setting (current_USER) with the name of the model using devise authentication.
+
+I would also recommend updating the following setting as well while you are in there:
+
+# This setting changes the http method used when rendering the
+# link. For example :get, :delete, :put, etc..
+#
+# Default:
+config.logout_link_method = :get
+to
+
+config.logout_link_method = :delete
+This last change is required if the default HTTP method used by your devise config is set to :delete, which it is unless you changed it. It matters that they are now synced because if you follow these instructions, you will be using destroy_user_session_path which is a path already defined by devise. Otherwise you will get a message stating that [GET] /users/sign_out route does not exist.
+
+====================================================================================
+
