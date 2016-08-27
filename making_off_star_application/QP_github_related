@@ -52,3 +52,45 @@ This command will continue with rebase code with local code .. and retrive back 
 Then you can easily 
 
 git push origin current_branch
+
+----------------------------------------------------------------------------------------
+
+Checking for existing SSH keys
+
+1 Open Terminal.
+2 Enter ls -al ~/.ssh to see if existing SSH keys are present:
+	ls -al ~/.ssh
+	# Lists the files in your .ssh directory, if they exist
+
+3 Check the directory listing to see if you already have a public SSH key.
+By default, the filenames of the public keys are one of the following:
+
+		id_dsa.pub
+		id_ecdsa.pub
+		id_ed25519.pub
+		id_rsa.pub
+
+----------------------------------------------------------------------------------------
+
+Generating a new SSH key and adding it to the ssh-agent
+
+1 Open Terminal.
+2 Paste the text below, substituting in your GitHub email address.
+
+ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+
+3 When you're prompted to "Enter a file in which to save the key," press Enter. This accepts the default file location.
+
+	Enter a file in which to save the key (/Users/you/.ssh/id_rsa): [Press enter]
+
+4 At the prompt, type a secure passphrase. For more information, see "Working with SSH key passphrases".
+	Enter passphrase (empty for no passphrase): [Type a passphrase]
+	Enter same passphrase again: [Type passphrase again]
+
+
+Also set default configuration on your local machine:
+
+	git config --global user.email 'rahulpatil2387@gmail.com'
+	git config --global user.name 'Rahul Patil'
+
+----------------------------------------------------------------------------------------
