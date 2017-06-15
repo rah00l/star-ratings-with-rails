@@ -7,6 +7,7 @@ sudo apt-get install git
 
 sudo apt-get install gitg
 
+sudo apt-get install git-gui
 -----------------------------------------------------------------------------
 
 For RVM installation:
@@ -68,6 +69,10 @@ for mysql2 :
 p
 
 sudo apt-get install libmysql-ruby libmysqlclient-dev
+
+For pg gem native extension -
+
+sudo apt-get install libpq-dev
 
 -----------------------------------------------------------------------------
 

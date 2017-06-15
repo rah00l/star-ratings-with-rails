@@ -68,11 +68,8 @@ On show page displaing all image related to Photo Gallery with thumbnail images 
 <% end %>
 </div>
 
-
-
-
-
-
-
+:Dependent native extensions for ubuntu:
+For image processig acivities:
+  sudo apt-get install imagemagick libmagickwand-dev
 
 
