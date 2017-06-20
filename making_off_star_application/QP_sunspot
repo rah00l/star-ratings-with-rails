@@ -13,12 +13,19 @@ rake sunspot:solr:reindex
 
 # Add gem in Gemfile 
 gem 'sunspot_rails'
+gem 'sunspot_solr'
+
 
 # Install Gem 
 bundle install
 
 # Generator: (will generate sunspot.yml file)
 rails g sunspot_rails:install 
+
+If java was not installed use following commands to install -
+
+sudo apt-get install default-jre
+sudo apt-get install default-jdk
 
 #Start solr sunspot:
 rake sunspot:solr:start

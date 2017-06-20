@@ -1,58 +1,36 @@
+Install heroku gem:
 
-  Add following to Gemfile as on heroku production database working and it's adapter is postgressserver:
+Add following to Gemfile as on heroku production database working and it's adapter is postgressserver:
 
-  # To enable features such as static asset serving and logging on Heroku please add rails_12factor gem to your Gemfile.
+  # To enable features such as static asset serving and logging on Heroku,
+
+Please add rails_12factor gem to your Gemfile.
+
   group :production do
+
     gem 'pg'
+
     gem 'rails_12factor'
+
   end
-
-  gem install heroku --no-ri --no-rdoc
-
-  heroku create (will ask heroku account login and create app overthere.)
-
-  You can rename an app at any time with the heroku apps:rename command
-  -> heroku apps:rename newname (it's change name of app and subdomain)
-
-  TO check remote repository list:
-  -> git remote -v
-
-  To run migrations
-  -> heroku run rake db:migrate
-
-  -> heroku run rake db:seed
-
-  TO run any custom rake tasks:
-  -> heroku run rake prep:db:seed:transacts:yearly:fakes
-
-  To add repo.
-  -> git remote add heroku git@heroku.com:balanced-budget.git
-
-  TO remove remote:
-  -> git remote rm heroku
-
-  To verify logs:
-  -> heroku logs
-
-  To go into heroku application console:
-  heroku run bash
-
-    -> git push heroku feature/Dev-54-global-filter-options:master
 
 =====================================================================
  FOR DEPOLYING APP ON HEROKU :
  -----------------------------
    gem install heroku --no-ri --no-rdoc
 
-   git push heroku for_heroku:master
-   
-   heroku create (will ask heroku account login and create app overthere.)
+   heroku create sampleapp
+                  (sample app is application name on heroku / will ask heroku account login and create app overthere.)
+                   if (sampleapp) app name not specified it will pick random name that you can further rename.
+
+   git remote add heroku git@github.com:rah00l/sports.git
 
    git push heroku master
+  
 
-   git push heroku for_heroku:master (if your code is on any other branch other than master)
+  git push heroku for_heroku:master (if your code is on any other branch other than master)
 
----------------------------------------------------------
+=====================================================================
    Application specific ::
 
    heroku  rake sunspot:solr:start
@@ -60,27 +38,55 @@
    heroku rake sunspot:reindex
 
    heroku rake db:migrate db:seed
+=====================================================================
+Few Common heroku commands
+heroku create (will ask heroku account login and create app overthere.)
 
-heroku config : 
-  160  
-  161: $ heroku config:set GITHUB_USERNAME=joesmith
-  162  Adding config vars and restarting myapp... done, v12
-  163  GITHUB_USERNAME: joesmith
-  164  
-  165: $ heroku config
-  166  GITHUB_USERNAME: joesmith
-  167  OTHER_VAR:    production
-  168  
-  169: $ heroku config:get GITHUB_USERNAME
-  170  joesmith
-  171  
-  172: $ heroku config:unset GITHUB_USERNAME
-  173  Unsetting GITHUB_USERNAME and restarting myapp... done, v13
-  174  
-  175: heroku config:set WEBSOLR_URL=
-  176  
-  177  WEBSOLR_URL    =>
+To run migrations
+heroku run rake db:migrate
+heroku run rake db:seed
+You can rename an app at any time with the heroku apps:rename command
 
+heroku apps:rename newname (it's change name of app and subdomain)
 
+To check remote repository list:
 
+   git remote -v
 
+run migrations
+
+    heroku run rake db:migrate
+
+    heroku run rake db:seed
+
+To add repo.
+
+    git remote add heroku git@heroku.com:balanced-budget.git
+
+To remove remote:
+
+    git remote rm heroku
+
+To verify logs:
+
+    heroku logs
+
+  To go into heroku application console:
+
+    heroku run bash
+
+To get list of all apps on heroku 
+
+heroku apps
+
+Questions - If you have an existing app on Heroku and you are getting this no app specified message, you can correct it by running this on your local terminal: 
+
+      Issue  - Error : Error: No app specified
+
+  Answer -   
+
+                 heroku apps
+
+                 heroku git:remote -a frozen-fortress-41691
+
+  

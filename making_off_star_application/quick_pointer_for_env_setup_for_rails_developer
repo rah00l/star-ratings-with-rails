@@ -70,7 +70,8 @@ p
 
 sudo apt-get install libmysql-ruby libmysqlclient-dev
 
-For pg gem native extension -
+
+Installing the PostgreSQL gem with 'gem pq' fails with ERROR: Failed to build gem native extension
 
 sudo apt-get install libpq-dev
 
