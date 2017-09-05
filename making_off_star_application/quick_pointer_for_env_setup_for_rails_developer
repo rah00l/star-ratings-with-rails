@@ -10,6 +10,36 @@ sudo apt-get install gitg
 sudo apt-get install git-gui
 -----------------------------------------------------------------------------
 
+Required Packages:
+
+sudo apt-get install gawk g++ libreadline6-dev zlib1g-dev libssl-dev libyaml-dev libsqlite3-dev sqlite3 autoconf libgdbm-dev libncurses5-dev automake libtool bison libffi-dev
+
+sudo apt-get install imagemagick libmagickwand-dev
+
+sudo apt-get install libmagickwand-dev
+sudo apt-get install libxslt-dev libxml2-dev
+
+sudo apt-get install nodejs
+
+# This is for mysql2 dependent
+
+sudo apt-get install ruby-mysql
+
+sudo apt-get install libmysqlclient-dev
+
+for mysql2 :
+
+sudo apt-get install libmysql-ruby libmysqlclient-dev
+
+
+Installing the PostgreSQL gem with 'gem pq' fails with ERROR: Failed to build gem native extension
+
+sudo apt-get install libpq-dev
+
+-----------------------------------------------------------------------------
+
+
+-----------------------------------------------------------------------------
 For RVM installation:
 sudo apt-get install curl
 
@@ -52,30 +82,27 @@ But you have to reinstall Sublime Text 2 in each case... Your configurations are
 Browser:
   firebug 
 
------------------------------------------------------------------------------
 
-Required Packages:
+Install google-chrome
+  Add Key:
 
-sudo apt-get install gawk g++ libreadline6-dev zlib1g-dev libssl-dev libyaml-dev libsqlite3-dev sqlite3 autoconf libgdbm-dev libncurses5-dev automake libtool bison libffi-dev
+  wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add - 
 
-# This is for mysql2 dependent
+  Set repository:
 
-sudo apt-get install ruby-mysql
+  sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
 
-sudo apt-get install libmysqlclient-dev
+  Install package:
 
-for mysql2 :
-
-p
-
-sudo apt-get install libmysql-ruby libmysqlclient-dev
+  sudo apt-get update 
+  sudo apt-get install google-chrome-stable
 
 
-Installing the PostgreSQL gem with 'gem pq' fails with ERROR: Failed to build gem native extension
 
-sudo apt-get install libpq-dev
 
 -----------------------------------------------------------------------------
+
+
 
 During bundle install :
 
@@ -142,3 +169,8 @@ sudo apt-get install default-jre
 sudo apt-get install default-jdk
 
 -----------------------------------------------------------------------------
+How to make --no-ri --no-rdoc the default for gem install?
+
+On Linux (and probably Mac):
+
+echo 'gem: --no-document' >> ~/.gemrc

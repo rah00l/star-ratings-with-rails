@@ -349,7 +349,7 @@ A member route will require an ID, because it acts on a member. A collection rou
 The Asset Pipeline :-
 ---------------------
 
-    *** The first feature of the pipeline is to concatenate assets, which can reduce the number of requests that a browser makes to render a web page.          Web browsers are limited in the number of requests that they can make in parallel, so fewer requests can mean faster loading for your application.
+    *** The first feature of the pipeline is to concatenate assets, which can reduce the number of requests that a browser makes to render a web page. Web browsers are limited in the number of requests that they can make in parallel, so fewer requests can mean faster loading for your application.
         Sprockets concatenates all JavaScript files into one master .js file and all CSS files into one master .css file. 
 
     *** The second feature of the asset pipeline is asset minification or compression. For CSS files, this is done by removing whitespace and comments.             For JavaScript, more complex processes can be applied. You can choose from a set of built in options or specify your own.
@@ -385,7 +385,9 @@ end
 
 Polymorphic Association:
 
-Since Rails 1.1 there is a simpler way to create this kind of relationship called polymorphic association. In case of polymorphic association you ‘ll have two fields called commentable_type and commentable_id, instead of type and source_id. The commentable_type field will store name of class which that instance relates to and commentable_id saves the reference to instance of that class. The relations will be created like this:
+Since Rails 1.1 there is a simpler way to create this kind of relationship called polymorphic association. In case of polymorphic association you ‘ll have two fields called commentable_type and commentable_id, instead of type and source_id. 
+
+The commentable_type field will store name of class which that instance relates to and commentable_id saves the reference to instance of that class. The relations will be created like this:
 
 
 class Comment < ActiveRecord::Base
@@ -952,6 +954,40 @@ Ruby provides four types of variables:
     Instance Variables: Instance variables are available across methods for any particular instance or object. That means that instance variables change from object to object. Instance variables are preceded by the at sign (@) followed by the variable name.
 
     Class Variables: Class variables are available across different objects. A class variable belongs to the class and is a characteristic of a class. They are preceded by the sign @@ and are followed by the variable name.
+
+          #class instance variable are available only to class method and not to instance methods whereas class variable are avilable to both instance methods and class methods. Also the class instance variables are lost in inheritance chain whereas class variables are not.
+
+          class Vars
+
+          @class_ins_var = "class instance variable value"    #class instance variable
+          @@class_var = "class variable value" #class  variable
+
+          def self.class_method
+              puts @class_ins_var
+              puts @@class_var
+          end
+
+          def instance_method
+              puts @class_ins_var
+              puts @@class_var
+          end
+          end
+
+          Vars.class_method
+
+          puts "see the difference"
+
+          obj = Vars.new
+
+          obj.instance_method
+
+          class VarsChild < Vars
+
+
+          end
+
+          VarsChild.class_method
+
 
     Global Variables: Class variables are not available across classes. If you want to have a single variable, which is available across classes, you need to define a global variable. The global variables are always preceded by the dollar sign ($).
 
@@ -1824,6 +1860,132 @@ Ruby Module vs Class :
 Ruby modules allow you to create groups of methods that you can then include or mix into any number of classes. Modules only hold behaviour, unlike classes, which hold both behaviour and state.
 
 Since a module cannot be instantiated, there is no way for its methods to be called directly. Instead, it should be included in another class, which makes its methods available for use in instances of that class.
+
+******************************************************************************************************************************************************
+
+Polymorphism (in the context of object-oriented programming) means a subclass can override a method of the base class. This means a method of a class can do different things in subclasses. For example: a class Animal can have a method talk() and the subclasses Dog and Cat of Animal can let the method talk() make different sounds.
+
+Ruby we can use duck typing is nothing but runtime polymorphism.
+
+
+******************************************************************************************************************************************************
+
+The basic programming concepts in OOP are:
+
+Abstraction
+Polymorphism
+Encapsulation
+Inheritance
+
+
+******************************************************************************************************************************************************
+what-is-the-meaning-of-erb
+
+template engine which is "erb" = Embedded Ruby
+
+As @Chowlett mentioned before, erb stands for Embedded Ruby. When you define any file as ".html.erb" that means it's an HTML file with ruby code embedded in it and it is similar to ".rhtml" extension of rails file.
+
+You can see a detailed and nice difference between ".html.erb" and ".rhtml" Click Here
+
+Same as ".rhtml", you can also rename ".rjs" extension to ".js.erb" or ".rxml" to ".xml.erb"
+
+This format separates out content type from template engine which is "erb" in this case.
+
+
+ERB is that the embedded Ruby is processed in the backend before being sent off to a requesting web browser.
+
+
+e.g.
+    index.html.erb
+    file_name.content_type.template_engine
+
+    file_name = index
+    content_type = html
+    template_engine = erb (embeded ruby)
+
+*** Difference between html.erb & rhtml in ruby on rails ***
+
+Nothing, really. It’s just a change of philosophy between Rails 1 and Rails 2. Before Rails 2, you had file.rhtml, file.rxml and file.rjs. In Rails, that changed to file.content_type.template_engine. So with file.html.erb, the content type is html and the template engine is ERb. rxml is now xml.builder and rjs should now (mostly) be js.rjs.
+
+
+******************************************************************************************************************************************************
+
+Performance gains achievable through the implementation of these tips and tricks can range from minimal to breathtaking.
+1. Don’t make your code do unnecessary work
+For experienced developers this may seem a no-brainer but even old hat coders have been known to slap a class together that might not exactly be the most efficient.  Write just enough code to do the job and do it correctly.  Don’t over complicate your algorithms and be sure not to do unnecessary things such as looping more than required.
+
+2. Avoid nesting loops more than three levels deep
+Nesting not only slows you code down but also can make maintenance of the codebase difficult if it goes too many levels deep.  Limiting nesting of loops and functions to three levels or less is a good rule of thumb to keep your code performant.
+
+3. Avoid unnecessary variable assignments
+Many people, especially new programmers, tend to assign variables more than necessary.  A great example is when someone defines a variable to store a return value and then returns that variable; just return the value directly.
+
+4. Reduce usage of disk I/O
+Disk I/O is one of the biggest bottlenecks remaining in computing.  Read/write operations to disk are extremely slow and it’s best to avoid using the disk whenever possible.  Many people are now using software such as memcached which allows data to be stored in memory and only periodically written to disk.  The speed increases when using a memory caching system are tremendous.
+
+5. Use Ruby Enterprise Edition
+Ruby Enterprise edition provides up to 33% lower memory usage.  In order to take advantage of these performance gains though you must be sure to program according to their guidelines.
+
+6. Avoid method calls as much as possible
+Method calls are very expensive operations and should be avoided when necessary.
+
+7. Use efficient Ruby idioms
+Program into the language rather than in the language.  Performance will suffer if you try to write your Ruby code like you would PHP, Perl, or any other language.  Learn the Ruby way of doing things.
+
+8. Use interpolated strings instead of concatenated strings
+Interpolated strings are faster than concatenated strings in almost all interpreted languages; Ruby is no exception.  Using the << operator makes a method call which and method calls should be avoided when possible.
+put “Hello there, #{name}!”
+vs.
+puts “Hello there, ” << name = “!”
+
+9. Destructive operations are faster
+Ruby’s in-place methods that modify the actual value instead of working on a copy of it are much faster, but be careful as they sometimes behave strangely (i.e., for!)
+
+10. Avoid unnecessary calls to uniq on arrays
+In many cases methods are already calling uniq on an array and there’s no need for you to call it yet again.
+
+11. For loops are faster than .each
+When you use .each you encounter per-request execution; for loops avoid this expensive operation.
+
+12. Use x.blank? over x.nil? || x.empty?
+When using ActionPack there’s no need for x.nil? or x.empty?; x.blank? checks for both of these.
+
+13. Avoid calls to parse_date and strftime
+Both of these are very expensive operations.  Use regular expressions when parsing out date/time components.
+
+14. Don’t use unnecessary block parameters
+If you won’t be using the parameter in the block don’t specify it in the parameter list.  Go through your code and ensure that any parameters declared are used or removed.
+
+15. Know your gems
+Not all libraries are created with performance in mind.  Many gems are slapped together to solve a particular problem that author was having.  Before you introduce a new gem into your performance-oriented production codebase be sure to perform thorough benchmarking and testing against other gems that perform the same tasks.
+
+16. Profile your code regularly
+If you profile you code regularly you’ll be able to tell if the latest change to the code will have an adverse effect on performance.  Integrate profiling into your testing process and make it automated to ensure that it’s not forgotten.  Like unit testing and BDD profiling goes a long way.
+
+17. Improve your algorithms before you try to improve your code
+Algorithmic improvements are almost always going to have more of an impact on the performance of your code than tweaks to the way your code is written will.  Make sure your algorithm is designed to be efficient and has no extraneous methods or calls.  Also, test for most frequent cases first and exit loops as soon as possible.
+18. Test the most frequently occurring case first
+When using if statements or a case statement always test the cases in the order that they occur most frequently.  This allows less code to run before a decision is made.  It may not seem like much but over several hundred or thousand runs through the decision logic you’ll notice a definite performance gain.
+19. Optimize the way you access global constants
+Be sure to precede a global constant with it’s namespace and the double colon operator (Namespace::constant_name) to reduce the time needed to query the library.
+20. Use explicit returns
+Although Ruby will automatically return the result of the last completed operation if no return value is provided you should use explicit return values.  Explicit returns are faster, especially in older Ruby versions such as 1.8.x.
+
+******************************************************************************************************************************************************
+
+Difference between callbacks and concerns?
+
+~~~> callbacks called on implicit receivers that is current object i.e. self
+
+but concern methods can be called by explicit receiver as well.
+
+******************************************************************************************************************************************************
+
+
+Though symbols are good to use as it uses less memory why most of code in ruby uses strings?
+
+
+~~~~> gc is not good to collect for symbols.
 
 ******************************************************************************************************************************************************
 
